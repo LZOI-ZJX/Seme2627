@@ -15,6 +15,7 @@ miwavremos/**
 !miwavremos/*.qmd
 finmath/pre/
 
+*.pdf
 __pycache__/
 *.pyc
 .Rhistory
