@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hans" xml:lang="zh-Hans"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>微分几何 – Seme2627</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f2788e636de456f6409e966386820849.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "没有结果",
+    "search-matching-documents-text": "匹配的文档",
+    "search-copy-link-title": "复制搜索链接",
+    "search-hide-matches-text": "隐藏其它匹配结果",
+    "search-more-match-text": "更多匹配结果",
+    "search-more-matches-text": "更多匹配结果",
+    "search-clear-button-title": "清除",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "提交",
+    "search-label": "搜索"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Seme2627</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="搜索"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="展开或折叠导航栏" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">微分几何</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../difgeo/Notes.html">
+ <span class="dropdown-text">笔记</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../difgeo/homework.html">
+ <span class="dropdown-text">作业</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../finmath/Untitled-2.html"> 
+<span class="menu-text">金融数学</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../miwavremos/Untitled-2.html"> 
+<span class="menu-text">微波遥感</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Quantinfo/Untitled-2.html"> 
+<span class="menu-text">量子信息学</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../stasig/ssnote.html"> 
+<span class="menu-text">随机信号分析</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">该页面内容</h2>
+   
+  <ul>
+  <li><a href="#微分几何笔记三维欧氏空间中的局部与整体曲线论" id="toc-微分几何笔记三维欧氏空间中的局部与整体曲线论" class="nav-link active" data-scroll-target="#微分几何笔记三维欧氏空间中的局部与整体曲线论">微分几何笔记：三维欧氏空间中的局部与整体曲线论</a>
+  <ul class="collapse">
+  <li><a href="#一-欧氏空间标架与刚体运动" id="toc-一-欧氏空间标架与刚体运动" class="nav-link" data-scroll-target="#一-欧氏空间标架与刚体运动">一、 欧氏空间标架与刚体运动</a>
+  <ul class="collapse">
+  <li><a href="#标架frame" id="toc-标架frame" class="nav-link" data-scroll-target="#标架frame">1. 标架（Frame）</a></li>
+  <li><a href="#合同变换与刚体运动" id="toc-合同变换与刚体运动" class="nav-link" data-scroll-target="#合同变换与刚体运动">2. 合同变换与刚体运动</a></li>
+  </ul></li>
+  <li><a href="#二-参数曲线与弧长参数化" id="toc-二-参数曲线与弧长参数化" class="nav-link" data-scroll-target="#二-参数曲线与弧长参数化">二、 参数曲线与弧长参数化</a>
+  <ul class="collapse">
+  <li><a href="#正则参数曲线" id="toc-正则参数曲线" class="nav-link" data-scroll-target="#正则参数曲线">1. 正则参数曲线</a></li>
+  <li><a href="#弧长与弧长参数化" id="toc-弧长与弧长参数化" class="nav-link" data-scroll-target="#弧长与弧长参数化">2. 弧长与弧长参数化</a></li>
+  </ul></li>
+  <li><a href="#三-空间曲线的局部理论frenet-标架与基本定理" id="toc-三-空间曲线的局部理论frenet-标架与基本定理" class="nav-link" data-scroll-target="#三-空间曲线的局部理论frenet-标架与基本定理">三、 空间曲线的局部理论：Frenet 标架与基本定理</a>
+  <ul class="collapse">
+  <li><a href="#曲率挠率与-frenet-标架弧长参数下" id="toc-曲率挠率与-frenet-标架弧长参数下" class="nav-link" data-scroll-target="#曲率挠率与-frenet-标架弧长参数下">1. 曲率、挠率与 Frenet 标架（弧长参数下）</a></li>
+  <li><a href="#frenet-公式frenet-serret-formulas" id="toc-frenet-公式frenet-serret-formulas" class="nav-link" data-scroll-target="#frenet-公式frenet-serret-formulas">2. Frenet 公式（Frenet-Serret Formulas）</a></li>
+  <li><a href="#一般参数下的曲率与挠率计算公式" id="toc-一般参数下的曲率与挠率计算公式" class="nav-link" data-scroll-target="#一般参数下的曲率与挠率计算公式">3. 一般参数下的曲率与挠率计算公式</a></li>
+  <li><a href="#曲线的渐近展开bouquet-公式-局部规范形" id="toc-曲线的渐近展开bouquet-公式-局部规范形" class="nav-link" data-scroll-target="#曲线的渐近展开bouquet-公式-局部规范形">4. 曲线的渐近展开（Bouquet 公式 / 局部规范形）</a></li>
+  <li><a href="#曲线论基本定理" id="toc-曲线论基本定理" class="nav-link" data-scroll-target="#曲线论基本定理">5. 曲线论基本定理</a></li>
+  </ul></li>
+  <li><a href="#四-平面曲线与空间闭曲线的整体理论" id="toc-四-平面曲线与空间闭曲线的整体理论" class="nav-link" data-scroll-target="#四-平面曲线与空间闭曲线的整体理论">四、 平面曲线与空间闭曲线的整体理论</a>
+  <ul class="collapse">
+  <li><a href="#闭曲线与全曲率" id="toc-闭曲线与全曲率" class="nav-link" data-scroll-target="#闭曲线与全曲率">1. 闭曲线与全曲率</a></li>
+  <li><a href="#平面曲线的相对曲率与旋转指标定理" id="toc-平面曲线的相对曲率与旋转指标定理" class="nav-link" data-scroll-target="#平面曲线的相对曲率与旋转指标定理">2. 平面曲线的相对曲率与旋转指标定理</a></li>
+  <li><a href="#等周不等式isoperimetric-inequality" id="toc-等周不等式isoperimetric-inequality" class="nav-link" data-scroll-target="#等周不等式isoperimetric-inequality">3. 等周不等式（Isoperimetric Inequality）</a></li>
+  <li><a href="#空间闭曲线的整体定理fenchel-定理与-fáry-milnor-定理" id="toc-空间闭曲线的整体定理fenchel-定理与-fáry-milnor-定理" class="nav-link" data-scroll-target="#空间闭曲线的整体定理fenchel-定理与-fáry-milnor-定理">4. 空间闭曲线的整体定理：Fenchel 定理与 Fáry-Milnor 定理</a></li>
+  </ul></li>
+  <li><a href="#五-曲面片与切平面" id="toc-五-曲面片与切平面" class="nav-link" data-scroll-target="#五-曲面片与切平面">五、 曲面片与切平面</a>
+  <ul class="collapse">
+  <li><a href="#正则曲面片regular-surface-patch" id="toc-正则曲面片regular-surface-patch" class="nav-link" data-scroll-target="#正则曲面片regular-surface-patch">1. 正则曲面片（Regular Surface Patch）</a></li>
+  <li><a href="#图曲面graph-surface-monge-曲面片与典型例子" id="toc-图曲面graph-surface-monge-曲面片与典型例子" class="nav-link" data-scroll-target="#图曲面graph-surface-monge-曲面片与典型例子">2. 图曲面（Graph Surface / Monge 曲面片）与典型例子</a></li>
+  <li><a href="#切平面与法线" id="toc-切平面与法线" class="nav-link" data-scroll-target="#切平面与法线">3. 切平面与法线</a></li>
+  </ul></li>
+  <li><a href="#六-曲面的第一基本形式first-fundamental-form" id="toc-六-曲面的第一基本形式first-fundamental-form" class="nav-link" data-scroll-target="#六-曲面的第一基本形式first-fundamental-form">六、 曲面的第一基本形式（First Fundamental Form）</a>
+  <ul class="collapse">
+  <li><a href="#定义与矩阵表示" id="toc-定义与矩阵表示" class="nav-link" data-scroll-target="#定义与矩阵表示">1. 定义与矩阵表示</a></li>
+  <li><a href="#不变性定理" id="toc-不变性定理" class="nav-link" data-scroll-target="#不变性定理">2. 不变性定理</a></li>
+  <li><a href="#常见曲面的第一基本形式计算实例" id="toc-常见曲面的第一基本形式计算实例" class="nav-link" data-scroll-target="#常见曲面的第一基本形式计算实例">3. 常见曲面的第一基本形式计算实例</a></li>
+  </ul></li>
+  <li><a href="#七-曲面的第二基本形式与法曲率" id="toc-七-曲面的第二基本形式与法曲率" class="nav-link" data-scroll-target="#七-曲面的第二基本形式与法曲率">七、 曲面的第二基本形式与法曲率</a>
+  <ul class="collapse">
+  <li><a href="#定义与矩阵表示-1" id="toc-定义与矩阵表示-1" class="nav-link" data-scroll-target="#定义与矩阵表示-1">1. 定义与矩阵表示</a></li>
+  <li><a href="#变换性质与局部凹凸形态判定" id="toc-变换性质与局部凹凸形态判定" class="nav-link" data-scroll-target="#变换性质与局部凹凸形态判定">2. 变换性质与局部凹凸形态判定</a></li>
+  <li><a href="#法曲率normal-curvature" id="toc-法曲率normal-curvature" class="nav-link" data-scroll-target="#法曲率normal-curvature">3. 法曲率（Normal Curvature）</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">微分几何</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="微分几何笔记三维欧氏空间中的局部与整体曲线论" class="level1">
+<h1>微分几何笔记：三维欧氏空间中的局部与整体曲线论</h1>
+<hr>
+<section id="一-欧氏空间标架与刚体运动" class="level2">
+<h2 class="anchored" data-anchor-id="一-欧氏空间标架与刚体运动">一、 欧氏空间标架与刚体运动</h2>
+<section id="标架frame" class="level3">
+<h3 class="anchored" data-anchor-id="标架frame">1. 标架（Frame）</h3>
+<ul>
+<li><p><strong>定义（标架）</strong>：在三维欧氏空间 <span class="math inline">\(\mathbb{E}^3\)</span> 中，取定一个原点 <span class="math inline">\(O\)</span>，并取三个线性无关的向量 <span class="math inline">\(\{\vec{v}_1, \vec{v}_2, \vec{v}_3\}\)</span>，则称 <span class="math inline">\(\{O; \vec{v}_1, \vec{v}_2, \vec{v}_3\}\)</span> 为 <span class="math inline">\(\mathbb{E}^3\)</span> 的一个<strong>标架</strong>（仿射标架）。</p></li>
+<li><p><strong>定义（标准正交标架）</strong>：当 <span class="math inline">\(\{\vec{v}_1, \vec{v}_2, \vec{v}_3\}\)</span> 两两正交且均为单位向量（即满足 <span class="math inline">\(\langle \vec{v}_i, \vec{v}_j \rangle = \delta_{ij}\)</span>）时，称之为<strong>正交标架</strong>（或标准正交标架）。</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>[注记与修正]</strong>：原笔记写为“当 <span class="math inline">\(\vec{v}_1, \vec{v}_2, \vec{v}_3\)</span> 正交时，叫正交标架”，在微分几何中通常默认要求单位化（Orthonormal Frame），且为了与 <span class="math inline">\(\mathbb{R}^3\)</span> 建立保距同构，需取定一个固定的标准正交标架，从而使 <span class="math inline">\(\mathbb{E}^3\)</span> 与 <span class="math inline">\(\mathbb{R}^3\)</span> 一一对应。</p>
+</blockquote>
+</section>
+<section id="合同变换与刚体运动" class="level3">
+<h3 class="anchored" data-anchor-id="合同变换与刚体运动">2. 合同变换与刚体运动</h3>
+<ul>
+<li><strong>定义（合同变换 / 等距变换）</strong>：映射 <span class="math inline">\(T: \mathbb{R}^3 \to \mathbb{R}^3\)</span> 称为保距变换（或<strong>合同变换</strong>），如果它保持任意两点间的欧氏距离不变，即：</li>
+</ul>
+<p><span class="math display">\[d(p, q) = d(T(p), T(q)), \quad \forall p, q \in \mathbb{R}^3\]</span></p>
+<p>全体合同变换在映射复合下构成一个群，称为<strong>合同变换群</strong>（或欧氏群 <span class="math inline">\(E(3)\)</span>）。</p>
+<ul>
+<li><p><strong>正交群与特殊正交群</strong>：</p></li>
+<li><p><strong>正交群</strong>：<span class="math inline">\(O(3) := \{A \in M_{3\times 3}(\mathbb{R}) \mid A^T A = I_3\}\)</span>（构成一个李群 Lie Group，满足 <span class="math inline">\(\det A = \pm 1\)</span>）。</p></li>
+<li><p><strong>特殊正交群</strong>：<span class="math inline">\(SO(3) := \{A \in O(3) \mid \det A = 1\}\)</span>。</p></li>
+<li><p><strong>定理（合同变换的代数表示）</strong>：若 <span class="math inline">\(T\)</span> 是 <span class="math inline">\(\mathbb{R}^3\)</span> 中的合同变换，则存在唯一的正交矩阵 <span class="math inline">\(A \in O(3)\)</span> 和平移向量 <span class="math inline">\(p_0 \in \mathbb{R}^3\)</span>，使得对任意点 <span class="math inline">\(p = (x, y, z) \in \mathbb{R}^3\)</span>（行向量表示），有：</p></li>
+</ul>
+<p><span class="math display">\[T(p) = pA + p_0\]</span></p>
+<p>（若采用列向量习惯，则记为 <span class="math inline">\(T(p) = Ap + p_0\)</span>）。 * <strong>定义（刚体运动）</strong>：当上述表示中的 <span class="math inline">\(\det A = 1\)</span>（即 <span class="math inline">\(A \in SO(3)\)</span>）时，称相应的保定向合同变换 <span class="math inline">\(T\)</span> 为一个<strong>刚体运动</strong>（Rigid Motion，或直接合同变换）；若 <span class="math inline">\(\det A = -1\)</span>，则称为反射变换（或反向合同变换）。</p>
+<hr>
+</section>
+</section>
+<section id="二-参数曲线与弧长参数化" class="level2">
+<h2 class="anchored" data-anchor-id="二-参数曲线与弧长参数化">二、 参数曲线与弧长参数化</h2>
+<section id="正则参数曲线" class="level3">
+<h3 class="anchored" data-anchor-id="正则参数曲线">1. 正则参数曲线</h3>
+<ul>
+<li><strong>定义（正则曲线）</strong>：设参数曲线为映射 <span class="math inline">\(\alpha: (a, b) \to \mathbb{R}^3\)</span>，<span class="math inline">\(t \mapsto \alpha(t) = (x(t), y(t), z(t))\)</span>。称 <span class="math inline">\(\alpha\)</span> 为<strong>正则曲线（Regular Curve）</strong>，如果：</li>
+</ul>
+<ol type="1">
+<li><p>分量函数 <span class="math inline">\(x(t), y(t), z(t) \in C^\infty(a, b)\)</span> 都是光滑函数；</p></li>
+<li><p>对任意 <span class="math inline">\(t \in (a, b)\)</span>，速度向量处处非零：<span class="math inline">\(\alpha'(t) = (x'(t), y'(t), z'(t)) \neq \vec{0}\)</span>。</p></li>
+</ol>
+<ul>
+<li><p><strong>定义（切向量与切线）</strong>：对于正则曲线 <span class="math inline">\(\alpha: (a, b) \to \mathbb{R}^3\)</span>，称 <span class="math inline">\(\alpha'(t) = (x'(t), y'(t), z'(t))\)</span> 为曲线 <span class="math inline">\(\alpha\)</span> 在 <span class="math inline">\(t\)</span> 处的<strong>切向量</strong>；称由点 <span class="math inline">\(\alpha(t)\)</span> 和方向向量 <span class="math inline">\(\alpha'(t)\)</span> 决定的空间直线为曲线在 <span class="math inline">\(t\)</span> 处的<strong>切线</strong>。</p></li>
+<li><p><strong>定义（容许参数变换）</strong>：设光滑双射函数 <span class="math inline">\(t = t(u)\)</span>，<span class="math inline">\(u \in (\alpha, \beta)\)</span> 满足 <span class="math inline">\(\frac{dt}{du} \neq 0\)</span>（处处非零），则称 <span class="math inline">\(t = t(u)\)</span> 为正则曲线的<strong>参数变换</strong>。</p></li>
+<li><p>若 <span class="math inline">\(\frac{dt}{du} &gt; 0\)</span>，称为<strong>保定向参数变换</strong>；</p></li>
+<li><p>若 <span class="math inline">\(\frac{dt}{du} &lt; 0\)</span>，称为<strong>反定向参数变换</strong>。</p></li>
+</ul>
+</section>
+<section id="弧长与弧长参数化" class="level3">
+<h3 class="anchored" data-anchor-id="弧长与弧长参数化">2. 弧长与弧长参数化</h3>
+<ul>
+<li><strong>定义（弧长）</strong>：正则曲线 <span class="math inline">\(\alpha(t)\)</span> 在闭区间 <span class="math inline">\([c, d] \subset (a, b)\)</span> 上的<strong>弧长</strong>定义为：</li>
+</ul>
+<p><span class="math display">\[L = \int_c^d \vert{}\alpha'(t)\vert{} \, dt\]</span></p>
+<ul>
+<li><strong>命题（弧长参数的存在性）</strong>：若 <span class="math inline">\(\alpha(t)\)</span> 为正则曲线，取定基点 <span class="math inline">\(t_0 \in (a, b)\)</span>，定义弧长函数 <span class="math inline">\(s(t) = \int_{t_0}^t \vert{}\alpha'(\tau)\vert{} \, d\tau\)</span>。因为 <span class="math inline">\(\frac{ds}{dt} = \vert{}\alpha'(t)\vert{} &gt; 0\)</span>，由反函数定理，存在反变换 <span class="math inline">\(t = t(s)\)</span>，使得复合后的曲线 <span class="math inline">\(\tilde{\alpha}(s) := \alpha(t(s))\)</span> 满足速率恒为 1：</li>
+</ul>
+<p><span class="math display">\[\left\vert{}\frac{d\alpha}{ds}\right\vert{} = \vert{}\dot{\alpha}(s)\vert{} \equiv 1\]</span></p>
+<p>此时称 <span class="math inline">\(s\)</span> 为<strong>弧长参数（自然参数）</strong>。（注：以下默认用 <span class="math inline">\(\dot{\alpha}(s)\)</span> 表示对弧长参数 <span class="math inline">\(s\)</span> 的导数，用 <span class="math inline">\(\alpha'(t)\)</span> 表示对一般参数 <span class="math inline">\(t\)</span> 的导数）。</p>
+<hr>
+</section>
+</section>
+<section id="三-空间曲线的局部理论frenet-标架与基本定理" class="level2">
+<h2 class="anchored" data-anchor-id="三-空间曲线的局部理论frenet-标架与基本定理">三、 空间曲线的局部理论：Frenet 标架与基本定理</h2>
+<section id="曲率挠率与-frenet-标架弧长参数下" class="level3">
+<h3 class="anchored" data-anchor-id="曲率挠率与-frenet-标架弧长参数下">1. 曲率、挠率与 Frenet 标架（弧长参数下）</h3>
+<p>设 <span class="math inline">\(\alpha(s) = (x(s), y(s), z(s))\)</span> 为弧长参数化的正则空间曲线：</p>
+<ol type="1">
+<li><strong>单位切向量（Unit Tangent Vector）</strong>：</li>
+</ol>
+<p><span class="math display">\[\vec{t}(s) := \frac{d\alpha}{ds} = \dot{\alpha}(s) = (\dot{x}(s), \dot{y}(s), \dot{z}(s)), \quad \vert{}\vec{t}(s)\vert{} \equiv 1\]</span></p>
+<ol start="2" type="1">
+<li><strong>曲率（Curvature）</strong>：称切向量关于弧长的变化率模长为曲线在 <span class="math inline">\(\alpha(s)\)</span> 处的<strong>曲率</strong>：</li>
+</ol>
+<p><span class="math display">\[\kappa(s) := \vert{}\dot{\vec{t}}(s)\vert{} = \vert{}\ddot{\alpha}(s)\vert{} = \sqrt{(\ddot{x}(s))^2 + (\ddot{y}(s))^2 + (\ddot{z}(s))^2} \ge 0\]</span></p>
+<ol start="3" type="1">
+<li><strong>主法向量（Principal Normal Vector）</strong>：若 <span class="math inline">\(\kappa(s) \neq 0\)</span>（即 <span class="math inline">\(\kappa(s) &gt; 0\)</span>，称为双正则点/非拐点），由 <span class="math inline">\(\vert{}\vec{t}(s)\vert{}^2 = 1\)</span> 求导得 <span class="math inline">\(\langle \vec{t}(s), \dot{\vec{t}}(s) \rangle = 0\)</span>，定义单位向量：</li>
+</ol>
+<p><span class="math display">\[\vec{n}(s) := \frac{1}{\kappa(s)}\dot{\vec{t}}(s)\]</span></p>
+<p>为曲线在 <span class="math inline">\(\alpha(s)\)</span> 处的<strong>主法向量</strong>。</p>
+<ol start="4" type="1">
+<li><strong>副法向量（Binormal Vector）</strong>：定义右手叉积</li>
+</ol>
+<p><span class="math display">\[\vec{b}(s) := \vec{t}(s) \wedge \vec{n}(s) \quad (\text{或记为 } \vec{t}(s) \times \vec{n}(s))\]</span></p>
+<p>为曲线在 <span class="math inline">\(\alpha(s)\)</span> 处的<strong>副法向量</strong>。</p>
+<ol start="5" type="1">
+<li><strong>定义（Frenet 标架与三个基本平面）</strong>：右手标准正交标架 <span class="math inline">\(\{\alpha(s); \vec{t}(s), \vec{n}(s), \vec{b}(s)\}\)</span> 称为曲线 <span class="math inline">\(\alpha\)</span> 在点 <span class="math inline">\(\alpha(s)\)</span> 处的 <strong>Frenet 标架</strong>。由标架向量两两张成的三个过点 <span class="math inline">\(\alpha(s)\)</span> 的平面分别为：</li>
+</ol>
+<ul>
+<li><p><strong>密切平面（Osculating Plane）</strong>：由 <span class="math inline">\(\{\vec{t}(s), \vec{n}(s)\}\)</span> 张成（以 <span class="math inline">\(\vec{b}(s)\)</span> 为法向量）；</p></li>
+<li><p><strong>法平面（Normal Plane）</strong>：由 <span class="math inline">\(\{\vec{n}(s), \vec{b}(s)\}\)</span> 张成（以 <span class="math inline">\(\vec{t}(s)\)</span> 为法向量）；</p></li>
+<li><p><strong>从切平面 / 展直平面（Rectifying Plane）</strong>：由 <span class="math inline">\(\{\vec{t}(s), \vec{b}(s)\}\)</span> 张成（以 <span class="math inline">\(\vec{n}(s)\)</span> 为法向量）。</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>[修正说明]</strong>：原笔记在标架下方用红笔标注了“法平面、切平面、密切平面”。需要注意<strong>空间曲线没有“切平面”（只有切线）</strong>，由 <span class="math inline">\(\vec{t}\)</span> 和 <span class="math inline">\(\vec{b}\)</span> 张成的平面标准名称为<strong>从切平面</strong>（或展直平面）。</p>
+</blockquote>
+<ol start="6" type="1">
+<li><strong>挠率（Torsion）</strong>：称</li>
+</ol>
+<p><span class="math display">\[\tau(s) := \langle \dot{\vec{n}}(s), \vec{b}(s) \rangle = -\langle \vec{n}(s), \dot{\vec{b}}(s) \rangle\]</span></p>
+<p>为曲线 <span class="math inline">\(\alpha\)</span> 在 <span class="math inline">\(\alpha(s)\)</span> 处的<strong>挠率</strong>。（注：空间曲线的曲率 <span class="math inline">\(\kappa(s) &gt; 0\)</span> 恒正，而挠率 <span class="math inline">\(\tau(s) \in \mathbb{R}\)</span> 可正、可负、可为零，反映曲线偏离密切平面的方向与剧烈程度）。</p>
+</section>
+<section id="frenet-公式frenet-serret-formulas" class="level3">
+<h3 class="anchored" data-anchor-id="frenet-公式frenet-serret-formulas">2. Frenet 公式（Frenet-Serret Formulas）</h3>
+<ul>
+<li><strong>定理（Frenet 公式）</strong>：设 <span class="math inline">\(\alpha(s)\)</span> 为满足 <span class="math inline">\(\kappa(s) &gt; 0\)</span> 的弧长参数空间曲线，则其 Frenet 标架满足运动方程组：</li>
+</ul>
+<p><span class="math display">\[\begin{cases} \dot{\vec{t}}(s) = \kappa(s)\vec{n}(s) \\ \dot{\vec{n}}(s) = -\kappa(s)\vec{t}(s) + \tau(s)\vec{b}(s) \\ \dot{\vec{b}}(s) = -\tau(s)\vec{n}(s) \end{cases}\]</span></p>
+<p>写成反对称矩阵形式为：</p>
+<p><span class="math display">\[\frac{d}{ds}\begin{bmatrix} \vec{t}(s) \\ \vec{n}(s) \\ \vec{b}(s) \end{bmatrix} = \begin{bmatrix} 0 &amp; \kappa(s) &amp; 0 \\ -\kappa(s) &amp; 0 &amp; \tau(s) \\ 0 &amp; -\tau(s) &amp; 0 \end{bmatrix} \begin{bmatrix} \vec{t}(s) \\ \vec{n}(s) \\ \vec{b}(s) \end{bmatrix}\]</span></p>
+<ul>
+<li><strong>命题（平面曲线的判定）</strong>：设空间正则曲线 <span class="math inline">\(\alpha(s)\)</span> 满足曲率处处非零（<span class="math inline">\(\kappa(s) &gt; 0\)</span>），则曲线 <span class="math inline">\(\alpha\)</span> 完全落在某个平面上 <span class="math inline">\(\Longleftrightarrow \forall s, \ \tau(s) \equiv 0\)</span>。</li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>[严谨性补充]</strong>：必须在前提中加上 <strong><span class="math inline">\(\kappa(s) &gt; 0\)</span></strong>。若允许 <span class="math inline">\(\kappa(s) = 0\)</span>，挠率 <span class="math inline">\(\tau\)</span> 在曲率为零处无定义；且存在两段位于不同平面上的曲线通过一段直线（<span class="math inline">\(\kappa=0\)</span>）光滑拼接的反例，其在有定义处 <span class="math inline">\(\tau \equiv 0\)</span> 但整体不在同一平面内。</p>
+</blockquote>
+</section>
+<section id="一般参数下的曲率与挠率计算公式" class="level3">
+<h3 class="anchored" data-anchor-id="一般参数下的曲率与挠率计算公式">3. 一般参数下的曲率与挠率计算公式</h3>
+<p>设 <span class="math inline">\(\alpha(t)\)</span> 为任意参数 <span class="math inline">\(t\)</span> 下的正则曲线（不必是弧长参数），则：</p>
+<ul>
+<li><strong>曲率公式</strong>：</li>
+</ul>
+<p><span class="math display">\[\kappa(t) = \frac{\vert{}\alpha'(t) \wedge \alpha''(t)\vert{}}{\vert{}\alpha'(t)\vert{}^3}\]</span></p>
+<ul>
+<li><strong>挠率公式</strong>（当 <span class="math inline">\(\alpha'(t) \wedge \alpha''(t) \neq \vec{0}\)</span> 时）：</li>
+</ul>
+<p><span class="math display">\[\tau(t) = \frac{(\alpha'(t), \alpha''(t), \alpha'''(t))}{\vert{}\alpha'(t) \wedge \alpha''(t)\vert{}^2}\]</span></p>
+<p>其中 <span class="math inline">\((\vec{u}, \vec{v}, \vec{w}) = \langle \vec{u} \wedge \vec{v}, \vec{w} \rangle = \det(\vec{u}, \vec{v}, \vec{w})\)</span> 表示三个向量的混合积。</p>
+</section>
+<section id="曲线的渐近展开bouquet-公式-局部规范形" class="level3">
+<h3 class="anchored" data-anchor-id="曲线的渐近展开bouquet-公式-局部规范形">4. 曲线的渐近展开（Bouquet 公式 / 局部规范形）</h3>
+<p>将弧长参数曲线 <span class="math inline">\(\alpha(s)\)</span> 在 <span class="math inline">\(s = 0\)</span> 处作三阶 Taylor 展开：</p>
+<p><span class="math display">\[\alpha(s) = \alpha(0) + s\dot{\alpha}(0) + \frac{1}{2}s^2\ddot{\alpha}(0) + \frac{1}{6}s^3\dddot{\alpha}(0) + \vec{R}(s^3)\]</span></p>
+<p>利用 Frenet 公式依次求导（记 <span class="math inline">\(s=0\)</span> 处的标架为 <span class="math inline">\(\{\vec{t}_0, \vec{n}_0, \vec{b}_0\}\)</span>，曲率与挠率为 <span class="math inline">\(\kappa, \tau\)</span>，导数为 <span class="math inline">\(\kappa'\)</span>）：</p>
+<ul>
+<li><span class="math inline">\(\dot{\alpha}(0) = \vec{t}_0\)</span></li>
+<li><span class="math inline">\(\ddot{\alpha}(0) = \kappa \vec{n}_0\)</span></li>
+<li><span class="math inline">\(\dddot{\alpha}(0) = -\kappa^2 \vec{t}_0 + \kappa' \vec{n}_0 + \kappa\tau \vec{b}_0\)</span></li>
+</ul>
+<p>若以 <span class="math inline">\(\alpha(0)\)</span> 为坐标原点，以 <span class="math inline">\(\{\vec{t}_0, \vec{n}_0, \vec{b}_0\}\)</span> 分别为 <span class="math inline">\(x, y, z\)</span> 轴建立局部右手笛卡尔坐标系，则曲线 <span class="math inline">\(\alpha(s) = (x(s), y(s), z(s))\)</span> 在 <span class="math inline">\(s=0\)</span> 附近的局部坐标展开式（<strong>Bouquet 公式</strong>）为：</p>
+<p><span class="math display">\[\begin{cases} x(s) = s - \dfrac{\kappa^2 s^3}{6} + R_x(s^3) \\ y(s) = \dfrac{\kappa s^2}{2} + \dfrac{\kappa' s^3}{6} + R_y(s^3) \\ z(s) = \dfrac{\kappa\tau s^3}{6} + R_z(s^3) \end{cases}\]</span></p>
+<p>其中余项满足 <span class="math inline">\(\lim_{s\to 0} \frac{R_i(s^3)}{s^3} = 0\)</span>（即 <span class="math inline">\(o(s^3)\)</span>）。由此可直观看出曲线在三个基本平面上的局部投影形状（密切平面投影近似抛物线 <span class="math inline">\(y \approx \frac{\kappa}{2}x^2\)</span>，从切平面投影近似三次半立方抛物线 <span class="math inline">\(z \approx \frac{\kappa\tau}{6}x^3\)</span>，法平面投影近似尖点曲线 <span class="math inline">\(z^2 \approx \frac{2\tau^2}{9\kappa}y^3\)</span>）。</p>
+</section>
+<section id="曲线论基本定理" class="level3">
+<h3 class="anchored" data-anchor-id="曲线论基本定理">5. 曲线论基本定理</h3>
+<ul>
+<li><p><strong>几何不变量</strong>：正则曲线 <span class="math inline">\(\alpha\)</span> 的弧长 <span class="math inline">\(s\)</span>、曲率 <span class="math inline">\(\kappa\)</span> 在任意合同变换下不变；挠率 <span class="math inline">\(\tau\)</span> 在<strong>刚体运动</strong>（保定向合同变换，<span class="math inline">\(\det A = 1\)</span>）下保持不变（在反射变换 <span class="math inline">\(\det A = -1\)</span> 下挠率反号 <span class="math inline">\(\tau \mapsto -\tau\)</span>）。</p></li>
+<li><p><strong>定理（空间曲线论基本定理）</strong>：</p></li>
+</ul>
+<ol type="1">
+<li><strong>唯一性（合同性）</strong>：设 <span class="math inline">\(\alpha_1(s), \alpha_2(s)\)</span> 是定义在同一区间 <span class="math inline">\((a, b)\)</span> 上的两条弧长参数曲线。若对任意 <span class="math inline">\(s \in (a, b)\)</span>，均有</li>
+</ol>
+<p><span class="math display">\[\kappa_1(s) = \kappa_2(s) &gt; 0, \quad \tau_1(s) = \tau_2(s)\]</span></p>
+<p>则存在唯一的刚体运动 <span class="math inline">\(T\)</span>，使得 <span class="math inline">\(\alpha_1 = T \circ \alpha_2\)</span>（即两条曲线仅相差一个空间刚体运动）。</p>
+<ol start="2" type="1">
+<li><strong>存在性</strong>：设函数 <span class="math inline">\(\kappa = \kappa(s) &gt; 0\)</span> 和 <span class="math inline">\(\tau = \tau(s)\)</span> 在区间 <span class="math inline">\((a, b)\)</span> 上光滑（或至少 <span class="math inline">\(\kappa(s) \in C^1(a, b)\)</span> 且 <span class="math inline">\(\tau(s) \in C^0(a, b)\)</span>），则必存在一条以 <span class="math inline">\(s\)</span> 为弧长参数的空间正则曲线 <span class="math inline">\(\alpha(s)\)</span>，以 <span class="math inline">\(\kappa(s)\)</span> 为曲率、以 <span class="math inline">\(\tau(s)\)</span> 为挠率。</li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="四-平面曲线与空间闭曲线的整体理论" class="level2">
+<h2 class="anchored" data-anchor-id="四-平面曲线与空间闭曲线的整体理论">四、 平面曲线与空间闭曲线的整体理论</h2>
+<section id="闭曲线与全曲率" class="level3">
+<h3 class="anchored" data-anchor-id="闭曲线与全曲率">1. 闭曲线与全曲率</h3>
+<ul>
+<li><strong>定义（正则闭曲线）</strong>：设 <span class="math inline">\(\alpha: [a, b] \to \mathbb{R}^3\)</span> 为正则参数曲线。称 <span class="math inline">\(\alpha\)</span> 为一条<strong>光滑闭曲线</strong>，如果满足以下两个等价条件之一：</li>
+</ul>
+<ol type="1">
+<li><strong>端点各阶导数匹配</strong>：<span class="math inline">\(\alpha(a) = \alpha(b)\)</span>，且对任意阶导数有 <span class="math inline">\(\alpha^{(k)}(a^+) = \alpha^{(k)}(b^-), \ \forall k \in \mathbb{N}^+\)</span>；</li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>[符号修正]</strong>：原笔记中将 <span class="math inline">\(k\)</span> 阶导数写成了上标无括号的 <span class="math inline">\(\alpha^k(a^+) = \alpha^k(b^-)\)</span>，在标准数学记号中应加上括号写作 <span class="math inline">\(\alpha^{(k)}(a^+) = \alpha^{(k)}(b^-)\)</span> 以免与幂次混淆。</p>
+</blockquote>
+<ol start="2" type="1">
+<li><strong>周期延拓定义</strong>：存在周期为 <span class="math inline">\(T = b - a\)</span> 的光滑正则周期映射 <span class="math inline">\(\bar{\alpha}: \mathbb{R} \to \mathbb{R}^3\)</span>（满足 <span class="math inline">\(\bar{\alpha}(t + T) = \bar{\alpha}(t)\)</span>），使得其限制在 <span class="math inline">\([a, b]\)</span> 上满足 <span class="math inline">\(\bar{\alpha}\vert{}_{[a, b]} = \alpha\)</span>。</li>
+</ol>
+<ul>
+<li><strong>定义（简单闭曲线）</strong>：若闭曲线 <span class="math inline">\(\alpha: [a, b] \to \mathbb{R}^3\)</span> 在半开区间 <span class="math inline">\([a, b)\)</span> 上是单射（即除端点 <span class="math inline">\(\alpha(a)=\alpha(b)\)</span> 外无自交点），则称 <span class="math inline">\(\alpha\)</span> 为<strong>简单闭曲线</strong>（或 Jordan 闭曲线）。</li>
+<li><strong>定义（全曲率 Total Curvature）</strong>：设 <span class="math inline">\(\alpha: [a, b] \to \mathbb{R}^3\)</span> 为长为 <span class="math inline">\(L\)</span> 的闭曲线，称积分</li>
+</ul>
+<p><span class="math display">\[\int_a^b \kappa(t)\vert{}\alpha'(t)\vert{} \, dt = \int_0^L \kappa(s) \, ds\]</span></p>
+<p>为闭曲线 <span class="math inline">\(\alpha\)</span> 的<strong>全曲率</strong>。</p>
+</section>
+<section id="平面曲线的相对曲率与旋转指标定理" class="level3">
+<h3 class="anchored" data-anchor-id="平面曲线的相对曲率与旋转指标定理">2. 平面曲线的相对曲率与旋转指标定理</h3>
+<p>设 <span class="math inline">\(\alpha: [0, L] \to \mathbb{R}^2\)</span>，<span class="math inline">\(\alpha(s) = (x(s), y(s))\)</span> 为弧长参数化的平面正则曲线：</p>
+<ul>
+<li><p><strong>平面 Frenet 标架与相对曲率（有向曲率）</strong>：</p></li>
+<li><p>单位切向量：<span class="math inline">\(\vec{t}(s) = \frac{d\alpha}{ds} = (\dot{x}(s), \dot{y}(s))\)</span>。</p></li>
+<li><p>单位法向量：将 <span class="math inline">\(\vec{t}(s)\)</span> 逆时针旋转 <span class="math inline">\(\frac{\pi}{2}\)</span> 唯一确定 <span class="math inline">\(\vec{n}(s) = (-\dot{y}(s), \dot{x}(s))\)</span>，使得 <span class="math inline">\(\{\vec{t}(s), \vec{n}(s)\}\)</span> 构成平面右手正交标架。</p></li>
+<li><p>因为 <span class="math inline">\(\vert{}\vec{t}(s)\vert{} \equiv 1 \implies \dot{\vec{t}}(s) \perp \vec{t}(s) \implies \dot{\vec{t}}(s) \parallel \vec{n}(s)\)</span>，故存在唯一标量函数 <span class="math inline">\(k(s)\)</span>（或记为 <span class="math inline">\(\kappa_r(s)\)</span>），使得：</p></li>
+</ul>
+<p><span class="math display">\[\dot{\vec{t}}(s) = k(s)\vec{n}(s)\]</span></p>
+<p>称 <span class="math inline">\(k(s) = \langle \dot{\vec{t}}(s), \vec{n}(s) \rangle = \dot{x}(s)\ddot{y}(s) - \ddot{x}(s)\dot{y}(s)\)</span> 为平面曲线的<strong>相对曲率（或有向曲率 Signed Curvature）</strong>。</p>
+<blockquote class="blockquote">
+<p><strong>[重要区分]</strong>：平面曲线的相对曲率 <span class="math inline">\(k(s)\)</span> <strong>可正可负</strong>（向左转时 <span class="math inline">\(k(s) &gt; 0\)</span>，向右转时 <span class="math inline">\(k(s) &lt; 0\)</span>），它与前文空间曲线非负曲率 <span class="math inline">\(\kappa(s)\)</span> 的关系是 <span class="math inline">\(\kappa(s) = \vert{}k(s)\vert{}\)</span>。</p>
+</blockquote>
+<ul>
+<li><strong>定义（旋转指标 Rotation Index）</strong>：对于平面闭曲线 <span class="math inline">\(\alpha: [0, L] \to \mathbb{R}^2\)</span>，称</li>
+</ul>
+<p><span class="math display">\[I(\alpha) = \frac{1}{2\pi} \int_0^L k(s) \, ds\]</span></p>
+<p>为闭曲线 <span class="math inline">\(\alpha\)</span> 的<strong>旋转指标</strong>（即切向量映射 <span class="math inline">\(\vec{t}: [0, L] \to S^1\)</span> 绕单位圆周旋转的代数圈数，必为整数）。</p>
+<ul>
+<li><strong>定理（Hopf 旋转指标定理 / 切线回转定理）</strong>：平面<strong>简单闭曲线</strong>的旋转指标必为 <span class="math inline">\(\pm 1\)</span>（当曲线按逆时针正向定向时，旋转指标恒为 <span class="math inline">\(+1\)</span>；顺时针定向时为 <span class="math inline">\(-1\)</span>）：</li>
+</ul>
+<p><span class="math display">\[\frac{1}{2\pi} \int_0^L k(s) \, ds = \pm 1\]</span></p>
+<blockquote class="blockquote">
+<p><strong>[严谨性修正]</strong>：原笔记写为“平面简单闭曲线的旋转指标为 <span class="math inline">\(1\)</span>”，严格来说只有在规定曲线取<strong>正向（逆时针方向，即法向量 <span class="math inline">\(\vec{n}\)</span> 指向内部有界区域）</strong>时才恒等于 <span class="math inline">\(+1\)</span>；若不指定定向，结论应为 <span class="math inline">\(\pm 1\)</span>。</p>
+</blockquote>
+</section>
+<section id="等周不等式isoperimetric-inequality" class="level3">
+<h3 class="anchored" data-anchor-id="等周不等式isoperimetric-inequality">3. 等周不等式（Isoperimetric Inequality）</h3>
+<ul>
+<li><strong>定理（平面等周不等式）</strong>：设 <span class="math inline">\(\alpha: [0, L] \to \mathbb{R}^2\)</span> 是长为 <span class="math inline">\(L\)</span> 的平面简单闭曲线，令 <span class="math inline">\(A\)</span> 表示 <span class="math inline">\(\alpha\)</span> 所围成的有界区域面积，则恒有：</li>
+</ul>
+<p><span class="math display">\[L^2 \ge 4\pi A\]</span></p>
+<p>且等号成立（<span class="math inline">\(L^2 = 4\pi A\)</span>）当且仅当 <span class="math inline">\(\alpha\)</span> 是一个<strong>圆周</strong>。</p>
+</section>
+<section id="空间闭曲线的整体定理fenchel-定理与-fáry-milnor-定理" class="level3">
+<h3 class="anchored" data-anchor-id="空间闭曲线的整体定理fenchel-定理与-fáry-milnor-定理">4. 空间闭曲线的整体定理：Fenchel 定理与 Fáry-Milnor 定理</h3>
+<ul>
+<li><strong>定理（Fenchel 不等式，1929）</strong>：设 <span class="math inline">\(\alpha: [0, L] \to \mathbb{R}^3\)</span> 是 <span class="math inline">\(\mathbb{R}^3\)</span> 中的一条光滑正则闭曲线，则其全曲率恒大于等于 <span class="math inline">\(2\pi\)</span>：</li>
+</ul>
+<p><span class="math display">\[\int_0^L \kappa(s) \, ds \ge 2\pi\]</span></p>
+<p><strong>取等充要条件补充</strong>：等号成立（<span class="math inline">\(\int_0^L \kappa(s) \, ds = 2\pi\)</span>）当且仅当 <span class="math inline">\(\alpha\)</span> 是一条<strong>平面凸简单闭曲线</strong>。 * <strong>定义（非平凡纽结 Non-trivial Knot）</strong>：设 <span class="math inline">\(\alpha: [0, L] \to \mathbb{R}^3\)</span> 为空间简单闭曲线（即 <span class="math inline">\(S^1\)</span> 在 <span class="math inline">\(\mathbb{R}^3\)</span> 中的光滑嵌入）。称 <span class="math inline">\(\alpha\)</span> 为<strong>非平凡纽结</strong>，如果 <span class="math inline">\(\alpha\)</span> 不能在 <span class="math inline">\(\mathbb{R}^3\)</span> 中通过不产生自交的连续形变（严格拓扑术语称为<strong>环境同痕 Ambient Isotopy</strong>）变成平面标准单位圆周 <span class="math inline">\(S^1 = \{(x, y, 0) \in \mathbb{R}^3 \mid x^2 + y^2 = 1\}\)</span>。</p>
+<blockquote class="blockquote">
+<p><strong>[拓扑概念勘误]</strong>：原笔记写为“如果 <span class="math inline">\(\alpha\)</span> 不能在 <span class="math inline">\(\mathbb{R}^3\)</span> 中连续形变成 <span class="math inline">\(S^1\)</span>”。在拓扑学中，单纯的“连续形变（同伦 Homotopy）”允许曲线在形变过程中自己穿过自己（自交），而三维空间中任何闭曲线都是同伦于圆周的！因此在定义纽结时，必须强调<strong>在保持简单闭曲线（无自交嵌入）的前提下连续形变</strong>，即<strong>环境同痕（Ambient Isotopy）</strong>。</p>
+</blockquote>
+<ul>
+<li><strong>定理（Fáry-Milnor 定理，1949/1950）</strong>：若 <span class="math inline">\(\alpha: [0, L] \to \mathbb{R}^3\)</span> 是 <span class="math inline">\(\mathbb{R}^3\)</span> 中一条构成<strong>非平凡纽结</strong>的简单闭曲线，则其全曲率严格大于 <span class="math inline">\(4\pi\)</span>：</li>
+</ul>
+<p><span class="math display">\[\int_0^L \kappa(s) \, ds &gt; 4\pi\]</span></p>
+<p>（等价逆否命题：若一条空间简单闭曲线的全曲率 <span class="math inline">\(\int_0^L \kappa(s) \, ds \le 4\pi\)</span>，则它必然是一个平凡纽结 Unknot，可以在不剪断的情况下解开成标准圆周）。</p>
+<hr>
+</section>
+</section>
+<section id="五-曲面片与切平面" class="level2">
+<h2 class="anchored" data-anchor-id="五-曲面片与切平面">五、 曲面片与切平面</h2>
+<section id="正则曲面片regular-surface-patch" class="level3">
+<h3 class="anchored" data-anchor-id="正则曲面片regular-surface-patch">1. 正则曲面片（Regular Surface Patch）</h3>
+<ul>
+<li><strong>定义（曲面片）</strong>：给定二维欧氏空间 <span class="math inline">\(\mathbb{R}^2\)</span> 中的开区域 <span class="math inline">\(D \subset \mathbb{R}^2\)</span>。如果映射（二维开集 <span class="math inline">\(\to\)</span> 三维空间）</li>
+</ul>
+<p><span class="math display">\[\vec{r}: D \subset \mathbb{R}^2 \to \mathbb{R}^3, \quad (u, v) \mapsto \vec{r}(u, v) = (x(u, v), y(u, v), z(u, v))\]</span></p>
+<p>满足以下两个条件：</p>
+<ol type="1">
+<li><p><strong>光滑性</strong>：分量函数 <span class="math inline">\(x(u, v), y(u, v), z(u, v) \in C^\infty(D)\)</span> 都是 <span class="math inline">\(D\)</span> 上的光滑函数；</p></li>
+<li><p><strong>正则性（Regularity）</strong>：偏导数切向量 <span class="math inline">\(\vec{r}_u = \left(\frac{\partial x}{\partial u}, \frac{\partial y}{\partial u}, \frac{\partial z}{\partial u}\right)\)</span> 和 <span class="math inline">\(\vec{r}_v = \left(\frac{\partial x}{\partial v}, \frac{\partial y}{\partial v}, \frac{\partial z}{\partial v}\right)\)</span> 在 <span class="math inline">\(D\)</span> 上处处线性无关，即：</p></li>
+</ol>
+<p><span class="math display">\[\vec{r}_u \wedge \vec{r}_v \neq \vec{0} \quad (\text{等价于雅可比矩阵 } \operatorname{rank} d\vec{r} = 2)\]</span></p>
+<p>则称 <span class="math inline">\(\vec{r}\)</span> 是 <span class="math inline">\(\mathbb{R}^3\)</span> 中的一个<strong>正则曲面片</strong>（简称为曲面片），其中 <span class="math inline">\((u, v)\)</span> 称为曲面的<strong>局部坐标参数（曲纹坐标）</strong>。</p>
+<blockquote class="blockquote">
+<p><strong>[注记与补充]</strong>：严格而言，仅满足上述两个条件的映射称为<strong>浸入（Immersion）</strong>。若要避免曲面片发生自交或无限逼近自身，在微分几何与流形理论中通常还要求 <span class="math inline">\(\vec{r}: D \to \vec{r}(D) \subset \mathbb{R}^3\)</span> 是<strong>同胚</strong>（即光滑<strong>嵌入 Embedding</strong>）。正是这一条件保证了后续命题中逆映射 <span class="math inline">\(\vec{r}^{-1}: S \to D\)</span> 的存在性与连续性。</p>
+</blockquote>
+</section>
+<section id="图曲面graph-surface-monge-曲面片与典型例子" class="level3">
+<h3 class="anchored" data-anchor-id="图曲面graph-surface-monge-曲面片与典型例子">2. 图曲面（Graph Surface / Monge 曲面片）与典型例子</h3>
+<ul>
+<li><strong>定义（图曲面）</strong>：设 <span class="math inline">\(D \subset \mathbb{R}^2\)</span> 为开集，<span class="math inline">\(f: D \to \mathbb{R}\)</span> 为光滑函数。定义映射：</li>
+</ul>
+<p><span class="math display">\[\vec{r}: D \to \mathbb{R}^3, \quad (u, v) \mapsto (u, v, f(u, v))\]</span></p>
+<p>由于 <span class="math inline">\(\vec{r}_u = (1, 0, f_u)\)</span>，<span class="math inline">\(\vec{r}_v = (0, 1, f_v)\)</span>，其叉积 <span class="math inline">\(\vec{r}_u \wedge \vec{r}_v = (-f_u, -f_v, 1) \neq \vec{0}\)</span> 恒成立，故 <span class="math inline">\(\vec{r}\)</span> 自然构成一个正则曲面片，称为函数 <span class="math inline">\(f\)</span> 的<strong>图曲面（Graph）</strong>。</p>
+<ul>
+<li><strong>典型实例：单位球面 <span class="math inline">\(S^2(1) := \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 = 1\}\)</span> 的局部参数化</strong></li>
+</ul>
+<ol type="1">
+<li><strong>图曲面参数化（上半球面）</strong>：取开单位圆盘 <span class="math inline">\(D = \{(u, v) \in \mathbb{R}^2 \mid u^2 + v^2 &lt; 1\}\)</span>，映射</li>
+</ol>
+<p><span class="math display">\[\vec{r}: D \to \mathbb{R}^3, \quad (u, v) \mapsto \left(u, v, \sqrt{1 - u^2 - v^2}\right)\]</span></p>
+<p>覆盖了单位球面在 <span class="math inline">\(z &gt; 0\)</span> 的上半球部分。（整个球面至少需要 6 个这样的坐标方向图曲面片才能完全覆盖）。</p>
+<ol start="2" type="1">
+<li><strong>球面坐标（经纬度）参数化</strong>：取开矩形区域 <span class="math inline">\(D = \left(-\frac{\pi}{2}, \frac{\pi}{2}\right) \times (0, 2\pi)\)</span>，映射</li>
+</ol>
+<p><span class="math display">\[\vec{r}: \left(-\frac{\pi}{2}, \frac{\pi}{2}\right) \times (0, 2\pi) \to \mathbb{R}^3, \quad (u, v) \mapsto (\cos u \cos v, \cos u \sin v, \sin u)\]</span></p>
+<p>其中 <span class="math inline">\(u\)</span> 为纬度，<span class="math inline">\(v\)</span> 为经度。直接计算得 <span class="math inline">\(\vec{r}_u \wedge \vec{r}_v = -\cos u \, \vec{r}(u, v)\)</span>，由于在 <span class="math inline">\(u \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)\)</span> 上 <span class="math inline">\(\cos u \neq 0\)</span>，故处处正则（覆盖了球面除去南北两极和一条本初子午线半圆外的区域）。</p>
+</section>
+<section id="切平面与法线" class="level3">
+<h3 class="anchored" data-anchor-id="切平面与法线">3. 切平面与法线</h3>
+<ul>
+<li><strong>定义（切平面与切空间）</strong>：对于曲面片 <span class="math inline">\(S\)</span> 上给定一点 <span class="math inline">\(P_0 = \vec{r}(u_0, v_0)\)</span>，称由线性无关向量 <span class="math inline">\(\vec{r}_u(u_0, v_0)\)</span> 和 <span class="math inline">\(\vec{r}_v(u_0, v_0)\)</span> 张成的二维向量子空间为曲面片 <span class="math inline">\(S\)</span> 在 <span class="math inline">\(P_0\)</span> 点的<strong>切空间（Tangent Space）</strong>，记为：</li>
+</ul>
+<p><span class="math display">\[T_{P_0}S = \operatorname{Span}_{\mathbb{R}}\{\vec{r}_u(u_0, v_0), \vec{r}_v(u_0, v_0)\}\]</span></p>
+<p>（在仿射几何意义下，过点 <span class="math inline">\(P_0\)</span> 且平行于 <span class="math inline">\(T_{P_0}S\)</span> 的平面 <span class="math inline">\(P_0 + T_{P_0}S\)</span> 称为 <span class="math inline">\(S\)</span> 在 <span class="math inline">\(P_0\)</span> 点的<strong>切平面</strong>）。</p>
+<ul>
+<li><strong>定义（法线与单位法向量）</strong>：过点 <span class="math inline">\(P_0\)</span> 并与切平面 <span class="math inline">\(T_{P_0}S\)</span> 垂直的空间直线称为曲面在该点的<strong>法线</strong>。曲面上由参数次序 <span class="math inline">\((u, v)\)</span> 诱导的自然单位法向量场（高斯映射）定义为：</li>
+</ul>
+<p><span class="math display">\[\vec{n}(u, v) := \frac{\vec{r}_u \wedge \vec{r}_v}{\vert{}\vec{r}_u \wedge \vec{r}_v\vert{}}\]</span></p>
+<ul>
+<li><p><strong>命题（切平面的曲线刻画）</strong>：切平面 <span class="math inline">\(T_{P_0}S\)</span> 等于曲面 <span class="math inline">\(S\)</span> 上所有过 <span class="math inline">\(P_0\)</span> 点的光滑曲线在 <span class="math inline">\(P_0\)</span> 处的切向量的全体。</p></li>
+<li><p><strong>证明概要</strong>：设 <span class="math inline">\(\alpha: (-\varepsilon, \varepsilon) \to S\)</span> 是 <span class="math inline">\(S\)</span> 上过 <span class="math inline">\(P_0\)</span> 的光滑曲线，<span class="math inline">\(\alpha(0) = P_0\)</span>，即复合映射 <span class="math inline">\(\vec{r}^{-1} \circ \alpha: (-\varepsilon, \varepsilon) \to D, \ t \mapsto (u(t), v(t))\)</span> 是参数域 <span class="math inline">\(D\)</span> 内的光滑映射，且 <span class="math inline">\((u(0), v(0)) = (u_0, v_0)\)</span>。由复合函数链式法则，对 <span class="math inline">\(\alpha(t) = \vec{r}(u(t), v(t))\)</span> 在 <span class="math inline">\(t = 0\)</span> 处求导得：</p></li>
+</ul>
+<p><span class="math display">\[\alpha'(0) = u'(0)\vec{r}_u(u_0, v_0) + v'(0)\vec{r}_v(u_0, v_0) \in \operatorname{Span}_{\mathbb{R}}\{\vec{r}_u, \vec{r}_v\}\]</span></p>
+<p>反之，对任意线性组合 <span class="math inline">\(w = \lambda\vec{r}_u + \mu\vec{r}_v\)</span>，只需取直线段 <span class="math inline">\(u(t) = u_0 + \lambda t, \ v(t) = v_0 + \mu t\)</span>，对应的曲面曲线 <span class="math inline">\(\alpha(t) = \vec{r}(u(t), v(t))\)</span> 在 <span class="math inline">\(t=0\)</span> 处的切向量即为 <span class="math inline">\(w\)</span>。</p>
+<hr>
+</section>
+</section>
+<section id="六-曲面的第一基本形式first-fundamental-form" class="level2">
+<h2 class="anchored" data-anchor-id="六-曲面的第一基本形式first-fundamental-form">六、 曲面的第一基本形式（First Fundamental Form）</h2>
+<section id="定义与矩阵表示" class="level3">
+<h3 class="anchored" data-anchor-id="定义与矩阵表示">1. 定义与矩阵表示</h3>
+<ul>
+<li><strong>定义（第一基本形式）</strong>：设 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(\mathbb{R}^3\)</span> 的曲面片，<span class="math inline">\(\vec{r}(u, v)\)</span> 是其参数表示。曲面上一点的位移全微分为 <span class="math inline">\(d\vec{r} = \vec{r}_u du + \vec{r}_v dv\)</span>，称切空间上的正定二次微分式</li>
+</ul>
+<p><span class="math display">\[\mathrm{I} := \langle d\vec{r}, d\vec{r} \rangle = \langle \vec{r}_u du + \vec{r}_v dv, \vec{r}_u du + \vec{r}_v dv \rangle\]</span></p>
+<p>为曲面 <span class="math inline">\(S\)</span> 的<strong>第一基本形式</strong>。</p>
+<ul>
+<li><strong>第一类基本量</strong>：记</li>
+</ul>
+<p><span class="math display">\[E := \langle \vec{r}_u, \vec{r}_u \rangle, \quad F := \langle \vec{r}_u, \vec{r}_v \rangle, \quad G := \langle \vec{r}_v, \vec{r}_v \rangle\]</span></p>
+<p>则第一基本形式展开为：</p>
+<p><span class="math display">\[\mathrm{I} = E\,du^2 + 2F\,du\,dv + G\,dv^2 = \begin{pmatrix} du &amp; dv \end{pmatrix} \begin{pmatrix} E &amp; F \\ F &amp; G \end{pmatrix} \begin{pmatrix} du \\ dv \end{pmatrix}\]</span></p>
+<p>其中系数矩阵满足 <span class="math inline">\(E &gt; 0\)</span>，且行列式 <span class="math inline">\(EG - F^2 = \vert{}\vec{r}_u \wedge \vec{r}_v\vert{}^2 &gt; 0\)</span>，故 <span class="math inline">\(\mathrm{I}\)</span> 恒为<strong>严格正定二次型</strong>。对于切空间 <span class="math inline">\(T_PS\)</span> 中的任意切向量 <span class="math inline">\(w = \lambda\vec{r}_u + \mu\vec{r}_v\)</span>，其模长平方即为 <span class="math inline">\(\mathrm{I}(w, w) = \langle w, w \rangle = E\lambda^2 + 2F\lambda\mu + G\mu^2\)</span>。</p>
+</section>
+<section id="不变性定理" class="level3">
+<h3 class="anchored" data-anchor-id="不变性定理">2. 不变性定理</h3>
+<ul>
+<li><strong>定理（第一基本形式的不变性）</strong>：</li>
+</ul>
+<ol type="1">
+<li><p><strong>参数变换不变性</strong>：曲面 <span class="math inline">\(S\)</span> 的第一基本形式与局部坐标参数的选取无关（在容许参数变换 <span class="math inline">\((u, v) \leftrightarrow (\tilde{u}, \tilde{v})\)</span> 下，作为切空间上的内积二次型保持不变）；</p></li>
+<li><p><strong>合同变换不变性</strong>：曲面 <span class="math inline">\(S\)</span> 的第一基本形式在 <span class="math inline">\(\mathbb{R}^3\)</span> 的任意合同变换（包括刚体运动与反射变换）下保持不变。</p></li>
+</ol>
+</section>
+<section id="常见曲面的第一基本形式计算实例" class="level3">
+<h3 class="anchored" data-anchor-id="常见曲面的第一基本形式计算实例">3. 常见曲面的第一基本形式计算实例</h3>
+<ol type="1">
+<li><strong>平面（Plane）</strong>：参数方程 <span class="math inline">\(\vec{r}(u, v) = (u, v, 0)\)</span>。</li>
+</ol>
+<ul>
+<li>计算：<span class="math inline">\(\vec{r}_u = (1, 0, 0), \ \vec{r}_v = (0, 1, 0) \implies E = 1, \ F = 0, \ G = 1\)</span>。</li>
+<li>第一基本形式：<span class="math inline">\(\mathrm{I} = du^2 + dv^2\)</span>。</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>图曲面（Graph Surface）</strong>：设 <span class="math inline">\(D \subset \mathbb{R}^2, \ f: D \to \mathbb{R}\)</span>，参数方程 <span class="math inline">\(\vec{r}(u, v) = (u, v, f(u, v))\)</span>。</li>
+</ol>
+<ul>
+<li>计算：<span class="math inline">\(\vec{r}_u = (1, 0, f_u), \ \vec{r}_v = (0, 1, f_v) \implies E = 1 + f_u^2, \ F = f_u f_v, \ G = 1 + f_v^2\)</span>。</li>
+<li>第一基本形式：</li>
+</ul>
+<p><span class="math display">\[\mathrm{I} = (1 + f_u^2)\,du^2 + 2f_u f_v\,du\,dv + (1 + f_v^2)\,dv^2\]</span></p>
+<ol start="3" type="1">
+<li><strong>圆柱面（Cylinder）</strong>（补充原笔记未写完的计算）：参数方程 <span class="math inline">\(\vec{r}(u, v) = (\cos u, \sin u, v)\)</span>。</li>
+</ol>
+<ul>
+<li>计算：<span class="math inline">\(\vec{r}_u = (-\sin u, \cos u, 0), \ \vec{r}_v = (0, 0, 1) \implies E = \sin^2 u + \cos^2 u = 1, \ F = 0, \ G = 1\)</span>。</li>
+<li>第一基本形式：<span class="math inline">\(\mathrm{I} = du^2 + dv^2\)</span>。（<strong>核心几何推论</strong>：圆柱面与平面的第一基本形式完全相同，说明圆柱面与平面是局部等距（Locally Isometric）的，圆柱面可以无拉伸、无撕裂地展开成平面，仅靠第一基本形式无法区分平面与柱面）。</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="七-曲面的第二基本形式与法曲率" class="level2">
+<h2 class="anchored" data-anchor-id="七-曲面的第二基本形式与法曲率">七、 曲面的第二基本形式与法曲率</h2>
+<section id="定义与矩阵表示-1" class="level3">
+<h3 class="anchored" data-anchor-id="定义与矩阵表示-1">1. 定义与矩阵表示</h3>
+<ul>
+<li><strong>定义（第二基本形式）</strong>：设 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(\mathbb{R}^3\)</span> 的曲面片，<span class="math inline">\(\vec{r}(u, v)\)</span> 是其参数表示，且 <span class="math inline">\(\vec{n}(u, v) := \frac{\vec{r}_u \wedge \vec{r}_v}{\vert{}\vec{r}_u \wedge \vec{r}_v\vert{}}\)</span> 为 <span class="math inline">\(S\)</span> 的单位法向量场。称二次微分式</li>
+</ul>
+<p><span class="math display">\[\mathrm{II} := -\langle d\vec{r}, d\vec{n} \rangle = \langle d^2\vec{r}, \vec{n} \rangle\]</span></p>
+<p>为曲面 <span class="math inline">\(S\)</span> 的<strong>第二基本形式</strong>。</p>
+<ul>
+<li><strong>第二类基本量</strong>：利用正交关系 <span class="math inline">\(\langle \vec{r}_u, \vec{n} \rangle = 0\)</span> 和 <span class="math inline">\(\langle \vec{r}_v, \vec{n} \rangle = 0\)</span> 两边求偏导，定义系数 <span class="math inline">\(L, M, N\)</span>：</li>
+</ul>
+<p><span class="math display">\[\begin{aligned} L &amp;:= -\langle \vec{r}_u, \vec{n}_u \rangle = \langle \vec{r}_{uu}, \vec{n} \rangle = \frac{(\vec{r}_{uu}, \vec{r}_u, \vec{r}_v)}{\sqrt{EG - F^2}} \\ M &amp;:= -\langle \vec{r}_u, \vec{n}_v \rangle = -\langle \vec{r}_v, \vec{n}_u \rangle = \langle \vec{r}_{uv}, \vec{n} \rangle = \frac{(\vec{r}_{uv}, \vec{r}_u, \vec{r}_v)}{\sqrt{EG - F^2}} \\ N &amp;:= -\langle \vec{r}_v, \vec{n}_v \rangle = \langle \vec{r}_{vv}, \vec{n} \rangle = \frac{(\vec{r}_{vv}, \vec{r}_u, \vec{r}_v)}{\sqrt{EG - F^2}} \end{aligned}\]</span></p>
+<p>则第二基本形式展开为：</p>
+<p><span class="math display">\[\mathrm{II} = L\,du^2 + 2M\,du\,dv + N\,dv^2 = \begin{pmatrix} du &amp; dv \end{pmatrix} \begin{pmatrix} L &amp; M \\ M &amp; N \end{pmatrix} \begin{pmatrix} du \\ dv \end{pmatrix}\]</span></p>
+<ul>
+<li><strong>切空间上的二次型表示</strong>：对任意切向量 <span class="math inline">\(w \in T_PS = \operatorname{Span}_{\mathbb{R}}\{\vec{r}_u, \vec{r}_v\}\)</span>，存在唯一的坐标对 <span class="math inline">\((\lambda, \mu) \in \mathbb{R}^2\)</span> 使得 <span class="math inline">\(w = \lambda\vec{r}_u + \mu\vec{r}_v\)</span>，此时：</li>
+</ul>
+<p><span class="math display">\[\mathrm{II}(w, w) = \begin{pmatrix} \lambda &amp; \mu \end{pmatrix} \begin{pmatrix} L &amp; M \\ M &amp; N \end{pmatrix} \begin{pmatrix} \lambda \\ \mu \end{pmatrix} = L\lambda^2 + 2M\lambda\mu + N\mu^2\]</span></p>
+</section>
+<section id="变换性质与局部凹凸形态判定" class="level3">
+<h3 class="anchored" data-anchor-id="变换性质与局部凹凸形态判定">2. 变换性质与局部凹凸形态判定</h3>
+<ul>
+<li><p><strong>定理（参数变换下的不变性）</strong>：曲面 <span class="math inline">\(S\)</span> 的第二基本形式在<strong>保定向参数变换</strong>（雅可比行列式 <span class="math inline">\(\det \frac{\partial(u, v)}{\partial(\tilde{u}, \tilde{v})} &gt; 0\)</span>，此时法向量 <span class="math inline">\(\vec{n}\)</span> 不变）下保持不变；在<strong>反定向参数变换</strong>（<span class="math inline">\(\det \frac{\partial(u, v)}{\partial(\tilde{u}, \tilde{v})} &lt; 0\)</span>，此时 <span class="math inline">\(\vec{n} \mapsto -\vec{n}\)</span>）下改变符号（<span class="math inline">\(\mathrm{II} \mapsto -\mathrm{II}\)</span>）。</p></li>
+<li><p><strong>定理（空间等距变换下的不变性）</strong>：曲面 <span class="math inline">\(S\)</span> 的第二基本形式在 <span class="math inline">\(\mathbb{R}^3\)</span> 的<strong>刚体运动</strong>（<span class="math inline">\(\det A = 1\)</span>）下保持不变；而在<strong>反刚体运动 / 反射变换</strong>（<span class="math inline">\(\det A = -1\)</span>）下改变符号。</p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>[注记]</strong>：因为反射变换会将右手系变为左手系，导致叉积定义的单位法向量反向 <span class="math inline">\(\vec{n} \mapsto -\vec{n}\)</span>，从而使 <span class="math inline">\(\mathrm{II}\)</span> 反号。</p>
+</blockquote>
+<ul>
+<li><strong>命题（第二基本形式与曲面局部形状）</strong>：</li>
+</ul>
+<ol type="1">
+<li><p><strong>椭圆点（Elliptic Point，<span class="math inline">\(LN - M^2 &gt; 0\)</span>）</strong>：第二基本形式 <span class="math inline">\(\mathrm{II}\)</span> 是正定或负定二次型。在该点附近，曲面严格位于切平面的同一侧，曲面局部是<strong>严格凸的</strong>（或凹的，具体正负由法向量 <span class="math inline">\(\vec{n}\)</span> 的指向决定：当 <span class="math inline">\(L &gt; 0\)</span> 时向 <span class="math inline">\(\vec{n}\)</span> 方向弯曲，当 <span class="math inline">\(L &lt; 0\)</span> 时背离 <span class="math inline">\(\vec{n}\)</span> 方向弯曲）。</p></li>
+<li><p><strong>双曲点（Hyperbolic Point，<span class="math inline">\(LN - M^2 &lt; 0\)</span>）</strong>：第二基本形式 <span class="math inline">\(\mathrm{II}\)</span> 是不定二次型。在该点附近，曲面会穿过切平面，局部呈<strong>马鞍形（Saddle Shape）</strong>。</p></li>
+<li><p><strong>抛物点与平点（补充 <span class="math inline">\(LN - M^2 = 0\)</span> 的退化情形）</strong>：</p></li>
+</ol>
+<ul>
+<li>若 <span class="math inline">\(LN - M^2 = 0\)</span> 但 <span class="math inline">\(L, M, N\)</span> 不全为零，称为<strong>抛物点（Parabolic Point）</strong>（<span class="math inline">\(\mathrm{II}\)</span> 为半定二次型，如圆柱面、圆锥面上的点）；</li>
+<li>若 <span class="math inline">\(L = M = N = 0\)</span>，称为<strong>平点（Planar Point）</strong>（<span class="math inline">\(\mathrm{II}\)</span> 恒为零，如平面上的点）。</li>
+</ul>
+</section>
+<section id="法曲率normal-curvature" class="level3">
+<h3 class="anchored" data-anchor-id="法曲率normal-curvature">3. 法曲率（Normal Curvature）</h3>
+<ul>
+<li><strong>定义（单位切向量下的法曲率）</strong>：给定曲面 <span class="math inline">\(S\)</span> 在点 <span class="math inline">\(P_0\)</span> 处的<strong>单位切向量</strong> <span class="math inline">\(w := \xi\vec{r}_u + \eta\vec{r}_v \in T_{P_0}S\)</span>（满足 <span class="math inline">\(\vert{}w\vert{}^2 = \mathrm{I}(w, w) = E\xi^2 + 2F\xi\eta + G\eta^2 = 1\)</span>），称</li>
+</ul>
+<p><span class="math display">\[\kappa_n(w) := \mathrm{II}(w, w) = L\xi^2 + 2M\xi\eta + N\eta^2\]</span></p>
+<p>为曲面 <span class="math inline">\(S\)</span> 在点 <span class="math inline">\(P_0\)</span> 处沿着单位切向量 <span class="math inline">\(w\)</span> 方向的<strong>法曲率</strong>。</p>
+<ul>
+<li><strong>补充拓展（非单位切向量的一般法曲率公式与 Meusnier 定理）</strong>：</li>
+<li><strong>任意非零切向量方向</strong>：若切向量 <span class="math inline">\(v = du\,\vec{r}_u + dv\,\vec{r}_v \in T_{P_0}S \setminus \{\vec{0}\}\)</span> 未做单位化，将其归一化为 <span class="math inline">\(w = \frac{v}{\vert{}v\vert{}} = \frac{v}{\sqrt{\mathrm{I}(v, v)}}\)</span> 代入上述定义，由二次型的齐次性立得一般方向 <span class="math inline">\((du : dv)\)</span> 的法曲率公式：</li>
+</ul>
+<p><span class="math display">\[\kappa_n(v) = \mathrm{II}\left(\frac{v}{\vert{}v\vert{}}, \frac{v}{\vert{}v\vert{}}\right) = \frac{\mathrm{II}(v, v)}{\mathrm{I}(v, v)} = \frac{L\,du^2 + 2M\,du\,dv + N\,dv^2}{E\,du^2 + 2F\,du\,dv + G\,dv^2}\]</span></p>
+<ul>
+<li><strong>几何意义（Meusnier 定理）</strong>：设 <span class="math inline">\(\alpha(s) \subset S\)</span> 是曲面上过点 <span class="math inline">\(P_0\)</span> 且在 <span class="math inline">\(P_0\)</span> 处以单位向量 <span class="math inline">\(w = \dot{\alpha}(0)\)</span> 为切向量的任意弧长参数曲线。对恒等式 <span class="math inline">\(\langle \dot{\alpha}(s), \vec{n}(s) \rangle = 0\)</span> 求导得：</li>
+</ul>
+<p><span class="math display">\[\langle \ddot{\alpha}(0), \vec{n}(P_0) \rangle = -\langle \dot{\alpha}(0), \dot{\vec{n}}(0) \rangle = \mathrm{II}(w, w) = \kappa_n(w)\]</span></p>
+<p>又因为曲线的空间加速度为 <span class="math inline">\(\ddot{\alpha}(0) = \kappa\vec{n}_{\text{curve}}\)</span>（其中 <span class="math inline">\(\kappa, \vec{n}_{\text{curve}}\)</span> 分别为曲线 <span class="math inline">\(\alpha\)</span> 的空间曲率与主法向量），故有：</p>
+<p><span class="math display">\[\kappa_n(w) = \kappa \langle \vec{n}_{\text{curve}}, \vec{n}(P_0) \rangle = \kappa \cos\theta\]</span></p>
+<p>即<strong>法曲率 <span class="math inline">\(\kappa_n(w)\)</span> 等于曲面上沿 <span class="math inline">\(w\)</span> 方向的曲线在 <span class="math inline">\(P_0\)</span> 处的曲率向量 <span class="math inline">\(\ddot{\alpha}\)</span> 在曲面单位法向量 <span class="math inline">\(\vec{n}\)</span> 上的投影</strong>。特别地，过 <span class="math inline">\(w\)</span> 和 <span class="math inline">\(\vec{n}(P_0)\)</span> 的平面（法截面）与曲面相交所得截线（法截线）在 <span class="math inline">\(P_0\)</span> 处的有向曲率恰好等于 <span class="math inline">\(\kappa_n(w)\)</span>。</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "已复制");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "已复制");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/lzoi-zjx\.github\.io\/Seme2627\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

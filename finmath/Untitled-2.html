@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hans" xml:lang="zh-Hans"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>金融数学 – Seme2627</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f2788e636de456f6409e966386820849.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "没有结果",
+    "search-matching-documents-text": "匹配的文档",
+    "search-copy-link-title": "复制搜索链接",
+    "search-hide-matches-text": "隐藏其它匹配结果",
+    "search-more-match-text": "更多匹配结果",
+    "search-more-matches-text": "更多匹配结果",
+    "search-clear-button-title": "清除",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "提交",
+    "search-label": "搜索"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Seme2627</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="搜索"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="展开或折叠导航栏" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">微分几何</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../difgeo/Notes.html">
+ <span class="dropdown-text">笔记</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../difgeo/homework.html">
+ <span class="dropdown-text">作业</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="../finmath/Untitled-2.html" aria-current="page"> 
+<span class="menu-text">金融数学</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../miwavremos/Untitled-2.html"> 
+<span class="menu-text">微波遥感</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Quantinfo/Untitled-2.html"> 
+<span class="menu-text">量子信息学</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../stasig/ssnote.html"> 
+<span class="menu-text">随机信号分析</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">该页面内容</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">1</a>
+  <ul class="collapse">
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">1.12</a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">2.9</a></li>
+  </ul></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">2</a>
+  <ul class="collapse">
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">3.2</a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">3.4</a></li>
+  </ul></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">3</a>
+  <ul class="collapse">
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7">3.7</a></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8">3.8</a></li>
+  </ul></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9">4</a>
+  <ul class="collapse">
+  <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10">4.7</a></li>
+  <li><a href="#section-11" id="toc-section-11" class="nav-link" data-scroll-target="#section-11">4.13</a></li>
+  <li><a href="#section-12" id="toc-section-12" class="nav-link" data-scroll-target="#section-12">4.14</a></li>
+  </ul></li>
+  <li><a href="#section-13" id="toc-section-13" class="nav-link" data-scroll-target="#section-13">5</a>
+  <ul class="collapse">
+  <li><a href="#题目1" id="toc-题目1" class="nav-link" data-scroll-target="#题目1">题目1</a></li>
+  <li><a href="#题目2" id="toc-题目2" class="nav-link" data-scroll-target="#题目2">题目2</a></li>
+  <li><a href="#题目3" id="toc-题目3" class="nav-link" data-scroll-target="#题目3">题目3</a></li>
+  </ul></li>
+  <li><a href="#section-14" id="toc-section-14" class="nav-link" data-scroll-target="#section-14">6</a>
+  <ul class="collapse">
+  <li><a href="#section-15" id="toc-section-15" class="nav-link" data-scroll-target="#section-15">5.4</a></li>
+  <li><a href="#section-16" id="toc-section-16" class="nav-link" data-scroll-target="#section-16">5.8</a></li>
+  <li><a href="#section-17" id="toc-section-17" class="nav-link" data-scroll-target="#section-17">5.20</a></li>
+  </ul></li>
+  <li><a href="#section-18" id="toc-section-18" class="nav-link" data-scroll-target="#section-18">7</a>
+  <ul class="collapse">
+  <li><a href="#section-19" id="toc-section-19" class="nav-link" data-scroll-target="#section-19">6.2</a></li>
+  <li><a href="#section-20" id="toc-section-20" class="nav-link" data-scroll-target="#section-20">6.5</a></li>
+  <li><a href="#section-21" id="toc-section-21" class="nav-link" data-scroll-target="#section-21">6.6</a></li>
+  <li><a href="#section-22" id="toc-section-22" class="nav-link" data-scroll-target="#section-22">6.11</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">金融数学</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="section" class="level1">
+<h1>1</h1>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">1.12</h2>
+<ol type="1">
+<li><strong>收取固定费用</strong></li>
+</ol>
+<ul>
+<li><p>均值：5,000 美元</p></li>
+<li><p>标准差：0 美元</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>收取胜诉酬金费用</strong></li>
+</ol>
+<ul>
+<li><p>均值：7,500 美元</p></li>
+<li><p>标准差：约 11,456.44 美元（<span class="math inline">\(2{,}500\sqrt{21}\)</span> 美元）</p></li>
+</ul>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">2.9</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> <span class="fl">1.012</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="fl">0.990</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.52</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>threshold <span class="op">=</span> (math.log(<span class="fl">1.30</span>) <span class="op">-</span> n <span class="op">*</span> math.log(d)) <span class="op">/</span> math.log(u <span class="op">/</span> d)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"threshold k:"</span>, threshold)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> n <span class="op">*</span> p</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> math.sqrt(n <span class="op">*</span> p <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> p))</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"mu = </span><span class="sc">{</span>mu<span class="sc">}</span><span class="ss">, sigma = </span><span class="sc">{</span>sigma<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>k_min <span class="op">=</span> math.ceil(threshold)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"k_min:"</span>, k_min)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Exact binomial</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>prob_exact <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> stats.binom.cdf(k_min <span class="op">-</span> <span class="dv">1</span>, n, p)</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"prob_exact:"</span>, prob_exact)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Normal approximation without continuity correction</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>z_no_cc <span class="op">=</span> (threshold <span class="op">-</span> mu) <span class="op">/</span> sigma</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>prob_norm_no_cc <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> stats.norm.cdf(z_no_cc)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"z_no_cc:"</span>, z_no_cc, <span class="st">"prob:"</span>, prob_norm_no_cc)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Normal approximation with continuity correction: P(X &gt;= 470) approx P(Y &gt;= 469.5)</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>z_cc <span class="op">=</span> (k_min <span class="op">-</span> <span class="fl">0.5</span> <span class="op">-</span> mu) <span class="op">/</span> sigma</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>prob_norm_cc <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> stats.norm.cdf(z_cc)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"z_cc:"</span>, z_cc, <span class="st">"prob:"</span>, prob_norm_cc)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="复制到剪贴板" class="code-copy-button"><i class="bi"></i></button></div>
+<pre class="text"><code>threshold k: 469.2089670301692
+mu = 520.0, sigma = 15.798734126505199
+k_min: 470
+prob_exact: 0.999300908477044
+z_no_cc: -3.2148799114620044 prob: 0.9993475044830675
+z_cc: -3.196458627357823 prob: 0.999304371114543
+
+</code></pre>
+<ol type="1">
+<li><strong>建立不等式</strong> 设 1,000 个单位时间内股价上升的次数为 <span class="math inline">\(X\)</span>，则股价至少上升 30% 需满足：</li>
+</ol>
+<p><span class="math display">\[s \cdot u^X d^{1000-X} \ge 1.30s \implies u^X d^{1000-X} \ge 1.30\]</span></p>
+<p>代入参数 <span class="math inline">\(u = 1.012\)</span>，<span class="math inline">\(d = 0.990\)</span>：</p>
+<p><span class="math display">\[X \ge \frac{\ln 1.30 - 1000 \ln 0.990}{\ln 1.012 - \ln 0.990} \approx \frac{0.26236 - (-10.05034)}{0.02198} \approx 469.21\]</span></p>
+<p>因为 <span class="math inline">\(X\)</span> 为整数，故需 <span class="math inline">\(X \ge 470\)</span>。 2. <strong>正态近似计算</strong> 上升次数服从二项分布 <span class="math inline">\(X \sim B(1000, 0.52)\)</span>，其期望与标准差为：</p>
+<p><span class="math display">\[\mu = np = 1000 \times 0.52 = 520\]</span></p>
+<p><span class="math display">\[\sigma = \sqrt{np(1-p)} = \sqrt{1000 \times 0.52 \times 0.48} \approx 15.80\]</span></p>
+<p>利用中心极限定理进行正态近似（取连续性修正）：</p>
+<p><span class="math display">\[P(X \ge 470) \approx P\left(Z \ge \frac{469.5 - 520}{15.80}\right) = P(Z \ge -3.20) = \Phi(3.20) \approx 0.9993\]</span></p>
+<p>（若不做连续性修正：<span class="math inline">\(\Phi\left(\frac{520 - 469.21}{15.80}\right) = \Phi(3.21) \approx 0.9993\)</span>）</p>
+<ol start="3" type="1">
+<li><strong>结论</strong> 1,000 单位时间后股价至少上升 30% 的概率约为 <strong>0.9993</strong>（即 <strong>99.93%</strong>）。</li>
+</ol>
+</section>
+</section>
+<section id="section-3" class="level1">
+<h1>2</h1>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4">3.2</h2>
+<p>已知带漂移的布朗运动满足 <span class="math inline">\(X(t) \sim \mathcal{N}(X(0) + \mu t, \sigma^2 t)\)</span>，其中 <span class="math inline">\(X(0) = 10\)</span>，<span class="math inline">\(\mu = 3\)</span>，<span class="math inline">\(\sigma^2 = 9\)</span>：</p>
+<ol type="1">
+<li><strong>求 <span class="math inline">\(E[X(2)]\)</span></strong></li>
+</ol>
+<p><span class="math display">\[E[X(2)] = X(0) + \mu \cdot 2 = 10 + 3 \times 2 = 16\]</span></p>
+<ol start="2" type="1">
+<li><strong>求 <span class="math inline">\(\operatorname{Var}(X(2))\)</span></strong></li>
+</ol>
+<p><span class="math display">\[\operatorname{Var}(X(2)) = \sigma^2 \cdot 2 = 9 \times 2 = 18\]</span></p>
+<ol start="3" type="1">
+<li><strong>求 <span class="math inline">\(P(X(2) &gt; 20)\)</span></strong></li>
+</ol>
+<p>因 <span class="math inline">\(X(2) \sim \mathcal{N}(16, 18)\)</span>，标准化可得：</p>
+<p><span class="math display">\[P(X(2) &gt; 20) = P\left(Z &gt; \frac{20 - 16}{\sqrt{18}}\right) = P\left(Z &gt; \frac{2\sqrt{2}}{3}\right) \approx 1 - \Phi(0.94) \approx 0.1736\]</span></p>
+<p>（若取精确值 <span class="math inline">\(\Phi(0.9428)\)</span>，约为 <span class="math inline">\(0.1729\)</span>）</p>
+<ol start="4" type="1">
+<li><strong>求 <span class="math inline">\(P(X(0.5) &gt; 10)\)</span></strong></li>
+</ol>
+<p>因 <span class="math inline">\(X(0.5) \sim \mathcal{N}(10 + 3 \times 0.5, \, 9 \times 0.5) = \mathcal{N}(11.5, \, 4.5)\)</span>，标准化可得：</p>
+<p><span class="math display">\[P(X(0.5) &gt; 10) = P\left(Z &gt; \frac{10 - 11.5}{\sqrt{4.5}}\right) = P\left(Z &gt; -\frac{\sqrt{2}}{2}\right) = \Phi\left(\frac{\sqrt{2}}{2}\right) \approx \Phi(0.71) \approx 0.7611\]</span></p>
+<p>（若取精确值 <span class="math inline">\(\Phi(0.7071)\)</span>，约为 <span class="math inline">\(0.7602\)</span>）</p>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5">3.4</h2>
+<p>根据几何布朗运动定义，设 <span class="math inline">\(S(t) = S(0)e^{X(t)}\)</span>，其中 <span class="math inline">\(X(t)\)</span> 为漂移参数 <span class="math inline">\(\mu = 0.1\)</span>、波动参数 <span class="math inline">\(\sigma = 0.2\)</span> 的布朗运动，对任意 <span class="math inline">\(t_2 &gt; t_1\)</span>，增量 <span class="math inline">\(\ln\frac{S(t_2)}{S(t_1)} = X(t_2) - X(t_1) \sim \mathcal{N}(\mu(t_2 - t_1), \, \sigma^2(t_2 - t_1))\)</span> 且在互不相交的时间区间上相互独立。</p>
+<ol type="1">
+<li><strong>求 <span class="math inline">\(P(S(1) &gt; S(0))\)</span></strong></li>
+</ol>
+<p><span class="math display">\[S(1) &gt; S(0) \iff X(1) - X(0) &gt; 0\]</span></p>
+<p>由于 <span class="math inline">\(X(1) - X(0) \sim \mathcal{N}(0.1, \, 0.2^2) = \mathcal{N}(0.1, \, 0.04)\)</span>：</p>
+<p><span class="math display">\[P(S(1) &gt; S(0)) = P\left(Z &gt; \frac{0 - 0.1}{0.2}\right) = P(Z &gt; -0.5) = \Phi(0.5) \approx 0.6915\]</span></p>
+<ol start="2" type="1">
+<li><strong>求 <span class="math inline">\(P(S(2) &gt; S(1) &gt; S(0))\)</span></strong></li>
+</ol>
+<p>该事件等价于 <span class="math inline">\(X(2) - X(1) &gt; 0\)</span> 且 <span class="math inline">\(X(1) - X(0) &gt; 0\)</span>。 由增量独立同分布性：</p>
+<p><span class="math display">\[P(S(2) &gt; S(1) &gt; S(0)) = P(X(2) - X(1) &gt; 0) \cdot P(X(1) - X(0) &gt; 0) = [\Phi(0.5)]^2 \approx 0.6915^2 \approx 0.4781\]</span></p>
+<ol start="3" type="1">
+<li><strong>求 <span class="math inline">\(P(S(3) &lt; S(1) &gt; S(0))\)</span></strong></li>
+</ol>
+<p>该事件等价于 <span class="math inline">\(X(3) - X(1) &lt; 0\)</span> 且 <span class="math inline">\(X(1) - X(0) &gt; 0\)</span>。 区间 <span class="math inline">\([0, 1]\)</span> 与 <span class="math inline">\([1, 3]\)</span> 不重叠，两增量相互独立。其中 <span class="math inline">\(X(3) - X(1) \sim \mathcal{N}(0.1 \times 2, \, 0.04 \times 2) = \mathcal{N}(0.2, \, 0.08)\)</span>：</p>
+<p><span class="math display">\[P(X(3) - X(1) &lt; 0) = P\left(Z &lt; \frac{0 - 0.2}{\sqrt{0.08}}\right) = P\left(Z &lt; -\frac{\sqrt{2}}{2}\right) = 1 - \Phi\left(\frac{\sqrt{2}}{2}\right) \approx 1 - \Phi(0.71) \approx 0.2389\]</span></p>
+<p>（若取精确值 <span class="math inline">\(\Phi(0.7071)\)</span>，该概率约为 <span class="math inline">\(0.2398\)</span>） 因此：</p>
+<p><span class="math display">\[P(S(3) &lt; S(1) &gt; S(0)) = \left[1 - \Phi\left(\frac{\sqrt{2}}{2}\right)\right] \cdot \Phi(0.5) \approx 0.2389 \times 0.6915 \approx 0.1652\]</span></p>
+<p>（若取连续分布精确值，约为 <span class="math inline">\(0.1658\)</span>）</p>
+</section>
+</section>
+<section id="section-6" class="level1">
+<h1>3</h1>
+<section id="section-7" class="level2">
+<h2 class="anchored" data-anchor-id="section-7">3.7</h2>
+<ol type="1">
+<li><strong>求证首达时间概率公式</strong></li>
+</ol>
+<p>构造指数鞅 <span class="math inline">\(Z(t) = \exp\left(-\frac{2\mu}{\sigma^2} X(t)\right)\)</span>，对双边停时 <span class="math inline">\(T = T_y \wedge T_{-a}\)</span>（<span class="math inline">\(a &gt; 0\)</span>）应用可选停时定理：</p>
+<p><span class="math display">\[E[Z(T)] = Z(0) = 1\]</span></p>
+<p><span class="math display">\[P(T_y &lt; T_{-a}) e^{-\frac{2\mu}{\sigma^2}y} + \left[1 - P(T_y &lt; T_{-a})\right] e^{\frac{2\mu}{\sigma^2}a} = 1\]</span></p>
+<p>解得：</p>
+<p><span class="math display">\[P(T_y &lt; T_{-a}) = \frac{1 - e^{\frac{2\mu}{\sigma^2}a}}{e^{-\frac{2\mu}{\sigma^2}y} - e^{\frac{2\mu}{\sigma^2}a}}\]</span></p>
+<p>令 <span class="math inline">\(a \to \infty\)</span> 求极限：</p>
+<ul>
+<li><p>当 <span class="math inline">\(\mu &gt; 0\)</span> 时，<span class="math inline">\(\lim_{a \to \infty} e^{\frac{2\mu}{\sigma^2}a} = +\infty\)</span>，故 <span class="math inline">\(P(T_y &lt; \infty) = 1\)</span>；当 <span class="math inline">\(\mu = 0\)</span> 时退化为标准鞅，由极限同样可得 <span class="math inline">\(P(T_y &lt; \infty) = 1\)</span>。</p></li>
+<li><p>当 <span class="math inline">\(\mu &lt; 0\)</span> 时，<span class="math inline">\(\lim_{a \to \infty} e^{\frac{2\mu}{\sigma^2}a} = 0\)</span>，故 <span class="math inline">\(P(T_y &lt; \infty) = e^{\frac{2y\mu}{\sigma^2}}\)</span>。</p></li>
+</ul>
+<p>即证：</p>
+<p><span class="math display">\[P(T_y &lt; \infty) = \begin{cases} 1, &amp; \mu \ge 0 \\ e^{2y\mu/\sigma^2}, &amp; \mu &lt; 0 \end{cases}\]</span></p>
+<ol start="2" type="1">
+<li><strong>求证 <span class="math inline">\(M\)</span> 服从指数分布</strong></li>
+</ol>
+<p>对任意 <span class="math inline">\(y &gt; 0\)</span>，最大值达到或超过 <span class="math inline">\(y\)</span> 与过程在有限时间内首达 <span class="math inline">\(y\)</span> 等价：</p>
+<p><span class="math display">\[P(M \ge y) = P(T_y &lt; \infty)\]</span></p>
+<p>代入 <span class="math inline">\(\mu &lt; 0\)</span> 时的结论：</p>
+<p><span class="math display">\[P(M \ge y) = e^{\frac{2y\mu}{\sigma^2}} = \exp\left(-\left(-\frac{2\mu}{\sigma^2}\right)y\right)\]</span></p>
+<p>其分布函数为：</p>
+<p><span class="math display">\[F_M(y) = P(M \le y) = 1 - \exp\left(-\left(-\frac{2\mu}{\sigma^2}\right)y\right), \quad y &gt; 0\]</span></p>
+<p>此即比率参数为 <span class="math inline">\(-\frac{2\mu}{\sigma^2}\)</span> 的指数分布。</p>
+</section>
+<section id="section-8" class="level2">
+<h2 class="anchored" data-anchor-id="section-8">3.8</h2>
+<ol type="1">
+<li><strong>转化为布朗运动最大值问题</strong></li>
+</ol>
+<p>由几何布朗运动的定义，设 <span class="math inline">\(S(u) = s e^{X(u)}\)</span>，其中 <span class="math inline">\(X(u)\)</span> 是 <span class="math inline">\(X(0) = 0\)</span>、漂移参数为 <span class="math inline">\(\mu\)</span>、方差参数为 <span class="math inline">\(\sigma^2\)</span> 的布朗运动。则：</p>
+<p><span class="math display">\[\max_{0 \le u \le t} S(u) \ge y \iff \max_{0 \le u \le t} X(u) \ge \ln\left(\frac{y}{s}\right)\]</span></p>
+<ol start="2" type="1">
+<li><strong>分类与概率公式推导</strong></li>
+</ol>
+<ul>
+<li><p><strong>当 <span class="math inline">\(y \le s\)</span> 时</strong>：因 <span class="math inline">\(S(0) = s \ge y\)</span>，必有最大值不小于 <span class="math inline">\(y\)</span>，概率为 <span class="math inline">\(1\)</span>。</p></li>
+<li><p><strong>当 <span class="math inline">\(y &gt; s\)</span> 时</strong>：记常数 <span class="math inline">\(c = \ln(y/s) &gt; 0\)</span>。由带漂移布朗运动的最大值分布公式：</p></li>
+</ul>
+<p><span class="math display">\[P\left(\max_{0 \le u \le t} X(u) \ge c\right) = 1 - \Phi\left(\frac{c - \mu t}{\sigma\sqrt{t}}\right) + e^{\frac{2\mu c}{\sigma^2}} \Phi\left(-\frac{c + \mu t}{\sigma\sqrt{t}}\right)\]</span></p>
+<ol start="3" type="1">
+<li><strong>最终结果</strong> 将 <span class="math inline">\(c = \ln(y/s)\)</span> 代入并利用 <span class="math inline">\(e^{\frac{2\mu}{\sigma^2}\ln(y/s)} = \left(\frac{y}{s}\right)^{\frac{2\mu}{\sigma^2}}\)</span>，可得：</li>
+</ol>
+<p><span class="math display">\[P\left(\max_{0 \le u \le t} S(u) \ge y\right) = \begin{cases} 1, &amp; y \le s \\ 1 - \Phi\left(\frac{\ln(y/s) - \mu t}{\sigma\sqrt{t}}\right) + \left(\frac{y}{s}\right)^{\frac{2\mu}{\sigma^2}} \Phi\left(-\frac{\ln(y/s) + \mu t}{\sigma\sqrt{t}}\right), &amp; y &gt; s \end{cases}\]</span></p>
+<p>（其中 <span class="math inline">\(\Phi(\cdot)\)</span> 为标准正态分布累积分布函数；第一项亦可写作 <span class="math inline">\(\Phi\left(\frac{\mu t - \ln(y/s)}{\sigma\sqrt{t}}\right)\)</span>）</p>
+</section>
+</section>
+<section id="section-9" class="level1">
+<h1>4</h1>
+<section id="section-10" class="level2">
+<h2 class="anchored" data-anchor-id="section-10">4.7</h2>
+<p>计算各利率下两组现金流的现值 <span class="math inline">\(PV = \sum_{t=1}^6 \frac{C_t}{(1+r)^t}\)</span>，现值较大者更可取：</p>
+<ol type="1">
+<li><strong>年复利利率为 3% 时</strong></li>
+</ol>
+<ul>
+<li><p>序列 1：<span class="math inline">\(PV_1 = \frac{20}{1.03} + \frac{20}{1.03^2} + \frac{20}{1.03^3} + \frac{15}{1.03^4} + \frac{10}{1.03^5} + \frac{5}{1.03^6} \approx 82.71\)</span></p></li>
+<li><p>序列 2：<span class="math inline">\(PV_2 = \frac{10}{1.03} + \frac{10}{1.03^2} + \frac{15}{1.03^3} + \frac{20}{1.03^4} + \frac{20}{1.03^5} + \frac{20}{1.03^6} \approx 84.63\)</span></p></li>
+<li><p>结论：<span class="math inline">\(PV_2 &gt; PV_1\)</span>，<strong>第二个现金流序列更可取</strong>。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>年复利利率为 5% 时</strong></li>
+</ol>
+<ul>
+<li><p>序列 1：<span class="math inline">\(PV_1 = \frac{20}{1.05} + \frac{20}{1.05^2} + \frac{20}{1.05^3} + \frac{15}{1.05^4} + \frac{10}{1.05^5} + \frac{5}{1.05^6} \approx 78.37\)</span></p></li>
+<li><p>序列 2：<span class="math inline">\(PV_2 = \frac{10}{1.05} + \frac{10}{1.05^2} + \frac{15}{1.05^3} + \frac{20}{1.05^4} + \frac{20}{1.05^5} + \frac{20}{1.05^6} \approx 78.60\)</span></p></li>
+<li><p>结论：<span class="math inline">\(PV_2 &gt; PV_1\)</span>，<strong>第二个现金流序列更可取</strong>。</p></li>
+</ul>
+<ol start="3" type="1">
+<li><strong>年复利利率为 10% 时</strong></li>
+</ol>
+<ul>
+<li><p>序列 1：<span class="math inline">\(PV_1 = \frac{20}{1.10} + \frac{20}{1.10^2} + \frac{20}{1.10^3} + \frac{15}{1.10^4} + \frac{10}{1.10^5} + \frac{5}{1.10^6} \approx 69.01\)</span></p></li>
+<li><p>序列 2：<span class="math inline">\(PV_2 = \frac{10}{1.10} + \frac{10}{1.10^2} + \frac{15}{1.10^3} + \frac{20}{1.10^4} + \frac{20}{1.10^5} + \frac{20}{1.10^6} \approx 65.99\)</span></p></li>
+<li><p>结论：<span class="math inline">\(PV_1 &gt; PV_2\)</span>，<strong>第一个现金流序列更可取</strong>。</p></li>
+</ul>
+</section>
+<section id="section-11" class="level2">
+<h2 class="anchored" data-anchor-id="section-11">4.13</h2>
+<p>偿还贷款时，偿还现金流的现值越小越可取。方式一现值恒为 <span class="math inline">\(PV_1 = 16{,}000\text{ 美元}\)</span>，方式二现值为 <span class="math inline">\(PV_2 = 10{,}000 + 10{,}000 e^{-10r}\text{ 美元}\)</span>：</p>
+<ol type="1">
+<li><strong>名义连续复利利率为 2% 时</strong></li>
+</ol>
+<ul>
+<li>方式二现值：<span class="math inline">\(PV_2 = 10{,}000 + 10{,}000 e^{-0.02 \times 10} = 10{,}000 + 10{,}000 e^{-0.2} \approx 18{,}187.31\text{ 美元}\)</span></li>
+<li>结论：<span class="math inline">\(PV_1 &lt; PV_2\)</span>，<strong>第一种方式（现在一次还清）更可取</strong>。</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>名义连续复利利率为 5% 时</strong></li>
+</ol>
+<ul>
+<li>方式二现值：<span class="math inline">\(PV_2 = 10{,}000 + 10{,}000 e^{-0.05 \times 10} = 10{,}000 + 10{,}000 e^{-0.5} \approx 16{,}065.31\text{ 美元}\)</span></li>
+<li>结论：<span class="math inline">\(PV_1 &lt; PV_2\)</span>，<strong>第一种方式（现在一次还清）更可取</strong>。</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>名义连续复利利率为 10% 时</strong></li>
+</ol>
+<ul>
+<li>方式二现值：<span class="math inline">\(PV_2 = 10{,}000 + 10{,}000 e^{-0.10 \times 10} = 10{,}000 + 10{,}000 e^{-1} \approx 13{,}678.79\text{ 美元}\)</span></li>
+<li>结论：<span class="math inline">\(PV_2 &lt; PV_1\)</span>，<strong>第二种方式（现在还 10,000 美元并在十年后再还 10,000 美元）更可取</strong>。</li>
+</ul>
+</section>
+<section id="section-12" class="level2">
+<h2 class="anchored" data-anchor-id="section-12">4.14</h2>
+<ol type="1">
+<li><strong>现金流与折现公式</strong></li>
+</ol>
+<p>该国库券每半年末支付利息 30 美元（共 10 期），5 年末支付本金 1,000 美元，连续复利年利率 <span class="math inline">\(r = 5\%\)</span>。 总现值公式为：</p>
+<p><span class="math display">\[PV = \sum_{i=1}^{10} 30 e^{-0.05 \times 0.5i} + 1000 e^{-0.05 \times 5} = 30 \sum_{i=1}^{10} e^{-0.025i} + 1000 e^{-0.25}\]</span></p>
+<ol start="2" type="1">
+<li><strong>息票现值求和</strong></li>
+</ol>
+<p>利用等比数列求和公式（公比 <span class="math inline">\(q = e^{-0.025}\)</span>）：</p>
+<p><span class="math display">\[PV_{\text{息票}} = 30 \cdot \frac{e^{-0.025}(1 - e^{-0.25})}{1 - e^{-0.025}} = 30 \cdot \frac{1 - e^{-0.25}}{e^{0.025} - 1} \approx 30 \times 8.7378 \approx 262.13\text{ 美元}\]</span></p>
+<ol start="3" type="1">
+<li><strong>本金现值与总现值计算</strong></li>
+</ol>
+<ul>
+<li>本金现值：</li>
+</ul>
+<p><span class="math display">\[PV_{\text{本金}} = 1000 e^{-0.25} \approx 1000 \times 0.77880 = 778.80\text{ 美元}\]</span></p>
+<ul>
+<li>该现金流总现值：</li>
+</ul>
+<p><span class="math display">\[PV = 262.13 + 778.80 = 1{,}040.94\text{ 美元}\]</span></p>
+</section>
+</section>
+<section id="section-13" class="level1">
+<h1>5</h1>
+<section id="题目1" class="level2">
+<h2 class="anchored" data-anchor-id="题目1">题目1</h2>
+<p>一个初始成本为 100 的投资，第一年末回报 40，第二年末回报 70，求该投资的收益率。如果第一年末回报 70，第二年末回报 40，收益率又是多少？</p>
+<ol type="1">
+<li><strong>第一年末回报 40、第二年末回报 70 时的收益率</strong></li>
+</ol>
+<p>设年收益率为 <span class="math inline">\(r\)</span>，投资净现值为 0 时满足方程：</p>
+<p><span class="math display">\[100 = \frac{40}{1+r} + \frac{70}{(1+r)^2}\]</span></p>
+<p>令 <span class="math inline">\(x = \frac{1}{1+r}\)</span>，整理得一元二次方程： <span class="math display">\[7x^2 + 4x - 10 = 0\]</span></p>
+<p>取正根解得： <span class="math display">\[x = \frac{-4 + \sqrt{16 - 4 \times 7 \times (-10)}}{14} = \frac{-2 + \sqrt{74}}{7} \approx 0.9432\]</span></p>
+<p>因此年收益率为： <span class="math display">\[r = \frac{1}{x} - 1 = \frac{7}{\sqrt{74} - 2} - 1 \approx 6.02\%\]</span></p>
+<p>（若按名义连续复利收益率计算：<span class="math inline">\(r_c = -\ln x \approx 5.85\%\)</span>） 2. <strong>第一年末回报 70、第二年末回报 40 时的收益率</strong></p>
+<p>建立方程：</p>
+<p><span class="math display">\[100 = \frac{70}{1+r} + \frac{40}{(1+r)^2}\]</span></p>
+<p>令 <span class="math inline">\(x = \frac{1}{1+r}\)</span>，整理得： <span class="math display">\[4x^2 + 7x - 10 = 0\]</span></p>
+<p>取正根解得： <span class="math display">\[x = \frac{-7 + \sqrt{49 - 4 \times 4 \times (-10)}}{8} = \frac{-7 + \sqrt{209}}{8} \approx 0.9321\]</span></p>
+<p>因此年收益率为： <span class="math display">\[r = \frac{1}{x} - 1 = \frac{8}{\sqrt{209} - 7} - 1 \approx 7.28\%\]</span></p>
+<p>（若按名义连续复利收益率计算：<span class="math inline">\(r_c = -\ln x \approx 7.03\%\)</span>）</p>
+</section>
+<section id="题目2" class="level2">
+<h2 class="anchored" data-anchor-id="题目2">题目2</h2>
+<p>年通货膨胀率为 <span class="math inline">\(r_i = 3\%\)</span>，银行提供回报率 <span class="math inline">\(r = 5\%\)</span>。已知扣除物价因素的回报率近似公式为 <span class="math inline">\(r_a \approx r - r_i \approx 2\%\)</span>，求其确切值。</p>
+<ol type="1">
+<li><strong>确切值计算</strong> 根据通货膨胀调整的回报率公式： <span class="math display">\[r_a = \frac{1 + r}{1 + r_i} - 1\]</span></li>
+</ol>
+<p>代入参数 <span class="math inline">\(r = 0.05\)</span>，<span class="math inline">\(r_i = 0.03\)</span>：</p>
+<p><span class="math display">\[r_a = \frac{1 + 0.05}{1 + 0.03} - 1 = \frac{1.05}{1.03} - 1 = \frac{0.02}{1.03} = \frac{2}{103} \approx 0.019417\]</span></p>
+<ol start="2" type="1">
+<li><strong>结论</strong> 该回报率的确切值为 <strong><span class="math inline">\(\frac{2}{103}\)</span></strong>（约为 <strong>1.9417%</strong> 或 <strong>1.94%</strong>）。</li>
+</ol>
+</section>
+<section id="题目3" class="level2">
+<h2 class="anchored" data-anchor-id="题目3">题目3</h2>
+<p>银行借款年利率为 8%，存款年利率为 5%。初始资金为 0，某项投资的现金流序列为 <span class="math inline">\(-1000, 900, 800, -1200, 700\)</span>（对应第 0 至 4 年），判断是否应该投资。</p>
+<ol type="1">
+<li><strong>各期账户余额推导与计算</strong> 根据规则，账户资金为负时以借款利率 8% 计息，为正时以存款利率 5% 计息：</li>
+</ol>
+<ul>
+<li><strong>第 0 年</strong>：借款 1,000，账户余额 <span class="math inline">\(W_0 = -1{,}000\)</span></li>
+<li><strong>第 1 年</strong>：<span class="math inline">\(W_1 = -1{,}000 \times 1.08 + 900 = -1{,}080 + 900 = -180\)</span></li>
+<li><strong>第 2 年</strong>：<span class="math inline">\(W_2 = -180 \times 1.08 + 800 = -194.4 + 800 = 605.6\)</span></li>
+<li><strong>第 3 年</strong>：<span class="math inline">\(W_3 = 605.6 \times 1.05 - 1{,}200 = 635.88 - 1{,}200 = -564.12\)</span></li>
+<li><strong>第 4 年</strong>：<span class="math inline">\(W_4 = -564.12 \times 1.08 + 700 = -609.25 + 700 = 90.75\)</span></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>结论</strong> 投资到期后最终净财富 <span class="math inline">\(W_4 = 90.75 &gt; 0\)</span>，故<strong>应该投资</strong>。</li>
+</ol>
+</section>
+</section>
+<section id="section-14" class="level1">
+<h1>6</h1>
+<section id="section-15" class="level2">
+<h2 class="anchored" data-anchor-id="section-15">5.4</h2>
+<ol type="1">
+<li><strong>期末收益支配关系</strong> 设看涨期权行权价为 <span class="math inline">\(K \ge 0\)</span>。在到期时刻 <span class="math inline">\(T\)</span>，看涨期权的价值为 <span class="math inline">\(\max(S(T) - K, 0)\)</span>。由于标的资产价格非负且 <span class="math inline">\(K \ge 0\)</span>，恒有：</li>
+</ol>
+<p><span class="math display">\[\max(S(T) - K, 0) \le S(T)\]</span></p>
+<p>即看涨期权在任何可能状态下的收益均不超过标的证券本身的价值。根据定价支配原理，期权的现值不能高于标的证券现价，故 <span class="math inline">\(C \le S\)</span>。</p>
+<ol start="2" type="1">
+<li><strong>无套利证明（反证法）</strong> 假设 <span class="math inline">\(C &gt; S\)</span>，投资者可在 <span class="math inline">\(t=0\)</span> 执行以下对冲策略：</li>
+</ol>
+<ul>
+<li><p>卖出 1 份看涨期权，买入 1 股标的证券，期初立即获得确定性现金净流入 <span class="math inline">\(C - S &gt; 0\)</span>；</p></li>
+<li><p>到期时刻 <span class="math inline">\(T\)</span>：</p></li>
+<li><p>若期权被行权（<span class="math inline">\(S(T) &gt; K\)</span>），交付持有的股票并获得现金 <span class="math inline">\(K \ge 0\)</span>；</p></li>
+<li><p>若期权未行权（<span class="math inline">\(S(T) \le K\)</span>），期权失效，仍持有价值 <span class="math inline">\(S(T) \ge 0\)</span> 的股票。</p></li>
+</ul>
+<p>该组合期初获得正现金流且未来收益恒非负，构成无风险套利。为保证市场无套利，必有 <span class="math inline">\(C \le S\)</span>。</p>
+</section>
+<section id="section-16" class="level2">
+<h2 class="anchored" data-anchor-id="section-16">5.8</h2>
+<ol type="1">
+<li><strong>构造投资组合</strong> 考虑在时刻 <span class="math inline">\(0\)</span> 建立两个投资组合：</li>
+</ol>
+<ul>
+<li><strong>组合 A</strong>：买入 1 份看跌期权（价格为 <span class="math inline">\(P\)</span>）和 1 股标的证券（现价为 <span class="math inline">\(S\)</span>），当前成本为 <span class="math inline">\(P + S\)</span>。</li>
+<li><strong>组合 B</strong>：存入金额为 <span class="math inline">\(Ke^{-rt}\)</span> 的无风险现金，按连续复利利率 <span class="math inline">\(r\)</span> 计息。</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>到期收益对比</strong> 在到期日 <span class="math inline">\(t\)</span>，两组合的价值分别为：</li>
+</ol>
+<ul>
+<li>组合 A 的价值：<span class="math inline">\(\max(K - S(t), 0) + S(t) = \max(K, S(t))\)</span></li>
+<li>组合 B 的价值：<span class="math inline">\(Ke^{-rt} \cdot e^{rt} = K\)</span></li>
+</ul>
+<p>对任意期末证券价格 <span class="math inline">\(S(t) \ge 0\)</span>，恒满足：</p>
+<p><span class="math display">\[\max(K, S(t)) \ge K\]</span></p>
+<p>即组合 A 在到期时刻的收益在任何可能状态下均不小于组合 B。 3. <strong>无套利结论</strong> 根据定价支配（无套利）原理，组合 A 的期初建立成本必须不小于组合 B 的期初成本：</p>
+<p><span class="math display">\[P + S \ge Ke^{-rt} \implies P \ge Ke^{-rt} - S\]</span></p>
+<p>（亦可直接由看跌-看涨期权平价公式推导：<span class="math inline">\(P = Ke^{-rt} - S + C\)</span>；因看涨期权价格 <span class="math inline">\(C \ge 0\)</span>，即得 <span class="math inline">\(P \ge Ke^{-rt} - S\)</span>）</p>
+</section>
+<section id="section-17" class="level2">
+<h2 class="anchored" data-anchor-id="section-17">5.20</h2>
+<ol type="1">
+<li><strong>拥有一个看涨期权和一个看跌期权（跨式组合）</strong></li>
+</ol>
+<p>回报计算式：</p>
+<p><span class="math display">\[\text{Payoff} = \max(S(t) - K, 0) + \max(K - S(t), 0) = \vert{}S(t) - K\vert{}\]</span></p>
+<p>分段表示为：</p>
+<p><span class="math display">\[\text{Payoff} = \begin{cases} K - S(t), &amp; S(t) \le K \\ S(t) - K, &amp; S(t) &gt; K \end{cases}\]</span></p>
+<ol start="2" type="1">
+<li><strong>拥有执行价为 <span class="math inline">\(K_1\)</span> 的看涨期权，并卖出执行价为 <span class="math inline">\(K_2\)</span> 的看跌期权</strong></li>
+</ol>
+<p>回报计算式：</p>
+<p><span class="math display">\[\text{Payoff} = \max(S(t) - K_1, 0) - \max(K_2 - S(t), 0)\]</span></p>
+<p>分段表示（以常见情形 <span class="math inline">\(K_1 \ge K_2\)</span> 为例）：</p>
+<p><span class="math display">\[\text{Payoff} = \begin{cases} S(t) - K_2, &amp; S(t) &lt; K_2 \\ 0, &amp; K_2 \le S(t) \le K_1 \\ S(t) - K_1, &amp; S(t) &gt; K_1 \end{cases}\]</span></p>
+<p>（若 <span class="math inline">\(K_1 = K_2 = K\)</span>，则恒等于合成远期多头收益 <span class="math inline">\(S(t) - K\)</span>）</p>
+<ol start="3" type="1">
+<li><strong>拥有两个看涨期权，并卖空一股标的证券</strong></li>
+</ol>
+<p>回报计算式：</p>
+<p><span class="math display">\[\text{Payoff} = 2\max(S(t) - K, 0) - S(t)\]</span></p>
+<p>分段表示为： <span class="math display">\[\text{Payoff} = \begin{cases} -S(t), &amp; S(t) \le K \\ S(t) - 2K, &amp; S(t) &gt; K \end{cases}\]</span></p>
+<ol start="4" type="1">
+<li><strong>拥有一股标的证券，并卖出一个看涨期权（备兑看涨组合）</strong></li>
+</ol>
+<p>回报计算式：</p>
+<p><span class="math display">\[\text{Payoff} = S(t) - \max(S(t) - K, 0) = \min(S(t), K)\]</span></p>
+<p>分段表示为：</p>
+<p><span class="math display">\[\text{Payoff} = \begin{cases} S(t), &amp; S(t) \le K \\ K, &amp; S(t) &gt; K \end{cases}\]</span></p>
+</section>
+</section>
+<section id="section-18" class="level1">
+<h1>7</h1>
+<section id="section-19" class="level2">
+<h2 class="anchored" data-anchor-id="section-19">6.2</h2>
+<p><span class="math display">\[
+\frac{1}{1-\frac{1}{3}-\frac{1}{4}-\frac{1}{5}}-1=\frac{47}{13}
+\]</span></p>
+</section>
+<section id="section-20" class="level2">
+<h2 class="anchored" data-anchor-id="section-20">6.5</h2>
+<ol type="1">
+<li><strong>记号设定与总赌注计算</strong> 设共 <span class="math inline">\(m\)</span> 个互斥结果，记 <span class="math inline">\(S = \sum_{i=1}^m \frac{1}{1 + o_i}\)</span>，由题意已知 <span class="math inline">\(S \ne 1\)</span>。 对每个结果 <span class="math inline">\(i\)</span> 投入赌注：</li>
+</ol>
+<p><span class="math display">\[x_i = \frac{(1 + o_i)^{-1}}{1 - S} \quad (i = 1, \dots, m)\]</span></p>
+<p>则全部投资的总赌注为：</p>
+<p><span class="math display">\[\sum_{i=1}^m x_i = \sum_{i=1}^m \frac{(1 + o_i)^{-1}}{1 - S} = \frac{1}{1 - S} \sum_{i=1}^m (1 + o_i)^{-1} = \frac{S}{1 - S}\]</span></p>
+<ol start="2" type="1">
+<li><strong>任意结果发生时的净收益推导</strong> 假设实际出现结果 <span class="math inline">\(j \in \{1, 2, \dots, m\}\)</span>，此时下注在结果 <span class="math inline">\(j\)</span> 上的回报为 <span class="math inline">\((1 + o_j)x_j\)</span>（其余结果上的下注损失）。 将 <span class="math inline">\(x_j\)</span> 代入可得赢得的毛支出为：</li>
+</ol>
+<p><span class="math display">\[\text{毛收益}_j = (1 + o_j)x_j = (1 + o_j) \cdot \frac{(1 + o_j)^{-1}}{1 - S} = \frac{1}{1 - S}\]</span></p>
+<p>因此，扣除所有下注成本后的净收益（利润）为：</p>
+<p><span class="math display">\[\text{净收益}_j = \text{毛收益}_j - \sum_{i=1}^m x_i = \frac{1}{1 - S} - \frac{S}{1 - S} = \frac{1 - S}{1 - S} = 1\]</span></p>
+<ol start="3" type="1">
+<li><strong>结论</strong> 因上述净收益与具体发生哪一个结果 <span class="math inline">\(j\)</span> 完全无关，该策略在任何结果下均能锁定确定性的正净收益 <strong><span class="math inline">\(1\)</span></strong>，命题得证。 （注：当 <span class="math inline">\(S &gt; 1\)</span> 时 <span class="math inline">\(x_i &lt; 0\)</span>，对应作为庄家接受下注的对冲策略）</li>
+</ol>
+</section>
+<section id="section-21" class="level2">
+<h2 class="anchored" data-anchor-id="section-21">6.6</h2>
+<ol type="1">
+<li><strong>求看跌期权的无套利价格 <span class="math inline">\(P\)</span></strong></li>
+</ol>
+<ul>
+<li><strong>到期收益分析</strong>：由例 6.1b 已知 <span class="math inline">\(S(0) = 100\)</span>，1 期后价格 <span class="math inline">\(S(1) \in \{200, 50\}\)</span>，行权价 <span class="math inline">\(K = 150\)</span>。看跌期权在 <span class="math inline">\(t=1\)</span> 时刻的收益为 <span class="math inline">\(\max(150 - S(1), 0)\)</span>：</li>
+</ul>
+<ol type="1">
+<li>当 <span class="math inline">\(S(1) = 200\)</span> 时，收益为 <span class="math inline">\(\max(150 - 200, 0) = 0\)</span>；</li>
+<li>当 <span class="math inline">\(S(1) = 50\)</span> 时，收益为 <span class="math inline">\(\max(150 - 50, 0) = 100\)</span>。</li>
+</ol>
+<ul>
+<li><strong>无风险对冲组合构造（或风险中性定价）</strong>：考虑买入 <span class="math inline">\(\frac{2}{3}\)</span> 股股票并买入 1 份看跌期权：</li>
+</ul>
+<ol type="1">
+<li>若 <span class="math inline">\(S(1) = 200\)</span>，期末组合价值为 <span class="math inline">\(\frac{2}{3} \times 200 + 0 = \frac{400}{3}\)</span>；</li>
+<li>若 <span class="math inline">\(S(1) = 50\)</span>，期末组合价值为 <span class="math inline">\(\frac{2}{3} \times 50 + 100 = \frac{400}{3}\)</span>。</li>
+</ol>
+<p>该组合期末收益恒为 <span class="math inline">\(\frac{400}{3}\)</span>，由无套利原理，其期初成本必须等于期末收益的现值： <span class="math display">\[\frac{2}{3} \times 100 + P = \frac{400}{3}(1 + r)^{-1}\]</span></p>
+<p>解得看跌期权无套利价格为：</p>
+<p><span class="math display">\[P = \frac{400(1 + r)^{-1} - 200}{3}\]</span></p>
+<p>（若用风险中性概率求解：<span class="math inline">\(p = \frac{100(1+r) - 50}{200 - 50} = \frac{2(1+r) - 1}{3}\)</span>，则 <span class="math inline">\(1 - p = \frac{4 - 2(1+r)}{3}\)</span>，同样可得 <span class="math inline">\(P = (1+r)^{-1}[0 \cdot p + 100(1-p)] = \frac{400(1+r)^{-1} - 200}{3}\)</span>）</p>
+<ol start="2" type="1">
+<li><strong>验证看涨-看跌期权平价公式</strong></li>
+</ol>
+<ul>
+<li>单期离散复利下的期权平价公式为：</li>
+</ul>
+<p><span class="math display">\[C - P = S(0) - K(1 + r)^{-1}\]</span></p>
+<ul>
+<li>将例 6.1b 中的看涨期权价格 <span class="math inline">\(C = \frac{100 - 50(1 + r)^{-1}}{3}\)</span> 与上述求得的 <span class="math inline">\(P\)</span> 代入左端：</li>
+</ul>
+<p><span class="math display">\[C - P = \frac{100 - 50(1 + r)^{-1}}{3} - \frac{400(1 + r)^{-1} - 200}{3} = \frac{300 - 450(1 + r)^{-1}}{3} = 100 - 150(1 + r)^{-1}\]</span></p>
+<ul>
+<li>因 <span class="math inline">\(S(0) = 100\)</span>，<span class="math inline">\(K = 150\)</span>，上式右端恰好等于 <span class="math inline">\(S(0) - K(1 + r)^{-1}\)</span>，期权平价公式得证。</li>
+</ul>
+</section>
+<section id="section-22" class="level2">
+<h2 class="anchored" data-anchor-id="section-22">6.11</h2>
+<ol type="1">
+<li><strong>求该期权的无套利价格（时刻 0）</strong></li>
+</ol>
+<ul>
+<li><strong>单步风险中性概率</strong>：已知 <span class="math inline">\(u = 1.25\)</span>，<span class="math inline">\(d = 0.8\)</span>，<span class="math inline">\(r = 0.1\)</span>，则每期的风险中性上涨概率为：</li>
+</ul>
+<p><span class="math display">\[p = \frac{1 + r - d}{u - d} = \frac{1.1 - 0.8}{1.25 - 0.8} = \frac{0.3}{0.45} = \frac{2}{3}, \quad 1 - p = \frac{1}{3}\]</span></p>
+<ul>
+<li><p><strong>生效路径与收益分析</strong>：因 <span class="math inline">\(u \cdot d = 1.25 \times 0.8 = 1\)</span>，要使 <span class="math inline">\(S(2) &lt; 100\)</span>（即 <span class="math inline">\(I = 1\)</span>），前两个时间段必须连续下降，此时 <span class="math inline">\(S(2) = 100 \times 0.8^2 = 64\)</span>。在随后的 3 个时间段中，若要使期末价格 <span class="math inline">\(S(5) &gt; 100\)</span>，必须再连续上升 3 次（若仅上升 2 次下降 1 次，则 <span class="math inline">\(S(5) = 64 \times 1.25^2 \times 0.8 = 80 &lt; 100\)</span>）。</p></li>
+<li><p><strong>唯一下跌再生效获利路径</strong>：前 2 期连续下跌、后 3 期连续上涨。此时期末价格与期权收益为：</p></li>
+</ul>
+<p><span class="math display">\[S(5) = 100 \times d^2 u^3 = 100 \times 1.25 = 125\]</span></p>
+<p><span class="math display">\[\text{Payoff} = (125 - 100)^+ = 25\]</span></p>
+<ul>
+<li><strong>时刻 0 的无套利价格</strong>：该唯一有效路径的风险中性概率为 <span class="math inline">\((1-p)^2 p^3\)</span>，折现 5 期可得：</li>
+</ul>
+<p><span class="math display">\[C_0 = (1 + r)^{-5} (1 - p)^2 p^3 \times 25 = (1.1)^{-5} \left(\frac{1}{3}\right)^2 \left(\frac{2}{3}\right)^3 \times 25 = \frac{200}{243 \times 1.1^5} \approx 0.5109\]</span></p>
+<ol start="2" type="1">
+<li><strong>问题 a) 中的价格是否唯一及简要证明</strong></li>
+</ol>
+<ul>
+<li><p><strong>结论</strong>：<strong>是唯一的</strong>。</p></li>
+<li><p><strong>证明</strong>：在单步二项式模型中，每个节点仅有“上升”和“下降”两种状态，可通过标的证券与无风险借贷唯一地动态复制任意衍生品的期末收益（即市场是完备的），风险中性概率测度唯一（<span class="math inline">\(p = 2/3\)</span>），因此无套利价格必然唯一。</p></li>
+</ul>
+<ol start="3" type="1">
+<li><strong>等概率假设下期权到期日的期望收益</strong></li>
+</ol>
+<ul>
+<li>若每次上升或下降的真实概率均为 <span class="math inline">\(q = 1 - q = 0.5\)</span>，则上述唯一获利路径（先 2 次下降、后 3 次上升）发生的真实概率为 <span class="math inline">\((0.5)^5 = \frac{1}{32}\)</span>。</li>
+<li>到期日的期望收益为：</li>
+</ul>
+<p><span class="math display">\[E[\text{Payoff}] = 25 \times \left(\frac{1}{2}\right)^5 = \frac{25}{32} = 0.78125\]</span></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "已复制");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "已复制");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/lzoi-zjx\.github\.io\/Seme2627\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

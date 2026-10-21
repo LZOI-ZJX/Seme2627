@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hans" xml:lang="zh-Hans"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>随机信号分析 – Seme2627</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f2788e636de456f6409e966386820849.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "没有结果",
+    "search-matching-documents-text": "匹配的文档",
+    "search-copy-link-title": "复制搜索链接",
+    "search-hide-matches-text": "隐藏其它匹配结果",
+    "search-more-match-text": "更多匹配结果",
+    "search-more-matches-text": "更多匹配结果",
+    "search-clear-button-title": "清除",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "提交",
+    "search-label": "搜索"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Seme2627</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="搜索"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="展开或折叠导航栏" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">微分几何</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../difgeo/Notes.html">
+ <span class="dropdown-text">笔记</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../difgeo/homework.html">
+ <span class="dropdown-text">作业</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../finmath/Untitled-2.html"> 
+<span class="menu-text">金融数学</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../miwavremos/Untitled-2.html"> 
+<span class="menu-text">微波遥感</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Quantinfo/Untitled-2.html"> 
+<span class="menu-text">量子信息学</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../stasig/ssnote.html" aria-current="page"> 
+<span class="menu-text">随机信号分析</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">该页面内容</h2>
+   
+  <ul>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">？</a>
+  <ul class="collapse">
+  <li><a href="#宽平稳wss" id="toc-宽平稳wss" class="nav-link" data-scroll-target="#宽平稳wss">宽平稳（WSS）</a>
+  <ul class="collapse">
+  <li><a href="#数学定义" id="toc-数学定义" class="nav-link" data-scroll-target="#数学定义">数学定义</a></li>
+  <li><a href="#基本性质" id="toc-基本性质" class="nav-link" data-scroll-target="#基本性质">基本性质</a></li>
+  <li><a href="#联合宽平稳-jwss" id="toc-联合宽平稳-jwss" class="nav-link" data-scroll-target="#联合宽平稳-jwss">联合宽平稳 JWSS</a></li>
+  </ul></li>
+  <li><a href="#遍历性" id="toc-遍历性" class="nav-link" data-scroll-target="#遍历性">遍历性</a></li>
+  <li><a href="#高斯过程" id="toc-高斯过程" class="nav-link" data-scroll-target="#高斯过程">高斯过程</a></li>
+  <li><a href="#功率谱" id="toc-功率谱" class="nav-link" data-scroll-target="#功率谱">功率谱</a>
+  <ul class="collapse">
+  <li><a href="#维纳-辛钦定理wiener-khinchin-theorem相关函数变换法" id="toc-维纳-辛钦定理wiener-khinchin-theorem相关函数变换法" class="nav-link" data-scroll-target="#维纳-辛钦定理wiener-khinchin-theorem相关函数变换法">维纳-辛钦定理（Wiener-Khinchin Theorem，相关函数变换法）</a></li>
+  </ul></li>
+  <li><a href="#白噪声" id="toc-白噪声" class="nav-link" data-scroll-target="#白噪声">白噪声</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">随机信号分析</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="section" class="level1">
+<h1>？</h1>
+<p>多维随机变量 <span class="math inline">\(X(t,\omega)\)</span>，是函数族。<span class="math inline">\(\omega\)</span> 决定波形</p>
+<p>采样 <span class="math inline">\(P:t_0 ,t_1,\dots,t_n\)</span> 当 <span class="math inline">\(n\to \infty\)</span> 时对 <span class="math inline">\(n\)</span> 个随机变量分析等同对整个随机信号分析</p>
+<p><span class="math inline">\(\mu_X(t) := \mathbb{E}[X(t)]\)</span></p>
+<section id="宽平稳wss" class="level2">
+<h2 class="anchored" data-anchor-id="宽平稳wss">宽平稳（WSS）</h2>
+<p><strong>宽平稳</strong>（Wide-Sense Stationary, 简称 <strong>WSS</strong>），又称<strong>弱平稳</strong>（Weak-Sense Stationary）或<strong>二阶平稳</strong>（Second-Order Stationary），是随机过程理论与统计信号处理中对随机过程统计特性时间不变性的一种二阶矩层面的约束。</p>
+<hr>
+<section id="数学定义" class="level3">
+<h3 class="anchored" data-anchor-id="数学定义">数学定义</h3>
+<p>设 <span class="math inline">\(\{X(t), t \in T\}\)</span> 为实值或复值随机过程（<span class="math inline">\(T\)</span> 可以是连续时间 <span class="math inline">\(\mathbb{R}\)</span> 或离散时间 <span class="math inline">\(\mathbb{Z}\)</span>）。若 <span class="math inline">\(X(t)\)</span> 满足以下三个条件，则称其为<strong>宽平稳过程</strong>：</p>
+<ol type="1">
+<li><strong>二阶矩有限</strong>：对任意 <span class="math inline">\(t \in T\)</span>，均有</li>
+</ol>
+<p><span class="math display">\[\int_{\Omega} X^2(t, \omega) \, dP(\omega) = \mathbb{E}\left[\vert{}X(t)\vert{}^2\right] &lt; \infty\]</span></p>
+<ol start="2" type="1">
+<li><strong>均值为常数</strong>：均值函数与时间 <span class="math inline">\(t\)</span> 无关，即</li>
+</ol>
+<p><span class="math display">\[\mu_X(t) = \mathbb{E}[X(t)] = \mu \quad (\text{常数})\]</span></p>
+<ol start="3" type="1">
+<li><strong>自协方差（或自相关）仅与时间差相关</strong>：对任意 <span class="math inline">\(t_1, t_2 \in T\)</span>，自协方差函数仅取决于时间间隔 <span class="math inline">\(\tau = t_2 - t_1\)</span>，而与参考时间起点无关：</li>
+</ol>
+<p><span class="math display">\[C_X(t_1, t_2) = \mathbb{E}\left[(X(t_1) - \mu)(X(t_2) - \mu)^*\right] = C_X(\tau)\]</span></p>
+<p>同理，其自相关函数也满足：</p>
+<p><span class="math display">\[R_X(t, t+\tau) = \mathbb{E}\left[X(t) X^*(t+\tau)\right] = R_X(\tau)\]</span></p>
+<p><em>(注：式中 <span class="math inline">\(*\)</span> 表示复共轭，若为实随机过程则直接为乘积。)</em></p>
+<hr>
+</section>
+<section id="基本性质" class="level3">
+<h3 class="anchored" data-anchor-id="基本性质">基本性质</h3>
+<p>对于宽平稳过程，其自相关函数 <span class="math inline">\(R_X(\tau)\)</span> 具备以下性质：</p>
+<ul>
+<li><strong>共轭对称性</strong>：<span class="math inline">\(R_X(-\tau) = R_X^*(\tau)\)</span>；对于实过程，<span class="math inline">\(R_X(-\tau) = R_X(\tau)\)</span> 为偶函数。</li>
+<li><strong>原点极值性</strong>：<span class="math inline">\(\vert{}R_X(\tau)\vert{} \le R_X(0) = \mathbb{E}\left[\vert{}X(t)\vert{}^2\right]\)</span>，即原点处取到平均总功率。（自己和自己最相关）</li>
+<li><strong>非负定性</strong>：对任意复常数序列 <span class="math inline">\(\{a_i\}\)</span> 及时间点 <span class="math inline">\(\{t_i\}\)</span>，二次型 <span class="math inline">\(\sum_{j} \sum_{k} a_j a_k^* R_X(t_j - t_k) \ge 0\)</span> 恒成立。</li>
+</ul>
+<hr>
+<section id="宽平稳wss与严平稳sss的对比" class="level4">
+<h4 class="anchored" data-anchor-id="宽平稳wss与严平稳sss的对比">宽平稳（WSS）与严平稳（SSS）的对比</h4>
+<ul>
+<li><strong>严平稳（Strict-Sense Stationary, SSS）</strong>：要求过程的<strong>任意有限维联合概率分布族</strong>在时间平移下保持不变，即对任意整数 <span class="math inline">\(n\)</span>、时间点 <span class="math inline">\(t_1, \dots, t_n\)</span> 和平移量 <span class="math inline">\(\tau\)</span>，联合累积分布函数满足：</li>
+</ul>
+<p><span class="math display">\[F_{t_1, \dots, t_n}(x_1, \dots, x_n) = F_{t_1+\tau, \dots, t_n+\tau}(x_1, \dots, x_n)\]</span></p>
+<p>两者之间的关系如下：</p>
+<ol type="1">
+<li><strong>严平稳不一定蕴含宽平稳</strong>： 严平稳只约束概率分布的时间不变性，不保证矩的存在性。如果一个严平稳过程的一阶矩或二阶矩发散（例如独立同分布的柯西分布序列），则它不是宽平稳的。只有当严平稳过程同时满足二阶矩有限时，它才一定是宽平稳过程。</li>
+<li><strong>宽平稳一般不蕴含严平稳</strong>： 宽平稳仅约束一阶矩与二阶矩，无法约束三阶及更高阶的联合矩或非线性变换后的统计特性。</li>
+<li><strong>高斯过程的等价性</strong>： 若 <span class="math inline">\(X(t)\)</span> 为联合高斯过程，由于多元正态分布完全由其一阶均值和二阶协方差矩阵唯一确定，此时 <strong>宽平稳与严平稳互为充要条件</strong>。</li>
+</ol>
+</section>
+</section>
+<section id="联合宽平稳-jwss" class="level3">
+<h3 class="anchored" data-anchor-id="联合宽平稳-jwss">联合宽平稳 JWSS</h3>
+<p><strong>联合宽平稳</strong>（Jointly Wide-Sense Stationary, 简称 <strong>JWSS</strong>）是将宽平稳性从单个随机过程扩展到<strong>两个（或多个）随机过程交互系统</strong>时的概念。它要求参与过程不仅各自保持二阶平稳，且它们之间的二阶互统计关联在时间平移下也保持不变。</p>
+<hr>
+<section id="数学定义-1" class="level4">
+<h4 class="anchored" data-anchor-id="数学定义-1">数学定义</h4>
+<p>设 <span class="math inline">\(\{X(t), t \in T\}\)</span> 和 <span class="math inline">\(\{Y(t), t \in T\}\)</span> 为定义在同一概率空间上的两个实值或复值随机过程。若它们满足以下条件，则称 <span class="math inline">\(X(t)\)</span> 与 <span class="math inline">\(Y(t)\)</span> 是<strong>联合宽平稳</strong>的：</p>
+<ol type="1">
+<li><strong>各自均为宽平稳（WSS）</strong>：</li>
+</ol>
+<ul>
+<li>二阶矩有限：<span class="math inline">\(\mathbb{E}\left[\vert{}X(t)\vert{}^2\right] &lt; \infty, \quad \mathbb{E}\left[\vert{}Y(t)\vert{}^2\right] &lt; \infty\)</span></li>
+<li>均值为常数：</li>
+</ul>
+<p><span class="math display">\[\mu_X(t) = \mathbb{E}[X(t)] = \mu_X, \quad \mu_Y(t) = \mathbb{E}[Y(t)] = \mu_Y\]</span></p>
+<ul>
+<li>各自的自相关函数仅与时间差 <span class="math inline">\(\tau\)</span> 有关：</li>
+</ul>
+<p><span class="math display">\[R_X(t, t+\tau) = R_X(\tau), \quad R_Y(t, t+\tau) = R_Y(\tau)\]</span></p>
+<ol start="2" type="1">
+<li><strong>互相关（或互协方差）仅与时间差相关</strong>： 对任意时刻 <span class="math inline">\(t_1, t_2\)</span>，定义互相关函数 <span class="math inline">\(R_{XY}(t_1, t_2) = \mathbb{E}\left[X(t_1) Y^*(t_2)\right]\)</span>。要求其仅取决于时差 <span class="math inline">\(\tau = t_2 - t_1\)</span>：</li>
+</ol>
+<p><span class="math display">\[R_{XY}(t, t+\tau) = \mathbb{E}\left[X(t) Y^*(t+\tau)\right] = R_{XY}(\tau)\]</span></p>
+<p>同理，其互协方差函数也仅依赖于 <span class="math inline">\(\tau\)</span>：</p>
+<p><span class="math display">\[C_{XY}(t, t+\tau) = \mathbb{E}\left[(X(t) - \mu_X)(Y(t+\tau) - \mu_Y)^*\right] = C_{XY}(\tau) = R_{XY}(\tau) - \mu_X \mu_Y^*\]</span></p>
+<p><em>(注：式中 <span class="math inline">\(*\)</span> 表示复共轭；对于实过程，直接取乘积。)</em></p>
+<hr>
+</section>
+<section id="核心代数性质" class="level4">
+<h4 class="anchored" data-anchor-id="核心代数性质">核心代数性质</h4>
+<p>对于联合宽平稳过程，其互相关函数 <span class="math inline">\(R_{XY}(\tau)\)</span> 具有以下性质：</p>
+<ul>
+<li><strong>共轭互换反转性</strong>：</li>
+</ul>
+<p><span class="math display">\[R_{XY}(\tau) = R_{YX}^*(-\tau)\]</span></p>
+<p><em>(对于实过程，满足 <span class="math inline">\(R_{XY}(\tau) = R_{YX}(-\tau)\)</span>。注意：<span class="math inline">\(R_{XY}(\tau)\)</span> 本身一般不是偶函数，只有自身互换并反转时间轴时才对称。)</em> * <strong>互相关边界约束</strong>（由柯西-施瓦茨不等式导出）：</p>
+<p><span class="math display">\[\vert{}R_{XY}(\tau)\vert{}^2 \le R_X(0) R_Y(0)\]</span></p>
+<p>即两过程在任意时延下的互相关模长，受限于二者各自平均总功率的几何平均值。</p>
+</section>
+</section>
+</section>
+<section id="遍历性" class="level2">
+<h2 class="anchored" data-anchor-id="遍历性">遍历性</h2>
+<p>遍历性（Ergodicity，工程与随机过程中常译为各态历经性）是指：一个随机过程的单条样本轨道在时间轴上的长期平均特性，在某种收敛意义下等于该过程在同一时刻所有可能状态的统计平均（集总平均）特性。</p>
+<p>若一个过程具备遍历性，研究者便无需观测该过程在大量独立重复实验下的整体样本集合，只需对单次实验采集足够长的单条时间序列，即可推断出其统计特征。</p>
+<p>统计平均 = 时间平均 （大数定律） <span class="math inline">\(\lim_{n \to \infty} P(|\frac{1}{n}\sum x - \mathbb{E}[x] | &lt; \epsilon)=0\)</span></p>
+<p>统计平均（集总平均）</p>
+<p><span class="math display">\[\mathbb{E}[g(X(t))] = \int x g(x) f_X(x) dx\]</span></p>
+<p>时间平均</p>
+<p><span class="math display">\[\langle g(X(t)) \rangle = \lim\limits_{T\to\infty} \frac{1}{2T}\int_{-T}^T g(X(t)) dt\]</span></p>
+</section>
+<section id="高斯过程" class="level2">
+<h2 class="anchored" data-anchor-id="高斯过程">高斯过程</h2>
+<p>如果一个随机过程 <span class="math inline">\(f(x)\)</span> 的任意有限个时间或空间点取值构成的组合，都服从多元正态分布（多元高斯分布），那么这个随机过程就被称为高斯过程.可以将其直观地理解为：“函数的概率分布”。普通的高斯分布是对一个向量或随机变量建模，而高斯过程是对整个函数空间进行建模</p>
+<p><span class="math display">\[f(x) \sim \mathcal{GP}(m(x), k(x, x'))\]</span></p>
+<p>高斯过程完全由两个数学函数共同确定：</p>
+<ul>
+<li>均值函数 <span class="math inline">\(m(t) = \mathbb{E}[X(t)]\)</span>：定义了函数在任意输入 <span class="math inline">\(x\)</span> 处的期望值，在缺乏先验信息时通常被简化为零常数（即 <span class="math inline">\(m(x) = 0\)</span>）。</li>
+<li>协方差函数（核函数） <span class="math inline">\(k(t, t') = \mathbb{E}\left[(X(t) - m(t))(X(t') - m(t'))^*\right]\)</span>：定义了不同输入点 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(x'\)</span> 对应的输出值之间的相关性，直接决定了生成函数的平滑度、变化剧烈程度和周期性等先验性质（例如常用的平方指数核 / RBF 核）。</li>
+</ul>
+</section>
+<section id="功率谱" class="level2">
+<h2 class="anchored" data-anchor-id="功率谱">功率谱</h2>
+<p><span class="math display">\[S_X(\omega) = \lim_{T \to \infty} \frac{1}{2T} \mathbb{E}\left[ \left\vert{} \int_{-T}^{T} X(t) e^{-j\omega t} dt \right\vert{}^2 \right]\]</span></p>
+<section id="维纳-辛钦定理wiener-khinchin-theorem相关函数变换法" class="level3">
+<h3 class="anchored" data-anchor-id="维纳-辛钦定理wiener-khinchin-theorem相关函数变换法">维纳-辛钦定理（Wiener-Khinchin Theorem，相关函数变换法）</h3>
+<p>对于连续时间宽平稳（WSS）随机过程，其功率谱密度与其自相关函数 <span class="math inline">\(R_X(\tau) = \mathbb{E}[X(t)X^*(t+\tau)]\)</span> 互为一对傅里叶变换对：</p>
+<p><span class="math display">\[S_X(\omega) = \mathcal{F}\left\{ R_X(\tau) \right\} = \int_{-\infty}^{\infty} R_X(\tau) e^{-j\omega \tau} d\tau\]</span></p>
+<p>其逆变换形式为：</p>
+<p><span class="math display">\[R_X(\tau) = \mathcal{F}^{-1}\left\{ S_X(\omega) \right\} = \frac{1}{2\pi} \int_{-\infty}^{\infty} S_X(\omega) e^{j\omega \tau} d\omega\]</span></p>
+</section>
+</section>
+<section id="白噪声" class="level2">
+<h2 class="anchored" data-anchor-id="白噪声">白噪声</h2>
+<p>白噪声三条件：</p>
+<ol type="1">
+<li>宽平稳</li>
+<li><span class="math inline">\(\mu_X = 0\)</span></li>
+<li><span class="math inline">\(S_X(\omega) = Const \eq R_X(\tau) = Const \cdot \delta(\tau)\)</span> 条件强</li>
+</ol>
+<p>带限白噪声：</p>
+<ol type="1">
+<li>功率谱密度仅在有限频段是常数，在此之外突变为0</li>
+<li><span class="math display">\[S_X(\omega) = \begin{cases} \frac{N_0}{2}, &amp; \vert{}\omega\vert{} \le \omega_B \\ 0, &amp; \vert{}\omega\vert{} &gt; \omega_B \end{cases}\]</span></li>
+<li><span class="math display">\[R_X(\tau) = \frac{1}{2\pi} \int_{-\omega_B}^{\omega_B} \frac{N_0}{2} e^{j\omega \tau} d\omega = \frac{N_0}{4\pi} \left[ \frac{e^{j\omega_B \tau} - e^{-j\omega_B \tau}}{j\tau} \right] = N_0 B \frac{\sin(\omega_B \tau)}{\omega_B \tau} = N_0 B \operatorname{sinc}(2B\tau)\]</span></li>
+</ol>
+<p>离散白噪声 <strong>对带限白噪声均匀采样</strong></p>
+<p>离散白噪声直接定义在离散时间序列空间 <span class="math inline">\(\mathbb{Z}\)</span> 上，是数字信号处理、时间序列分析（ARMA 模型）与离散卡尔曼滤波的基础输入。</p>
+<ol type="1">
+<li>数学定义离散序列 <span class="math inline">\(W[n]\)</span> 满足均值为常数（通常为 0），其自相关序列满足克罗内克 <span class="math inline">\(\delta\)</span> 函数：<span class="math display">\[R_W[m] = \mathbb{E}[W[n]W[n+m]] = \sigma^2 \delta[m] = \begin{cases} \sigma^2, &amp; m = 0 \\ 0, &amp; m \ne 0 \end{cases}\]</span>其中 <span class="math inline">\(\sigma^2 = \mathrm{Var}(W[n])\)</span> 为单点样本的方差。</li>
+<li>功率谱密度（DTFT）根据离散时间维纳-辛钦定理，其离散时间傅里叶变换（DTFT）为：<span class="math display">\[S_W(e^{j\omega}) = \sum_{m=-\infty}^{\infty} R_W[m] e^{-j\omega m} = \sigma^2, \quad \omega \in [-\pi, \pi]\]</span>其谱密度在归一化频率主周期 <span class="math inline">\([-\pi, \pi]\)</span> 内处处等于常数 <span class="math inline">\(\sigma^2\)</span>。</li>
+<li>总功率通过逆变换计算平均功率：<span class="math display">\[P_{\text{avg}} = R_W[0] = \frac{1}{2\pi} \int_{-\pi}^{\pi} S_W(e^{j\omega}) d\omega = \sigma^2 &lt; \infty\]</span>离散白噪声在数学上完全良定，其总功率恒为有限值 <span class="math inline">\(\sigma^2\)</span>，完全避免了连续时间理想白噪声的无穷大发散问题。</li>
+</ol>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "已复制");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "已复制");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/lzoi-zjx\.github\.io\/Seme2627\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-Hans" xml:lang="zh-Hans"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>微分几何作业 – Seme2627</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-f2788e636de456f6409e966386820849.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "没有结果",
+    "search-matching-documents-text": "匹配的文档",
+    "search-copy-link-title": "复制搜索链接",
+    "search-hide-matches-text": "隐藏其它匹配结果",
+    "search-more-match-text": "更多匹配结果",
+    "search-more-matches-text": "更多匹配结果",
+    "search-clear-button-title": "清除",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "提交",
+    "search-label": "搜索"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Seme2627</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="搜索"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="展开或折叠导航栏" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">首页</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">微分几何</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-">    
+        <li>
+    <a class="dropdown-item" href="../difgeo/Notes.html">
+ <span class="dropdown-text">笔记</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../difgeo/homework.html">
+ <span class="dropdown-text">作业</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../finmath/Untitled-2.html"> 
+<span class="menu-text">金融数学</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../miwavremos/Untitled-2.html"> 
+<span class="menu-text">微波遥感</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../Quantinfo/Untitled-2.html"> 
+<span class="menu-text">量子信息学</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../stasig/ssnote.html"> 
+<span class="menu-text">随机信号分析</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">该页面内容</h2>
+   
+  <ul>
+  <li><a href="#week-2" id="toc-week-2" class="nav-link active" data-scroll-target="#week-2">Week 2</a>
+  <ul class="collapse">
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section">1</a>
+  <ul class="collapse">
+  <li><a href="#证明s-是曲线-widetildec-的弧长参数且-tildekappa-tau-tildetau-kappa" id="toc-证明s-是曲线-widetildec-的弧长参数且-tildekappa-tau-tildetau-kappa" class="nav-link" data-scroll-target="#证明s-是曲线-widetildec-的弧长参数且-tildekappa-tau-tildetau-kappa">(1) 证明：<span class="math inline">\(s\)</span> 是曲线 <span class="math inline">\(\widetilde{C}\)</span> 的弧长参数，且 <span class="math inline">\(\tilde{\kappa} = \tau, \tilde{\tau} = \kappa\)</span></a></li>
+  <li><a href="#widetildec-的-frenet-标架" id="toc-widetildec-的-frenet-标架" class="nav-link" data-scroll-target="#widetildec-的-frenet-标架">(2) <span class="math inline">\(\widetilde{C}\)</span> 的 Frenet 标架</a></li>
+  <li><a href="#性质检验" id="toc-性质检验" class="nav-link" data-scroll-target="#性质检验">性质检验</a></li>
+  </ul></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2</a>
+  <ul class="collapse">
+  <li><a href="#证明过程" id="toc-证明过程" class="nav-link" data-scroll-target="#证明过程">证明过程</a></li>
+  </ul></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">3</a>
+  <ul class="collapse">
+  <li><a href="#证明过程-1" id="toc-证明过程-1" class="nav-link" data-scroll-target="#证明过程-1">证明过程</a></li>
+  </ul></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">4</a>
+  <ul class="collapse">
+  <li><a href="#解答与推导" id="toc-解答与推导" class="nav-link" data-scroll-target="#解答与推导">解答与推导</a></li>
+  <li><a href="#结构验证清单" id="toc-结构验证清单" class="nav-link" data-scroll-target="#结构验证清单">结构验证清单</a></li>
+  </ul></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">5</a>
+  <ul class="collapse">
+  <li><a href="#解答与推导-1" id="toc-解答与推导-1" class="nav-link" data-scroll-target="#解答与推导-1">解答与推导</a></li>
+  <li><a href="#性质验证清单" id="toc-性质验证清单" class="nav-link" data-scroll-target="#性质验证清单">性质验证清单</a></li>
+  </ul></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">6</a>
+  <ul class="collapse">
+  <li><a href="#证明过程-2" id="toc-证明过程-2" class="nav-link" data-scroll-target="#证明过程-2">证明过程</a></li>
+  <li><a href="#结构与几何参数验证清单" id="toc-结构与几何参数验证清单" class="nav-link" data-scroll-target="#结构与几何参数验证清单">结构与几何参数验证清单</a></li>
+  </ul></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">7</a>
+  <ul class="collapse">
+  <li><a href="#解答" id="toc-解答" class="nav-link" data-scroll-target="#解答">解答</a></li>
+  <li><a href="#理由与理论证明" id="toc-理由与理论证明" class="nav-link" data-scroll-target="#理由与理论证明">理由与理论证明</a></li>
+  <li><a href="#结构与验证清单" id="toc-结构与验证清单" class="nav-link" data-scroll-target="#结构与验证清单">结构与验证清单</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#week-3" id="toc-week-3" class="nav-link" data-scroll-target="#week-3">Week 3</a>
+  <ul class="collapse">
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7">1</a>
+  <ul class="collapse">
+  <li><a href="#解答-1" id="toc-解答-1" class="nav-link" data-scroll-target="#解答-1">解答</a></li>
+  <li><a href="#正规曲面条件与参数验证清单" id="toc-正规曲面条件与参数验证清单" class="nav-link" data-scroll-target="#正规曲面条件与参数验证清单">正规曲面条件与参数验证清单</a></li>
+  </ul></li>
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8">7</a>
+  <ul class="collapse">
+  <li><a href="#解答-2" id="toc-解答-2" class="nav-link" data-scroll-target="#解答-2">解答</a></li>
+  <li><a href="#特例退化检验" id="toc-特例退化检验" class="nav-link" data-scroll-target="#特例退化检验">特例退化检验</a></li>
+  </ul></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9">8，9</a>
+  <ul class="collapse">
+  <li><a href="#の解答第-8-题解答" id="toc-の解答第-8-题解答" class="nav-link" data-scroll-target="#の解答第-8-题解答">8. の解答（第 8 题解答）</a></li>
+  <li><a href="#の解答第-9-题解答" id="toc-の解答第-9-题解答" class="nav-link" data-scroll-target="#の解答第-9-题解答">9. の解答（第 9 题解答）</a></li>
+  </ul></li>
+  <li><a href="#section-10" id="toc-section-10" class="nav-link" data-scroll-target="#section-10">11</a>
+  <ul class="collapse">
+  <li><a href="#解答-3" id="toc-解答-3" class="nav-link" data-scroll-target="#解答-3">解答</a></li>
+  </ul></li>
+  <li><a href="#section-11" id="toc-section-11" class="nav-link" data-scroll-target="#section-11">2</a>
+  <ul class="collapse">
+  <li><a href="#预备几何性质" id="toc-预备几何性质" class="nav-link" data-scroll-target="#预备几何性质">预备几何性质</a></li>
+  <li><a href="#参数表示一球面坐标经纬度参数表示" id="toc-参数表示一球面坐标经纬度参数表示" class="nav-link" data-scroll-target="#参数表示一球面坐标经纬度参数表示">参数表示一：球面坐标（经纬度参数表示）</a></li>
+  <li><a href="#参数表示二显函数图像表示monge-参数表示" id="toc-参数表示二显函数图像表示monge-参数表示" class="nav-link" data-scroll-target="#参数表示二显函数图像表示monge-参数表示">参数表示二：显函数图像表示（Monge 参数表示）</a></li>
+  <li><a href="#参数表示三球极平面投影参数表示stereographic-projection" id="toc-参数表示三球极平面投影参数表示stereographic-projection" class="nav-link" data-scroll-target="#参数表示三球极平面投影参数表示stereographic-projection">参数表示三：球极平面投影参数表示（Stereographic Projection）</a></li>
+  <li><a href="#三种参数表示对比汇总表" id="toc-三种参数表示对比汇总表" class="nav-link" data-scroll-target="#三种参数表示对比汇总表">三种参数表示对比汇总表</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">微分几何作业</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="week-2" class="level1">
+<h1>Week 2</h1>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section">1</h2>
+<section id="证明s-是曲线-widetildec-的弧长参数且-tildekappa-tau-tildetau-kappa" class="level3">
+<h3 class="anchored" data-anchor-id="证明s-是曲线-widetildec-的弧长参数且-tildekappa-tau-tildetau-kappa">(1) 证明：<span class="math inline">\(s\)</span> 是曲线 <span class="math inline">\(\widetilde{C}\)</span> 的弧长参数，且 <span class="math inline">\(\tilde{\kappa} = \tau, \tilde{\tau} = \kappa\)</span></h3>
+<p>设曲线 <span class="math inline">\(C\)</span> 的单位切向量、主法向量、副法向量分别为 <span class="math inline">\(\boldsymbol{t}(s), \boldsymbol{n}(s), \boldsymbol{b}(s)\)</span>。根据题意，曲线 <span class="math inline">\(C\)</span> 由弧长参数 <span class="math inline">\(s\)</span> 给出，满足 Frenet-Serret 公式：</p>
+<p><span class="math display">\[\begin{cases} \dfrac{d\boldsymbol{t}}{ds} = \kappa \boldsymbol{n} \\ \dfrac{d\boldsymbol{n}}{ds} = -\kappa \boldsymbol{t} + \tau \boldsymbol{b} \\ \dfrac{d\boldsymbol{b}}{ds} = -\tau \boldsymbol{n} \end{cases}\]</span></p>
+<p><strong>1. 验证 <span class="math inline">\(s\)</span> 为 <span class="math inline">\(\widetilde{C}\)</span> 的弧长参数</strong></p>
+<p>由变上限积分求导法则：</p>
+<p><span class="math display">\[\frac{d\tilde{\boldsymbol{r}}}{ds} = \boldsymbol{b}(s)\]</span></p>
+<p>由于 <span class="math inline">\(\boldsymbol{b}(s)\)</span> 是单位向量，其模长满足：</p>
+<p><span class="math display">\[\left\Vert{}\frac{d\tilde{\boldsymbol{r}}}{ds}\right\Vert{} = \Vert{}\boldsymbol{b}(s)\Vert{} = 1\]</span></p>
+<p>速度大小恒为 <span class="math inline">\(1\)</span>，因此参数 <span class="math inline">\(s\)</span> 即为曲线 <span class="math inline">\(\widetilde{C}\)</span> 的弧长参数，且 <span class="math inline">\(\widetilde{C}\)</span> 的单位切向量为：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{t}}(s) = \frac{d\tilde{\boldsymbol{r}}}{ds} = \boldsymbol{b}(s)\]</span></p>
+<hr>
+<p><strong>2. 计算 <span class="math inline">\(\widetilde{C}\)</span> 的曲率 <span class="math inline">\(\tilde{\kappa}\)</span></strong></p>
+<p>对 <span class="math inline">\(\tilde{\boldsymbol{t}}(s)\)</span> 关于弧长 <span class="math inline">\(s\)</span> 微分：</p>
+<p><span class="math display">\[\frac{d\tilde{\boldsymbol{t}}}{ds} = \frac{d\boldsymbol{b}}{ds} = -\tau(s)\boldsymbol{n}(s)\]</span></p>
+<p>由曲率定义 <span class="math inline">\(\tilde{\kappa} = \left\Vert{}\dfrac{d\tilde{\boldsymbol{t}}}{ds}\right\Vert{}\)</span>，并结合已知条件 <span class="math inline">\(\tau &gt; 0\)</span> 及 <span class="math inline">\(\Vert{}\boldsymbol{n}(s)\Vert{} = 1\)</span>：</p>
+<p><span class="math display">\[\tilde{\kappa} = \Vert{}-\tau(s)\boldsymbol{n}(s)\Vert{} = \vert{}\tau(s)\vert{}\Vert{}\boldsymbol{n}(s)\Vert{} = \tau\]</span></p>
+<hr>
+<p><strong>3. 计算 <span class="math inline">\(\widetilde{C}\)</span> 的挠率 <span class="math inline">\(\tilde{\tau}\)</span></strong></p>
+<p>由曲率公式及 <span class="math inline">\(\tilde{\kappa} = \tau &gt; 0\)</span>，可得曲线 <span class="math inline">\(\widetilde{C}\)</span> 的单位主法向量为：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{n}}(s) = \frac{1}{\tilde{\kappa}}\frac{d\tilde{\boldsymbol{t}}}{ds} = \frac{-\tau \boldsymbol{n}}{\tau} = -\boldsymbol{n}(s)\]</span></p>
+<p>从而 <span class="math inline">\(\widetilde{C}\)</span> 的单位副法向量为：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{b}}(s) = \tilde{\boldsymbol{t}}(s) \times \tilde{\boldsymbol{n}}(s) = \boldsymbol{b}(s) \times (-\boldsymbol{n}(s)) = -(\boldsymbol{b}(s) \times \boldsymbol{n}(s))\]</span></p>
+<p>由右手标架关系 <span class="math inline">\(\boldsymbol{b} \times \boldsymbol{n} = -\boldsymbol{t}\)</span>，得：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{b}}(s) = \boldsymbol{t}(s)\]</span></p>
+<p>对 <span class="math inline">\(\tilde{\boldsymbol{b}}(s)\)</span> 关于弧长 <span class="math inline">\(s\)</span> 求导，并结合曲线 <span class="math inline">\(\widetilde{C}\)</span> 的 Frenet 公式 <span class="math inline">\(\dfrac{d\tilde{\boldsymbol{b}}}{ds} = -\tilde{\tau}\tilde{\boldsymbol{n}}\)</span>：</p>
+<p><span class="math display">\[\frac{d\tilde{\boldsymbol{b}}}{ds} = \frac{d\boldsymbol{t}}{ds} = \kappa \boldsymbol{n}\]</span></p>
+<p>代入 <span class="math inline">\(\tilde{\boldsymbol{n}} = -\boldsymbol{n}\)</span>：</p>
+<p><span class="math display">\[-\tilde{\tau}\tilde{\boldsymbol{n}} = -\tilde{\tau}(-\boldsymbol{n}) = \tilde{\tau}\boldsymbol{n}\]</span></p>
+<p>对比系数即得：</p>
+<p><span class="math display">\[\tilde{\tau} = \kappa\]</span></p>
+<p>至此命题全部得证。</p>
+<hr>
+</section>
+<section id="widetildec-的-frenet-标架" class="level3">
+<h3 class="anchored" data-anchor-id="widetildec-的-frenet-标架">(2) <span class="math inline">\(\widetilde{C}\)</span> 的 Frenet 标架</h3>
+<p>由 (1) 中的计算结果，曲线 <span class="math inline">\(\widetilde{C}\)</span> 在点 <span class="math inline">\(\tilde{\boldsymbol{r}}(s)\)</span> 处的 Frenet 标架 <span class="math inline">\(\{\tilde{\boldsymbol{t}}, \tilde{\boldsymbol{n}}, \tilde{\boldsymbol{b}}\}\)</span> 与原曲线 <span class="math inline">\(C\)</span> 的标架 <span class="math inline">\(\{\boldsymbol{t}, \boldsymbol{n}, \boldsymbol{b}\}\)</span> 之间的关系为：</p>
+<p><span class="math display">\[\begin{cases} \tilde{\boldsymbol{t}}(s) = \boldsymbol{b}(s) \\ \tilde{\boldsymbol{n}}(s) = -\boldsymbol{n}(s) \\ \tilde{\boldsymbol{b}}(s) = \boldsymbol{t}(s) \end{cases}\]</span></p>
+<p>写为矩阵变换形式：</p>
+<p><span class="math display">\[\begin{pmatrix} \tilde{\boldsymbol{t}} \\ \tilde{\boldsymbol{n}} \\ \tilde{\boldsymbol{b}} \end{pmatrix} = \begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; -1 &amp; 0 \\ 1 &amp; 0 &amp; 0 \end{pmatrix} \begin{pmatrix} \boldsymbol{t} \\ \boldsymbol{n} \\ \boldsymbol{b} \end{pmatrix}\]</span></p>
+<hr>
+</section>
+<section id="性质检验" class="level3">
+<h3 class="anchored" data-anchor-id="性质检验">性质检验</h3>
+<ul>
+<li><strong>右手正交性</strong>：</li>
+</ul>
+<p><span class="math display">\[\det\begin{pmatrix} 0 &amp; 0 &amp; 1 \\ 0 &amp; -1 &amp; 0 \\ 1 &amp; 0 &amp; 0 \end{pmatrix} = 1\]</span></p>
+<p>变换矩阵属于 <span class="math inline">\(SO(3)\)</span>，故 <span class="math inline">\(\{\tilde{\boldsymbol{t}}, \tilde{\boldsymbol{n}}, \tilde{\boldsymbol{b}}\}\)</span> 保持右手标准正交性。 * <strong>Frenet 微分方程自洽性</strong>：</p>
+<p><span class="math display">\[\frac{d\tilde{\boldsymbol{n}}}{ds} = -\frac{d\boldsymbol{n}}{ds} = -(-\kappa\boldsymbol{t} + \tau\boldsymbol{b}) = -\tau\boldsymbol{b} + \kappa\boldsymbol{t} = -\tilde{\kappa}\tilde{\boldsymbol{t}} + \tilde{\tau}\tilde{\boldsymbol{b}}\]</span></p>
+<p>方程完全自洽。</p>
+</section>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">2</h2>
+<p><strong>题目：</strong></p>
+<ol start="12" type="1">
+<li>给定曲线 <span class="math inline">\(\boldsymbol{r}(s)\)</span>，它的曲率和挠率分别是 <span class="math inline">\(\kappa, \tau\)</span>；<span class="math inline">\(\boldsymbol{r}(s)\)</span> 的单位切向量 <span class="math inline">\(\boldsymbol{t}(s)\)</span> 可视作单位球面 <span class="math inline">\(S^2\)</span> 上的一条曲线，称为曲线 <span class="math inline">\(\boldsymbol{r}(s)\)</span> 的切线像。证明：曲线 <span class="math inline">\(\tilde{\boldsymbol{r}}(s) = \boldsymbol{t}(s)\)</span> 的曲率、挠率分别为</li>
+</ol>
+<p><span class="math display">\[\tilde{\kappa} = \sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}, \quad \tilde{\tau} = \frac{\frac{d}{ds}\left(\frac{\tau}{\kappa}\right)}{\kappa\left[1 + \left(\frac{\tau}{\kappa}\right)^2\right]}.\]</span></p>
+<hr>
+<section id="证明过程" class="level3">
+<h3 class="anchored" data-anchor-id="证明过程">证明过程</h3>
+<p>设曲线 <span class="math inline">\(\boldsymbol{r}(s)\)</span> 的弧长参数为 <span class="math inline">\(s\)</span>，其单位切向量、主法向量、副法向量构成的右手正交标架为 <span class="math inline">\(\{\boldsymbol{t}(s), \boldsymbol{n}(s), \boldsymbol{b}(s)\}\)</span>。原曲线满足 Frenet-Serret 公式：</p>
+<p><span class="math display">\[\begin{cases} \dfrac{d\boldsymbol{t}}{ds} = \kappa \boldsymbol{n} \\ \dfrac{d\boldsymbol{n}}{ds} = -\kappa \boldsymbol{t} + \tau \boldsymbol{b} \\ \dfrac{d\boldsymbol{b}}{ds} = -\tau \boldsymbol{n} \end{cases}\]</span></p>
+<p>曲线 <span class="math inline">\(\tilde{\boldsymbol{r}}(s) = \boldsymbol{t}(s)\)</span>，记 <span class="math inline">\(\tilde{\boldsymbol{r}}\)</span> 的弧长参数为 <span class="math inline">\(\tilde{s}\)</span>。</p>
+<section id="弧长微元与单位切向量-tildeboldsymbolt" class="level4">
+<h4 class="anchored" data-anchor-id="弧长微元与单位切向量-tildeboldsymbolt">1. 弧长微元与单位切向量 <span class="math inline">\(\tilde{\boldsymbol{t}}\)</span></h4>
+<p>对参数 <span class="math inline">\(s\)</span> 求导：</p>
+<p><span class="math display">\[\frac{d\tilde{\boldsymbol{r}}}{ds} = \frac{d\boldsymbol{t}}{ds} = \kappa \boldsymbol{n}\]</span></p>
+<p>由于 <span class="math inline">\(\kappa &gt; 0\)</span> 且 <span class="math inline">\(\Vert{}\boldsymbol{n}\Vert{} = 1\)</span>，弧长导数（速率）为：</p>
+<p><span class="math display">\[\frac{d\tilde{s}}{ds} = \left\Vert{}\frac{d\tilde{\boldsymbol{r}}}{ds}\right\Vert{} = \kappa\]</span></p>
+<p>切线像曲线 <span class="math inline">\(\tilde{\boldsymbol{r}}\)</span> 的单位切向量为：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{t}} = \frac{d\tilde{\boldsymbol{r}}}{d\tilde{s}} = \frac{\frac{d\tilde{\boldsymbol{r}}}{ds}}{\frac{d\tilde{s}}{ds}} = \frac{\kappa \boldsymbol{n}}{\kappa} = \boldsymbol{n}\]</span></p>
+<hr>
+</section>
+<section id="曲率-tildekappa-的计算" class="level4">
+<h4 class="anchored" data-anchor-id="曲率-tildekappa-的计算">2. 曲率 <span class="math inline">\(\tilde{\kappa}\)</span> 的计算</h4>
+<p>将 <span class="math inline">\(\tilde{\boldsymbol{t}}\)</span> 对其弧长 <span class="math inline">\(\tilde{s}\)</span> 微分：</p>
+<p><span class="math display">\[\frac{d\tilde{\boldsymbol{t}}}{d\tilde{s}} = \frac{1}{\kappa} \frac{d\boldsymbol{n}}{ds} = \frac{1}{\kappa} (-\kappa \boldsymbol{t} + \tau \boldsymbol{b}) = -\boldsymbol{t} + \frac{\tau}{\kappa} \boldsymbol{b}\]</span></p>
+<p>由于 <span class="math inline">\(\boldsymbol{t} \perp \boldsymbol{b}\)</span> 且均为单位向量，取模即可得到曲率：</p>
+<p><span class="math display">\[\tilde{\kappa} = \left\Vert{} \frac{d\tilde{\boldsymbol{t}}}{d\tilde{s}} \right\Vert{} = \sqrt{(-1)^2 + \left(\frac{\tau}{\kappa}\right)^2} = \sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}\]</span></p>
+<hr>
+</section>
+<section id="主法向量-tildeboldsymboln-与副法向量-tildeboldsymbolb" class="level4">
+<h4 class="anchored" data-anchor-id="主法向量-tildeboldsymboln-与副法向量-tildeboldsymbolb">3. 主法向量 <span class="math inline">\(\tilde{\boldsymbol{n}}\)</span> 与副法向量 <span class="math inline">\(\tilde{\boldsymbol{b}}\)</span></h4>
+<p>由 <span class="math inline">\(\tilde{\kappa}\)</span> 的定义，主法向量为：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{n}} = \frac{1}{\tilde{\kappa}} \frac{d\tilde{\boldsymbol{t}}}{d\tilde{s}} = \frac{-\boldsymbol{t} + \frac{\tau}{\kappa}\boldsymbol{b}}{\sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}}\]</span></p>
+<p>副法向量 <span class="math inline">\(\tilde{\boldsymbol{b}} = \tilde{\boldsymbol{t}} \times \tilde{\boldsymbol{n}}\)</span>：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{b}} = \boldsymbol{n} \times \frac{-\boldsymbol{t} + \frac{\tau}{\kappa}\boldsymbol{b}}{\sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}} = \frac{-(\boldsymbol{n} \times \boldsymbol{t}) + \frac{\tau}{\kappa}(\boldsymbol{n} \times \boldsymbol{b})}{\sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}}\]</span></p>
+<p>代入右手系向量积性质 <span class="math inline">\(\boldsymbol{n} \times \boldsymbol{t} = -\boldsymbol{b}\)</span> 与 <span class="math inline">\(\boldsymbol{n} \times \boldsymbol{b} = \boldsymbol{t}\)</span>：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{b}} = \frac{\frac{\tau}{\kappa}\boldsymbol{t} + \boldsymbol{b}}{\sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}}\]</span></p>
+<hr>
+</section>
+<section id="挠率-tildetau-的计算" class="level4">
+<h4 class="anchored" data-anchor-id="挠率-tildetau-的计算">4. 挠率 <span class="math inline">\(\tilde{\tau}\)</span> 的计算</h4>
+<p>令 <span class="math inline">\(u(s) = \dfrac{\tau(s)}{\kappa(s)}\)</span>，则：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{b}} = \frac{u \boldsymbol{t} + \boldsymbol{b}}{\sqrt{1 + u^2}}\]</span></p>
+<p>对参数 <span class="math inline">\(s\)</span> 求导：</p>
+<p><span class="math display">\[\frac{d\tilde{\boldsymbol{b}}}{ds} = \frac{(u' \boldsymbol{t} + u \boldsymbol{t}' + \boldsymbol{b}')\sqrt{1 + u^2} - (u \boldsymbol{t} + \boldsymbol{b})\frac{u u'}{\sqrt{1 + u^2}}}{1 + u^2}\]</span></p>
+<p>其中：</p>
+<p><span class="math display">\[u \boldsymbol{t}' + \boldsymbol{b}' = u(\kappa \boldsymbol{n}) + (-\tau \boldsymbol{n}) = \left(\frac{\tau}{\kappa} \kappa - \tau\right)\boldsymbol{n} = \boldsymbol{0}\]</span></p>
+<p>将 <span class="math inline">\(u \boldsymbol{t}' + \boldsymbol{b}' = \boldsymbol{0}\)</span> 代入导数表达式并通分整理分子：</p>
+<p><span class="math display">\[\frac{d\tilde{\boldsymbol{b}}}{ds} = \frac{u' \boldsymbol{t}(1 + u^2) - u u'(u \boldsymbol{t} + \boldsymbol{b})}{(1 + u^2)^{3/2}} = \frac{u'(\boldsymbol{t} - u \boldsymbol{b})}{(1 + u^2)^{3/2}} = -\frac{u'}{1 + u^2} \left( \frac{-\boldsymbol{t} + u \boldsymbol{b}}{\sqrt{1 + u^2}} \right)\]</span></p>
+<p>注意到括号内项即为主法向量 <span class="math inline">\(\tilde{\boldsymbol{n}}\)</span>：</p>
+<p><span class="math display">\[\frac{d\tilde{\boldsymbol{b}}}{ds} = -\frac{u'}{1 + u^2} \tilde{\boldsymbol{n}}\]</span></p>
+<p>结合链式法则与 Frenet 公式 <span class="math inline">\(\dfrac{d\tilde{\boldsymbol{b}}}{d\tilde{s}} = -\tilde{\tau} \tilde{\boldsymbol{n}}\)</span>：</p>
+<p><span class="math display">\[\frac{d\tilde{\boldsymbol{b}}}{ds} = \frac{d\tilde{\boldsymbol{b}}}{d\tilde{s}} \frac{d\tilde{s}}{ds} = -\kappa \tilde{\tau} \tilde{\boldsymbol{n}}\]</span></p>
+<p>对比两式中 <span class="math inline">\(\tilde{\boldsymbol{n}}\)</span> 的系数：</p>
+<p><span class="math display">\[\kappa \tilde{\tau} = \frac{u'}{1 + u^2} \implies \tilde{\tau} = \frac{u'}{\kappa(1 + u^2)}\]</span></p>
+<p>将 <span class="math inline">\(u = \dfrac{\tau}{\kappa}\)</span> 还原代入，即得：</p>
+<p><span class="math display">\[\tilde{\tau} = \frac{\frac{d}{ds}\left(\frac{\tau}{\kappa}\right)}{\kappa\left[1 + \left(\frac{\tau}{\kappa}\right)^2\right]}\]</span></p>
+<p>命题得证。</p>
+</section>
+</section>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2">3</h2>
+<p><strong>题目：</strong></p>
+<ol start="16" type="1">
+<li>设 <span class="math inline">\(P_0\)</span> 是 <span class="math inline">\(E^3\)</span> 的曲线 <span class="math inline">\(C\)</span> 上一点，<span class="math inline">\(P\)</span> 是 <span class="math inline">\(C\)</span> 上 <span class="math inline">\(P_0\)</span> 的邻近点，<span class="math inline">\(l\)</span> 是 <span class="math inline">\(P_0\)</span> 处的切线；证明：</li>
+</ol>
+<p><span class="math display">\[\lim_{P \to P_0} \frac{2d(P, l)}{d^2(P_0, P)} = \kappa(P_0),\]</span></p>
+<p>这里 <span class="math inline">\(d\)</span> 表示 <span class="math inline">\(E^3\)</span> 的距离。</p>
+<hr>
+<section id="证明过程-1" class="level3">
+<h3 class="anchored" data-anchor-id="证明过程-1">证明过程</h3>
+<p>设曲线 <span class="math inline">\(C\)</span> 采用弧长参数化表示为 <span class="math inline">\(\boldsymbol{r}(s)\)</span>。不妨设 <span class="math inline">\(P_0\)</span> 对应的参数为 <span class="math inline">\(s = 0\)</span>，即 <span class="math inline">\(P_0 = \boldsymbol{r}(0)\)</span>，邻近点 <span class="math inline">\(P\)</span> 对应的参数为 <span class="math inline">\(s\)</span>，即 <span class="math inline">\(P = \boldsymbol{r}(s)\)</span>。当 <span class="math inline">\(P \to P_0\)</span> 时，即有 <span class="math inline">\(s \to 0\)</span>。</p>
+<p>记曲线在点 <span class="math inline">\(P_0\)</span> 处的单位切向量为 <span class="math inline">\(\boldsymbol{t}_0\)</span>，主法向量为 <span class="math inline">\(\boldsymbol{n}_0\)</span>，曲率为 <span class="math inline">\(\kappa_0 = \kappa(P_0)\)</span>。</p>
+<section id="曲线在-p_0-处的局部-taylor-展开" class="level4">
+<h4 class="anchored" data-anchor-id="曲线在-p_0-处的局部-taylor-展开">1. 曲线在 <span class="math inline">\(P_0\)</span> 处的局部 Taylor 展开</h4>
+<p>由弧长参数性质，有：</p>
+<p><span class="math display">\[\boldsymbol{r}'(0) = \boldsymbol{t}_0, \quad \boldsymbol{r}''(0) = \kappa_0 \boldsymbol{n}_0\]</span></p>
+<p>将 <span class="math inline">\(\boldsymbol{r}(s)\)</span> 在 <span class="math inline">\(s = 0\)</span> 处进行二阶 Taylor 展开：</p>
+<p><span class="math display">\[\boldsymbol{r}(s) = \boldsymbol{r}(0) + s \boldsymbol{r}'(0) + \frac{s^2}{2} \boldsymbol{r}''(0) + o(s^2) = \boldsymbol{r}(0) + s \boldsymbol{t}_0 + \frac{\kappa_0}{2} s^2 \boldsymbol{n}_0 + o(s^2)\]</span></p>
+<p>位移向量 <span class="math inline">\(\overrightarrow{P_0 P} = \boldsymbol{r}(s) - \boldsymbol{r}(0)\)</span> 展开为：</p>
+<p><span class="math display">\[\overrightarrow{P_0 P} = s \boldsymbol{t}_0 + \frac{\kappa_0}{2} s^2 \boldsymbol{n}_0 + o(s^2)\]</span></p>
+<hr>
+</section>
+<section id="计算分母-d2p_0-p" class="level4">
+<h4 class="anchored" data-anchor-id="计算分母-d2p_0-p">2. 计算分母 <span class="math inline">\(d^2(P_0, P)\)</span></h4>
+<p><span class="math inline">\(d(P_0, P)\)</span> 为点 <span class="math inline">\(P_0\)</span> 到点 <span class="math inline">\(P\)</span> 的欧氏距离，即向量 <span class="math inline">\(\overrightarrow{P_0 P}\)</span> 的模长。两边取平方：</p>
+<p><span class="math display">\[d^2(P_0, P) = \Vert{}\overrightarrow{P_0 P}\Vert{}^2 = \left\Vert{} s \boldsymbol{t}_0 + \frac{\kappa_0}{2} s^2 \boldsymbol{n}_0 + o(s^2) \right\Vert{}^2\]</span></p>
+<p>由于 <span class="math inline">\(\boldsymbol{t}_0 \cdot \boldsymbol{n}_0 = 0\)</span> 且 <span class="math inline">\(\Vert{}\boldsymbol{t}_0\Vert{} = 1\)</span>：</p>
+<p><span class="math display">\[d^2(P_0, P) = s^2 \Vert{}\boldsymbol{t}_0\Vert{}^2 + o(s^2) = s^2 + o(s^2)\]</span></p>
+<hr>
+</section>
+<section id="计算分子-dp-l" class="level4">
+<h4 class="anchored" data-anchor-id="计算分子-dp-l">3. 计算分子 <span class="math inline">\(d(P, l)\)</span></h4>
+<p>切线 <span class="math inline">\(l\)</span> 是过点 <span class="math inline">\(P_0\)</span> 且方向向量为单位向量 <span class="math inline">\(\boldsymbol{t}_0\)</span> 的直线。根据空间几何中点到直线的距离公式：</p>
+<p><span class="math display">\[d(P, l) = \frac{\Vert{}\overrightarrow{P_0 P} \times \boldsymbol{t}_0\Vert{}}{\Vert{}\boldsymbol{t}_0\Vert{}} = \Vert{}\overrightarrow{P_0 P} \times \boldsymbol{t}_0\Vert{}\]</span></p>
+<p>将 <span class="math inline">\(\overrightarrow{P_0 P}\)</span> 的展开式代入向量积中：</p>
+<p><span class="math display">\[\overrightarrow{P_0 P} \times \boldsymbol{t}_0 = \left( s \boldsymbol{t}_0 + \frac{\kappa_0}{2} s^2 \boldsymbol{n}_0 + o(s^2) \right) \times \boldsymbol{t}_0\]</span></p>
+<p>由于 <span class="math inline">\(\boldsymbol{t}_0 \times \boldsymbol{t}_0 = \boldsymbol{0}\)</span>，且设副法向量 <span class="math inline">\(\boldsymbol{b}_0 = \boldsymbol{t}_0 \times \boldsymbol{n}_0\)</span>（即 <span class="math inline">\(\boldsymbol{n}_0 \times \boldsymbol{t}_0 = -\boldsymbol{b}_0\)</span>）：</p>
+<p><span class="math display">\[\overrightarrow{P_0 P} \times \boldsymbol{t}_0 = -\frac{\kappa_0}{2} s^2 \boldsymbol{b}_0 + o(s^2)\]</span></p>
+<p>由于 <span class="math inline">\(\Vert{}\boldsymbol{b}_0\Vert{} = 1\)</span>，取模长可得：</p>
+<p><span class="math display">\[d(P, l) = \left\Vert{} -\frac{\kappa_0}{2} s^2 \boldsymbol{b}_0 + o(s^2) \right\Vert{} = \frac{\kappa_0}{2} s^2 + o(s^2)\]</span></p>
+<hr>
+</section>
+<section id="计算极限" class="level4">
+<h4 class="anchored" data-anchor-id="计算极限">4. 计算极限</h4>
+<p>将分子与分母的渐近展开式代入待求极限：</p>
+<p><span class="math display">\[\lim_{P \to P_0} \frac{2d(P, l)}{d^2(P_0, P)} = \lim_{s \to 0} \frac{2 \left(\frac{\kappa_0}{2} s^2 + o(s^2)\right)}{s^2 + o(s^2)} = \lim_{s \to 0} \frac{\kappa_0 s^2 + o(s^2)}{s^2 + o(s^2)} = \lim_{s \to 0} \frac{\kappa_0 + o(1)}{1 + o(1)} = \kappa_0\]</span></p>
+<p>即：</p>
+<p><span class="math display">\[\lim_{P \to P_0} \frac{2d(P, l)}{d^2(P_0, P)} = \kappa(P_0)\]</span></p>
+<p>命题得证。</p>
+</section>
+</section>
+</section>
+<section id="section-3" class="level2">
+<h2 class="anchored" data-anchor-id="section-3">4</h2>
+<p><strong>题目：</strong></p>
+<ol start="17" type="1">
+<li>求满足 <span class="math inline">\(\tau = c\kappa\)</span> (<span class="math inline">\(c\)</span> 为常数，<span class="math inline">\(\kappa &gt; 0\)</span>) 的曲线。</li>
+</ol>
+<hr>
+<section id="解答与推导" class="level3">
+<h3 class="anchored" data-anchor-id="解答与推导">解答与推导</h3>
+<p>满足曲率与挠率之比 <span class="math inline">\(\dfrac{\tau}{\kappa} = c\)</span>（常数）的曲线为<strong>一般螺线</strong>（General Helix，又称<strong>柱面螺线</strong>）；特别地，当 <span class="math inline">\(c = 0\)</span> 时退化为<strong>平面曲线</strong>。</p>
+<p>根据 Lancret 定理，空间曲线的切向量与某一固定方向成定角的充要条件是 <span class="math inline">\(\dfrac{\tau}{\kappa}\)</span> 为常数。</p>
+<hr>
+<section id="固定方向向量的确定" class="level4">
+<h4 class="anchored" data-anchor-id="固定方向向量的确定">1. 固定方向向量的确定</h4>
+<p>设曲线由弧长参数表示为 <span class="math inline">\(\boldsymbol{r}(s)\)</span>，其 Frenet 标架为 <span class="math inline">\(\{\boldsymbol{t}(s), \boldsymbol{n}(s), \boldsymbol{b}(s)\}\)</span>，满足：</p>
+<p><span class="math display">\[\begin{cases} \dfrac{d\boldsymbol{t}}{ds} = \kappa \boldsymbol{n} \\ \dfrac{d\boldsymbol{n}}{ds} = -\kappa \boldsymbol{t} + \tau \boldsymbol{b} \\ \dfrac{d\boldsymbol{b}}{ds} = -\tau \boldsymbol{n} \end{cases}\]</span></p>
+<ul>
+<li><strong>情形 1：<span class="math inline">\(c = 0\)</span></strong> 此时 <span class="math inline">\(\tau = 0\)</span>，由 <span class="math inline">\(\dfrac{d\boldsymbol{b}}{ds} = \boldsymbol{0}\)</span> 可知副法向量 <span class="math inline">\(\boldsymbol{b}\)</span> 为恒常向量。曲线完全落在与 <span class="math inline">\(\boldsymbol{b}\)</span> 垂直的平面内，因此曲线为<strong>平面曲线</strong>。</li>
+<li><strong>情形 2：<span class="math inline">\(c \neq 0\)</span></strong> 选取常数夹角 <span class="math inline">\(\alpha \in (0, \pi) \setminus \left\{\dfrac{\pi}{2}\right\}\)</span>，满足：</li>
+</ul>
+<p><span class="math display">\[\cot \alpha = c \quad \left(\text{即 } \cos \alpha = \frac{c}{\sqrt{1 + c^2}}, \; \sin \alpha = \frac{1}{\sqrt{1 + c^2}}\right)\]</span></p>
+<p>构造单位向量场：</p>
+<p><span class="math display">\[\boldsymbol{u}(s) = \cos \alpha \, \boldsymbol{t}(s) + \sin \alpha \, \boldsymbol{b}(s)\]</span></p>
+<p>将 <span class="math inline">\(\boldsymbol{u}(s)\)</span> 对弧长 <span class="math inline">\(s\)</span> 微分：</p>
+<p><span class="math display">\[\frac{d\boldsymbol{u}}{ds} = \cos \alpha \frac{d\boldsymbol{t}}{ds} + \sin \alpha \frac{d\boldsymbol{b}}{ds} = \cos \alpha (\kappa \boldsymbol{n}) + \sin \alpha (-\tau \boldsymbol{n}) = (\kappa \cos \alpha - \tau \sin \alpha)\boldsymbol{n}\]</span></p>
+<p>由于 <span class="math inline">\(\tau = c\kappa = \kappa \cot \alpha\)</span>，代入得：</p>
+<p><span class="math display">\[\kappa \cos \alpha - \tau \sin \alpha = \kappa \cos \alpha - (\kappa \cot \alpha)\sin \alpha = 0\]</span></p>
+<p>因此：</p>
+<p><span class="math display">\[\frac{d\boldsymbol{u}}{ds} = \boldsymbol{0}\]</span></p>
+<p>这说明 <span class="math inline">\(\boldsymbol{u}\)</span> 是一个<strong>固定不变的常单位向量</strong>。</p>
+<p>计算切向量 <span class="math inline">\(\boldsymbol{t}(s)\)</span> 与该固定向量 <span class="math inline">\(\boldsymbol{u}\)</span> 的内积：</p>
+<p><span class="math display">\[\boldsymbol{t}(s) \cdot \boldsymbol{u} = \cos \alpha = \frac{c}{\sqrt{1 + c^2}} = \text{常数}\]</span></p>
+<p>这表明曲线各点处的切线与固定方向 <span class="math inline">\(\boldsymbol{u}\)</span> 的夹角恒为常数 <span class="math inline">\(\alpha\)</span>。</p>
+<hr>
+</section>
+<section id="曲线的参数方程形式" class="level4">
+<h4 class="anchored" data-anchor-id="曲线的参数方程形式">2. 曲线的参数方程形式</h4>
+<p>建立空间直角坐标系，使得 <span class="math inline">\(z\)</span> 轴正方向与固定向量 <span class="math inline">\(\boldsymbol{u}\)</span> 重合，即取 <span class="math inline">\(\boldsymbol{u} = (0, 0, 1)\)</span>。</p>
+<p>设曲线的坐标分量为 <span class="math inline">\(\boldsymbol{r}(s) = (x(s), y(s), z(s))\)</span>：</p>
+<p><span class="math display">\[\frac{dz}{ds} = \boldsymbol{t}(s) \cdot \boldsymbol{u} = \cos \alpha \implies z(s) = s \cos \alpha + z_0\]</span></p>
+<p>考虑曲线在 <span class="math inline">\(xy\)</span> 平面上的投影曲线 <span class="math inline">\(\boldsymbol{\gamma}(s) = (x(s), y(s), 0)\)</span>，其切向量模长为：</p>
+<p><span class="math display">\[\left\Vert{}\frac{d\boldsymbol{\gamma}}{ds}\right\Vert{} = \sqrt{\left(\frac{dx}{ds}\right)^2 + \left(\frac{dy}{ds}\right)^2} = \sqrt{1 - \left(\frac{dz}{ds}\right)^2} = \sqrt{1 - \cos^2 \alpha} = \sin \alpha\]</span></p>
+<p>设投影曲线的弧长参数为 <span class="math inline">\(\sigma\)</span>，则 <span class="math inline">\(d\sigma = \sin \alpha \, ds\)</span>（即 <span class="math inline">\(s = \dfrac{\sigma}{\sin \alpha}\)</span>）。若基底平面曲线采用自身弧长参数表示为 <span class="math inline">\((x(\sigma), y(\sigma))\)</span>，则：</p>
+<p><span class="math display">\[z = s \cos \alpha = \sigma \cot \alpha = c \sigma\]</span></p>
+<p>取常数初值平移归零，满足 <span class="math inline">\(\tau = c\kappa\)</span> 的曲线的一般参数表达式为：</p>
+<p><span class="math display">\[\boldsymbol{r}(\sigma) = \big(x(\sigma),\, y(\sigma),\, c\sigma\big)\]</span></p>
+<p>其中 <span class="math inline">\((x(\sigma), y(\sigma))\)</span> 为 <span class="math inline">\(xy\)</span> 平面上任意曲率恒不为零的正则平面曲线。</p>
+<hr>
+</section>
+</section>
+<section id="结构验证清单" class="level3">
+<h3 class="anchored" data-anchor-id="结构验证清单">结构验证清单</h3>
+<ul>
+<li><strong>圆柱螺线（特殊情形）</strong>：若平面底曲线取为半径为 <span class="math inline">\(R\)</span> 的圆，即 <span class="math inline">\(x(\sigma) = R\cos\frac{\sigma}{R}, y(\sigma) = R\sin\frac{\sigma}{R}\)</span>，则得到标准的圆柱螺线，此时 <span class="math inline">\(\kappa\)</span> 与 <span class="math inline">\(\tau\)</span> 均为非零常数。</li>
+<li><strong>平面曲线（退化情形）</strong>：若 <span class="math inline">\(c = 0\)</span>，则 <span class="math inline">\(z(\sigma) = 0\)</span>，曲线完全退化为 <span class="math inline">\(xy\)</span> 平面内的平面曲线。</li>
+<li><strong>比值验证</strong>：对 <span class="math inline">\(\boldsymbol{r}(\sigma) = (x(\sigma), y(\sigma), c\sigma)\)</span> 直接求导计算 <span class="math inline">\(\kappa\)</span> 与 <span class="math inline">\(\tau\)</span>，易验得 <span class="math inline">\(\dfrac{\tau(\sigma)}{\kappa(\sigma)} \equiv c\)</span>。</li>
+</ul>
+</section>
+</section>
+<section id="section-4" class="level2">
+<h2 class="anchored" data-anchor-id="section-4">5</h2>
+<p><strong>题目：</strong></p>
+<ol start="19" type="1">
+<li>求沿曲线的向量场 <span class="math inline">\(\boldsymbol{v}(s)\)</span>，使其同时满足以下各式：</li>
+</ol>
+<p><span class="math display">\[\begin{aligned} \dot{\boldsymbol{t}}(s) &amp;= \boldsymbol{v}(s) \wedge \boldsymbol{t}(s), \\ \dot{\boldsymbol{n}}(s) &amp;= \boldsymbol{v}(s) \wedge \boldsymbol{n}(s), \\ \dot{\boldsymbol{b}}(s) &amp;= \boldsymbol{v}(s) \wedge \boldsymbol{b}(s). \end{aligned}\]</span></p>
+<hr>
+<section id="解答与推导-1" class="level3">
+<h3 class="anchored" data-anchor-id="解答与推导-1">解答与推导</h3>
+<p>该向量场即为微分几何中的<strong>达布向量场</strong>（Darboux vector field）。</p>
+<section id="标架正交关系与假设设定" class="level4">
+<h4 class="anchored" data-anchor-id="标架正交关系与假设设定">1. 标架正交关系与假设设定</h4>
+<p>设曲线参数为弧长 <span class="math inline">\(s\)</span>，其 Frenet 标架 <span class="math inline">\(\{\boldsymbol{t}(s), \boldsymbol{n}(s), \boldsymbol{b}(s)\}\)</span> 构成右手标准正交基，满足：</p>
+<p><span class="math display">\[\begin{cases} \boldsymbol{t} \wedge \boldsymbol{n} = \boldsymbol{b}, &amp; \boldsymbol{n} \wedge \boldsymbol{t} = -\boldsymbol{b} \\ \boldsymbol{n} \wedge \boldsymbol{b} = \boldsymbol{t}, &amp; \boldsymbol{b} \wedge \boldsymbol{n} = -\boldsymbol{t} \\ \boldsymbol{b} \wedge \boldsymbol{t} = \boldsymbol{n}, &amp; \boldsymbol{t} \wedge \boldsymbol{b} = -\boldsymbol{n} \end{cases}\]</span></p>
+<p>原曲线满足 Frenet-Serret 公式：</p>
+<p><span class="math display">\[\begin{cases} \dot{\boldsymbol{t}} = \kappa \boldsymbol{n} \\ \dot{\boldsymbol{n}} = -\kappa \boldsymbol{t} + \tau \boldsymbol{b} \\ \dot{\boldsymbol{b}} = -\tau \boldsymbol{n} \end{cases}\]</span></p>
+<p>将待求的向量场 <span class="math inline">\(\boldsymbol{v}(s)\)</span> 分解在正交基 <span class="math inline">\(\{\boldsymbol{t}, \boldsymbol{n}, \boldsymbol{b}\}\)</span> 上：</p>
+<p><span class="math display">\[\boldsymbol{v}(s) = v_1(s)\boldsymbol{t}(s) + v_2(s)\boldsymbol{n}(s) + v_3(s)\boldsymbol{b}(s)\]</span></p>
+<hr>
+</section>
+<section id="分量求解" class="level4">
+<h4 class="anchored" data-anchor-id="分量求解">2. 分量求解</h4>
+<ul>
+<li><strong>利用条件 <span class="math inline">\(\dot{\boldsymbol{t}} = \boldsymbol{v} \wedge \boldsymbol{t}\)</span>：</strong></li>
+</ul>
+<p><span class="math display">\[\begin{aligned}   \boldsymbol{v} \wedge \boldsymbol{t} &amp;= (v_1\boldsymbol{t} + v_2\boldsymbol{n} + v_3\boldsymbol{b}) \wedge \boldsymbol{t} \\   &amp;= v_2(\boldsymbol{n} \wedge \boldsymbol{t}) + v_3(\boldsymbol{b} \wedge \boldsymbol{t}) \\   &amp;= -v_2 \boldsymbol{b} + v_3 \boldsymbol{n}   \end{aligned}\]</span></p>
+<p>与 <span class="math inline">\(\dot{\boldsymbol{t}} = \kappa \boldsymbol{n}\)</span> 对比各分量系数：</p>
+<p><span class="math display">\[\begin{cases}   v_3 = \kappa \\   -v_2 = 0 \implies v_2 = 0   \end{cases}\]</span></p>
+<ul>
+<li><strong>利用条件 <span class="math inline">\(\dot{\boldsymbol{b}} = \boldsymbol{v} \wedge \boldsymbol{b}\)</span>：</strong> 代入 <span class="math inline">\(v_2 = 0\)</span> 与 <span class="math inline">\(v_3 = \kappa\)</span>，得：</li>
+</ul>
+<p><span class="math display">\[\begin{aligned}   \boldsymbol{v} \wedge \boldsymbol{b} &amp;= (v_1\boldsymbol{t} + \kappa\boldsymbol{b}) \wedge \boldsymbol{b} \\   &amp;= v_1(\boldsymbol{t} \wedge \boldsymbol{b}) \\   &amp;= -v_1 \boldsymbol{n}   \end{aligned}\]</span></p>
+<p>与 <span class="math inline">\(\dot{\boldsymbol{b}} = -\tau \boldsymbol{n}\)</span> 对比系数：</p>
+<p><span class="math display">\[-v_1 = -\tau \implies v_1 = \tau\]</span></p>
+<hr>
+</section>
+<section id="完备性验证" class="level4">
+<h4 class="anchored" data-anchor-id="完备性验证">3. 完备性验证</h4>
+<p>将求得的分量 <span class="math inline">\(v_1 = \tau, v_2 = 0, v_3 = \kappa\)</span> 代入第三个条件检验：</p>
+<p><span class="math display">\[\boldsymbol{v}(s) = \tau(s)\boldsymbol{t}(s) + \kappa(s)\boldsymbol{b}(s)\]</span></p>
+<p>计算 <span class="math inline">\(\boldsymbol{v} \wedge \boldsymbol{n}\)</span>：</p>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{v} \wedge \boldsymbol{n} &amp;= (\tau\boldsymbol{t} + \kappa\boldsymbol{b}) \wedge \boldsymbol{n} \\ &amp;= \tau(\boldsymbol{t} \wedge \boldsymbol{n}) + \kappa(\boldsymbol{b} \wedge \boldsymbol{n}) \\ &amp;= \tau\boldsymbol{b} - \kappa\boldsymbol{t} \\ &amp;= -\kappa\boldsymbol{t} + \tau\boldsymbol{b} = \dot{\boldsymbol{n}} \end{aligned}\]</span></p>
+<p>三个方程全部严格满足。</p>
+<p>所求向量场唯一存在，表达式为：</p>
+<p><span class="math display">\[\boldsymbol{v}(s) = \tau(s)\boldsymbol{t}(s) + \kappa(s)\boldsymbol{b}(s)\]</span></p>
+<hr>
+</section>
+</section>
+<section id="性质验证清单" class="level3">
+<h3 class="anchored" data-anchor-id="性质验证清单">性质验证清单</h3>
+<ul>
+<li><strong>瞬时旋转模长</strong>：达布向量的模长为 <span class="math inline">\(\Vert{}\boldsymbol{v}(s)\Vert{} = \sqrt{\kappa(s)^2 + \tau(s)^2}\)</span>，代表 Frenet 标架绕瞬时轴转动的角速度大小。</li>
+<li><strong>瞬时转轴方向</strong>：瞬时转轴位于由切向量 <span class="math inline">\(\boldsymbol{t}\)</span> 与副法向量 <span class="math inline">\(\boldsymbol{b}\)</span> 张成的<strong>直 rectification 平面（从切平面）</strong> 内，与主法向量垂直（<span class="math inline">\(\boldsymbol{v} \cdot \boldsymbol{n} = 0\)</span>）。</li>
+<li><strong>刚体运动等价性</strong>：该结果将 Frenet 方程的反对称微分算子转化为空间角速度向量外积形式 <span class="math inline">\(\dot{\boldsymbol{e}}_i = \boldsymbol{v} \times \boldsymbol{e}_i\)</span>。</li>
+</ul>
+</section>
+</section>
+<section id="section-5" class="level2">
+<h2 class="anchored" data-anchor-id="section-5">6</h2>
+<p><strong>题目：</strong></p>
+<ol start="20" type="1">
+<li>证明：曲线 <span class="math inline">\(\boldsymbol{r}(t) = (t + \sqrt{3}\sin t, \, 2\cos t, \, \sqrt{3}t - \sin t)\)</span> 与曲线 <span class="math inline">\(\tilde{\boldsymbol{r}}(t) = \left(2\cos\dfrac{t}{2}, \, 2\sin\dfrac{t}{2}, \, -t\right)\)</span> 是合同的。</li>
+</ol>
+<hr>
+<section id="证明过程-2" class="level3">
+<h3 class="anchored" data-anchor-id="证明过程-2">证明过程</h3>
+<p>在欧氏空间 <span class="math inline">\(E^3\)</span> 中，两条正则曲线合同是指存在刚体运动（即正交变换与平移），使得一条曲线变换到另一条曲线。证明曲线合同可以通过<strong>显式构造刚体变换</strong>或利用<strong>空间曲线基本定理</strong>（证明两曲线具有相同的曲率与挠率常数）。</p>
+<hr>
+<section id="方法一显式构造刚体运动正交旋转变换" class="level4">
+<h4 class="anchored" data-anchor-id="方法一显式构造刚体运动正交旋转变换">方法一：显式构造刚体运动（正交旋转变换）</h4>
+<p>考虑将曲线 <span class="math inline">\(\boldsymbol{r}(t)\)</span> 进行正交坐标变换。构造变换矩阵：</p>
+<p><span class="math display">\[M = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ -\dfrac{\sqrt{3}}{2} &amp; 0 &amp; \dfrac{1}{2} \\ \dfrac{1}{2} &amp; 0 &amp; \dfrac{\sqrt{3}}{2} \end{pmatrix}\]</span></p>
+<p><strong>1. 验证 <span class="math inline">\(M\)</span> 是刚体运动（固有正交变换）</strong></p>
+<ul>
+<li>正交性：</li>
+</ul>
+<p><span class="math display">\[M M^T = \begin{pmatrix}   0 &amp; 1 &amp; 0 \\   -\frac{\sqrt{3}}{2} &amp; 0 &amp; \frac{1}{2} \\   \frac{1}{2} &amp; 0 &amp; \frac{\sqrt{3}}{2}   \end{pmatrix}   \begin{pmatrix}   0 &amp; -\frac{\sqrt{3}}{2} &amp; \frac{1}{2} \\   1 &amp; 0 &amp; 0 \\   0 &amp; \frac{1}{2} &amp; \frac{\sqrt{3}}{2}   \end{pmatrix}   =   \begin{pmatrix}   1 &amp; 0 &amp; 0 \\   0 &amp; 1 &amp; 0 \\   0 &amp; 0 &amp; 1   \end{pmatrix}   = I\]</span></p>
+<ul>
+<li>行列式：按第一行展开计算得</li>
+</ul>
+<p><span class="math display">\[\det M = -1 \cdot \left( -\frac{\sqrt{3}}{2} \cdot \frac{\sqrt{3}}{2} - \frac{1}{2} \cdot \frac{1}{2} \right) = -1 \cdot \left( -\frac{3}{4} - \frac{1}{4} \right) = 1\]</span></p>
+<p>因此 <span class="math inline">\(M \in SO(3)\)</span>，代表 <span class="math inline">\(E^3\)</span> 中的空间纯旋转变换。</p>
+<p><strong>2. 计算变换后的曲线</strong> 将曲线 <span class="math inline">\(\boldsymbol{r}(t) = \begin{pmatrix} t + \sqrt{3}\sin t \\ 2\cos t \\ \sqrt{3}t - \sin t \end{pmatrix}\)</span> 左乘旋转矩阵 <span class="math inline">\(M\)</span>：</p>
+<p><span class="math display">\[M \boldsymbol{r}(t) = \begin{pmatrix} 0 &amp; 1 &amp; 0 \\ -\frac{\sqrt{3}}{2} &amp; 0 &amp; \frac{1}{2} \\ \frac{1}{2} &amp; 0 &amp; \frac{\sqrt{3}}{2} \end{pmatrix} \begin{pmatrix} t + \sqrt{3}\sin t \\ 2\cos t \\ \sqrt{3}t - \sin t \end{pmatrix}\]</span></p>
+<p>逐分量计算：</p>
+<ul>
+<li>第一个分量：<span class="math inline">\(0 \cdot (t + \sqrt{3}\sin t) + 1 \cdot (2\cos t) + 0 \cdot (\sqrt{3}t - \sin t) = 2\cos t\)</span></li>
+<li>第二个分量：<span class="math inline">\(-\dfrac{\sqrt{3}}{2}(t + \sqrt{3}\sin t) + \dfrac{1}{2}(\sqrt{3}t - \sin t) = -\left(\dfrac{3}{2} + \dfrac{1}{2}\right)\sin t = -2\sin t\)</span></li>
+<li>第三个分量：<span class="math inline">\(\dfrac{1}{2}(t + \sqrt{3}\sin t) + \dfrac{\sqrt{3}}{2}(\sqrt{3}t - \sin t) = \left(\dfrac{1}{2} + \dfrac{3}{2}\right)t = 2t\)</span></li>
+</ul>
+<p>即：</p>
+<p><span class="math display">\[M \boldsymbol{r}(t) = \begin{pmatrix} 2\cos t \\ -2\sin t \\ 2t \end{pmatrix}\]</span></p>
+<p><strong>3. 对比曲线 <span class="math inline">\(\tilde{\boldsymbol{r}}\)</span></strong> 曲线 <span class="math inline">\(\tilde{\boldsymbol{r}}\)</span> 的参数表达式为：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{r}}(u) = \begin{pmatrix} 2\cos\dfrac{u}{2} \\ 2\sin\dfrac{u}{2} \\ -u \end{pmatrix}\]</span></p>
+<p>令参数代换 <span class="math inline">\(u = -2t\)</span>，代入 <span class="math inline">\(\tilde{\boldsymbol{r}}(u)\)</span>：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{r}}(-2t) = \begin{pmatrix} 2\cos(-t) \\ 2\sin(-t) \\ -(-2t) \end{pmatrix} = \begin{pmatrix} 2\cos t \\ -2\sin t \\ 2t \end{pmatrix} = M \boldsymbol{r}(t)\]</span></p>
+<p>这表明曲线 <span class="math inline">\(\tilde{\boldsymbol{r}}\)</span> 与曲线 <span class="math inline">\(\boldsymbol{r}\)</span> 在空间中的轨迹仅相差一个 <span class="math inline">\(SO(3)\)</span> 旋转变换 <span class="math inline">\(M\)</span> 以及参数反向重整，因此两曲线合同。</p>
+<hr>
+</section>
+<section id="方法二空间曲线基本定理不变量对比" class="level4">
+<h4 class="anchored" data-anchor-id="方法二空间曲线基本定理不变量对比">方法二：空间曲线基本定理（不变量对比）</h4>
+<p><strong>1. 计算曲线 <span class="math inline">\(\boldsymbol{r}(t)\)</span> 的曲率与挠率</strong></p>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}'(t) &amp;= (1 + \sqrt{3}\cos t, \, -2\sin t, \, \sqrt{3} - \cos t) \\ \Vert{}\boldsymbol{r}'(t)\Vert{}^2 &amp;= (1 + \sqrt{3}\cos t)^2 + 4\sin^2 t + (\sqrt{3} - \cos t)^2 \\ &amp;= 1 + 2\sqrt{3}\cos t + 3\cos^2 t + 4\sin^2 t + 3 - 2\sqrt{3}\cos t + \cos^2 t \\ &amp;= 8 \implies \Vert{}\boldsymbol{r}'(t)\Vert{} = 2\sqrt{2} \end{aligned}\]</span></p>
+<p>二阶导数与三阶导数：</p>
+<p><span class="math display">\[\boldsymbol{r}''(t) = (-\sqrt{3}\sin t, \, -2\cos t, \, \sin t), \quad \boldsymbol{r}'''(t) = (-\sqrt{3}\cos t, \, 2\sin t, \, \cos t)\]</span></p>
+<p>计算叉积：</p>
+<p><span class="math display">\[\boldsymbol{r}'(t) \times \boldsymbol{r}''(t) = (-2 + 2\sqrt{3}\cos t, \, -4\sin t, \, -2\cos t - 2\sqrt{3})\]</span></p>
+<p>模长平方：</p>
+<p><span class="math display">\[\Vert{}\boldsymbol{r}' \times \boldsymbol{r}''\Vert{}^2 = (-2 + 2\sqrt{3}\cos t)^2 + 16\sin^2 t + (-2\cos t - 2\sqrt{3})^2 = 32 \implies \Vert{}\boldsymbol{r}' \times \boldsymbol{r}''\Vert{} = 4\sqrt{2}\]</span></p>
+<p>曲率：</p>
+<p><span class="math display">\[\kappa = \frac{\Vert{}\boldsymbol{r}' \times \boldsymbol{r}''\Vert{}}{\Vert{}\boldsymbol{r}'\Vert{}^3} = \frac{4\sqrt{2}}{(2\sqrt{2})^3} = \frac{1}{4}\]</span></p>
+<p>混合积：</p>
+<p><span class="math display">\[(\boldsymbol{r}' \times \boldsymbol{r}'') \cdot \boldsymbol{r}''' = (-2 + 2\sqrt{3}\cos t)(-\sqrt{3}\cos t) - 8\sin^2 t + (-2\cos t - 2\sqrt{3})(\cos t) = -8\]</span></p>
+<p>挠率：</p>
+<p><span class="math display">\[\tau = \frac{(\boldsymbol{r}', \boldsymbol{r}'', \boldsymbol{r}''')}{\Vert{}\boldsymbol{r}' \times \boldsymbol{r}''\Vert{}^2} = \frac{-8}{32} = -\frac{1}{4}\]</span></p>
+<p><strong>2. 计算曲线 <span class="math inline">\(\tilde{\boldsymbol{r}}(t)\)</span> 的曲率与挠率</strong></p>
+<p><span class="math display">\[\begin{aligned} \tilde{\boldsymbol{r}}'(t) &amp;= \left(-\sin\frac{t}{2}, \, \cos\frac{t}{2}, \, -1\right) \implies \Vert{}\tilde{\boldsymbol{r}}'(t)\Vert{} = \sqrt{2} \\ \tilde{\boldsymbol{r}}''(t) &amp;= \left(-\frac{1}{2}\cos\frac{t}{2}, \, -\frac{1}{2}\sin\frac{t}{2}, \, 0\right) \\ \tilde{\boldsymbol{r}}'''(t) &amp;= \left(\frac{1}{4}\sin\frac{t}{2}, \, -\frac{1}{4}\cos\frac{t}{2}, \, 0\right) \end{aligned}\]</span></p>
+<p>叉积与混合积：</p>
+<p><span class="math display">\[\tilde{\boldsymbol{r}}' \times \tilde{\boldsymbol{r}}'' = \left(-\frac{1}{2}\sin\frac{t}{2}, \, \frac{1}{2}\cos\frac{t}{2}, \, \frac{1}{2}\right) \implies \Vert{}\tilde{\boldsymbol{r}}' \times \tilde{\boldsymbol{r}}''\Vert{} = \sqrt{\frac{1}{4} + \frac{1}{4}} = \frac{\sqrt{2}}{2}\]</span></p>
+<p><span class="math display">\[(\tilde{\boldsymbol{r}}', \tilde{\boldsymbol{r}}'', \tilde{\boldsymbol{r}}''') = (\tilde{\boldsymbol{r}}' \times \tilde{\boldsymbol{r}}'') \cdot \tilde{\boldsymbol{r}}''' = -\frac{1}{8}\sin^2\frac{t}{2} - \frac{1}{8}\cos^2\frac{t}{2} = -\frac{1}{8}\]</span></p>
+<p>曲率与挠率：</p>
+<p><span class="math display">\[\tilde{\kappa} = \frac{\frac{\sqrt{2}}{2}}{(\sqrt{2})^3} = \frac{1}{4}, \quad \tilde{\tau} = \frac{-\frac{1}{8}}{\frac{1}{2}} = -\frac{1}{4}\]</span></p>
+<p>两曲线的曲率和挠率恒为常数且对应相等：</p>
+<p><span class="math display">\[\kappa = \tilde{\kappa} = \frac{1}{4}, \quad \tau = \tilde{\tau} = -\frac{1}{4}\]</span></p>
+<p>根据空间曲线论基本定理，由曲率和挠率在相差刚体运动下唯一确定空间曲线，故两曲线合同。</p>
+<hr>
+</section>
+</section>
+<section id="结构与几何参数验证清单" class="level3">
+<h3 class="anchored" data-anchor-id="结构与几何参数验证清单">结构与几何参数验证清单</h3>
+<ul>
+<li><strong>几何类型判定</strong>：两曲线均为底圆半径 <span class="math inline">\(R = \dfrac{\kappa}{\kappa^2 + \tau^2} = \dfrac{1/4}{(1/16) + (1/16)} = 2\)</span>，螺距绝对值 <span class="math inline">\(h = \dfrac{2\pi \vert{}\tau\vert{}}{\kappa^2 + \tau^2} = 4\pi\)</span> 的标准<strong>圆柱螺线</strong>。</li>
+<li><strong>刚体变换矩阵验证</strong>：旋转矩阵 <span class="math inline">\(M\)</span> 严格满足 <span class="math inline">\(M^T M = I\)</span> 且 <span class="math inline">\(\det M = 1\)</span>。</li>
+<li><strong>点集等价映射</strong>：参数映射 <span class="math inline">\(u = -2t\)</span> 为光滑双射，恒等式 <span class="math inline">\(\tilde{\boldsymbol{r}}(-2t) = M \boldsymbol{r}(t)\)</span> 对任意 <span class="math inline">\(t \in \mathbb{R}\)</span> 恒成立。</li>
+</ul>
+</section>
+</section>
+<section id="section-6" class="level2">
+<h2 class="anchored" data-anchor-id="section-6">7</h2>
+<p><strong>题目：</strong></p>
+<ol start="2" type="1">
+<li>回忆Fáry-Milnor 定理：设 <span class="math inline">\(\gamma: [0, L] \to \mathbb{R}^3\)</span> 是一条光滑弧长参数简单闭曲线。如果 <span class="math inline">\(\gamma\)</span> 是一个非平凡纽结，则其全曲率积分满足</li>
+</ol>
+<p><span class="math display">\[\int_\gamma \kappa(s)\, ds &gt; 4\pi.\]</span></p>
+<p>思考：是否存在 <span class="math inline">\(\varepsilon &gt; 0\)</span>，对任何非平凡纽结 <span class="math inline">\(\gamma\)</span>，满足</p>
+<p><span class="math display">\[\int_\gamma \kappa(s)\, ds \ge 4\pi + \varepsilon.\]</span></p>
+<p>若存在，请证明；若不存在，请说明理由。</p>
+<hr>
+<section id="解答" class="level3">
+<h3 class="anchored" data-anchor-id="解答">解答</h3>
+<p><strong>结论：不存在这样的 <span class="math inline">\(\varepsilon &gt; 0\)</span>。</strong></p>
+<p>其原因在于：所有非平凡纽结的全曲率积分在全体非平凡纽结上的<strong>下确界恰好等于 <span class="math inline">\(4\pi\)</span></strong>，即</p>
+<p><span class="math display">\[\inf_{\gamma \text{ 为非平凡纽结}} \int_\gamma \kappa(s)\, ds = 4\pi.\]</span></p>
+<p>因此，对任意给定的 <span class="math inline">\(\varepsilon &gt; 0\)</span>，总能构造出一个非平凡纽结 <span class="math inline">\(\gamma_\varepsilon\)</span>，使其全曲率积分严格落在 <span class="math inline">\((4\pi, 4\pi + \varepsilon)\)</span> 之内。</p>
+<hr>
+</section>
+<section id="理由与理论证明" class="level3">
+<h3 class="anchored" data-anchor-id="理由与理论证明">理由与理论证明</h3>
+<p>该结论由 J. W. Milnor 于 1950 年关于纽结全曲率的经典论文中给出。以下给出基于纽结桥数与几何构造的推导说明：</p>
+<section id="桥数与-milnor-全曲率下确界定理" class="level4">
+<h4 class="anchored" data-anchor-id="桥数与-milnor-全曲率下确界定理">1. 桥数与 Milnor 全曲率下确界定理</h4>
+<p>设 <span class="math inline">\(K\)</span> 为某一纽结类型，定义 <span class="math inline">\(K\)</span> 的<strong>桥数</strong>（Bridge Index）<span class="math inline">\(b(K)\)</span> 为该纽结在所有正则投影中上穿弧（bridges）的最小数目，或等价地，沿某一方向投影时高度函数的最小局部极大值数目。</p>
+<ul>
+<li>任何非平凡纽结均满足 <span class="math inline">\(b(K) \ge 2\)</span>。</li>
+<li>存在大量 2-桥纽结（2-bridge knots），最简单的例子即为<strong>三叶结</strong>（Trefoil Knot <span class="math inline">\(3_1\)</span>），其桥数 <span class="math inline">\(b(3_1) = 2\)</span>。</li>
+</ul>
+<p>Milnor 证明了以下基本定理： 对于任意纽结类型 <span class="math inline">\(K\)</span>，其实现场所能达到的全曲率下确界精确由桥数确定：</p>
+<p><span class="math display">\[\inf_{\gamma \in K} \int_\gamma \kappa(s)\, ds = 2\pi \cdot b(K)\]</span></p>
+<p>因此，将纽结类型取为三叶结 <span class="math inline">\(K = 3_1\)</span> 时，有：</p>
+<p><span class="math display">\[\inf_{\gamma \in [3_1]} \int_\gamma \kappa(s)\, ds = 2\pi \cdot 2 = 4\pi\]</span></p>
+<p>这直接说明非平凡纽结的全曲率可以任意逼近 <span class="math inline">\(4\pi\)</span>。</p>
+<hr>
+</section>
+<section id="几何逼近构造过程" class="level4">
+<h4 class="anchored" data-anchor-id="几何逼近构造过程">2. 几何逼近构造过程</h4>
+<p>为了直观展示全曲率如何逼近 <span class="math inline">\(4\pi\)</span>，可对三叶结建立如下几何变形（缩放与平滑）序列：</p>
+<ol type="1">
+<li><strong>2-桥空间构型分解</strong>： 取三叶结的一个 2-桥空间多边形表示，选取竖直方向 <span class="math inline">\(\boldsymbol{z}\)</span> 作为基准方向。在此表示下，纽结恰好包含 2 个局部最高点（极大值）和 2 个局部最低点（极小值），并在极值点之间由 4 条单调上升或下降的互不相交的“主干段”（strands）连接。</li>
+<li><strong>横向压缩变形（Linear Thin-Tube Compression）</strong>： 保持竖直方向的尺度不变，对水平截面进行线性压缩缩放：</li>
+</ol>
+<p><span class="math display">\[(x, y, z) \mapsto (\delta x, \, \delta y, \, z), \quad 0 &lt; \delta \ll 1\]</span></p>
+<p>当 <span class="math inline">\(\delta \to 0\)</span> 时： * 4 条竖直单调主干段上的切向量几乎恒与 <span class="math inline">\(\pm \boldsymbol{e}_z\)</span> 平行，其曲率贡献积分满足：</p>
+<p><span class="math display">\[\int_{\text{主干段}} \kappa(s)\, ds \to 0\]</span></p>
+<ul>
+<li>在 2 个极大值和 2 个极小值（共 4 处“发夹弯”处），切向量方向必须完成从向上到向下的 <span class="math inline">\(180^\circ\)</span> 转向。每个掉头区域在极限下逼近一段平面半圆弧，其切向角改变量的下限为 <span class="math inline">\(\pi\)</span>。</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>曲率积分计算与极限定理</strong>： 4 处半圆掉头的曲率贡献之和为：</li>
+</ol>
+<p><span class="math display">\[4 \times \pi = 4\pi\]</span></p>
+<p>通过保持微小但不为零的横向距离 <span class="math inline">\(\delta &gt; 0\)</span> 避免自交，并在拐角处作光滑微调，可以构造出一条处处光滑且无自交的三叶结 <span class="math inline">\(\gamma_\delta\)</span>，其全曲率积分满足：</p>
+<p><span class="math display">\[\int_{\gamma_\delta} \kappa(s)\, ds = 4\pi + \mathcal{O}(\delta)\]</span></p>
+<p>令 <span class="math inline">\(\delta \to 0\)</span>，该全曲率连续单调递减并收敛至 <span class="math inline">\(4\pi\)</span>。</p>
+<p>综上，对任意正数 <span class="math inline">\(\varepsilon &gt; 0\)</span>，只需选取充分小的 <span class="math inline">\(\delta &gt; 0\)</span>，即可使得非平凡纽结 <span class="math inline">\(\gamma_\delta\)</span> 满足：</p>
+<p><span class="math display">\[4\pi &lt; \int_{\gamma_\delta} \kappa(s)\, ds &lt; 4\pi + \varepsilon\]</span></p>
+<p>故不存在常数 <span class="math inline">\(\varepsilon &gt; 0\)</span> 满足题设统一整齐的严格下界要求。</p>
+<hr>
+</section>
+</section>
+<section id="结构与验证清单" class="level3">
+<h3 class="anchored" data-anchor-id="结构与验证清单">结构与验证清单</h3>
+<ul>
+<li><strong>极值不可达性验证</strong>：Fáry-Milnor 定理保证了对任意光滑非平凡纽结 <span class="math inline">\(\int_\gamma \kappa ds &gt; 4\pi\)</span> 严格成立（全曲率等号仅在平面凸曲线上取到，对应 <span class="math inline">\(2\pi\)</span>；不可内嵌为平面曲线的纽结无法取得下确界 <span class="math inline">\(4\pi\)</span>）。</li>
+<li><strong>下确界确切性验证</strong>：由 Milnor 关系式 <span class="math inline">\(\inf_{\gamma \in K} \mathrm{TC}(\gamma) = 2\pi b(K)\)</span>，当代入最小非平凡纽结桥数 <span class="math inline">\(b(K)=2\)</span> 时，下确界严格为 <span class="math inline">\(4\pi\)</span>。</li>
+<li><strong>拓扑不变量约束</strong>：若限定纽结类型为高桥数纽结（如双桥数以上的纽结，<span class="math inline">\(b(K) \ge 3\)</span>），则存在类内下界 <span class="math inline">\(\ge 6\pi\)</span>；但在“<strong>全体非平凡纽结</strong>”的全称量词下，下界由 2-桥纽结（<span class="math inline">\(3_1, 4_1, 5_1\)</span> 等）完全主导并逼近 <span class="math inline">\(4\pi\)</span>。</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="week-3" class="level1">
+<h1>Week 3</h1>
+<section id="section-7" class="level2">
+<h2 class="anchored" data-anchor-id="section-7">1</h2>
+<p><strong>题目：</strong></p>
+<ol type="1">
+<li>求下列曲面的参数表达式：</li>
+</ol>
+<ol type="1">
+<li><span class="math inline">\(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1 \quad (\text{椭球面});\)</span></li>
+<li><span class="math inline">\(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = 1 \quad (\text{单叶双曲面});\)</span></li>
+<li><span class="math inline">\(z = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} \quad (\text{椭圆抛物面}).\)</span></li>
+</ol>
+<hr>
+<section id="解答-1" class="level3">
+<h3 class="anchored" data-anchor-id="解答-1">解答</h3>
+<section id="椭球面-dfracx2a2-dfracy2b2-dfracz2c2-1" class="level4">
+<h4 class="anchored" data-anchor-id="椭球面-dfracx2a2-dfracy2b2-dfracz2c2-1">(1) 椭球面 <span class="math inline">\(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1\)</span></h4>
+<p>利用广义球坐标（经纬度坐标变换），设 <span class="math inline">\(u\)</span> 为纬度角（或与 <span class="math inline">\(xy\)</span> 平面的夹角），<span class="math inline">\(v\)</span> 为经度角（方位角）：</p>
+<p><span class="math display">\[\begin{cases} x = a \cos u \cos v \\ y = b \cos u \sin v \\ z = c \sin u \end{cases}\]</span></p>
+<ul>
+<li><strong>参数取值范围</strong>：</li>
+</ul>
+<p><span class="math display">\[u \in \left[-\frac{\pi}{2}, \, \frac{\pi}{2}\right], \quad v \in [0, \, 2\pi)\]</span></p>
+<p><em>(若采用余纬角 <span class="math inline">\(\theta \in [0, \pi]\)</span>，则相应形式为 <span class="math inline">\(x = a\sin\theta\cos\phi, \, y = b\sin\theta\sin\phi, \, z = c\cos\theta\)</span>)</em> * <strong>方程验算</strong>：</p>
+<p><span class="math display">\[\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = \cos^2 u \cos^2 v + \cos^2 u \sin^2 v + \sin^2 u = \cos^2 u + \sin^2 u = 1\]</span></p>
+<hr>
+</section>
+<section id="单叶双曲面-dfracx2a2-dfracy2b2---dfracz2c2-1" class="level4">
+<h4 class="anchored" data-anchor-id="单叶双曲面-dfracx2a2-dfracy2b2---dfracz2c2-1">(2) 单叶双曲面 <span class="math inline">\(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = 1\)</span></h4>
+<p><strong>常用形式一：双曲柱面坐标参数化</strong></p>
+<p>利用双曲三角恒等式 <span class="math inline">\(\cosh^2 u - \sinh^2 u = 1\)</span> 及 <span class="math inline">\(\cos^2 v + \sin^2 v = 1\)</span>：</p>
+<p><span class="math display">\[\begin{cases} x = a \cosh u \cos v \\ y = b \cosh u \sin v \\ z = c \sinh u \end{cases}\]</span></p>
+<ul>
+<li><strong>参数取值范围</strong>：</li>
+</ul>
+<p><span class="math display">\[u \in (-\infty, \, +\infty), \quad v \in [0, \, 2\pi)\]</span></p>
+<ul>
+<li><strong>方程验算</strong>：</li>
+</ul>
+<p><span class="math display">\[\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = \cosh^2 u (\cos^2 v + \sin^2 v) - \sinh^2 u = \cosh^2 u - \sinh^2 u = 1\]</span></p>
+<p><strong>备选形式二：直纹面参数化（双曲面的两族直母线表示）</strong></p>
+<p>单叶双曲面为二次直纹面，也可采用直线族参数化（<span class="math inline">\(v\)</span> 控制截面旋转，<span class="math inline">\(u\)</span> 为沿直母线的方向位移）：</p>
+<p><span class="math display">\[\begin{cases} x = a (\cos v \mp u \sin v) \\ y = b (\sin v \pm u \cos v) \\ z = \pm c u \end{cases} \quad (u \in \mathbb{R}, \, v \in [0, \, 2\pi))\]</span></p>
+<hr>
+</section>
+<section id="椭圆抛物面-z-dfracx2a2-dfracy2b2" class="level4">
+<h4 class="anchored" data-anchor-id="椭圆抛物面-z-dfracx2a2-dfracy2b2">(4) 椭圆抛物面 <span class="math inline">\(z = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2}\)</span></h4>
+<p><strong>形式一：广义极坐标参数化（适用于旋转/截面几何分析）</strong></p>
+<p>令水平截面上的椭圆尺度参数为 <span class="math inline">\(u\)</span>，幅角为 <span class="math inline">\(v\)</span>：</p>
+<p><span class="math display">\[\begin{cases} x = a u \cos v \\ y = b u \sin v \\ z = u^2 \end{cases}\]</span></p>
+<ul>
+<li><strong>参数取值范围</strong>：</li>
+</ul>
+<p><span class="math display">\[u \in [0, \, +\infty), \quad v \in [0, \, 2\pi)\]</span></p>
+<ul>
+<li><strong>方程验算</strong>：</li>
+</ul>
+<p><span class="math display">\[\frac{x^2}{a^2} + \frac{y^2}{b^2} = u^2\cos^2 v + u^2\sin^2 v = u^2 = z\]</span></p>
+<p><strong>形式二：Monge 形式（笛卡尔直接投影参数化）</strong></p>
+<p>将曲面直接视为主坐标平面的显式函数图像：</p>
+<p><span class="math display">\[\begin{cases} x = u \\ y = v \\ z = \dfrac{u^2}{a^2} + \dfrac{v^2}{b^2} \end{cases} \quad (u \in \mathbb{R}, \, v \in \mathbb{R})\]</span></p>
+<hr>
+</section>
+</section>
+<section id="正规曲面条件与参数验证清单" class="level3">
+<h3 class="anchored" data-anchor-id="正规曲面条件与参数验证清单">正规曲面条件与参数验证清单</h3>
+<ul>
+<li><strong>正规点（正则性）判定</strong>：计算法向量 <span class="math inline">\(\boldsymbol{r}_u \times \boldsymbol{r}_v\)</span>：</li>
+<li><ol type="1">
+<li>椭球面在 <span class="math inline">\(u \neq \pm \frac{\pi}{2}\)</span> 处均有 <span class="math inline">\(\Vert{}\boldsymbol{r}_u \times \boldsymbol{r}_v\Vert{} = a b c \cos u \sqrt{\frac{\cos^2 u}{c^2} + \frac{\sin^2 u\cos^2 v}{a^2} + \frac{\sin^2 u\sin^2 v}{b^2}} \neq 0\)</span>；两极点可通过变换坐标轴补齐光滑坐标卡。</li>
+</ol></li>
+<li><ol start="2" type="1">
+<li>单叶双曲面双曲形式中，由于 <span class="math inline">\(\cosh u \ge 1\)</span>，在全体定义域 <span class="math inline">\((u, v) \in \mathbb{R} \times [0, 2\pi)\)</span> 上严格处处非零（雅可比矩阵满秩）。</li>
+</ol></li>
+<li><ol start="4" type="1">
+<li>椭圆抛物面 Monge 形式下 <span class="math inline">\(\boldsymbol{r}_u \times \boldsymbol{r}_v = \left(-\frac{2u}{a^2}, \, -\frac{2v}{b^2}, \, 1\right) \neq \boldsymbol{0}\)</span>，处处正则。</li>
+</ol></li>
+<li><strong>参数完备覆盖性</strong>：</li>
+<li>椭球面参数在 <span class="math inline">\(u \in [-\pi/2, \pi/2], v \in [0, 2\pi)\)</span> 上一一映射（除去经度边界闭合缝合线及两极奇点）。</li>
+<li>单叶双曲面双曲形式完备覆盖整张连通单叶曲面。</li>
+<li>椭圆抛物面在 <span class="math inline">\(u \in [0, +\infty), v \in [0, 2\pi)\)</span> 上完整覆盖上半空间抛物曲面。</li>
+</ul>
+</section>
+</section>
+<section id="section-8" class="level2">
+<h2 class="anchored" data-anchor-id="section-8">7</h2>
+<p><strong>题目：</strong></p>
+<ol start="7" type="1">
+<li>求椭球面的第一基本形式。</li>
+</ol>
+<hr>
+<section id="解答-2" class="level3">
+<h3 class="anchored" data-anchor-id="解答-2">解答</h3>
+<p>椭球面的标准方程为 <span class="math inline">\(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1\)</span>。根据所选参数化方式的不同，以下给出两种最常用的参数表示及其对应的第一基本形式：</p>
+<hr>
+<section id="形式一采用经纬度参数化与第-11-题一致" class="level4">
+<h4 class="anchored" data-anchor-id="形式一采用经纬度参数化与第-11-题一致">形式一：采用经纬度参数化（与第 1(1) 题一致）</h4>
+<p>设椭球面的参数方程为：</p>
+<p><span class="math display">\[\boldsymbol{r}(u, v) = (a \cos u \cos v, \, b \cos u \sin v, \, c \sin u), \quad u \in \left[-\frac{\pi}{2}, \, \frac{\pi}{2}\right], \; v \in [0, \, 2\pi)\]</span></p>
+<p><strong>1. 计算一阶偏导向量</strong></p>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}_u &amp;= (-a \sin u \cos v, \, -b \sin u \sin v, \, c \cos u) \\ \boldsymbol{r}_v &amp;= (-a \cos u \sin v, \, b \cos u \cos v, \, 0) \end{aligned}\]</span></p>
+<p><strong>2. 计算第一基本量 <span class="math inline">\(E, F, G\)</span></strong></p>
+<p><span class="math display">\[\begin{aligned} E &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = a^2 \sin^2 u \cos^2 v + b^2 \sin^2 u \sin^2 v + c^2 \cos^2 u \\ &amp;= \sin^2 u (a^2 \cos^2 v + b^2 \sin^2 v) + c^2 \cos^2 u \\ F &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = a^2 \sin u \cos u \sin v \cos v - b^2 \sin u \cos u \sin v \cos v \\ &amp;= (a^2 - b^2) \sin u \cos u \sin v \cos v \\ G &amp;= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = a^2 \cos^2 u \sin^2 v + b^2 \cos^2 u \cos^2 v \\ &amp;= \cos^2 u (a^2 \sin^2 v + b^2 \cos^2 v) \end{aligned}\]</span></p>
+<p><strong>3. 第一基本形式</strong></p>
+<p><span class="math display">\[\begin{aligned} \mathrm{I} &amp;= E\,du^2 + 2F\,du\,dv + G\,dv^2 \\ &amp;= \left[\sin^2 u (a^2 \cos^2 v + b^2 \sin^2 v) + c^2 \cos^2 u\right] du^2 \\ &amp;\quad + 2(a^2 - b^2) \sin u \cos u \sin v \cos v \, du\,dv \\ &amp;\quad + \cos^2 u (a^2 \sin^2 v + b^2 \cos^2 v) \, dv^2 \end{aligned}\]</span></p>
+<hr>
+</section>
+<section id="形式二采用广义球坐标余纬角参数化" class="level4">
+<h4 class="anchored" data-anchor-id="形式二采用广义球坐标余纬角参数化">形式二：采用广义球坐标（余纬角）参数化</h4>
+<p>若教材取参数方程为：</p>
+<p><span class="math display">\[\boldsymbol{r}(u, v) = (a \sin u \cos v, \, b \sin u \sin v, \, c \cos u), \quad u \in [0, \, \pi], \; v \in [0, \, 2\pi)\]</span></p>
+<p><strong>1. 计算一阶偏导向量</strong></p>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}_u &amp;= (a \cos u \cos v, \, b \cos u \sin v, \, -c \sin u) \\ \boldsymbol{r}_v &amp;= (-a \sin u \sin v, \, b \sin u \cos v, \, 0) \end{aligned}\]</span></p>
+<p><strong>2. 计算第一基本量 <span class="math inline">\(E, F, G\)</span></strong></p>
+<p><span class="math display">\[\begin{aligned} E &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = \cos^2 u (a^2 \cos^2 v + b^2 \sin^2 v) + c^2 \sin^2 u \\ F &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = (b^2 - a^2) \sin u \cos u \sin v \cos v \\ G &amp;= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = \sin^2 u (a^2 \sin^2 v + b^2 \cos^2 v) \end{aligned}\]</span></p>
+<p><strong>3. 第一基本形式</strong></p>
+<p><span class="math display">\[\begin{aligned} \mathrm{I} &amp;= \left[\cos^2 u (a^2 \cos^2 v + b^2 \sin^2 v) + c^2 \sin^2 u\right] du^2 \\ &amp;\quad + 2(b^2 - a^2) \sin u \cos u \sin v \cos v \, du\,dv \\ &amp;\quad + \sin^2 u (a^2 \sin^2 v + b^2 \cos^2 v) \, dv^2 \end{aligned}\]</span></p>
+<hr>
+</section>
+</section>
+<section id="特例退化检验" class="level3">
+<h3 class="anchored" data-anchor-id="特例退化检验">特例退化检验</h3>
+<ul>
+<li><strong>旋转椭球面（<span class="math inline">\(a = b\)</span>）</strong>：交错项系数 <span class="math inline">\(F = 0\)</span>，坐标网 <span class="math inline">\((u, v)\)</span> 正交。</li>
+<li><strong>球面（<span class="math inline">\(a = b = c = R\)</span>）</strong>：</li>
+<li>形式一退化为 <span class="math inline">\(\mathrm{I} = R^2(du^2 + \cos^2 u \, dv^2)\)</span>；</li>
+<li>形式二退化为 <span class="math inline">\(\mathrm{I} = R^2(du^2 + \sin^2 u \, dv^2)\)</span>，与球面标准第一基本形式完全一致。</li>
+</ul>
+</section>
+</section>
+<section id="section-9" class="level2">
+<h2 class="anchored" data-anchor-id="section-9">8，9</h2>
+<p><strong>問題（题目）：</strong></p>
+<ol start="8" type="1">
+<li>次の曲面の第一基本形式を求めよ（求下列曲面的第一基本形式）：</li>
+</ol>
+<ol type="1">
+<li><span class="math inline">\(\boldsymbol{r}(u, v) = (u\cos v, \, u\sin v, \, bv)\)</span>；</li>
+<li><span class="math inline">\(\boldsymbol{r}(u, v) = (a(u+v), \, b(u-v), \, u^2+v^2)\)</span>.</li>
+</ol>
+<ol start="9" type="1">
+<li>曲面 <span class="math inline">\(z = f(x, y)\)</span> の第一基本形式を求めよ（求曲面 <span class="math inline">\(z = f(x, y)\)</span> 的第一基本形式）.</li>
+</ol>
+<hr>
+<section id="の解答第-8-题解答" class="level3">
+<h3 class="anchored" data-anchor-id="の解答第-8-题解答">8. の解答（第 8 题解答）</h3>
+<p>曲面の第一基本形式（曲面的第一基本形式）は次のように定義される：</p>
+<p><span class="math display">\[\mathrm{I} = d\boldsymbol{r}^2 = E\,du^2 + 2F\,du\,dv + G\,dv^2\]</span></p>
+<p>ここで、第一基本量（其中第一基本量）は <span class="math inline">\(E = \boldsymbol{r}_u \cdot \boldsymbol{r}_u, \; F = \boldsymbol{r}_u \cdot \boldsymbol{r}_v, \; G = \boldsymbol{r}_v \cdot \boldsymbol{r}_v\)</span> である。</p>
+<hr>
+<section id="boldsymbolru-v-ucos-v-usin-v-bv" class="level4">
+<h4 class="anchored" data-anchor-id="boldsymbolru-v-ucos-v-usin-v-bv">(1) <span class="math inline">\(\boldsymbol{r}(u, v) = (u\cos v, \, u\sin v, \, bv)\)</span></h4>
+<ol type="1">
+<li><strong>偏導関数の計算（计算一阶偏导向量）：</strong></li>
+</ol>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}_u &amp;= (\cos v, \, \sin v, \, 0) \\ \boldsymbol{r}_v &amp;= (-u\sin v, \, u\cos v, \, b) \end{aligned}\]</span></p>
+<ol start="2" type="1">
+<li><strong>第一基本量の計算（计算第一基本量 <span class="math inline">\(E, F, G\)</span>）：</strong></li>
+</ol>
+<p><span class="math display">\[\begin{aligned} E &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = \cos^2 v + \sin^2 v + 0 = 1 \\ F &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = -u\sin v\cos v + u\sin v\cos v + 0 = 0 \\ G &amp;= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = u^2\sin^2 v + u^2\cos^2 v + b^2 = u^2 + b^2 \end{aligned}\]</span></p>
+<ol start="3" type="1">
+<li><strong>第一基本形式（第一基本形式）：</strong></li>
+</ol>
+<p><span class="math display">\[\mathrm{I} = du^2 + (u^2 + b^2)\,dv^2\]</span></p>
+<hr>
+</section>
+<section id="boldsymbolru-v-auv-bu-v-u2v2" class="level4">
+<h4 class="anchored" data-anchor-id="boldsymbolru-v-auv-bu-v-u2v2">(2) <span class="math inline">\(\boldsymbol{r}(u, v) = (a(u+v), \, b(u-v), \, u^2+v^2)\)</span></h4>
+<ol type="1">
+<li><strong>偏導関数の計算（计算一阶偏导向量）：</strong></li>
+</ol>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}_u &amp;= (a, \, b, \, 2u) \\ \boldsymbol{r}_v &amp;= (a, \, -b, \, 2v) \end{aligned}\]</span></p>
+<ol start="2" type="1">
+<li><strong>第一基本量の計算（计算第一基本量 <span class="math inline">\(E, F, G\)</span>）：</strong></li>
+</ol>
+<p><span class="math display">\[\begin{aligned} E &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = a^2 + b^2 + 4u^2 \\ F &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = a^2 - b^2 + 4uv \\ G &amp;= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = a^2 + b^2 + 4v^2 \end{aligned}\]</span></p>
+<ol start="3" type="1">
+<li><strong>第一基本形式（第一基本形式）：</strong></li>
+</ol>
+<p><span class="math display">\[\mathrm{I} = (a^2 + b^2 + 4u^2)\,du^2 + 2(a^2 - b^2 + 4uv)\,du\,dv + (a^2 + b^2 + 4v^2)\,dv^2\]</span></p>
+<hr>
+</section>
+</section>
+<section id="の解答第-9-题解答" class="level3">
+<h3 class="anchored" data-anchor-id="の解答第-9-题解答">9. の解答（第 9 题解答）</h3>
+<p>曲面 <span class="math inline">\(z = f(x, y)\)</span> のパラメータ表示（参数表达式）を <span class="math inline">\(\boldsymbol{r}(x, y) = (x, \, y, \, f(x, y))\)</span> とおき、偏導関数を <span class="math inline">\(p = f_x = \dfrac{\partial f}{\partial x}, \; q = f_y = \dfrac{\partial f}{\partial y}\)</span> と記す。</p>
+<ol type="1">
+<li><strong>偏導関数の計算（计算一阶偏导向量）：</strong></li>
+</ol>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}_x &amp;= (1, \, 0, \, f_x) = (1, \, 0, \, p) \\ \boldsymbol{r}_y &amp;= (0, \, 1, \, f_y) = (0, \, 1, \, q) \end{aligned}\]</span></p>
+<ol start="2" type="1">
+<li><strong>第一基本量の計算（计算第一基本量 <span class="math inline">\(E, F, G\)</span>）：</strong></li>
+</ol>
+<p><span class="math display">\[\begin{aligned} E &amp;= \boldsymbol{r}_x \cdot \boldsymbol{r}_x = 1 + f_x^2 = 1 + p^2 \\ F &amp;= \boldsymbol{r}_x \cdot \boldsymbol{r}_y = f_x f_y = pq \\ G &amp;= \boldsymbol{r}_y \cdot \boldsymbol{r}_y = 1 + f_y^2 = 1 + q^2 \end{aligned}\]</span></p>
+<ol start="3" type="1">
+<li><strong>第一基本形式（第一基本形式）：</strong></li>
+</ol>
+<p><span class="math display">\[\begin{aligned} \mathrm{I} &amp;= (1 + f_x^2)\,dx^2 + 2f_x f_y\,dx\,dy + (1 + f_y^2)\,dy^2 \\ &amp;= (1 + p^2)\,dx^2 + 2pq\,dx\,dy + (1 + q^2)\,dy^2 \end{aligned}\]</span></p>
+<p>（別解：全微分 <span class="math inline">\(dz = f_x\,dx + f_y\,dy\)</span> を <span class="math inline">\(\mathrm{I} = dx^2 + dy^2 + dz^2\)</span> に直接代入しても同じ結果が得られる。／ 另解：直接将全微分 <span class="math inline">\(dz = f_x\,dx + f_y\,dy\)</span> 代入 <span class="math inline">\(\mathrm{I} = dx^2 + dy^2 + dz^2\)</span> 展开亦可得同式。）</p>
+</section>
+</section>
+<section id="section-10" class="level2">
+<h2 class="anchored" data-anchor-id="section-10">11</h2>
+<p><strong>题目：</strong></p>
+<ol start="11" type="1">
+<li>设 <span class="math inline">\((x, y)\)</span> 是曲面 <span class="math inline">\(\boldsymbol{r}(u, v)\)</span> 的另一组参数，问：<span class="math inline">\(\boldsymbol{r}_u \wedge \boldsymbol{r}_v\)</span> 与 <span class="math inline">\(\boldsymbol{r}_x \wedge \boldsymbol{r}_y\)</span> 的指向是否相同？</li>
+</ol>
+<hr>
+<section id="解答-3" class="level3">
+<h3 class="anchored" data-anchor-id="解答-3">解答</h3>
+<p><strong>结论：不一定相同。</strong> 两者的指向取决于参数变换的雅可比行列式（Jacobian determinant）的正负号。</p>
+<hr>
+<section id="推导过程" class="level4">
+<h4 class="anchored" data-anchor-id="推导过程">1. 推导过程</h4>
+<p>设两组参数之间的变换关系为 <span class="math inline">\(u = u(x, y), \, v = v(x, y)\)</span>，且该变换为正则参数变换，即雅可比行列式满足：</p>
+<p><span class="math display">\[J = \frac{\partial(u, v)}{\partial(x, y)} = \begin{vmatrix} \dfrac{\partial u}{\partial x} &amp; \dfrac{\partial u}{\partial y} \\ \dfrac{\partial v}{\partial x} &amp; \dfrac{\partial v}{\partial y} \end{vmatrix} = u_x v_y - u_y v_x \neq 0\]</span></p>
+<p>根据复合函数求导的链式法则（Chain Rule），曲面关于新参数 <span class="math inline">\((x, y)\)</span> 的一阶偏导向量为：</p>
+<p><span class="math display">\[\begin{cases} \boldsymbol{r}_x = \boldsymbol{r}_u u_x + \boldsymbol{r}_v v_x \\ \boldsymbol{r}_y = \boldsymbol{r}_u u_y + \boldsymbol{r}_v v_y \end{cases}\]</span></p>
+<p>计算外积 <span class="math inline">\(\boldsymbol{r}_x \wedge \boldsymbol{r}_y\)</span>：</p>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}_x \wedge \boldsymbol{r}_y &amp;= (\boldsymbol{r}_u u_x + \boldsymbol{r}_v v_x) \wedge (\boldsymbol{r}_u u_y + \boldsymbol{r}_v v_y) \\ &amp;= u_x u_y (\boldsymbol{r}_u \wedge \boldsymbol{r}_u) + u_x v_y (\boldsymbol{r}_u \wedge \boldsymbol{r}_v) + v_x u_y (\boldsymbol{r}_v \wedge \boldsymbol{r}_u) + v_x v_y (\boldsymbol{r}_v \wedge \boldsymbol{r}_v) \end{aligned}\]</span></p>
+<p>利用外积的反对称性 <span class="math inline">\(\boldsymbol{r}_u \wedge \boldsymbol{r}_u = \boldsymbol{0}, \; \boldsymbol{r}_v \wedge \boldsymbol{r}_v = \boldsymbol{0}\)</span> 以及 <span class="math inline">\(\boldsymbol{r}_v \wedge \boldsymbol{r}_u = -\boldsymbol{r}_u \wedge \boldsymbol{r}_v\)</span>，化简得：</p>
+<p><span class="math display">\[\boldsymbol{r}_x \wedge \boldsymbol{r}_y = (u_x v_y - u_y v_x)(\boldsymbol{r}_u \wedge \boldsymbol{r}_v) = \frac{\partial(u, v)}{\partial(x, y)} (\boldsymbol{r}_u \wedge \boldsymbol{r}_v)\]</span></p>
+<hr>
+</section>
+<section id="指向判定" class="level4">
+<h4 class="anchored" data-anchor-id="指向判定">2. 指向判定</h4>
+<p>由于曲面的法向量 <span class="math inline">\(\boldsymbol{r}_u \wedge \boldsymbol{r}_v \neq \boldsymbol{0}\)</span>，两向量共线，其指向关系由雅可比行列式的符号唯一决定：</p>
+<ol type="1">
+<li><strong>当 <span class="math inline">\(\dfrac{\partial(u, v)}{\partial(x, y)} &gt; 0\)</span> 时</strong>（即保持定向的参数变换）： <span class="math inline">\(\boldsymbol{r}_x \wedge \boldsymbol{r}_y\)</span> 与 <span class="math inline">\(\boldsymbol{r}_u \wedge \boldsymbol{r}_v\)</span> 的<strong>指向相同</strong>。</li>
+<li><strong>当 <span class="math inline">\(\dfrac{\partial(u, v)}{\partial(x, y)} &lt; 0\)</span> 时</strong>（即反转定向的参数变换，例如简单交换参数次序令 <span class="math inline">\(u = y, v = x\)</span>）： <span class="math inline">\(\boldsymbol{r}_x \wedge \boldsymbol{r}_y\)</span> 与 <span class="math inline">\(\boldsymbol{r}_u \wedge \boldsymbol{r}_v\)</span> 的<strong>指向相反</strong>。</li>
+</ol>
+<p>相应的单位法向量关系为：</p>
+<p><span class="math display">\[\boldsymbol{n}(x, y) = \frac{\boldsymbol{r}_x \wedge \boldsymbol{r}_y}{\Vert{}\boldsymbol{r}_x \wedge \boldsymbol{r}_y\Vert{}} = \operatorname{sgn}\left(\frac{\partial(u, v)}{\partial(x, y)}\right) \frac{\boldsymbol{r}_u \wedge \boldsymbol{r}_v}{\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{}} = \pm \boldsymbol{n}(u, v)\]</span></p>
+</section>
+</section>
+</section>
+<section id="section-11" class="level2">
+<h2 class="anchored" data-anchor-id="section-11">2</h2>
+<p><strong>题目：</strong></p>
+<p>对于曲面 <span class="math inline">\(S^2(1) = \{(x, y, z) \mid x^2 + y^2 + z^2 = 1\}\)</span>，利用三种参数表示分别确定其切空间和法线，计算第一基本形式和第二基本形式。</p>
+<hr>
+<section id="预备几何性质" class="level3">
+<h3 class="anchored" data-anchor-id="预备几何性质">预备几何性质</h3>
+<p>对于单位球面 <span class="math inline">\(S^2(1)\)</span> 上的任意正则参数表示 <span class="math inline">\(\boldsymbol{r}(u, v)\)</span>，恒有 <span class="math inline">\(\boldsymbol{r} \cdot \boldsymbol{r} = 1\)</span>。两边对参数 <span class="math inline">\(u, v\)</span> 求偏导可得：</p>
+<p><span class="math display">\[\boldsymbol{r}_u \cdot \boldsymbol{r} = 0, \quad \boldsymbol{r}_v \cdot \boldsymbol{r} = 0\]</span></p>
+<p>这说明球面上任意点 <span class="math inline">\(P\)</span> 处的位置向量 <span class="math inline">\(\boldsymbol{r}(u, v)\)</span> 恒垂直于切空间 <span class="math inline">\(T_P S^2(1) = \operatorname{span}\{\boldsymbol{r}_u, \boldsymbol{r}_v\}\)</span>。因此，按右手定向约定 <span class="math inline">\(\boldsymbol{n} = \dfrac{\boldsymbol{r}_u \wedge \boldsymbol{r}_v}{\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{}}\)</span> 确定的单位法向量必满足 <span class="math inline">\(\boldsymbol{n} = \pm \boldsymbol{r}\)</span>，且过点 <span class="math inline">\(P\)</span> 的法线必经过球心（原点 <span class="math inline">\(\boldsymbol{0}\)</span>）。</p>
+<p>以下分别选取<strong>球面坐标（经纬度参数）</strong>、<strong>显函数图像（Monge 参数）</strong>与<strong>球极平面投影参数</strong>三种常用参数表示进行具体计算。</p>
+<hr>
+</section>
+<section id="参数表示一球面坐标经纬度参数表示" class="level3">
+<h3 class="anchored" data-anchor-id="参数表示一球面坐标经纬度参数表示">参数表示一：球面坐标（经纬度参数表示）</h3>
+<p>取参数方程为：</p>
+<p><span class="math display">\[\boldsymbol{r}(u, v) = (\cos u \cos v, \, \cos u \sin v, \, \sin u), \quad u \in \left(-\frac{\pi}{2}, \, \frac{\pi}{2}\right), \; v \in (0, \, 2\pi)\]</span></p>
+<section id="切空间与法线" class="level4">
+<h4 class="anchored" data-anchor-id="切空间与法线">1. 切空间与法线</h4>
+<ul>
+<li><strong>切空间 <span class="math inline">\(T_P S^2(1)\)</span></strong>： 计算一阶偏导向量：</li>
+</ul>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}_u &amp;= (-\sin u \cos v, \, -\sin u \sin v, \, \cos u) \\ \boldsymbol{r}_v &amp;= (-\cos u \sin v, \, \cos u \cos v, \, 0) \end{aligned}\]</span></p>
+<p>切空间由基底 <span class="math inline">\(\{\boldsymbol{r}_u, \boldsymbol{r}_v\}\)</span> 张成：</p>
+<p><span class="math display">\[T_P S^2(1) = \operatorname{span}\{\boldsymbol{r}_u, \, \boldsymbol{r}_v\} = \left\{ \xi \boldsymbol{r}_u + \eta \boldsymbol{r}_v \;\middle\vert{}\; \xi, \eta \in \mathbb{R} \right\}\]</span></p>
+<ul>
+<li><strong>单位法向量与法线</strong>： 计算外积：</li>
+</ul>
+<p><span class="math display">\[\boldsymbol{r}_u \wedge \boldsymbol{r}_v = (-\cos^2 u \cos v, \, -\cos^2 u \sin v, \, -\sin u \cos u) = -\cos u \, \boldsymbol{r}(u, v)\]</span></p>
+<p>由于 <span class="math inline">\(u \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)\)</span> 时 <span class="math inline">\(\cos u &gt; 0\)</span>，故 <span class="math inline">\(\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{} = \cos u\)</span>。单位法向量（指向球心内侧）为：</p>
+<p><span class="math display">\[\boldsymbol{n}(u, v) = \frac{\boldsymbol{r}_u \wedge \boldsymbol{r}_v}{\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{}} = -(\cos u \cos v, \, \cos u \sin v, \, \sin u) = -\boldsymbol{r}(u, v)\]</span></p>
+<p>过点 <span class="math inline">\(\boldsymbol{r}(u, v)\)</span> 的法线参数方程为（<span class="math inline">\(t \in \mathbb{R}\)</span>）：</p>
+<p><span class="math display">\[\boldsymbol{X}(t) = \boldsymbol{r}(u, v) + t\boldsymbol{n}(u, v) = (1 - t)(\cos u \cos v, \, \cos u \sin v, \, \sin u)\]</span></p>
+</section>
+<section id="第一基本形式" class="level4">
+<h4 class="anchored" data-anchor-id="第一基本形式">2. 第一基本形式</h4>
+<p>计算第一基本量：</p>
+<p><span class="math display">\[\begin{aligned} E &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = \sin^2 u (\cos^2 v + \sin^2 v) + \cos^2 u = 1 \\ F &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = 0 \\ G &amp;= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = \cos^2 u (\sin^2 v + \cos^2 v) = \cos^2 u \end{aligned}\]</span></p>
+<p>第一基本形式为：</p>
+<p><span class="math display">\[\mathrm{I} = du^2 + \cos^2 u \, dv^2\]</span></p>
+</section>
+<section id="第二基本形式" class="level4">
+<h4 class="anchored" data-anchor-id="第二基本形式">3. 第二基本形式</h4>
+<p>计算二阶偏导向量：</p>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}_{uu} &amp;= (-\cos u \cos v, \, -\cos u \sin v, \, -\sin u) = -\boldsymbol{r}(u, v) \\ \boldsymbol{r}_{uv} &amp;= (\sin u \sin v, \, -\sin u \cos v, \, 0) \\ \boldsymbol{r}_{vv} &amp;= (-\cos u \cos v, \, -\cos u \sin v, \, 0) \end{aligned}\]</span></p>
+<p>结合 <span class="math inline">\(\boldsymbol{n} = -\boldsymbol{r}(u, v)\)</span> 计算第二基本量：</p>
+<p><span class="math display">\[\begin{aligned} L &amp;= \boldsymbol{r}_{uu} \cdot \boldsymbol{n} = (-\boldsymbol{r}) \cdot (-\boldsymbol{r}) = 1 \\ M &amp;= \boldsymbol{r}_{uv} \cdot \boldsymbol{n} = -\sin u \cos u \sin v \cos v + \sin u \cos u \sin v \cos v = 0 \\ N &amp;= \boldsymbol{r}_{vv} \cdot \boldsymbol{n} = \cos^2 u \cos^2 v + \cos^2 u \sin^2 v = \cos^2 u \end{aligned}\]</span></p>
+<p>第二基本形式为：</p>
+<p><span class="math display">\[\mathrm{II} = du^2 + \cos^2 u \, dv^2\]</span></p>
+<hr>
+</section>
+</section>
+<section id="参数表示二显函数图像表示monge-参数表示" class="level3">
+<h3 class="anchored" data-anchor-id="参数表示二显函数图像表示monge-参数表示">参数表示二：显函数图像表示（Monge 参数表示）</h3>
+<p>以北半球面 <span class="math inline">\(z &gt; 0\)</span> 为例（其余五个坐标半球面完全对称），取参数方程为：</p>
+<p><span class="math display">\[\boldsymbol{r}(u, v) = \left(u, \, v, \, \sqrt{1 - u^2 - v^2}\right), \quad u^2 + v^2 &lt; 1\]</span></p>
+<p>记 <span class="math inline">\(w = \sqrt{1 - u^2 - v^2} &gt; 0\)</span>，则 <span class="math inline">\(w_u = -\dfrac{u}{w}, \; w_v = -\dfrac{v}{w}\)</span>。</p>
+<section id="切空间与法线-1" class="level4">
+<h4 class="anchored" data-anchor-id="切空间与法线-1">1. 切空间与法线</h4>
+<ul>
+<li><strong>切空间 <span class="math inline">\(T_P S^2(1)\)</span></strong>： 计算一阶偏导向量：</li>
+</ul>
+<p><span class="math display">\[\boldsymbol{r}_u = \left(1, \, 0, \, -\frac{u}{\sqrt{1 - u^2 - v^2}}\right), \quad \boldsymbol{r}_v = \left(0, \, 1, \, -\frac{v}{\sqrt{1 - u^2 - v^2}}\right)\]</span></p>
+<p>切空间为：</p>
+<p><span class="math display">\[T_P S^2(1) = \operatorname{span}\{\boldsymbol{r}_u, \, \boldsymbol{r}_v\}\]</span></p>
+<ul>
+<li><strong>单位法向量与法线</strong>： 计算外积及其模长：</li>
+</ul>
+<p><span class="math display">\[\boldsymbol{r}_u \wedge \boldsymbol{r}_v = \left(\frac{u}{w}, \, \frac{v}{w}, \, 1\right) = \frac{1}{w}(u, \, v, \, w), \quad \Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{} = \frac{\sqrt{u^2 + v^2 + w^2}}{w} = \frac{1}{w}\]</span></p>
+<p>单位法向量（指向球外侧）为：</p>
+<p><span class="math display">\[\boldsymbol{n}(u, v) = \frac{\boldsymbol{r}_u \wedge \boldsymbol{r}_v}{\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{}} = \left(u, \, v, \, \sqrt{1 - u^2 - v^2}\right) = \boldsymbol{r}(u, v)\]</span></p>
+<p>过点 <span class="math inline">\(\boldsymbol{r}(u, v)\)</span> 的法线参数方程为（<span class="math inline">\(t \in \mathbb{R}\)</span>）：</p>
+<p><span class="math display">\[\boldsymbol{X}(t) = \boldsymbol{r}(u, v) + t\boldsymbol{n}(u, v) = (1 + t)\left(u, \, v, \, \sqrt{1 - u^2 - v^2}\right)\]</span></p>
+</section>
+<section id="第一基本形式-1" class="level4">
+<h4 class="anchored" data-anchor-id="第一基本形式-1">2. 第一基本形式</h4>
+<p>计算第一基本量：</p>
+<p><span class="math display">\[\begin{aligned} E &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = 1 + \frac{u^2}{w^2} = \frac{1 - v^2}{1 - u^2 - v^2} \\ F &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = \frac{uv}{w^2} = \frac{uv}{1 - u^2 - v^2} \\ G &amp;= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = 1 + \frac{v^2}{w^2} = \frac{1 - u^2}{1 - u^2 - v^2} \end{aligned}\]</span></p>
+<p>第一基本形式为：</p>
+<p><span class="math display">\[\mathrm{I} = \frac{(1 - v^2)\,du^2 + 2uv\,du\,dv + (1 - u^2)\,dv^2}{1 - u^2 - v^2}\]</span></p>
+</section>
+<section id="第二基本形式-1" class="level4">
+<h4 class="anchored" data-anchor-id="第二基本形式-1">3. 第二基本形式</h4>
+<p>计算二阶偏导向量：</p>
+<p><span class="math display">\[\boldsymbol{r}_{uu} = \left(0, \, 0, \, -\frac{1 - v^2}{w^3}\right), \quad \boldsymbol{r}_{uv} = \left(0, \, 0, \, -\frac{uv}{w^3}\right), \quad \boldsymbol{r}_{vv} = \left(0, \, 0, \, -\frac{1 - u^2}{w^3}\right)\]</span></p>
+<p>与 <span class="math inline">\(\boldsymbol{n} = (u, v, w)\)</span> 作内积得第二基本量：</p>
+<p><span class="math display">\[L = \boldsymbol{r}_{uu} \cdot \boldsymbol{n} = -\frac{1 - v^2}{1 - u^2 - v^2}, \quad M = \boldsymbol{r}_{uv} \cdot \boldsymbol{n} = -\frac{uv}{1 - u^2 - v^2}, \quad N = \boldsymbol{r}_{vv} \cdot \boldsymbol{n} = -\frac{1 - u^2}{1 - u^2 - v^2}\]</span></p>
+<p>第二基本形式为：</p>
+<p><span class="math display">\[\mathrm{II} = -\frac{(1 - v^2)\,du^2 + 2uv\,du\,dv + (1 - u^2)\,dv^2}{1 - u^2 - v^2}\]</span></p>
+<hr>
+</section>
+</section>
+<section id="参数表示三球极平面投影参数表示stereographic-projection" class="level3">
+<h3 class="anchored" data-anchor-id="参数表示三球极平面投影参数表示stereographic-projection">参数表示三：球极平面投影参数表示（Stereographic Projection）</h3>
+<p>取以北极 <span class="math inline">\(N(0, 0, 1)\)</span> 为投影中心向赤道平面 <span class="math inline">\(z = 0\)</span> 作球极投影的参数表示（覆盖 <span class="math inline">\(S^2(1) \setminus \{N\}\)</span>）：</p>
+<p><span class="math display">\[\boldsymbol{r}(u, v) = \left(\frac{2u}{u^2 + v^2 + 1}, \, \frac{2v}{u^2 + v^2 + 1}, \, \frac{u^2 + v^2 - 1}{u^2 + v^2 + 1}\right), \quad (u, v) \in \mathbb{R}^2\]</span></p>
+<p>为简化记号，令 <span class="math inline">\(\Delta = u^2 + v^2 + 1\)</span>。</p>
+<section id="切空间与法线-2" class="level4">
+<h4 class="anchored" data-anchor-id="切空间与法线-2">1. 切空间与法线</h4>
+<ul>
+<li><strong>切空间 <span class="math inline">\(T_P S^2(1)\)</span></strong>： 利用 <span class="math inline">\(\Delta_u = 2u, \; \Delta_v = 2v\)</span> 计算一阶偏导向量：</li>
+</ul>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}_u &amp;= \frac{2}{(u^2 + v^2 + 1)^2} \big(1 - u^2 + v^2, \; -2uv, \; 2u\big) \\ \boldsymbol{r}_v &amp;= \frac{2}{(u^2 + v^2 + 1)^2} \big(-2uv, \; 1 + u^2 - v^2, \; 2v\big) \end{aligned}\]</span></p>
+<p>切空间为：</p>
+<p><span class="math display">\[T_P S^2(1) = \operatorname{span}\{\boldsymbol{r}_u, \, \boldsymbol{r}_v\}\]</span></p>
+<ul>
+<li><strong>单位法向量与法线</strong>： 直接计算外积 <span class="math inline">\(\boldsymbol{r}_u \wedge \boldsymbol{r}_v\)</span>：</li>
+</ul>
+<p><span class="math display">\[\begin{aligned} \boldsymbol{r}_u \wedge \boldsymbol{r}_v &amp;= \frac{4}{\Delta^4} \begin{vmatrix} \boldsymbol{i} &amp; \boldsymbol{j} &amp; \boldsymbol{k} \\ 1 - u^2 + v^2 &amp; -2uv &amp; 2u \\ -2uv &amp; 1 + u^2 - v^2 &amp; 2v \end{vmatrix} \\ &amp;= \frac{4}{\Delta^4} \big(-2u\Delta, \; -2v\Delta, \; (1 - u^2 - v^2)\Delta\big) \\ &amp;= -\frac{4}{\Delta^2} \left(\frac{2u}{\Delta}, \, \frac{2v}{\Delta}, \, \frac{u^2 + v^2 - 1}{\Delta}\right) = -\frac{4}{(u^2 + v^2 + 1)^2} \boldsymbol{r}(u, v) \end{aligned}\]</span></p>
+<p>因为 <span class="math inline">\(\Vert{}\boldsymbol{r}(u, v)\Vert{} = 1\)</span>，故 <span class="math inline">\(\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{} = \dfrac{4}{(u^2 + v^2 + 1)^2}\)</span>。单位法向量（指向球心内侧）为：</p>
+<p><span class="math display">\[\boldsymbol{n}(u, v) = \frac{\boldsymbol{r}_u \wedge \boldsymbol{r}_v}{\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{}} = -\boldsymbol{r}(u, v) = \left(-\frac{2u}{u^2 + v^2 + 1}, \, -\frac{2v}{u^2 + v^2 + 1}, \, \frac{1 - u^2 - v^2}{u^2 + v^2 + 1}\right)\]</span></p>
+<p>过点 <span class="math inline">\(\boldsymbol{r}(u, v)\)</span> 的法线参数方程为（<span class="math inline">\(t \in \mathbb{R}\)</span>）：</p>
+<p><span class="math display">\[\boldsymbol{X}(t) = \boldsymbol{r}(u, v) + t\boldsymbol{n}(u, v) = (1 - t)\boldsymbol{r}(u, v)\]</span></p>
+</section>
+<section id="第一基本形式-2" class="level4">
+<h4 class="anchored" data-anchor-id="第一基本形式-2">2. 第一基本形式</h4>
+<p>利用恒等式 <span class="math inline">\((1 - u^2 + v^2)^2 + 4u^2v^2 + 4u^2 = (u^2 + v^2 + 1)^2 = \Delta^2\)</span>，计算第一基本量：</p>
+<p><span class="math display">\[\begin{aligned} E &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = \frac{4}{\Delta^4} \cdot \Delta^2 = \frac{4}{(u^2 + v^2 + 1)^2} \\ F &amp;= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = \frac{4}{\Delta^4} \big(-2uv(1 - u^2 + v^2 + 1 + u^2 - v^2) + 4uv\big) = 0 \\ G &amp;= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = \frac{4}{\Delta^4} \cdot \Delta^2 = \frac{4}{(u^2 + v^2 + 1)^2} \end{aligned}\]</span></p>
+<p>第一基本形式（呈等温/共形参数形式）为：</p>
+<p><span class="math display">\[\mathrm{I} = \frac{4(du^2 + dv^2)}{(u^2 + v^2 + 1)^2}\]</span></p>
+</section>
+<section id="第二基本形式-2" class="level4">
+<h4 class="anchored" data-anchor-id="第二基本形式-2">3. 第二基本形式</h4>
+<p>由 <span class="math inline">\(\boldsymbol{n} = -\boldsymbol{r}\)</span>，微分得 <span class="math inline">\(d\boldsymbol{n} = -d\boldsymbol{r}\)</span>（即 <span class="math inline">\(\boldsymbol{n}_u = -\boldsymbol{r}_u, \; \boldsymbol{n}_v = -\boldsymbol{r}_v\)</span>）。利用第二基本量与法向量偏导的关系 <span class="math inline">\(L = -\boldsymbol{r}_u \cdot \boldsymbol{n}_u, \; M = -\boldsymbol{r}_u \cdot \boldsymbol{n}_v, \; N = -\boldsymbol{r}_v \cdot \boldsymbol{n}_v\)</span>：</p>
+<p><span class="math display">\[\begin{aligned} L &amp;= -\boldsymbol{r}_u \cdot (-\boldsymbol{r}_u) = E = \frac{4}{(u^2 + v^2 + 1)^2} \\ M &amp;= -\boldsymbol{r}_u \cdot (-\boldsymbol{r}_v) = F = 0 \\ N &amp;= -\boldsymbol{r}_v \cdot (-\boldsymbol{r}_v) = G = \frac{4}{(u^2 + v^2 + 1)^2} \end{aligned}\]</span></p>
+<p>第二基本形式为：</p>
+<p><span class="math display">\[\mathrm{II} = \frac{4(du^2 + dv^2)}{(u^2 + v^2 + 1)^2}\]</span></p>
+<hr>
+</section>
+</section>
+<section id="三种参数表示对比汇总表" class="level3">
+<h3 class="anchored" data-anchor-id="三种参数表示对比汇总表">三种参数表示对比汇总表</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>参数表示类型</th>
+<th>单位法向量 <span class="math inline">\(\boldsymbol{n}\)</span> 指向</th>
+<th>第一基本形式 <span class="math inline">\(\mathrm{I}\)</span></th>
+<th>第二基本形式 <span class="math inline">\(\mathrm{II}\)</span></th>
+<th>坐标网几何特征</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1. 球面坐标</strong></td>
+<td><span class="math inline">\(-\boldsymbol{r}\)</span>（向内）</td>
+<td><span class="math inline">\(du^2 + \cos^2 u \, dv^2\)</span></td>
+<td><span class="math inline">\(du^2 + \cos^2 u \, dv^2\)</span></td>
+<td>正交坐标网 (<span class="math inline">\(F=0\)</span>)</td>
+</tr>
+<tr class="even">
+<td><strong>2. 显函数表示</strong></td>
+<td><span class="math inline">\(+\boldsymbol{r}\)</span>（向外）</td>
+<td><span class="math inline">\(\dfrac{(1-v^2)du^2 + 2uv\,dudv + (1-u^2)dv^2}{1 - u^2 - v^2}\)</span></td>
+<td><span class="math inline">\(-\mathrm{I}\)</span></td>
+<td>非正交投影网 (<span class="math inline">\(F \neq 0\)</span>)</td>
+</tr>
+<tr class="odd">
+<td><strong>3. 球极投影</strong></td>
+<td><span class="math inline">\(-\boldsymbol{r}\)</span>（向内）</td>
+<td><span class="math inline">\(\dfrac{4(du^2 + dv^2)}{(u^2 + v^2 + 1)^2}\)</span></td>
+<td><span class="math inline">\(+\mathrm{I}\)</span></td>
+<td>等温（保角）坐标网 (<span class="math inline">\(E=G, F=0\)</span>)</td>
+</tr>
+</tbody>
+</table>
+<p><em>(注：无论采用何种参数表示，单位球面的第一、第二基本形式恒满足 <span class="math inline">\(\mathrm{II} = \mp \mathrm{I}\)</span>，表明单位球面上每一点均为<strong>脐点</strong>，其高斯曲率恒为 <span class="math inline">\(K = \dfrac{LN - M^2}{EG - F^2} \equiv 1\)</span>。)</em></p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "已复制");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "已复制");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/lzoi-zjx\.github\.io\/Seme2627\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
