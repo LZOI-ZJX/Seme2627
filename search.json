@@ -46,7 +46,14 @@
     "href": "miwavremos/Untitled-2.html",
     "title": "微波遥感",
     "section": "",
-    "text": "被动遥感，主动遥感\n广义微波遥感：毫米波，thz，近距离，远距离。。。\n微波特点：\n\n波长短，易定向辐射\n频率高，带宽宽，信号容量大\n穿透电离层\n金属材料不吸收只反射\n绝缘材料可穿透，不吸热\n极性分子材料热作用\n微波化学作用/非热效应\n\n毫米波特点：\n\n探测精度更高\n抗干扰\n人体细胞谐振频率\n\nTHz波特点：\n\n载频高，带宽大\n脉冲脉宽在皮秒量级，高信噪比\n物质特征谱，分辨材料\n能量低，无损检测，医学成像\n非金属非极性材料吸收小，探测材料内部信息 65 #### 电磁空间\n\n\n空间\n\nu100 ：人类活动\nu1km ：低空经济\n20km ：民航活动\nu100km ：临近空间\nu2000km ：LEO低轨\nu36000km ：MEO中轨\n36000km+：GEO高轨\n\n频率\n\n\n\n\n波段\n频率/波长\n波段\n频率/波长\n波段\n频率/波长\n\n\n\n\nP\n0.23–1 GHz\nKu\n12–18 GHz (2cm)\nW\n75–110 GHz\n\n\nL\n22 cm\nK\n18–26.5 GHz\nF\n90–140 GHz\n\n\nS\n10 cm\nKa\n26.5–40 GHz\nD\n110–170 GHz\n\n\nC\n5 cm\nQ\n33–50 GHz\nG\n140–220 GHz\n\n\nX\n3 cm\nU\n40–60 GHz\nY\n170–260 GHz\n\n\n\n\nV\n50–75 GHz\nJ\n220–325 GHz\n\n\n\n\nE\n60–90 GHz\nT\n300 GHz+\n\n\n\n\n功率\n\n单位 dBm vs Watt\n\\[\nX=10 log\\frac{P_1 (W)}{P_0 (1mW)} dBm\n\\]\ndBw\n\\[\nX=10 log\\frac{P_1 (W)}{P_0 (1W)} dBm\n\\]\ndBi 天线增益\ndBc 载波谐波比值\ndBZ 气象雷达反射率因子\ndBsm(sqr meter) RCS雷达散射\n\n极化\n\n电磁波在空间中的电场即为极化\n\n\n\n普朗克黑体辐射定律\n\\[B_f(T) = \\frac{2hf^3}{c^2} \\frac{1}{e^{\\frac{hf}{kT}} - 1} \\qquad B_\\lambda(T) = \\frac{2hc^2}{\\lambda^5} \\frac{1}{e^{\\frac{hc}{\\lambda kT}} - 1}\\]\n\n瑞利-金斯定律 (Rayleigh-Jeans Law)\n\n适用条件： 长波 / 低频（\\(hf \\ll kT\\)）\n近似推导： 当 \\(x \\ll 1\\) 时，\\(e^x - 1 \\approx x \\implies e^{\\frac{hf}{kT}} - 1 \\approx \\frac{hf}{kT}\\)\n极限公式：\n\n\\[B_f(T) \\approx \\frac{2f^2 kT}{c^2} \\qquad B_\\lambda(T) \\approx \\frac{2c kT}{\\lambda^4}\\]\n\n局限： 高频下预测能量无穷大（“紫外灾难”），经典物理在此失效。\n\n\n维恩近似 (Wien Approximation)\n\n适用条件： 短波 / 高频（\\(hf \\gg kT\\)）\n极限公式： \\(B_f(T) \\approx \\frac{2hf^3}{c^2} e^{-\\frac{hf}{kT}}\\)\n\n\n\n\n查阅passive microwave rs 卫星及载荷，撰写综述报告\n微波遥感卫星的发展 遥感设备组成与参数指标 遥感数据是否可下载 应用价值\n\n\n\n\n雷达：天线+发射机+接收机+信号处理机+显控设备\n多普勒效应\n\\[\nv_r=\\frac{f_dc}{2f_0}\n\\]\n调频连续波雷达FMCW\n三角波扫频\n雷达脉冲\n雷达方程与雷达后向散射\n\\[\nP_r=\\frac{GP_t}{4\\pi R^2}\\times \\frac{\\sigma}{4\\pi R^2}\\times \\frac{G \\lambda^2}{4\\pi}\n\\]\n\\(P_t\\) 发射功率\n\\(P_r\\) 接收功率\n\\(R\\) 作用距离\n\\(\\lambda\\) 工作波长\n\\(G\\) 天线增益\n\\(\\sigma\\) RCS 雷达散射截面\n\\[\n\\sigma= lim_{R \\to \\inf}4 \\pi R^2 |\\frac{\\vec{E_s}}{\\vec{E_i}}|\n\\]"
+    "text": "宿題一（PDF）"
+  },
+  {
+    "objectID": "miwavremos/Untitled-2.html#em-wave-propagation-and-reflection",
+    "href": "miwavremos/Untitled-2.html#em-wave-propagation-and-reflection",
+    "title": "微波遥感",
+    "section": "EM wave propagation and reflection",
+    "text": "EM wave propagation and reflection"
   },
   {
     "objectID": "difgeo/homework.html",
@@ -151,7 +158,7 @@
     "href": "index.html#课程",
     "title": "2026–2027 学期笔记",
     "section": "课程",
-    "text": "课程\n\n微分几何\n三维欧氏空间中的局部与整体曲线论。作业\n\n\n金融数学\n概率、费用与离散模型练习。\n\n\n微波遥感\n微波、毫米波与太赫兹遥感导论。\n\n\n量子信息学\n量子信息学笔记。\n\n\n随机信号分析\n随机过程、宽平稳与二阶统计。"
+    "text": "课程\n\n微分几何\n三维欧氏空间中的局部与整体曲线论。作业\n\n\n金融数学\n概率、费用与离散模型练习。\n\n\n微波遥感\n微波、毫米波与太赫兹遥感导论。笔记中有宿題一。\n\n\n量子信息学\n量子信息学笔记。\n\n\n随机信号分析\n随机过程、宽平稳与二阶统计。"
   },
   {
     "objectID": "difgeo/Notes.html",
