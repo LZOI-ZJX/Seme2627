@@ -1,0 +1,43 @@
+project:
+  type: website
+  render:
+    - index.qmd
+    - difgeo/Notes.qmd
+    - difgeo/homework.qmd
+    - finmath/Untitled-2.qmd
+    - miwavremos/Untitled-2.qmd
+    - Quantinfo/Untitled-2.qmd
+    - stasig/ssnote.qmd
+
+lang: zh
+
+website:
+  title: "Seme2627"
+  description: "2026–2027 学期笔记"
+  site-url: https://lzoi-zjx.github.io/Seme2627/
+  repo-url: https://github.com/LZOI-ZJX/Seme2627
+  navbar:
+    background: primary
+    left:
+      - href: index.qmd
+        text: 首页
+      - text: 微分几何
+        menu:
+          - href: difgeo/Notes.qmd
+            text: 笔记
+          - href: difgeo/homework.qmd
+            text: 作业
+      - href: finmath/Untitled-2.qmd
+        text: 金融数学
+      - href: miwavremos/Untitled-2.qmd
+        text: 微波遥感
+      - href: Quantinfo/Untitled-2.qmd
+        text: 量子信息学
+      - href: stasig/ssnote.qmd
+        text: 随机信号分析
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: false

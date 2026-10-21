@@ -1,0 +1,755 @@
+---
+title: "微分几何"
+format:
+  html:
+    code-fold: false
+---
+
+
+# 微分几何笔记：三维欧氏空间中的局部与整体曲线论
+
+
+
+---
+
+## 一、 欧氏空间标架与刚体运动
+
+
+
+### 1. 标架（Frame）
+
+
+
+* **定义（标架）**：在三维欧氏空间 $\mathbb{E}^3$ 中，取定一个原点 $O$，并取三个线性无关的向量 $\{\vec{v}_1, \vec{v}_2, \vec{v}_3\}$，则称 $\{O; \vec{v}_1, \vec{v}_2, \vec{v}_3\}$ 为 $\mathbb{E}^3$ 的一个**标架**（仿射标架）。
+
+
+* **定义（标准正交标架）**：当 $\{\vec{v}_1, \vec{v}_2, \vec{v}_3\}$ 两两正交且均为单位向量（即满足 $\langle \vec{v}_i, \vec{v}_j \rangle = \delta_{ij}$）时，称之为**正交标架**（或标准正交标架）。
+
+
+> **[注记与修正]**：原笔记写为“当 $\vec{v}_1, \vec{v}_2, \vec{v}_3$ 正交时，叫正交标架”，在微分几何中通常默认要求单位化（Orthonormal Frame），且为了与 $\mathbb{R}^3$ 建立保距同构，需取定一个固定的标准正交标架，从而使 $\mathbb{E}^3$ 与 $\mathbb{R}^3$ 一一对应。
+> 
+> 
+
+
+
+### 2. 合同变换与刚体运动
+
+
+
+* **定义（合同变换 / 等距变换）**：映射 $T: \mathbb{R}^3 \to \mathbb{R}^3$ 称为保距变换（或**合同变换**），如果它保持任意两点间的欧氏距离不变，即：
+
+
+
+$$d(p, q) = d(T(p), T(q)), \quad \forall p, q \in \mathbb{R}^3$$
+
+
+
+全体合同变换在映射复合下构成一个群，称为**合同变换群**（或欧氏群 $E(3)$）。
+
+
+* **正交群与特殊正交群**：
+
+
+* **正交群**：$O(3) := \{A \in M_{3\times 3}(\mathbb{R}) \mid A^T A = I_3\}$（构成一个李群 Lie Group，满足 $\det A = \pm 1$）。
+
+
+* **特殊正交群**：$SO(3) := \{A \in O(3) \mid \det A = 1\}$。
+
+
+
+
+* **定理（合同变换的代数表示）**：若 $T$ 是 $\mathbb{R}^3$ 中的合同变换，则存在唯一的正交矩阵 $A \in O(3)$ 和平移向量 $p_0 \in \mathbb{R}^3$，使得对任意点 $p = (x, y, z) \in \mathbb{R}^3$（行向量表示），有：
+
+
+
+$$T(p) = pA + p_0$$
+
+
+
+（若采用列向量习惯，则记为 $T(p) = Ap + p_0$）。
+* **定义（刚体运动）**：当上述表示中的 $\det A = 1$（即 $A \in SO(3)$）时，称相应的保定向合同变换 $T$ 为一个**刚体运动**（Rigid Motion，或直接合同变换）；若 $\det A = -1$，则称为反射变换（或反向合同变换）。
+
+
+
+---
+
+## 二、 参数曲线与弧长参数化
+
+
+
+### 1. 正则参数曲线
+
+
+
+* **定义（正则曲线）**：设参数曲线为映射 $\alpha: (a, b) \to \mathbb{R}^3$，$t \mapsto \alpha(t) = (x(t), y(t), z(t))$。称 $\alpha$ 为**正则曲线（Regular Curve）**，如果：
+
+
+1. 分量函数 $x(t), y(t), z(t) \in C^\infty(a, b)$ 都是光滑函数；
+
+
+2. 对任意 $t \in (a, b)$，速度向量处处非零：$\alpha'(t) = (x'(t), y'(t), z'(t)) \neq \vec{0}$。
+
+
+
+
+* **定义（切向量与切线）**：对于正则曲线 $\alpha: (a, b) \to \mathbb{R}^3$，称 $\alpha'(t) = (x'(t), y'(t), z'(t))$ 为曲线 $\alpha$ 在 $t$ 处的**切向量**；称由点 $\alpha(t)$ 和方向向量 $\alpha'(t)$ 决定的空间直线为曲线在 $t$ 处的**切线**。
+
+
+* **定义（容许参数变换）**：设光滑双射函数 $t = t(u)$，$u \in (\alpha, \beta)$ 满足 $\frac{dt}{du} \neq 0$（处处非零），则称 $t = t(u)$ 为正则曲线的**参数变换**。
+
+
+* 若 $\frac{dt}{du} > 0$，称为**保定向参数变换**；
+* 若 $\frac{dt}{du} < 0$，称为**反定向参数变换**。
+
+
+
+### 2. 弧长与弧长参数化
+
+
+
+* **定义（弧长）**：正则曲线 $\alpha(t)$ 在闭区间 $[c, d] \subset (a, b)$ 上的**弧长**定义为：
+
+
+
+$$L = \int_c^d \vert{}\alpha'(t)\vert{} \, dt$$
+
+
+* **命题（弧长参数的存在性）**：若 $\alpha(t)$ 为正则曲线，取定基点 $t_0 \in (a, b)$，定义弧长函数 $s(t) = \int_{t_0}^t \vert{}\alpha'(\tau)\vert{} \, d\tau$。因为 $\frac{ds}{dt} = \vert{}\alpha'(t)\vert{} > 0$，由反函数定理，存在反变换 $t = t(s)$，使得复合后的曲线 $\tilde{\alpha}(s) := \alpha(t(s))$ 满足速率恒为 1：
+
+
+
+$$\left\vert{}\frac{d\alpha}{ds}\right\vert{} = \vert{}\dot{\alpha}(s)\vert{} \equiv 1$$
+
+
+
+此时称 $s$ 为**弧长参数（自然参数）**。（注：以下默认用 $\dot{\alpha}(s)$ 表示对弧长参数 $s$ 的导数，用 $\alpha'(t)$ 表示对一般参数 $t$ 的导数）。
+
+
+
+---
+
+## 三、 空间曲线的局部理论：Frenet 标架与基本定理
+
+
+
+### 1. 曲率、挠率与 Frenet 标架（弧长参数下）
+
+
+
+设 $\alpha(s) = (x(s), y(s), z(s))$ 为弧长参数化的正则空间曲线：
+
+1. **单位切向量（Unit Tangent Vector）**：
+
+
+
+$$\vec{t}(s) := \frac{d\alpha}{ds} = \dot{\alpha}(s) = (\dot{x}(s), \dot{y}(s), \dot{z}(s)), \quad \vert{}\vec{t}(s)\vert{} \equiv 1$$
+
+
+2. **曲率（Curvature）**：称切向量关于弧长的变化率模长为曲线在 $\alpha(s)$ 处的**曲率**：
+
+
+
+$$\kappa(s) := \vert{}\dot{\vec{t}}(s)\vert{} = \vert{}\ddot{\alpha}(s)\vert{} = \sqrt{(\ddot{x}(s))^2 + (\ddot{y}(s))^2 + (\ddot{z}(s))^2} \ge 0$$
+
+
+3. **主法向量（Principal Normal Vector）**：若 $\kappa(s) \neq 0$（即 $\kappa(s) > 0$，称为双正则点/非拐点），由 $\vert{}\vec{t}(s)\vert{}^2 = 1$ 求导得 $\langle \vec{t}(s), \dot{\vec{t}}(s) \rangle = 0$，定义单位向量：
+
+
+
+$$\vec{n}(s) := \frac{1}{\kappa(s)}\dot{\vec{t}}(s)$$
+
+
+
+为曲线在 $\alpha(s)$ 处的**主法向量**。
+
+
+4. **副法向量（Binormal Vector）**：定义右手叉积
+
+
+$$\vec{b}(s) := \vec{t}(s) \wedge \vec{n}(s) \quad (\text{或记为 } \vec{t}(s) \times \vec{n}(s))$$
+
+
+
+为曲线在 $\alpha(s)$ 处的**副法向量**。
+
+
+5. **定义（Frenet 标架与三个基本平面）**：右手标准正交标架 $\{\alpha(s); \vec{t}(s), \vec{n}(s), \vec{b}(s)\}$ 称为曲线 $\alpha$ 在点 $\alpha(s)$ 处的 **Frenet 标架**。由标架向量两两张成的三个过点 $\alpha(s)$ 的平面分别为：
+
+
+* **密切平面（Osculating Plane）**：由 $\{\vec{t}(s), \vec{n}(s)\}$ 张成（以 $\vec{b}(s)$ 为法向量）；
+
+
+* **法平面（Normal Plane）**：由 $\{\vec{n}(s), \vec{b}(s)\}$ 张成（以 $\vec{t}(s)$ 为法向量）；
+
+
+* **从切平面 / 展直平面（Rectifying Plane）**：由 $\{\vec{t}(s), \vec{b}(s)\}$ 张成（以 $\vec{n}(s)$ 为法向量）。
+
+
+
+
+> **[修正说明]**：原笔记在标架下方用红笔标注了“法平面、切平面、密切平面”。需要注意**空间曲线没有“切平面”（只有切线）**，由 $\vec{t}$ 和 $\vec{b}$ 张成的平面标准名称为**从切平面**（或展直平面）。
+> 
+> 
+
+
+6. **挠率（Torsion）**：称
+
+
+$$\tau(s) := \langle \dot{\vec{n}}(s), \vec{b}(s) \rangle = -\langle \vec{n}(s), \dot{\vec{b}}(s) \rangle$$
+
+
+
+为曲线 $\alpha$ 在 $\alpha(s)$ 处的**挠率**。（注：空间曲线的曲率 $\kappa(s) > 0$ 恒正，而挠率 $\tau(s) \in \mathbb{R}$ 可正、可负、可为零，反映曲线偏离密切平面的方向与剧烈程度）。
+
+
+
+### 2. Frenet 公式（Frenet-Serret Formulas）
+
+
+
+* **定理（Frenet 公式）**：设 $\alpha(s)$ 为满足 $\kappa(s) > 0$ 的弧长参数空间曲线，则其 Frenet 标架满足运动方程组：
+
+
+
+$$\begin{cases} \dot{\vec{t}}(s) = \kappa(s)\vec{n}(s) \\ \dot{\vec{n}}(s) = -\kappa(s)\vec{t}(s) + \tau(s)\vec{b}(s) \\ \dot{\vec{b}}(s) = -\tau(s)\vec{n}(s) \end{cases}$$
+
+
+
+写成反对称矩阵形式为：
+
+
+
+$$\frac{d}{ds}\begin{bmatrix} \vec{t}(s) \\ \vec{n}(s) \\ \vec{b}(s) \end{bmatrix} = \begin{bmatrix} 0 & \kappa(s) & 0 \\ -\kappa(s) & 0 & \tau(s) \\ 0 & -\tau(s) & 0 \end{bmatrix} \begin{bmatrix} \vec{t}(s) \\ \vec{n}(s) \\ \vec{b}(s) \end{bmatrix}$$
+
+
+* **命题（平面曲线的判定）**：设空间正则曲线 $\alpha(s)$ 满足曲率处处非零（$\kappa(s) > 0$），则曲线 $\alpha$ 完全落在某个平面上 $\Longleftrightarrow \forall s, \ \tau(s) \equiv 0$。
+
+
+> **[严谨性补充]**：必须在前提中加上 **$\kappa(s) > 0$**。若允许 $\kappa(s) = 0$，挠率 $\tau$ 在曲率为零处无定义；且存在两段位于不同平面上的曲线通过一段直线（$\kappa=0$）光滑拼接的反例，其在有定义处 $\tau \equiv 0$ 但整体不在同一平面内。
+
+
+
+### 3. 一般参数下的曲率与挠率计算公式
+
+
+
+设 $\alpha(t)$ 为任意参数 $t$ 下的正则曲线（不必是弧长参数），则：
+
+* **曲率公式**：
+
+
+
+$$\kappa(t) = \frac{\vert{}\alpha'(t) \wedge \alpha''(t)\vert{}}{\vert{}\alpha'(t)\vert{}^3}$$
+
+
+* **挠率公式**（当 $\alpha'(t) \wedge \alpha''(t) \neq \vec{0}$ 时）：
+
+
+
+$$\tau(t) = \frac{(\alpha'(t), \alpha''(t), \alpha'''(t))}{\vert{}\alpha'(t) \wedge \alpha''(t)\vert{}^2}$$
+
+
+
+其中 $(\vec{u}, \vec{v}, \vec{w}) = \langle \vec{u} \wedge \vec{v}, \vec{w} \rangle = \det(\vec{u}, \vec{v}, \vec{w})$ 表示三个向量的混合积。
+
+### 4. 曲线的渐近展开（Bouquet 公式 / 局部规范形）
+
+
+
+将弧长参数曲线 $\alpha(s)$ 在 $s = 0$ 处作三阶 Taylor 展开：
+
+
+$$\alpha(s) = \alpha(0) + s\dot{\alpha}(0) + \frac{1}{2}s^2\ddot{\alpha}(0) + \frac{1}{6}s^3\dddot{\alpha}(0) + \vec{R}(s^3)$$
+
+
+利用 Frenet 公式依次求导（记 $s=0$ 处的标架为 $\{\vec{t}_0, \vec{n}_0, \vec{b}_0\}$，曲率与挠率为 $\kappa, \tau$，导数为 $\kappa'$）：
+
+* $\dot{\alpha}(0) = \vec{t}_0$
+* $\ddot{\alpha}(0) = \kappa \vec{n}_0$
+* $\dddot{\alpha}(0) = -\kappa^2 \vec{t}_0 + \kappa' \vec{n}_0 + \kappa\tau \vec{b}_0$
+
+若以 $\alpha(0)$ 为坐标原点，以 $\{\vec{t}_0, \vec{n}_0, \vec{b}_0\}$ 分别为 $x, y, z$ 轴建立局部右手笛卡尔坐标系，则曲线 $\alpha(s) = (x(s), y(s), z(s))$ 在 $s=0$ 附近的局部坐标展开式（**Bouquet 公式**）为：
+
+
+$$\begin{cases} x(s) = s - \dfrac{\kappa^2 s^3}{6} + R_x(s^3) \\ y(s) = \dfrac{\kappa s^2}{2} + \dfrac{\kappa' s^3}{6} + R_y(s^3) \\ z(s) = \dfrac{\kappa\tau s^3}{6} + R_z(s^3) \end{cases}$$
+
+
+其中余项满足 $\lim_{s\to 0} \frac{R_i(s^3)}{s^3} = 0$（即 $o(s^3)$）。由此可直观看出曲线在三个基本平面上的局部投影形状（密切平面投影近似抛物线 $y \approx \frac{\kappa}{2}x^2$，从切平面投影近似三次半立方抛物线 $z \approx \frac{\kappa\tau}{6}x^3$，法平面投影近似尖点曲线 $z^2 \approx \frac{2\tau^2}{9\kappa}y^3$）。
+
+### 5. 曲线论基本定理
+
+
+
+* **几何不变量**：正则曲线 $\alpha$ 的弧长 $s$、曲率 $\kappa$ 在任意合同变换下不变；挠率 $\tau$ 在**刚体运动**（保定向合同变换，$\det A = 1$）下保持不变（在反射变换 $\det A = -1$ 下挠率反号 $\tau \mapsto -\tau$）。
+
+
+* **定理（空间曲线论基本定理）**：
+
+
+1. **唯一性（合同性）**：设 $\alpha_1(s), \alpha_2(s)$ 是定义在同一区间 $(a, b)$ 上的两条弧长参数曲线。若对任意 $s \in (a, b)$，均有
+
+
+$$\kappa_1(s) = \kappa_2(s) > 0, \quad \tau_1(s) = \tau_2(s)$$
+
+
+
+则存在唯一的刚体运动 $T$，使得 $\alpha_1 = T \circ \alpha_2$（即两条曲线仅相差一个空间刚体运动）。
+
+
+2. **存在性**：设函数 $\kappa = \kappa(s) > 0$ 和 $\tau = \tau(s)$ 在区间 $(a, b)$ 上光滑（或至少 $\kappa(s) \in C^1(a, b)$ 且 $\tau(s) \in C^0(a, b)$），则必存在一条以 $s$ 为弧长参数的空间正则曲线 $\alpha(s)$，以 $\kappa(s)$ 为曲率、以 $\tau(s)$ 为挠率。
+
+
+
+
+
+---
+
+## 四、 平面曲线与空间闭曲线的整体理论
+
+
+
+### 1. 闭曲线与全曲率
+
+
+
+* **定义（正则闭曲线）**：设 $\alpha: [a, b] \to \mathbb{R}^3$ 为正则参数曲线。称 $\alpha$ 为一条**光滑闭曲线**，如果满足以下两个等价条件之一：
+
+
+1. **端点各阶导数匹配**：$\alpha(a) = \alpha(b)$，且对任意阶导数有 $\alpha^{(k)}(a^+) = \alpha^{(k)}(b^-), \ \forall k \in \mathbb{N}^+$；
+
+
+> **[符号修正]**：原笔记中将 $k$ 阶导数写成了上标无括号的 $\alpha^k(a^+) = \alpha^k(b^-)$，在标准数学记号中应加上括号写作 $\alpha^{(k)}(a^+) = \alpha^{(k)}(b^-)$ 以免与幂次混淆。
+> 
+> 
+
+
+2. **周期延拓定义**：存在周期为 $T = b - a$ 的光滑正则周期映射 $\bar{\alpha}: \mathbb{R} \to \mathbb{R}^3$（满足 $\bar{\alpha}(t + T) = \bar{\alpha}(t)$），使得其限制在 $[a, b]$ 上满足 $\bar{\alpha}\vert{}_{[a, b]} = \alpha$。
+
+
+
+
+* **定义（简单闭曲线）**：若闭曲线 $\alpha: [a, b] \to \mathbb{R}^3$ 在半开区间 $[a, b)$ 上是单射（即除端点 $\alpha(a)=\alpha(b)$ 外无自交点），则称 $\alpha$ 为**简单闭曲线**（或 Jordan 闭曲线）。
+* **定义（全曲率 Total Curvature）**：设 $\alpha: [a, b] \to \mathbb{R}^3$ 为长为 $L$ 的闭曲线，称积分
+
+
+$$\int_a^b \kappa(t)\vert{}\alpha'(t)\vert{} \, dt = \int_0^L \kappa(s) \, ds$$
+
+
+
+为闭曲线 $\alpha$ 的**全曲率**。
+
+
+
+### 2. 平面曲线的相对曲率与旋转指标定理
+
+
+
+设 $\alpha: [0, L] \to \mathbb{R}^2$，$\alpha(s) = (x(s), y(s))$ 为弧长参数化的平面正则曲线：
+
+* **平面 Frenet 标架与相对曲率（有向曲率）**：
+
+
+* 单位切向量：$\vec{t}(s) = \frac{d\alpha}{ds} = (\dot{x}(s), \dot{y}(s))$。
+
+
+* 单位法向量：将 $\vec{t}(s)$ 逆时针旋转 $\frac{\pi}{2}$ 唯一确定 $\vec{n}(s) = (-\dot{y}(s), \dot{x}(s))$，使得 $\{\vec{t}(s), \vec{n}(s)\}$ 构成平面右手正交标架。
+
+
+* 因为 $\vert{}\vec{t}(s)\vert{} \equiv 1 \implies \dot{\vec{t}}(s) \perp \vec{t}(s) \implies \dot{\vec{t}}(s) \parallel \vec{n}(s)$，故存在唯一标量函数 $k(s)$（或记为 $\kappa_r(s)$），使得：
+
+
+
+$$\dot{\vec{t}}(s) = k(s)\vec{n}(s)$$
+
+
+
+称 $k(s) = \langle \dot{\vec{t}}(s), \vec{n}(s) \rangle = \dot{x}(s)\ddot{y}(s) - \ddot{x}(s)\dot{y}(s)$ 为平面曲线的**相对曲率（或有向曲率 Signed Curvature）**。
+
+
+
+
+> **[重要区分]**：平面曲线的相对曲率 $k(s)$ **可正可负**（向左转时 $k(s) > 0$，向右转时 $k(s) < 0$），它与前文空间曲线非负曲率 $\kappa(s)$ 的关系是 $\kappa(s) = \vert{}k(s)\vert{}$。
+
+
+* **定义（旋转指标 Rotation Index）**：对于平面闭曲线 $\alpha: [0, L] \to \mathbb{R}^2$，称
+
+
+$$I(\alpha) = \frac{1}{2\pi} \int_0^L k(s) \, ds$$
+
+
+
+为闭曲线 $\alpha$ 的**旋转指标**（即切向量映射 $\vec{t}: [0, L] \to S^1$ 绕单位圆周旋转的代数圈数，必为整数）。
+
+
+* **定理（Hopf 旋转指标定理 / 切线回转定理）**：平面**简单闭曲线**的旋转指标必为 $\pm 1$（当曲线按逆时针正向定向时，旋转指标恒为 $+1$；顺时针定向时为 $-1$）：
+
+
+
+$$\frac{1}{2\pi} \int_0^L k(s) \, ds = \pm 1$$
+
+
+> **[严谨性修正]**：原笔记写为“平面简单闭曲线的旋转指标为 $1$”，严格来说只有在规定曲线取**正向（逆时针方向，即法向量 $\vec{n}$ 指向内部有界区域）**时才恒等于 $+1$；若不指定定向，结论应为 $\pm 1$。
+> 
+> 
+
+
+
+### 3. 等周不等式（Isoperimetric Inequality）
+
+
+
+* **定理（平面等周不等式）**：设 $\alpha: [0, L] \to \mathbb{R}^2$ 是长为 $L$ 的平面简单闭曲线，令 $A$ 表示 $\alpha$ 所围成的有界区域面积，则恒有：
+
+
+
+$$L^2 \ge 4\pi A$$
+
+
+
+且等号成立（$L^2 = 4\pi A$）当且仅当 $\alpha$ 是一个**圆周**。
+
+
+
+### 4. 空间闭曲线的整体定理：Fenchel 定理与 Fáry-Milnor 定理
+
+
+
+* **定理（Fenchel 不等式，1929）**：设 $\alpha: [0, L] \to \mathbb{R}^3$ 是 $\mathbb{R}^3$ 中的一条光滑正则闭曲线，则其全曲率恒大于等于 $2\pi$：
+
+
+
+$$\int_0^L \kappa(s) \, ds \ge 2\pi$$
+
+
+
+**取等充要条件补充**：等号成立（$\int_0^L \kappa(s) \, ds = 2\pi$）当且仅当 $\alpha$ 是一条**平面凸简单闭曲线**。
+* **定义（非平凡纽结 Non-trivial Knot）**：设 $\alpha: [0, L] \to \mathbb{R}^3$ 为空间简单闭曲线（即 $S^1$ 在 $\mathbb{R}^3$ 中的光滑嵌入）。称 $\alpha$ 为**非平凡纽结**，如果 $\alpha$ 不能在 $\mathbb{R}^3$ 中通过不产生自交的连续形变（严格拓扑术语称为**环境同痕 Ambient Isotopy**）变成平面标准单位圆周 $S^1 = \{(x, y, 0) \in \mathbb{R}^3 \mid x^2 + y^2 = 1\}$。
+
+
+> **[拓扑概念勘误]**：原笔记写为“如果 $\alpha$ 不能在 $\mathbb{R}^3$ 中连续形变成 $S^1$”。在拓扑学中，单纯的“连续形变（同伦 Homotopy）”允许曲线在形变过程中自己穿过自己（自交），而三维空间中任何闭曲线都是同伦于圆周的！因此在定义纽结时，必须强调**在保持简单闭曲线（无自交嵌入）的前提下连续形变**，即**环境同痕（Ambient Isotopy）**。
+> 
+> 
+
+
+* **定理（Fáry-Milnor 定理，1949/1950）**：若 $\alpha: [0, L] \to \mathbb{R}^3$ 是 $\mathbb{R}^3$ 中一条构成**非平凡纽结**的简单闭曲线，则其全曲率严格大于 $4\pi$：
+
+
+
+$$\int_0^L \kappa(s) \, ds > 4\pi$$
+
+
+
+（等价逆否命题：若一条空间简单闭曲线的全曲率 $\int_0^L \kappa(s) \, ds \le 4\pi$，则它必然是一个平凡纽结 Unknot，可以在不剪断的情况下解开成标准圆周）。
+
+---
+
+## 五、 曲面片与切平面
+
+
+
+### 1. 正则曲面片（Regular Surface Patch）
+
+
+
+* **定义（曲面片）**：给定二维欧氏空间 $\mathbb{R}^2$ 中的开区域 $D \subset \mathbb{R}^2$。如果映射（二维开集 $\to$ 三维空间）
+
+
+$$\vec{r}: D \subset \mathbb{R}^2 \to \mathbb{R}^3, \quad (u, v) \mapsto \vec{r}(u, v) = (x(u, v), y(u, v), z(u, v))$$
+
+
+
+满足以下两个条件：
+
+
+1. **光滑性**：分量函数 $x(u, v), y(u, v), z(u, v) \in C^\infty(D)$ 都是 $D$ 上的光滑函数；
+
+
+2. **正则性（Regularity）**：偏导数切向量 $\vec{r}_u = \left(\frac{\partial x}{\partial u}, \frac{\partial y}{\partial u}, \frac{\partial z}{\partial u}\right)$ 和 $\vec{r}_v = \left(\frac{\partial x}{\partial v}, \frac{\partial y}{\partial v}, \frac{\partial z}{\partial v}\right)$ 在 $D$ 上处处线性无关，即：
+
+
+
+$$\vec{r}_u \wedge \vec{r}_v \neq \vec{0} \quad (\text{等价于雅可比矩阵 } \operatorname{rank} d\vec{r} = 2)$$
+
+
+
+则称 $\vec{r}$ 是 $\mathbb{R}^3$ 中的一个**正则曲面片**（简称为曲面片），其中 $(u, v)$ 称为曲面的**局部坐标参数（曲纹坐标）**。
+
+
+
+
+> **[注记与补充]**：严格而言，仅满足上述两个条件的映射称为**浸入（Immersion）**。若要避免曲面片发生自交或无限逼近自身，在微分几何与流形理论中通常还要求 $\vec{r}: D \to \vec{r}(D) \subset \mathbb{R}^3$ 是**同胚**（即光滑**嵌入 Embedding**）。正是这一条件保证了后续命题中逆映射 $\vec{r}^{-1}: S \to D$ 的存在性与连续性。
+> 
+> 
+
+
+
+### 2. 图曲面（Graph Surface / Monge 曲面片）与典型例子
+
+
+
+* **定义（图曲面）**：设 $D \subset \mathbb{R}^2$ 为开集，$f: D \to \mathbb{R}$ 为光滑函数。定义映射：
+
+
+
+$$\vec{r}: D \to \mathbb{R}^3, \quad (u, v) \mapsto (u, v, f(u, v))$$
+
+
+
+由于 $\vec{r}_u = (1, 0, f_u)$，$\vec{r}_v = (0, 1, f_v)$，其叉积 $\vec{r}_u \wedge \vec{r}_v = (-f_u, -f_v, 1) \neq \vec{0}$ 恒成立，故 $\vec{r}$ 自然构成一个正则曲面片，称为函数 $f$ 的**图曲面（Graph）**。
+
+
+* **典型实例：单位球面 $S^2(1) := \{(x, y, z) \in \mathbb{R}^3 \mid x^2 + y^2 + z^2 = 1\}$ 的局部参数化**
+
+1. **图曲面参数化（上半球面）**：取开单位圆盘 $D = \{(u, v) \in \mathbb{R}^2 \mid u^2 + v^2 < 1\}$，映射
+
+
+$$\vec{r}: D \to \mathbb{R}^3, \quad (u, v) \mapsto \left(u, v, \sqrt{1 - u^2 - v^2}\right)$$
+
+
+
+覆盖了单位球面在 $z > 0$ 的上半球部分。（整个球面至少需要 6 个这样的坐标方向图曲面片才能完全覆盖）。
+
+
+2. **球面坐标（经纬度）参数化**：取开矩形区域 $D = \left(-\frac{\pi}{2}, \frac{\pi}{2}\right) \times (0, 2\pi)$，映射
+
+
+$$\vec{r}: \left(-\frac{\pi}{2}, \frac{\pi}{2}\right) \times (0, 2\pi) \to \mathbb{R}^3, \quad (u, v) \mapsto (\cos u \cos v, \cos u \sin v, \sin u)$$
+
+
+
+其中 $u$ 为纬度，$v$ 为经度。直接计算得 $\vec{r}_u \wedge \vec{r}_v = -\cos u \, \vec{r}(u, v)$，由于在 $u \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$ 上 $\cos u \neq 0$，故处处正则（覆盖了球面除去南北两极和一条本初子午线半圆外的区域）。
+
+
+
+
+
+### 3. 切平面与法线
+
+
+
+* **定义（切平面与切空间）**：对于曲面片 $S$ 上给定一点 $P_0 = \vec{r}(u_0, v_0)$，称由线性无关向量 $\vec{r}_u(u_0, v_0)$ 和 $\vec{r}_v(u_0, v_0)$ 张成的二维向量子空间为曲面片 $S$ 在 $P_0$ 点的**切空间（Tangent Space）**，记为：
+
+
+
+$$T_{P_0}S = \operatorname{Span}_{\mathbb{R}}\{\vec{r}_u(u_0, v_0), \vec{r}_v(u_0, v_0)\}$$
+
+
+
+（在仿射几何意义下，过点 $P_0$ 且平行于 $T_{P_0}S$ 的平面 $P_0 + T_{P_0}S$ 称为 $S$ 在 $P_0$ 点的**切平面**）。
+
+
+* **定义（法线与单位法向量）**：过点 $P_0$ 并与切平面 $T_{P_0}S$ 垂直的空间直线称为曲面在该点的**法线**。曲面上由参数次序 $(u, v)$ 诱导的自然单位法向量场（高斯映射）定义为：
+
+
+
+$$\vec{n}(u, v) := \frac{\vec{r}_u \wedge \vec{r}_v}{\vert{}\vec{r}_u \wedge \vec{r}_v\vert{}}$$
+
+
+* **命题（切平面的曲线刻画）**：切平面 $T_{P_0}S$ 等于曲面 $S$ 上所有过 $P_0$ 点的光滑曲线在 $P_0$ 处的切向量的全体。
+
+
+* **证明概要**：设 $\alpha: (-\varepsilon, \varepsilon) \to S$ 是 $S$ 上过 $P_0$ 的光滑曲线，$\alpha(0) = P_0$，即复合映射 $\vec{r}^{-1} \circ \alpha: (-\varepsilon, \varepsilon) \to D, \ t \mapsto (u(t), v(t))$ 是参数域 $D$ 内的光滑映射，且 $(u(0), v(0)) = (u_0, v_0)$。由复合函数链式法则，对 $\alpha(t) = \vec{r}(u(t), v(t))$ 在 $t = 0$ 处求导得：
+
+
+
+$$\alpha'(0) = u'(0)\vec{r}_u(u_0, v_0) + v'(0)\vec{r}_v(u_0, v_0) \in \operatorname{Span}_{\mathbb{R}}\{\vec{r}_u, \vec{r}_v\}$$
+
+
+
+反之，对任意线性组合 $w = \lambda\vec{r}_u + \mu\vec{r}_v$，只需取直线段 $u(t) = u_0 + \lambda t, \ v(t) = v_0 + \mu t$，对应的曲面曲线 $\alpha(t) = \vec{r}(u(t), v(t))$ 在 $t=0$ 处的切向量即为 $w$。
+
+
+
+---
+
+## 六、 曲面的第一基本形式（First Fundamental Form）
+
+
+
+### 1. 定义与矩阵表示
+
+
+
+* **定义（第一基本形式）**：设 $S$ 是 $\mathbb{R}^3$ 的曲面片，$\vec{r}(u, v)$ 是其参数表示。曲面上一点的位移全微分为 $d\vec{r} = \vec{r}_u du + \vec{r}_v dv$，称切空间上的正定二次微分式
+
+
+$$\mathrm{I} := \langle d\vec{r}, d\vec{r} \rangle = \langle \vec{r}_u du + \vec{r}_v dv, \vec{r}_u du + \vec{r}_v dv \rangle$$
+
+
+
+为曲面 $S$ 的**第一基本形式**。
+
+
+* **第一类基本量**：记
+
+
+$$E := \langle \vec{r}_u, \vec{r}_u \rangle, \quad F := \langle \vec{r}_u, \vec{r}_v \rangle, \quad G := \langle \vec{r}_v, \vec{r}_v \rangle$$
+
+
+
+则第一基本形式展开为：
+
+
+
+$$\mathrm{I} = E\,du^2 + 2F\,du\,dv + G\,dv^2 = \begin{pmatrix} du & dv \end{pmatrix} \begin{pmatrix} E & F \\ F & G \end{pmatrix} \begin{pmatrix} du \\ dv \end{pmatrix}$$
+
+
+
+其中系数矩阵满足 $E > 0$，且行列式 $EG - F^2 = \vert{}\vec{r}_u \wedge \vec{r}_v\vert{}^2 > 0$，故 $\mathrm{I}$ 恒为**严格正定二次型**。对于切空间 $T_PS$ 中的任意切向量 $w = \lambda\vec{r}_u + \mu\vec{r}_v$，其模长平方即为 $\mathrm{I}(w, w) = \langle w, w \rangle = E\lambda^2 + 2F\lambda\mu + G\mu^2$。
+
+### 2. 不变性定理
+
+
+
+* **定理（第一基本形式的不变性）**：
+
+
+1. **参数变换不变性**：曲面 $S$ 的第一基本形式与局部坐标参数的选取无关（在容许参数变换 $(u, v) \leftrightarrow (\tilde{u}, \tilde{v})$ 下，作为切空间上的内积二次型保持不变）；
+
+
+2. **合同变换不变性**：曲面 $S$ 的第一基本形式在 $\mathbb{R}^3$ 的任意合同变换（包括刚体运动与反射变换）下保持不变。
+
+
+
+
+
+### 3. 常见曲面的第一基本形式计算实例
+
+
+
+1. **平面（Plane）**：参数方程 $\vec{r}(u, v) = (u, v, 0)$。
+
+
+* 计算：$\vec{r}_u = (1, 0, 0), \ \vec{r}_v = (0, 1, 0) \implies E = 1, \ F = 0, \ G = 1$。
+* 第一基本形式：$\mathrm{I} = du^2 + dv^2$。
+
+
+
+
+2. **图曲面（Graph Surface）**：设 $D \subset \mathbb{R}^2, \ f: D \to \mathbb{R}$，参数方程 $\vec{r}(u, v) = (u, v, f(u, v))$。
+
+
+* 计算：$\vec{r}_u = (1, 0, f_u), \ \vec{r}_v = (0, 1, f_v) \implies E = 1 + f_u^2, \ F = f_u f_v, \ G = 1 + f_v^2$。
+* 第一基本形式：
+
+
+
+$$\mathrm{I} = (1 + f_u^2)\,du^2 + 2f_u f_v\,du\,dv + (1 + f_v^2)\,dv^2$$
+
+
+
+
+3. **圆柱面（Cylinder）**（补充原笔记未写完的计算）：参数方程 $\vec{r}(u, v) = (\cos u, \sin u, v)$。
+
+
+* 计算：$\vec{r}_u = (-\sin u, \cos u, 0), \ \vec{r}_v = (0, 0, 1) \implies E = \sin^2 u + \cos^2 u = 1, \ F = 0, \ G = 1$。
+* 第一基本形式：$\mathrm{I} = du^2 + dv^2$。（**核心几何推论**：圆柱面与平面的第一基本形式完全相同，说明圆柱面与平面是局部等距（Locally Isometric）的，圆柱面可以无拉伸、无撕裂地展开成平面，仅靠第一基本形式无法区分平面与柱面）。
+
+
+
+---
+
+## 七、 曲面的第二基本形式与法曲率
+
+
+
+### 1. 定义与矩阵表示
+
+
+
+* **定义（第二基本形式）**：设 $S$ 是 $\mathbb{R}^3$ 的曲面片，$\vec{r}(u, v)$ 是其参数表示，且 $\vec{n}(u, v) := \frac{\vec{r}_u \wedge \vec{r}_v}{\vert{}\vec{r}_u \wedge \vec{r}_v\vert{}}$ 为 $S$ 的单位法向量场。称二次微分式
+
+
+$$\mathrm{II} := -\langle d\vec{r}, d\vec{n} \rangle = \langle d^2\vec{r}, \vec{n} \rangle$$
+
+
+
+为曲面 $S$ 的**第二基本形式**。
+
+
+* **第二类基本量**：利用正交关系 $\langle \vec{r}_u, \vec{n} \rangle = 0$ 和 $\langle \vec{r}_v, \vec{n} \rangle = 0$ 两边求偏导，定义系数 $L, M, N$：
+
+
+
+$$\begin{aligned} L &:= -\langle \vec{r}_u, \vec{n}_u \rangle = \langle \vec{r}_{uu}, \vec{n} \rangle = \frac{(\vec{r}_{uu}, \vec{r}_u, \vec{r}_v)}{\sqrt{EG - F^2}} \\ M &:= -\langle \vec{r}_u, \vec{n}_v \rangle = -\langle \vec{r}_v, \vec{n}_u \rangle = \langle \vec{r}_{uv}, \vec{n} \rangle = \frac{(\vec{r}_{uv}, \vec{r}_u, \vec{r}_v)}{\sqrt{EG - F^2}} \\ N &:= -\langle \vec{r}_v, \vec{n}_v \rangle = \langle \vec{r}_{vv}, \vec{n} \rangle = \frac{(\vec{r}_{vv}, \vec{r}_u, \vec{r}_v)}{\sqrt{EG - F^2}} \end{aligned}$$
+
+
+
+则第二基本形式展开为：
+
+
+
+$$\mathrm{II} = L\,du^2 + 2M\,du\,dv + N\,dv^2 = \begin{pmatrix} du & dv \end{pmatrix} \begin{pmatrix} L & M \\ M & N \end{pmatrix} \begin{pmatrix} du \\ dv \end{pmatrix}$$
+
+
+* **切空间上的二次型表示**：对任意切向量 $w \in T_PS = \operatorname{Span}_{\mathbb{R}}\{\vec{r}_u, \vec{r}_v\}$，存在唯一的坐标对 $(\lambda, \mu) \in \mathbb{R}^2$ 使得 $w = \lambda\vec{r}_u + \mu\vec{r}_v$，此时：
+
+
+
+$$\mathrm{II}(w, w) = \begin{pmatrix} \lambda & \mu \end{pmatrix} \begin{pmatrix} L & M \\ M & N \end{pmatrix} \begin{pmatrix} \lambda \\ \mu \end{pmatrix} = L\lambda^2 + 2M\lambda\mu + N\mu^2$$
+
+
+
+### 2. 变换性质与局部凹凸形态判定
+
+
+
+* **定理（参数变换下的不变性）**：曲面 $S$ 的第二基本形式在**保定向参数变换**（雅可比行列式 $\det \frac{\partial(u, v)}{\partial(\tilde{u}, \tilde{v})} > 0$，此时法向量 $\vec{n}$ 不变）下保持不变；在**反定向参数变换**（$\det \frac{\partial(u, v)}{\partial(\tilde{u}, \tilde{v})} < 0$，此时 $\vec{n} \mapsto -\vec{n}$）下改变符号（$\mathrm{II} \mapsto -\mathrm{II}$）。
+
+
+* **定理（空间等距变换下的不变性）**：曲面 $S$ 的第二基本形式在 $\mathbb{R}^3$ 的**刚体运动**（$\det A = 1$）下保持不变；而在**反刚体运动 / 反射变换**（$\det A = -1$）下改变符号。
+
+
+> **[注记]**：因为反射变换会将右手系变为左手系，导致叉积定义的单位法向量反向 $\vec{n} \mapsto -\vec{n}$，从而使 $\mathrm{II}$ 反号。
+
+
+* **命题（第二基本形式与曲面局部形状）**：
+
+
+1. **椭圆点（Elliptic Point，$LN - M^2 > 0$）**：第二基本形式 $\mathrm{II}$ 是正定或负定二次型。在该点附近，曲面严格位于切平面的同一侧，曲面局部是**严格凸的**（或凹的，具体正负由法向量 $\vec{n}$ 的指向决定：当 $L > 0$ 时向 $\vec{n}$ 方向弯曲，当 $L < 0$ 时背离 $\vec{n}$ 方向弯曲）。
+
+
+2. **双曲点（Hyperbolic Point，$LN - M^2 < 0$）**：第二基本形式 $\mathrm{II}$ 是不定二次型。在该点附近，曲面会穿过切平面，局部呈**马鞍形（Saddle Shape）**。
+
+
+3. **抛物点与平点（补充 $LN - M^2 = 0$ 的退化情形）**：
+* 若 $LN - M^2 = 0$ 但 $L, M, N$ 不全为零，称为**抛物点（Parabolic Point）**（$\mathrm{II}$ 为半定二次型，如圆柱面、圆锥面上的点）；
+* 若 $L = M = N = 0$，称为**平点（Planar Point）**（$\mathrm{II}$ 恒为零，如平面上的点）。
+
+
+
+
+
+### 3. 法曲率（Normal Curvature）
+
+
+
+* **定义（单位切向量下的法曲率）**：给定曲面 $S$ 在点 $P_0$ 处的**单位切向量** $w := \xi\vec{r}_u + \eta\vec{r}_v \in T_{P_0}S$（满足 $\vert{}w\vert{}^2 = \mathrm{I}(w, w) = E\xi^2 + 2F\xi\eta + G\eta^2 = 1$），称
+
+
+$$\kappa_n(w) := \mathrm{II}(w, w) = L\xi^2 + 2M\xi\eta + N\eta^2$$
+
+
+
+为曲面 $S$ 在点 $P_0$ 处沿着单位切向量 $w$ 方向的**法曲率**。
+
+
+* **补充拓展（非单位切向量的一般法曲率公式与 Meusnier 定理）**：
+* **任意非零切向量方向**：若切向量 $v = du\,\vec{r}_u + dv\,\vec{r}_v \in T_{P_0}S \setminus \{\vec{0}\}$ 未做单位化，将其归一化为 $w = \frac{v}{\vert{}v\vert{}} = \frac{v}{\sqrt{\mathrm{I}(v, v)}}$ 代入上述定义，由二次型的齐次性立得一般方向 $(du : dv)$ 的法曲率公式：
+
+$$\kappa_n(v) = \mathrm{II}\left(\frac{v}{\vert{}v\vert{}}, \frac{v}{\vert{}v\vert{}}\right) = \frac{\mathrm{II}(v, v)}{\mathrm{I}(v, v)} = \frac{L\,du^2 + 2M\,du\,dv + N\,dv^2}{E\,du^2 + 2F\,du\,dv + G\,dv^2}$$
+
+
+* **几何意义（Meusnier 定理）**：设 $\alpha(s) \subset S$ 是曲面上过点 $P_0$ 且在 $P_0$ 处以单位向量 $w = \dot{\alpha}(0)$ 为切向量的任意弧长参数曲线。对恒等式 $\langle \dot{\alpha}(s), \vec{n}(s) \rangle = 0$ 求导得：
+
+$$\langle \ddot{\alpha}(0), \vec{n}(P_0) \rangle = -\langle \dot{\alpha}(0), \dot{\vec{n}}(0) \rangle = \mathrm{II}(w, w) = \kappa_n(w)$$
+
+
+
+又因为曲线的空间加速度为 $\ddot{\alpha}(0) = \kappa\vec{n}_{\text{curve}}$（其中 $\kappa, \vec{n}_{\text{curve}}$ 分别为曲线 $\alpha$ 的空间曲率与主法向量），故有：
+
+$$\kappa_n(w) = \kappa \langle \vec{n}_{\text{curve}}, \vec{n}(P_0) \rangle = \kappa \cos\theta$$
+
+
+
+即**法曲率 $\kappa_n(w)$ 等于曲面上沿 $w$ 方向的曲线在 $P_0$ 处的曲率向量 $\ddot{\alpha}$ 在曲面单位法向量 $\vec{n}$ 上的投影**。特别地，过 $w$ 和 $\vec{n}(P_0)$ 的平面（法截面）与曲面相交所得截线（法截线）在 $P_0$ 处的有向曲率恰好等于 $\kappa_n(w)$。

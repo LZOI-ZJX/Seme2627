@@ -1,0 +1,204 @@
+---
+title: "随机信号分析"
+format:
+  html:
+    code-fold: false
+---
+
+
+# ？
+
+多维随机变量 $X(t,\omega)$，是函数族。$\omega$ 决定波形
+
+采样 $P:t_0 ,t_1,\dots,t_n$ 当 $n\to \infty$ 时对 $n$ 个随机变量分析等同对整个随机信号分析
+
+$\mu_X(t) := \mathbb{E}[X(t)]$
+
+
+
+## 宽平稳（WSS）
+**宽平稳**（Wide-Sense Stationary, 简称 **WSS**），又称**弱平稳**（Weak-Sense Stationary）或**二阶平稳**（Second-Order Stationary），是随机过程理论与统计信号处理中对随机过程统计特性时间不变性的一种二阶矩层面的约束。
+
+---
+
+### 数学定义
+
+设 $\{X(t), t \in T\}$ 为实值或复值随机过程（$T$ 可以是连续时间 $\mathbb{R}$ 或离散时间 $\mathbb{Z}$）。若 $X(t)$ 满足以下三个条件，则称其为**宽平稳过程**：
+
+1. **二阶矩有限**：对任意 $t \in T$，均有
+
+$$\int_{\Omega} X^2(t, \omega) \, dP(\omega) = \mathbb{E}\left[\vert{}X(t)\vert{}^2\right] < \infty$$
+
+
+2. **均值为常数**：均值函数与时间 $t$ 无关，即
+
+$$\mu_X(t) = \mathbb{E}[X(t)] = \mu \quad (\text{常数})$$
+
+
+3. **自协方差（或自相关）仅与时间差相关**：对任意 $t_1, t_2 \in T$，自协方差函数仅取决于时间间隔 $\tau = t_2 - t_1$，而与参考时间起点无关：
+
+$$C_X(t_1, t_2) = \mathbb{E}\left[(X(t_1) - \mu)(X(t_2) - \mu)^*\right] = C_X(\tau)$$
+
+
+
+同理，其自相关函数也满足：
+
+$$R_X(t, t+\tau) = \mathbb{E}\left[X(t) X^*(t+\tau)\right] = R_X(\tau)$$
+
+
+
+*(注：式中 $*$ 表示复共轭，若为实随机过程则直接为乘积。)*
+
+---
+
+### 基本性质
+
+对于宽平稳过程，其自相关函数 $R_X(\tau)$ 具备以下性质：
+
+* **共轭对称性**：$R_X(-\tau) = R_X^*(\tau)$；对于实过程，$R_X(-\tau) = R_X(\tau)$ 为偶函数。
+* **原点极值性**：$\vert{}R_X(\tau)\vert{} \le R_X(0) = \mathbb{E}\left[\vert{}X(t)\vert{}^2\right]$，即原点处取到平均总功率。（自己和自己最相关）
+* **非负定性**：对任意复常数序列 $\{a_i\}$ 及时间点 $\{t_i\}$，二次型 $\sum_{j} \sum_{k} a_j a_k^* R_X(t_j - t_k) \ge 0$ 恒成立。
+
+---
+
+#### 宽平稳（WSS）与严平稳（SSS）的对比
+
+* **严平稳（Strict-Sense Stationary, SSS）**：要求过程的**任意有限维联合概率分布族**在时间平移下保持不变，即对任意整数 $n$、时间点 $t_1, \dots, t_n$ 和平移量 $\tau$，联合累积分布函数满足：
+
+$$F_{t_1, \dots, t_n}(x_1, \dots, x_n) = F_{t_1+\tau, \dots, t_n+\tau}(x_1, \dots, x_n)$$
+
+
+
+两者之间的关系如下：
+
+1. **严平稳不一定蕴含宽平稳**：
+严平稳只约束概率分布的时间不变性，不保证矩的存在性。如果一个严平稳过程的一阶矩或二阶矩发散（例如独立同分布的柯西分布序列），则它不是宽平稳的。只有当严平稳过程同时满足二阶矩有限时，它才一定是宽平稳过程。
+2. **宽平稳一般不蕴含严平稳**：
+宽平稳仅约束一阶矩与二阶矩，无法约束三阶及更高阶的联合矩或非线性变换后的统计特性。
+3. **高斯过程的等价性**：
+若 $X(t)$ 为联合高斯过程，由于多元正态分布完全由其一阶均值和二阶协方差矩阵唯一确定，此时 **宽平稳与严平稳互为充要条件**。
+
+### 联合宽平稳 JWSS
+
+**联合宽平稳**（Jointly Wide-Sense Stationary, 简称 **JWSS**）是将宽平稳性从单个随机过程扩展到**两个（或多个）随机过程交互系统**时的概念。它要求参与过程不仅各自保持二阶平稳，且它们之间的二阶互统计关联在时间平移下也保持不变。
+
+---
+
+#### 数学定义
+
+设 $\{X(t), t \in T\}$ 和 $\{Y(t), t \in T\}$ 为定义在同一概率空间上的两个实值或复值随机过程。若它们满足以下条件，则称 $X(t)$ 与 $Y(t)$ 是**联合宽平稳**的：
+
+1. **各自均为宽平稳（WSS）**：
+* 二阶矩有限：$\mathbb{E}\left[\vert{}X(t)\vert{}^2\right] < \infty, \quad \mathbb{E}\left[\vert{}Y(t)\vert{}^2\right] < \infty$
+* 均值为常数：
+
+$$\mu_X(t) = \mathbb{E}[X(t)] = \mu_X, \quad \mu_Y(t) = \mathbb{E}[Y(t)] = \mu_Y$$
+
+
+* 各自的自相关函数仅与时间差 $\tau$ 有关：
+
+$$R_X(t, t+\tau) = R_X(\tau), \quad R_Y(t, t+\tau) = R_Y(\tau)$$
+
+
+
+
+2. **互相关（或互协方差）仅与时间差相关**：
+对任意时刻 $t_1, t_2$，定义互相关函数 $R_{XY}(t_1, t_2) = \mathbb{E}\left[X(t_1) Y^*(t_2)\right]$。要求其仅取决于时差 $\tau = t_2 - t_1$：
+
+$$R_{XY}(t, t+\tau) = \mathbb{E}\left[X(t) Y^*(t+\tau)\right] = R_{XY}(\tau)$$
+
+
+
+同理，其互协方差函数也仅依赖于 $\tau$：
+
+$$C_{XY}(t, t+\tau) = \mathbb{E}\left[(X(t) - \mu_X)(Y(t+\tau) - \mu_Y)^*\right] = C_{XY}(\tau) = R_{XY}(\tau) - \mu_X \mu_Y^*$$
+
+
+
+*(注：式中 $*$ 表示复共轭；对于实过程，直接取乘积。)*
+
+---
+
+#### 核心代数性质
+
+对于联合宽平稳过程，其互相关函数 $R_{XY}(\tau)$ 具有以下性质：
+
+* **共轭互换反转性**：
+
+$$R_{XY}(\tau) = R_{YX}^*(-\tau)$$
+
+
+
+*(对于实过程，满足 $R_{XY}(\tau) = R_{YX}(-\tau)$。注意：$R_{XY}(\tau)$ 本身一般不是偶函数，只有自身互换并反转时间轴时才对称。)*
+* **互相关边界约束**（由柯西-施瓦茨不等式导出）：
+
+$$\vert{}R_{XY}(\tau)\vert{}^2 \le R_X(0) R_Y(0)$$
+
+
+
+即两过程在任意时延下的互相关模长，受限于二者各自平均总功率的几何平均值。
+
+
+## 遍历性
+
+遍历性（Ergodicity，工程与随机过程中常译为各态历经性）是指：一个随机过程的单条样本轨道在时间轴上的长期平均特性，在某种收敛意义下等于该过程在同一时刻所有可能状态的统计平均（集总平均）特性。
+
+若一个过程具备遍历性，研究者便无需观测该过程在大量独立重复实验下的整体样本集合，只需对单次实验采集足够长的单条时间序列，即可推断出其统计特征。
+
+统计平均 = 时间平均 （大数定律） $\lim_{n \to \infty} P(|\frac{1}{n}\sum x - \mathbb{E}[x] | < \epsilon)=0$ 
+
+统计平均（集总平均）
+
+$$\mathbb{E}[g(X(t))] = \int x g(x) f_X(x) dx$$
+
+时间平均
+
+$$\langle g(X(t)) \rangle = \lim\limits_{T\to\infty} \frac{1}{2T}\int_{-T}^T g(X(t)) dt$$
+
+## 高斯过程
+
+如果一个随机过程 $f(x)$ 的任意有限个时间或空间点取值构成的组合，都服从多元正态分布（多元高斯分布），那么这个随机过程就被称为高斯过程.可以将其直观地理解为：“函数的概率分布”。普通的高斯分布是对一个向量或随机变量建模，而高斯过程是对整个函数空间进行建模
+
+$$f(x) \sim \mathcal{GP}(m(x), k(x, x'))$$
+
+高斯过程完全由两个数学函数共同确定：
+
+* 均值函数 $m(t) = \mathbb{E}[X(t)]$：定义了函数在任意输入 $x$ 处的期望值，在缺乏先验信息时通常被简化为零常数（即 $m(x) = 0$）。
+* 协方差函数（核函数） $k(t, t') = \mathbb{E}\left[(X(t) - m(t))(X(t') - m(t'))^*\right]$：定义了不同输入点 $x$ 与 $x'$ 对应的输出值之间的相关性，直接决定了生成函数的平滑度、变化剧烈程度和周期性等先验性质（例如常用的平方指数核 / RBF 核）。
+
+## 功率谱
+
+$$S_X(\omega) = \lim_{T \to \infty} \frac{1}{2T} \mathbb{E}\left[ \left\vert{} \int_{-T}^{T} X(t) e^{-j\omega t} dt \right\vert{}^2 \right]$$
+
+### 维纳-辛钦定理（Wiener-Khinchin Theorem，相关函数变换法）
+
+对于连续时间宽平稳（WSS）随机过程，其功率谱密度与其自相关函数 $R_X(\tau) = \mathbb{E}[X(t)X^*(t+\tau)]$ 互为一对傅里叶变换对：
+
+$$S_X(\omega) = \mathcal{F}\left\{ R_X(\tau) \right\} = \int_{-\infty}^{\infty} R_X(\tau) e^{-j\omega \tau} d\tau$$
+
+其逆变换形式为：
+
+$$R_X(\tau) = \mathcal{F}^{-1}\left\{ S_X(\omega) \right\} = \frac{1}{2\pi} \int_{-\infty}^{\infty} S_X(\omega) e^{j\omega \tau} d\omega$$
+
+## 白噪声
+
+白噪声三条件：
+
+1. 宽平稳
+2. $\mu_X = 0$
+3. $S_X(\omega) = Const \eq R_X(\tau) = Const \cdot \delta(\tau)$ 条件强
+
+带限白噪声：
+
+1. 功率谱密度仅在有限频段是常数，在此之外突变为0
+2. 
+$$S_X(\omega) = \begin{cases} \frac{N_0}{2}, & \vert{}\omega\vert{} \le \omega_B \\ 0, & \vert{}\omega\vert{} > \omega_B \end{cases}$$
+3. $$R_X(\tau) = \frac{1}{2\pi} \int_{-\omega_B}^{\omega_B} \frac{N_0}{2} e^{j\omega \tau} d\omega = \frac{N_0}{4\pi} \left[ \frac{e^{j\omega_B \tau} - e^{-j\omega_B \tau}}{j\tau} \right] = N_0 B \frac{\sin(\omega_B \tau)}{\omega_B \tau} = N_0 B \operatorname{sinc}(2B\tau)$$
+
+离散白噪声 **对带限白噪声均匀采样**
+
+离散白噪声直接定义在离散时间序列空间 $\mathbb{Z}$ 上，是数字信号处理、时间序列分析（ARMA 模型）与离散卡尔曼滤波的基础输入。
+
+1. 数学定义离散序列 $W[n]$ 满足均值为常数（通常为 0），其自相关序列满足克罗内克 $\delta$ 函数：$$R_W[m] = \mathbb{E}[W[n]W[n+m]] = \sigma^2 \delta[m] = \begin{cases} \sigma^2, & m = 0 \\ 0, & m \ne 0 \end{cases}$$其中 $\sigma^2 = \mathrm{Var}(W[n])$ 为单点样本的方差。
+2. 功率谱密度（DTFT）根据离散时间维纳-辛钦定理，其离散时间傅里叶变换（DTFT）为：$$S_W(e^{j\omega}) = \sum_{m=-\infty}^{\infty} R_W[m] e^{-j\omega m} = \sigma^2, \quad \omega \in [-\pi, \pi]$$其谱密度在归一化频率主周期 $[-\pi, \pi]$ 内处处等于常数 $\sigma^2$。
+3. 总功率通过逆变换计算平均功率：$$P_{\text{avg}} = R_W[0] = \frac{1}{2\pi} \int_{-\pi}^{\pi} S_W(e^{j\omega}) d\omega = \sigma^2 < \infty$$离散白噪声在数学上完全良定，其总功率恒为有限值 $\sigma^2$，完全避免了连续时间理想白噪声的无穷大发散问题。

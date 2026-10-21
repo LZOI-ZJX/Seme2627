@@ -1,0 +1,27 @@
+---
+title: "2026–2027 学期笔记"
+---
+
+本页是五门课程笔记的导航。仓库里只保存 `.qmd` 源文件，推送到 `main` 后由 GitHub Actions 渲染并发布到 GitHub Pages。
+
+## 课程
+
+### [微分几何](difgeo/Notes.qmd)
+
+三维欧氏空间中的局部与整体曲线论。[作业](difgeo/homework.qmd)
+
+### [金融数学](finmath/Untitled-2.qmd)
+
+概率、费用与离散模型练习。
+
+### [微波遥感](miwavremos/Untitled-2.qmd)
+
+微波、毫米波与太赫兹遥感导论。
+
+### [量子信息学](Quantinfo/Untitled-2.qmd)
+
+量子信息学笔记。
+
+### [随机信号分析](stasig/ssnote.qmd)
+
+随机过程、宽平稳与二阶统计。

@@ -1,0 +1,176 @@
+---
+title: "微波遥感"
+format:
+  html:
+    code-fold: false
+---
+
+
+# Introduction to Remote Sensing
+
+被动遥感，主动遥感
+
+广义微波遥感：毫米波，thz，近距离，远距离。。。
+
+微波特点：
+
+(1) 波长短，易定向辐射
+(2) 频率高，带宽宽，信号容量大
+(3) 穿透电离层
+(4) 金属材料不吸收只反射
+(5) 绝缘材料可穿透，不吸热
+(6) 极性分子材料热作用
+(7) 微波化学作用/非热效应
+
+毫米波特点：
+
+(1) 探测精度更高
+(2) 抗干扰
+(3) 人体细胞谐振频率
+
+THz波特点：
+
+(1) 载频高，带宽大
+(2) 脉冲脉宽在皮秒量级，高信噪比
+(3) 物质特征谱，分辨材料
+(4) 能量低，无损检测，医学成像
+(5) 非金属非极性材料吸收小，探测材料内部信息
+65
+#### 电磁空间
+
+1. **空间**
+
+u100 ：人类活动
+
+u1km ：低空经济
+
+20km ：民航活动
+
+u100km ：临近空间
+
+u2000km ：LEO低轨
+
+u36000km ：MEO中轨
+
+36000km+：GEO高轨
+
+
+2. **频率**
+
+| 波段 | 频率/波长 | 波段 | 频率/波长 | 波段 | 频率/波长 |
+| --- | --- | --- | --- | --- | --- |
+| **P** | 0.23–1 GHz | **Ku** | 12–18 GHz (2cm) | **W** | 75–110 GHz |
+| **L** | 22 cm | **K** | 18–26.5 GHz | **F** | 90–140 GHz |
+| **S** | 10 cm | **Ka** | 26.5–40 GHz | **D** | 110–170 GHz |
+| **C** | 5 cm | **Q** | 33–50 GHz | **G** | 140–220 GHz |
+| **X** | 3 cm | **U** | 40–60 GHz | **Y** | 170–260 GHz |
+|  |  | **V** | 50–75 GHz | **J** | 220–325 GHz |
+|  |  | **E** | 60–90 GHz | **T** | 300 GHz+ |
+
+
+
+3. **功率**
+
+单位 dBm vs Watt
+
+$$
+X=10 log\frac{P_1 (W)}{P_0 (1mW)} dBm
+$$
+
+dBw
+
+$$
+X=10 log\frac{P_1 (W)}{P_0 (1W)} dBm
+$$
+
+dBi 天线增益
+
+dBc 载波谐波比值
+
+dBZ 气象雷达反射率因子
+
+dBsm(sqr meter) RCS雷达散射
+
+4. **极化**
+
+电磁波在空间中的电场即为极化
+
+---
+
+### Basis of Passive Remote Sensing
+
+**普朗克黑体辐射定律**
+
+$$B_f(T) = \frac{2hf^3}{c^2} \frac{1}{e^{\frac{hf}{kT}} - 1} \qquad B_\lambda(T) = \frac{2hc^2}{\lambda^5} \frac{1}{e^{\frac{hc}{\lambda kT}} - 1}$$
+
+---
+
+**瑞利-金斯定律 (Rayleigh-Jeans Law)**
+
+* **适用条件：** 长波 / 低频（$hf \ll kT$）
+* **近似推导：** 当 $x \ll 1$ 时，$e^x - 1 \approx x \implies e^{\frac{hf}{kT}} - 1 \approx \frac{hf}{kT}$
+* **极限公式：**
+
+$$B_f(T) \approx \frac{2f^2 kT}{c^2} \qquad B_\lambda(T) \approx \frac{2c kT}{\lambda^4}$$
+
+
+* **局限：** 高频下预测能量无穷大（“紫外灾难”），经典物理在此失效。
+
+---
+
+**维恩近似 (Wien Approximation)**
+
+* **适用条件：** 短波 / 高频（$hf \gg kT$）
+* **极限公式：** $B_f(T) \approx \frac{2hf^3}{c^2} e^{-\frac{hf}{kT}}$
+
+---
+
+#### Homework
+
+查阅passive microwave rs 卫星及载荷，撰写综述报告
+
+微波遥感卫星的发展
+遥感设备组成与参数指标
+遥感数据是否可下载
+应用价值
+
+### Basis of Active Remote Sensing
+
+雷达：天线+发射机+接收机+信号处理机+显控设备
+
+多普勒效应
+
+$$
+v_r=\frac{f_dc}{2f_0}
+$$
+
+调频连续波雷达FMCW
+
+三角波扫频
+
+雷达脉冲
+
+雷达方程与雷达后向散射
+
+$$
+P_r=\frac{GP_t}{4\pi R^2}\times \frac{\sigma}{4\pi R^2}\times \frac{G \lambda^2}{4\pi}
+$$
+
+$P_t$ 发射功率
+
+$P_r$ 接收功率
+
+$R$ 作用距离
+
+$\lambda$ 工作波长
+
+$G$ 天线增益
+
+$\sigma$ RCS 雷达散射截面
+
+$$
+\sigma= lim_{R \to \inf}4 \pi R^2 |\frac{\vec{E_s}}{\vec{E_i}}|
+$$
+
+## EM wave propagation and reflection
+

@@ -1,0 +1,1362 @@
+---
+title: "微分几何作业"
+format:
+  html:
+    code-fold: false
+---
+
+
+# Week 2
+## 1
+
+### (1) 证明：$s$ 是曲线 $\widetilde{C}$ 的弧长参数，且 $\tilde{\kappa} = \tau, \tilde{\tau} = \kappa$
+
+设曲线 $C$ 的单位切向量、主法向量、副法向量分别为 $\boldsymbol{t}(s), \boldsymbol{n}(s), \boldsymbol{b}(s)$。根据题意，曲线 $C$ 由弧长参数 $s$ 给出，满足 Frenet-Serret 公式：
+
+
+$$\begin{cases} \dfrac{d\boldsymbol{t}}{ds} = \kappa \boldsymbol{n} \\ \dfrac{d\boldsymbol{n}}{ds} = -\kappa \boldsymbol{t} + \tau \boldsymbol{b} \\ \dfrac{d\boldsymbol{b}}{ds} = -\tau \boldsymbol{n} \end{cases}$$
+
+**1. 验证 $s$ 为 $\widetilde{C}$ 的弧长参数**
+
+由变上限积分求导法则：
+
+
+$$\frac{d\tilde{\boldsymbol{r}}}{ds} = \boldsymbol{b}(s)$$
+
+由于 $\boldsymbol{b}(s)$ 是单位向量，其模长满足：
+
+
+$$\left\Vert{}\frac{d\tilde{\boldsymbol{r}}}{ds}\right\Vert{} = \Vert{}\boldsymbol{b}(s)\Vert{} = 1$$
+
+速度大小恒为 $1$，因此参数 $s$ 即为曲线 $\widetilde{C}$ 的弧长参数，且 $\widetilde{C}$ 的单位切向量为：
+
+
+$$\tilde{\boldsymbol{t}}(s) = \frac{d\tilde{\boldsymbol{r}}}{ds} = \boldsymbol{b}(s)$$
+
+---
+
+**2. 计算 $\widetilde{C}$ 的曲率 $\tilde{\kappa}$**
+
+对 $\tilde{\boldsymbol{t}}(s)$ 关于弧长 $s$ 微分：
+
+
+$$\frac{d\tilde{\boldsymbol{t}}}{ds} = \frac{d\boldsymbol{b}}{ds} = -\tau(s)\boldsymbol{n}(s)$$
+
+由曲率定义 $\tilde{\kappa} = \left\Vert{}\dfrac{d\tilde{\boldsymbol{t}}}{ds}\right\Vert{}$，并结合已知条件 $\tau > 0$ 及 $\Vert{}\boldsymbol{n}(s)\Vert{} = 1$：
+
+
+$$\tilde{\kappa} = \Vert{}-\tau(s)\boldsymbol{n}(s)\Vert{} = \vert{}\tau(s)\vert{}\Vert{}\boldsymbol{n}(s)\Vert{} = \tau$$
+
+---
+
+**3. 计算 $\widetilde{C}$ 的挠率 $\tilde{\tau}$**
+
+由曲率公式及 $\tilde{\kappa} = \tau > 0$，可得曲线 $\widetilde{C}$ 的单位主法向量为：
+
+
+$$\tilde{\boldsymbol{n}}(s) = \frac{1}{\tilde{\kappa}}\frac{d\tilde{\boldsymbol{t}}}{ds} = \frac{-\tau \boldsymbol{n}}{\tau} = -\boldsymbol{n}(s)$$
+
+从而 $\widetilde{C}$ 的单位副法向量为：
+
+
+$$\tilde{\boldsymbol{b}}(s) = \tilde{\boldsymbol{t}}(s) \times \tilde{\boldsymbol{n}}(s) = \boldsymbol{b}(s) \times (-\boldsymbol{n}(s)) = -(\boldsymbol{b}(s) \times \boldsymbol{n}(s))$$
+
+由右手标架关系 $\boldsymbol{b} \times \boldsymbol{n} = -\boldsymbol{t}$，得：
+
+
+$$\tilde{\boldsymbol{b}}(s) = \boldsymbol{t}(s)$$
+
+对 $\tilde{\boldsymbol{b}}(s)$ 关于弧长 $s$ 求导，并结合曲线 $\widetilde{C}$ 的 Frenet 公式 $\dfrac{d\tilde{\boldsymbol{b}}}{ds} = -\tilde{\tau}\tilde{\boldsymbol{n}}$：
+
+
+$$\frac{d\tilde{\boldsymbol{b}}}{ds} = \frac{d\boldsymbol{t}}{ds} = \kappa \boldsymbol{n}$$
+
+代入 $\tilde{\boldsymbol{n}} = -\boldsymbol{n}$：
+
+
+$$-\tilde{\tau}\tilde{\boldsymbol{n}} = -\tilde{\tau}(-\boldsymbol{n}) = \tilde{\tau}\boldsymbol{n}$$
+
+对比系数即得：
+
+
+$$\tilde{\tau} = \kappa$$
+
+至此命题全部得证。
+
+---
+
+### (2) $\widetilde{C}$ 的 Frenet 标架
+
+由 (1) 中的计算结果，曲线 $\widetilde{C}$ 在点 $\tilde{\boldsymbol{r}}(s)$ 处的 Frenet 标架 $\{\tilde{\boldsymbol{t}}, \tilde{\boldsymbol{n}}, \tilde{\boldsymbol{b}}\}$ 与原曲线 $C$ 的标架 $\{\boldsymbol{t}, \boldsymbol{n}, \boldsymbol{b}\}$ 之间的关系为：
+
+$$\begin{cases} \tilde{\boldsymbol{t}}(s) = \boldsymbol{b}(s) \\ \tilde{\boldsymbol{n}}(s) = -\boldsymbol{n}(s) \\ \tilde{\boldsymbol{b}}(s) = \boldsymbol{t}(s) \end{cases}$$
+
+写为矩阵变换形式：
+
+
+$$\begin{pmatrix} \tilde{\boldsymbol{t}} \\ \tilde{\boldsymbol{n}} \\ \tilde{\boldsymbol{b}} \end{pmatrix} = \begin{pmatrix} 0 & 0 & 1 \\ 0 & -1 & 0 \\ 1 & 0 & 0 \end{pmatrix} \begin{pmatrix} \boldsymbol{t} \\ \boldsymbol{n} \\ \boldsymbol{b} \end{pmatrix}$$
+
+---
+
+### 性质检验
+
+* **右手正交性**：
+
+$$\det\begin{pmatrix} 0 & 0 & 1 \\ 0 & -1 & 0 \\ 1 & 0 & 0 \end{pmatrix} = 1$$
+
+
+变换矩阵属于 $SO(3)$，故 $\{\tilde{\boldsymbol{t}}, \tilde{\boldsymbol{n}}, \tilde{\boldsymbol{b}}\}$ 保持右手标准正交性。
+* **Frenet 微分方程自洽性**：
+
+$$\frac{d\tilde{\boldsymbol{n}}}{ds} = -\frac{d\boldsymbol{n}}{ds} = -(-\kappa\boldsymbol{t} + \tau\boldsymbol{b}) = -\tau\boldsymbol{b} + \kappa\boldsymbol{t} = -\tilde{\kappa}\tilde{\boldsymbol{t}} + \tilde{\tau}\tilde{\boldsymbol{b}}$$
+
+方程完全自洽。
+
+## 2
+
+**题目：**
+
+12. 给定曲线 $\boldsymbol{r}(s)$，它的曲率和挠率分别是 $\kappa, \tau$；$\boldsymbol{r}(s)$ 的单位切向量 $\boldsymbol{t}(s)$ 可视作单位球面 $S^2$ 上的一条曲线，称为曲线 $\boldsymbol{r}(s)$ 的切线像。证明：曲线 $\tilde{\boldsymbol{r}}(s) = \boldsymbol{t}(s)$ 的曲率、挠率分别为
+
+
+$$\tilde{\kappa} = \sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}, \quad \tilde{\tau} = \frac{\frac{d}{ds}\left(\frac{\tau}{\kappa}\right)}{\kappa\left[1 + \left(\frac{\tau}{\kappa}\right)^2\right]}.$$
+
+
+
+
+---
+
+### 证明过程
+
+设曲线 $\boldsymbol{r}(s)$ 的弧长参数为 $s$，其单位切向量、主法向量、副法向量构成的右手正交标架为 $\{\boldsymbol{t}(s), \boldsymbol{n}(s), \boldsymbol{b}(s)\}$。原曲线满足 Frenet-Serret 公式：
+
+
+$$\begin{cases} \dfrac{d\boldsymbol{t}}{ds} = \kappa \boldsymbol{n} \\ \dfrac{d\boldsymbol{n}}{ds} = -\kappa \boldsymbol{t} + \tau \boldsymbol{b} \\ \dfrac{d\boldsymbol{b}}{ds} = -\tau \boldsymbol{n} \end{cases}$$
+
+曲线 $\tilde{\boldsymbol{r}}(s) = \boldsymbol{t}(s)$，记 $\tilde{\boldsymbol{r}}$ 的弧长参数为 $\tilde{s}$。
+
+#### 1. 弧长微元与单位切向量 $\tilde{\boldsymbol{t}}$
+
+对参数 $s$ 求导：
+
+
+$$\frac{d\tilde{\boldsymbol{r}}}{ds} = \frac{d\boldsymbol{t}}{ds} = \kappa \boldsymbol{n}$$
+
+由于 $\kappa > 0$ 且 $\Vert{}\boldsymbol{n}\Vert{} = 1$，弧长导数（速率）为：
+
+
+$$\frac{d\tilde{s}}{ds} = \left\Vert{}\frac{d\tilde{\boldsymbol{r}}}{ds}\right\Vert{} = \kappa$$
+
+切线像曲线 $\tilde{\boldsymbol{r}}$ 的单位切向量为：
+
+
+$$\tilde{\boldsymbol{t}} = \frac{d\tilde{\boldsymbol{r}}}{d\tilde{s}} = \frac{\frac{d\tilde{\boldsymbol{r}}}{ds}}{\frac{d\tilde{s}}{ds}} = \frac{\kappa \boldsymbol{n}}{\kappa} = \boldsymbol{n}$$
+
+---
+
+#### 2. 曲率 $\tilde{\kappa}$ 的计算
+
+将 $\tilde{\boldsymbol{t}}$ 对其弧长 $\tilde{s}$ 微分：
+
+
+$$\frac{d\tilde{\boldsymbol{t}}}{d\tilde{s}} = \frac{1}{\kappa} \frac{d\boldsymbol{n}}{ds} = \frac{1}{\kappa} (-\kappa \boldsymbol{t} + \tau \boldsymbol{b}) = -\boldsymbol{t} + \frac{\tau}{\kappa} \boldsymbol{b}$$
+
+由于 $\boldsymbol{t} \perp \boldsymbol{b}$ 且均为单位向量，取模即可得到曲率：
+
+
+$$\tilde{\kappa} = \left\Vert{} \frac{d\tilde{\boldsymbol{t}}}{d\tilde{s}} \right\Vert{} = \sqrt{(-1)^2 + \left(\frac{\tau}{\kappa}\right)^2} = \sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}$$
+
+---
+
+#### 3. 主法向量 $\tilde{\boldsymbol{n}}$ 与副法向量 $\tilde{\boldsymbol{b}}$
+
+由 $\tilde{\kappa}$ 的定义，主法向量为：
+
+
+$$\tilde{\boldsymbol{n}} = \frac{1}{\tilde{\kappa}} \frac{d\tilde{\boldsymbol{t}}}{d\tilde{s}} = \frac{-\boldsymbol{t} + \frac{\tau}{\kappa}\boldsymbol{b}}{\sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}}$$
+
+副法向量 $\tilde{\boldsymbol{b}} = \tilde{\boldsymbol{t}} \times \tilde{\boldsymbol{n}}$：
+
+
+$$\tilde{\boldsymbol{b}} = \boldsymbol{n} \times \frac{-\boldsymbol{t} + \frac{\tau}{\kappa}\boldsymbol{b}}{\sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}} = \frac{-(\boldsymbol{n} \times \boldsymbol{t}) + \frac{\tau}{\kappa}(\boldsymbol{n} \times \boldsymbol{b})}{\sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}}$$
+
+代入右手系向量积性质 $\boldsymbol{n} \times \boldsymbol{t} = -\boldsymbol{b}$ 与 $\boldsymbol{n} \times \boldsymbol{b} = \boldsymbol{t}$：
+
+
+$$\tilde{\boldsymbol{b}} = \frac{\frac{\tau}{\kappa}\boldsymbol{t} + \boldsymbol{b}}{\sqrt{1 + \left(\frac{\tau}{\kappa}\right)^2}}$$
+
+---
+
+#### 4. 挠率 $\tilde{\tau}$ 的计算
+
+令 $u(s) = \dfrac{\tau(s)}{\kappa(s)}$，则：
+
+
+$$\tilde{\boldsymbol{b}} = \frac{u \boldsymbol{t} + \boldsymbol{b}}{\sqrt{1 + u^2}}$$
+
+对参数 $s$ 求导：
+
+
+$$\frac{d\tilde{\boldsymbol{b}}}{ds} = \frac{(u' \boldsymbol{t} + u \boldsymbol{t}' + \boldsymbol{b}')\sqrt{1 + u^2} - (u \boldsymbol{t} + \boldsymbol{b})\frac{u u'}{\sqrt{1 + u^2}}}{1 + u^2}$$
+
+其中：
+
+
+$$u \boldsymbol{t}' + \boldsymbol{b}' = u(\kappa \boldsymbol{n}) + (-\tau \boldsymbol{n}) = \left(\frac{\tau}{\kappa} \kappa - \tau\right)\boldsymbol{n} = \boldsymbol{0}$$
+
+将 $u \boldsymbol{t}' + \boldsymbol{b}' = \boldsymbol{0}$ 代入导数表达式并通分整理分子：
+
+
+$$\frac{d\tilde{\boldsymbol{b}}}{ds} = \frac{u' \boldsymbol{t}(1 + u^2) - u u'(u \boldsymbol{t} + \boldsymbol{b})}{(1 + u^2)^{3/2}} = \frac{u'(\boldsymbol{t} - u \boldsymbol{b})}{(1 + u^2)^{3/2}} = -\frac{u'}{1 + u^2} \left( \frac{-\boldsymbol{t} + u \boldsymbol{b}}{\sqrt{1 + u^2}} \right)$$
+
+注意到括号内项即为主法向量 $\tilde{\boldsymbol{n}}$：
+
+
+$$\frac{d\tilde{\boldsymbol{b}}}{ds} = -\frac{u'}{1 + u^2} \tilde{\boldsymbol{n}}$$
+
+结合链式法则与 Frenet 公式 $\dfrac{d\tilde{\boldsymbol{b}}}{d\tilde{s}} = -\tilde{\tau} \tilde{\boldsymbol{n}}$：
+
+
+$$\frac{d\tilde{\boldsymbol{b}}}{ds} = \frac{d\tilde{\boldsymbol{b}}}{d\tilde{s}} \frac{d\tilde{s}}{ds} = -\kappa \tilde{\tau} \tilde{\boldsymbol{n}}$$
+
+对比两式中 $\tilde{\boldsymbol{n}}$ 的系数：
+
+
+$$\kappa \tilde{\tau} = \frac{u'}{1 + u^2} \implies \tilde{\tau} = \frac{u'}{\kappa(1 + u^2)}$$
+
+将 $u = \dfrac{\tau}{\kappa}$ 还原代入，即得：
+
+
+$$\tilde{\tau} = \frac{\frac{d}{ds}\left(\frac{\tau}{\kappa}\right)}{\kappa\left[1 + \left(\frac{\tau}{\kappa}\right)^2\right]}$$
+
+命题得证。
+
+## 3
+
+**题目：**
+
+16. 设 $P_0$ 是 $E^3$ 的曲线 $C$ 上一点，$P$ 是 $C$ 上 $P_0$ 的邻近点，$l$ 是 $P_0$ 处的切线；证明：
+
+
+$$\lim_{P \to P_0} \frac{2d(P, l)}{d^2(P_0, P)} = \kappa(P_0),$$
+
+
+
+
+这里 $d$ 表示 $E^3$ 的距离。
+
+
+
+---
+
+### 证明过程
+
+设曲线 $C$ 采用弧长参数化表示为 $\boldsymbol{r}(s)$。不妨设 $P_0$ 对应的参数为 $s = 0$，即 $P_0 = \boldsymbol{r}(0)$，邻近点 $P$ 对应的参数为 $s$，即 $P = \boldsymbol{r}(s)$。当 $P \to P_0$ 时，即有 $s \to 0$。
+
+记曲线在点 $P_0$ 处的单位切向量为 $\boldsymbol{t}_0$，主法向量为 $\boldsymbol{n}_0$，曲率为 $\kappa_0 = \kappa(P_0)$。
+
+#### 1. 曲线在 $P_0$ 处的局部 Taylor 展开
+
+由弧长参数性质，有：
+
+
+$$\boldsymbol{r}'(0) = \boldsymbol{t}_0, \quad \boldsymbol{r}''(0) = \kappa_0 \boldsymbol{n}_0$$
+
+将 $\boldsymbol{r}(s)$ 在 $s = 0$ 处进行二阶 Taylor 展开：
+
+
+$$\boldsymbol{r}(s) = \boldsymbol{r}(0) + s \boldsymbol{r}'(0) + \frac{s^2}{2} \boldsymbol{r}''(0) + o(s^2) = \boldsymbol{r}(0) + s \boldsymbol{t}_0 + \frac{\kappa_0}{2} s^2 \boldsymbol{n}_0 + o(s^2)$$
+
+位移向量 $\overrightarrow{P_0 P} = \boldsymbol{r}(s) - \boldsymbol{r}(0)$ 展开为：
+
+
+$$\overrightarrow{P_0 P} = s \boldsymbol{t}_0 + \frac{\kappa_0}{2} s^2 \boldsymbol{n}_0 + o(s^2)$$
+
+---
+
+#### 2. 计算分母 $d^2(P_0, P)$
+
+$d(P_0, P)$ 为点 $P_0$ 到点 $P$ 的欧氏距离，即向量 $\overrightarrow{P_0 P}$ 的模长。两边取平方：
+
+
+$$d^2(P_0, P) = \Vert{}\overrightarrow{P_0 P}\Vert{}^2 = \left\Vert{} s \boldsymbol{t}_0 + \frac{\kappa_0}{2} s^2 \boldsymbol{n}_0 + o(s^2) \right\Vert{}^2$$
+
+由于 $\boldsymbol{t}_0 \cdot \boldsymbol{n}_0 = 0$ 且 $\Vert{}\boldsymbol{t}_0\Vert{} = 1$：
+
+
+$$d^2(P_0, P) = s^2 \Vert{}\boldsymbol{t}_0\Vert{}^2 + o(s^2) = s^2 + o(s^2)$$
+
+---
+
+#### 3. 计算分子 $d(P, l)$
+
+切线 $l$ 是过点 $P_0$ 且方向向量为单位向量 $\boldsymbol{t}_0$ 的直线。根据空间几何中点到直线的距离公式：
+
+
+$$d(P, l) = \frac{\Vert{}\overrightarrow{P_0 P} \times \boldsymbol{t}_0\Vert{}}{\Vert{}\boldsymbol{t}_0\Vert{}} = \Vert{}\overrightarrow{P_0 P} \times \boldsymbol{t}_0\Vert{}$$
+
+将 $\overrightarrow{P_0 P}$ 的展开式代入向量积中：
+
+
+$$\overrightarrow{P_0 P} \times \boldsymbol{t}_0 = \left( s \boldsymbol{t}_0 + \frac{\kappa_0}{2} s^2 \boldsymbol{n}_0 + o(s^2) \right) \times \boldsymbol{t}_0$$
+
+由于 $\boldsymbol{t}_0 \times \boldsymbol{t}_0 = \boldsymbol{0}$，且设副法向量 $\boldsymbol{b}_0 = \boldsymbol{t}_0 \times \boldsymbol{n}_0$（即 $\boldsymbol{n}_0 \times \boldsymbol{t}_0 = -\boldsymbol{b}_0$）：
+
+
+$$\overrightarrow{P_0 P} \times \boldsymbol{t}_0 = -\frac{\kappa_0}{2} s^2 \boldsymbol{b}_0 + o(s^2)$$
+
+由于 $\Vert{}\boldsymbol{b}_0\Vert{} = 1$，取模长可得：
+
+
+$$d(P, l) = \left\Vert{} -\frac{\kappa_0}{2} s^2 \boldsymbol{b}_0 + o(s^2) \right\Vert{} = \frac{\kappa_0}{2} s^2 + o(s^2)$$
+
+---
+
+#### 4. 计算极限
+
+将分子与分母的渐近展开式代入待求极限：
+
+
+$$\lim_{P \to P_0} \frac{2d(P, l)}{d^2(P_0, P)} = \lim_{s \to 0} \frac{2 \left(\frac{\kappa_0}{2} s^2 + o(s^2)\right)}{s^2 + o(s^2)} = \lim_{s \to 0} \frac{\kappa_0 s^2 + o(s^2)}{s^2 + o(s^2)} = \lim_{s \to 0} \frac{\kappa_0 + o(1)}{1 + o(1)} = \kappa_0$$
+
+即：
+
+
+$$\lim_{P \to P_0} \frac{2d(P, l)}{d^2(P_0, P)} = \kappa(P_0)$$
+
+命题得证。
+
+## 4
+
+**题目：**
+
+17. 求满足 $\tau = c\kappa$ ($c$ 为常数，$\kappa > 0$) 的曲线。
+
+
+
+---
+
+### 解答与推导
+
+满足曲率与挠率之比 $\dfrac{\tau}{\kappa} = c$（常数）的曲线为**一般螺线**（General Helix，又称**柱面螺线**）；特别地，当 $c = 0$ 时退化为**平面曲线**。
+
+根据 Lancret 定理，空间曲线的切向量与某一固定方向成定角的充要条件是 $\dfrac{\tau}{\kappa}$ 为常数。
+
+---
+
+#### 1. 固定方向向量的确定
+
+设曲线由弧长参数表示为 $\boldsymbol{r}(s)$，其 Frenet 标架为 $\{\boldsymbol{t}(s), \boldsymbol{n}(s), \boldsymbol{b}(s)\}$，满足：
+
+
+$$\begin{cases} \dfrac{d\boldsymbol{t}}{ds} = \kappa \boldsymbol{n} \\ \dfrac{d\boldsymbol{n}}{ds} = -\kappa \boldsymbol{t} + \tau \boldsymbol{b} \\ \dfrac{d\boldsymbol{b}}{ds} = -\tau \boldsymbol{n} \end{cases}$$
+
+* **情形 1：$c = 0$**
+此时 $\tau = 0$，由 $\dfrac{d\boldsymbol{b}}{ds} = \boldsymbol{0}$ 可知副法向量 $\boldsymbol{b}$ 为恒常向量。曲线完全落在与 $\boldsymbol{b}$ 垂直的平面内，因此曲线为**平面曲线**。
+* **情形 2：$c \neq 0$**
+选取常数夹角 $\alpha \in (0, \pi) \setminus \left\{\dfrac{\pi}{2}\right\}$，满足：
+
+$$\cot \alpha = c \quad \left(\text{即 } \cos \alpha = \frac{c}{\sqrt{1 + c^2}}, \; \sin \alpha = \frac{1}{\sqrt{1 + c^2}}\right)$$
+
+
+
+构造单位向量场：
+
+$$\boldsymbol{u}(s) = \cos \alpha \, \boldsymbol{t}(s) + \sin \alpha \, \boldsymbol{b}(s)$$
+
+
+
+将 $\boldsymbol{u}(s)$ 对弧长 $s$ 微分：
+
+$$\frac{d\boldsymbol{u}}{ds} = \cos \alpha \frac{d\boldsymbol{t}}{ds} + \sin \alpha \frac{d\boldsymbol{b}}{ds} = \cos \alpha (\kappa \boldsymbol{n}) + \sin \alpha (-\tau \boldsymbol{n}) = (\kappa \cos \alpha - \tau \sin \alpha)\boldsymbol{n}$$
+
+
+
+由于 $\tau = c\kappa = \kappa \cot \alpha$，代入得：
+
+$$\kappa \cos \alpha - \tau \sin \alpha = \kappa \cos \alpha - (\kappa \cot \alpha)\sin \alpha = 0$$
+
+
+
+因此：
+
+$$\frac{d\boldsymbol{u}}{ds} = \boldsymbol{0}$$
+
+
+
+这说明 $\boldsymbol{u}$ 是一个**固定不变的常单位向量**。
+
+计算切向量 $\boldsymbol{t}(s)$ 与该固定向量 $\boldsymbol{u}$ 的内积：
+
+
+$$\boldsymbol{t}(s) \cdot \boldsymbol{u} = \cos \alpha = \frac{c}{\sqrt{1 + c^2}} = \text{常数}$$
+
+
+这表明曲线各点处的切线与固定方向 $\boldsymbol{u}$ 的夹角恒为常数 $\alpha$。
+
+---
+
+#### 2. 曲线的参数方程形式
+
+建立空间直角坐标系，使得 $z$ 轴正方向与固定向量 $\boldsymbol{u}$ 重合，即取 $\boldsymbol{u} = (0, 0, 1)$。
+
+设曲线的坐标分量为 $\boldsymbol{r}(s) = (x(s), y(s), z(s))$：
+
+
+$$\frac{dz}{ds} = \boldsymbol{t}(s) \cdot \boldsymbol{u} = \cos \alpha \implies z(s) = s \cos \alpha + z_0$$
+
+考虑曲线在 $xy$ 平面上的投影曲线 $\boldsymbol{\gamma}(s) = (x(s), y(s), 0)$，其切向量模长为：
+
+
+$$\left\Vert{}\frac{d\boldsymbol{\gamma}}{ds}\right\Vert{} = \sqrt{\left(\frac{dx}{ds}\right)^2 + \left(\frac{dy}{ds}\right)^2} = \sqrt{1 - \left(\frac{dz}{ds}\right)^2} = \sqrt{1 - \cos^2 \alpha} = \sin \alpha$$
+
+设投影曲线的弧长参数为 $\sigma$，则 $d\sigma = \sin \alpha \, ds$（即 $s = \dfrac{\sigma}{\sin \alpha}$）。若基底平面曲线采用自身弧长参数表示为 $(x(\sigma), y(\sigma))$，则：
+
+
+$$z = s \cos \alpha = \sigma \cot \alpha = c \sigma$$
+
+取常数初值平移归零，满足 $\tau = c\kappa$ 的曲线的一般参数表达式为：
+
+
+$$\boldsymbol{r}(\sigma) = \big(x(\sigma),\, y(\sigma),\, c\sigma\big)$$
+
+
+其中 $(x(\sigma), y(\sigma))$ 为 $xy$ 平面上任意曲率恒不为零的正则平面曲线。
+
+---
+
+### 结构验证清单
+
+* **圆柱螺线（特殊情形）**：若平面底曲线取为半径为 $R$ 的圆，即 $x(\sigma) = R\cos\frac{\sigma}{R}, y(\sigma) = R\sin\frac{\sigma}{R}$，则得到标准的圆柱螺线，此时 $\kappa$ 与 $\tau$ 均为非零常数。
+* **平面曲线（退化情形）**：若 $c = 0$，则 $z(\sigma) = 0$，曲线完全退化为 $xy$ 平面内的平面曲线。
+* **比值验证**：对 $\boldsymbol{r}(\sigma) = (x(\sigma), y(\sigma), c\sigma)$ 直接求导计算 $\kappa$ 与 $\tau$，易验得 $\dfrac{\tau(\sigma)}{\kappa(\sigma)} \equiv c$。
+
+## 5
+
+**题目：**
+
+19. 求沿曲线的向量场 $\boldsymbol{v}(s)$，使其同时满足以下各式：
+
+
+$$\begin{aligned} \dot{\boldsymbol{t}}(s) &= \boldsymbol{v}(s) \wedge \boldsymbol{t}(s), \\ \dot{\boldsymbol{n}}(s) &= \boldsymbol{v}(s) \wedge \boldsymbol{n}(s), \\ \dot{\boldsymbol{b}}(s) &= \boldsymbol{v}(s) \wedge \boldsymbol{b}(s). \end{aligned}$$
+
+
+
+
+---
+
+### 解答与推导
+
+该向量场即为微分几何中的**达布向量场**（Darboux vector field）。
+
+#### 1. 标架正交关系与假设设定
+
+设曲线参数为弧长 $s$，其 Frenet 标架 $\{\boldsymbol{t}(s), \boldsymbol{n}(s), \boldsymbol{b}(s)\}$ 构成右手标准正交基，满足：
+
+
+$$\begin{cases} \boldsymbol{t} \wedge \boldsymbol{n} = \boldsymbol{b}, & \boldsymbol{n} \wedge \boldsymbol{t} = -\boldsymbol{b} \\ \boldsymbol{n} \wedge \boldsymbol{b} = \boldsymbol{t}, & \boldsymbol{b} \wedge \boldsymbol{n} = -\boldsymbol{t} \\ \boldsymbol{b} \wedge \boldsymbol{t} = \boldsymbol{n}, & \boldsymbol{t} \wedge \boldsymbol{b} = -\boldsymbol{n} \end{cases}$$
+
+原曲线满足 Frenet-Serret 公式：
+
+
+$$\begin{cases} \dot{\boldsymbol{t}} = \kappa \boldsymbol{n} \\ \dot{\boldsymbol{n}} = -\kappa \boldsymbol{t} + \tau \boldsymbol{b} \\ \dot{\boldsymbol{b}} = -\tau \boldsymbol{n} \end{cases}$$
+
+将待求的向量场 $\boldsymbol{v}(s)$ 分解在正交基 $\{\boldsymbol{t}, \boldsymbol{n}, \boldsymbol{b}\}$ 上：
+
+
+$$\boldsymbol{v}(s) = v_1(s)\boldsymbol{t}(s) + v_2(s)\boldsymbol{n}(s) + v_3(s)\boldsymbol{b}(s)$$
+
+---
+
+#### 2. 分量求解
+
+* **利用条件 $\dot{\boldsymbol{t}} = \boldsymbol{v} \wedge \boldsymbol{t}$：**
+
+$$\begin{aligned}   \boldsymbol{v} \wedge \boldsymbol{t} &= (v_1\boldsymbol{t} + v_2\boldsymbol{n} + v_3\boldsymbol{b}) \wedge \boldsymbol{t} \\   &= v_2(\boldsymbol{n} \wedge \boldsymbol{t}) + v_3(\boldsymbol{b} \wedge \boldsymbol{t}) \\   &= -v_2 \boldsymbol{b} + v_3 \boldsymbol{n}   \end{aligned}$$
+
+
+
+与 $\dot{\boldsymbol{t}} = \kappa \boldsymbol{n}$ 对比各分量系数：
+
+$$\begin{cases}   v_3 = \kappa \\   -v_2 = 0 \implies v_2 = 0   \end{cases}$$
+
+
+* **利用条件 $\dot{\boldsymbol{b}} = \boldsymbol{v} \wedge \boldsymbol{b}$：**
+代入 $v_2 = 0$ 与 $v_3 = \kappa$，得：
+
+$$\begin{aligned}   \boldsymbol{v} \wedge \boldsymbol{b} &= (v_1\boldsymbol{t} + \kappa\boldsymbol{b}) \wedge \boldsymbol{b} \\   &= v_1(\boldsymbol{t} \wedge \boldsymbol{b}) \\   &= -v_1 \boldsymbol{n}   \end{aligned}$$
+
+
+
+与 $\dot{\boldsymbol{b}} = -\tau \boldsymbol{n}$ 对比系数：
+
+$$-v_1 = -\tau \implies v_1 = \tau$$
+
+
+
+---
+
+#### 3. 完备性验证
+
+将求得的分量 $v_1 = \tau, v_2 = 0, v_3 = \kappa$ 代入第三个条件检验：
+
+
+$$\boldsymbol{v}(s) = \tau(s)\boldsymbol{t}(s) + \kappa(s)\boldsymbol{b}(s)$$
+
+
+计算 $\boldsymbol{v} \wedge \boldsymbol{n}$：
+
+
+$$\begin{aligned} \boldsymbol{v} \wedge \boldsymbol{n} &= (\tau\boldsymbol{t} + \kappa\boldsymbol{b}) \wedge \boldsymbol{n} \\ &= \tau(\boldsymbol{t} \wedge \boldsymbol{n}) + \kappa(\boldsymbol{b} \wedge \boldsymbol{n}) \\ &= \tau\boldsymbol{b} - \kappa\boldsymbol{t} \\ &= -\kappa\boldsymbol{t} + \tau\boldsymbol{b} = \dot{\boldsymbol{n}} \end{aligned}$$
+
+
+三个方程全部严格满足。
+
+所求向量场唯一存在，表达式为：
+
+
+$$\boldsymbol{v}(s) = \tau(s)\boldsymbol{t}(s) + \kappa(s)\boldsymbol{b}(s)$$
+
+---
+
+### 性质验证清单
+
+* **瞬时旋转模长**：达布向量的模长为 $\Vert{}\boldsymbol{v}(s)\Vert{} = \sqrt{\kappa(s)^2 + \tau(s)^2}$，代表 Frenet 标架绕瞬时轴转动的角速度大小。
+* **瞬时转轴方向**：瞬时转轴位于由切向量 $\boldsymbol{t}$ 与副法向量 $\boldsymbol{b}$ 张成的**直 rectification 平面（从切平面）** 内，与主法向量垂直（$\boldsymbol{v} \cdot \boldsymbol{n} = 0$）。
+* **刚体运动等价性**：该结果将 Frenet 方程的反对称微分算子转化为空间角速度向量外积形式 $\dot{\boldsymbol{e}}_i = \boldsymbol{v} \times \boldsymbol{e}_i$。
+
+## 6
+**题目：**
+
+20. 证明：曲线 $\boldsymbol{r}(t) = (t + \sqrt{3}\sin t, \, 2\cos t, \, \sqrt{3}t - \sin t)$ 与曲线 $\tilde{\boldsymbol{r}}(t) = \left(2\cos\dfrac{t}{2}, \, 2\sin\dfrac{t}{2}, \, -t\right)$ 是合同的。
+
+
+
+---
+
+### 证明过程
+
+在欧氏空间 $E^3$ 中，两条正则曲线合同是指存在刚体运动（即正交变换与平移），使得一条曲线变换到另一条曲线。证明曲线合同可以通过**显式构造刚体变换**或利用**空间曲线基本定理**（证明两曲线具有相同的曲率与挠率常数）。
+
+---
+
+#### 方法一：显式构造刚体运动（正交旋转变换）
+
+考虑将曲线 $\boldsymbol{r}(t)$ 进行正交坐标变换。构造变换矩阵：
+
+
+$$M = \begin{pmatrix} 0 & 1 & 0 \\ -\dfrac{\sqrt{3}}{2} & 0 & \dfrac{1}{2} \\ \dfrac{1}{2} & 0 & \dfrac{\sqrt{3}}{2} \end{pmatrix}$$
+
+**1. 验证 $M$ 是刚体运动（固有正交变换）**
+
+* 正交性：
+
+$$M M^T = \begin{pmatrix}   0 & 1 & 0 \\   -\frac{\sqrt{3}}{2} & 0 & \frac{1}{2} \\   \frac{1}{2} & 0 & \frac{\sqrt{3}}{2}   \end{pmatrix}   \begin{pmatrix}   0 & -\frac{\sqrt{3}}{2} & \frac{1}{2} \\   1 & 0 & 0 \\   0 & \frac{1}{2} & \frac{\sqrt{3}}{2}   \end{pmatrix}   =   \begin{pmatrix}   1 & 0 & 0 \\   0 & 1 & 0 \\   0 & 0 & 1   \end{pmatrix}   = I$$
+
+
+* 行列式：按第一行展开计算得
+
+$$\det M = -1 \cdot \left( -\frac{\sqrt{3}}{2} \cdot \frac{\sqrt{3}}{2} - \frac{1}{2} \cdot \frac{1}{2} \right) = -1 \cdot \left( -\frac{3}{4} - \frac{1}{4} \right) = 1$$
+
+
+
+因此 $M \in SO(3)$，代表 $E^3$ 中的空间纯旋转变换。
+
+**2. 计算变换后的曲线**
+将曲线 $\boldsymbol{r}(t) = \begin{pmatrix} t + \sqrt{3}\sin t \\ 2\cos t \\ \sqrt{3}t - \sin t \end{pmatrix}$ 左乘旋转矩阵 $M$：
+
+
+$$M \boldsymbol{r}(t) = \begin{pmatrix} 0 & 1 & 0 \\ -\frac{\sqrt{3}}{2} & 0 & \frac{1}{2} \\ \frac{1}{2} & 0 & \frac{\sqrt{3}}{2} \end{pmatrix} \begin{pmatrix} t + \sqrt{3}\sin t \\ 2\cos t \\ \sqrt{3}t - \sin t \end{pmatrix}$$
+
+逐分量计算：
+
+* 第一个分量：$0 \cdot (t + \sqrt{3}\sin t) + 1 \cdot (2\cos t) + 0 \cdot (\sqrt{3}t - \sin t) = 2\cos t$
+* 第二个分量：$-\dfrac{\sqrt{3}}{2}(t + \sqrt{3}\sin t) + \dfrac{1}{2}(\sqrt{3}t - \sin t) = -\left(\dfrac{3}{2} + \dfrac{1}{2}\right)\sin t = -2\sin t$
+* 第三个分量：$\dfrac{1}{2}(t + \sqrt{3}\sin t) + \dfrac{\sqrt{3}}{2}(\sqrt{3}t - \sin t) = \left(\dfrac{1}{2} + \dfrac{3}{2}\right)t = 2t$
+
+即：
+
+
+$$M \boldsymbol{r}(t) = \begin{pmatrix} 2\cos t \\ -2\sin t \\ 2t \end{pmatrix}$$
+
+**3. 对比曲线 $\tilde{\boldsymbol{r}}$**
+曲线 $\tilde{\boldsymbol{r}}$ 的参数表达式为：
+
+
+$$\tilde{\boldsymbol{r}}(u) = \begin{pmatrix} 2\cos\dfrac{u}{2} \\ 2\sin\dfrac{u}{2} \\ -u \end{pmatrix}$$
+
+
+令参数代换 $u = -2t$，代入 $\tilde{\boldsymbol{r}}(u)$：
+
+
+$$\tilde{\boldsymbol{r}}(-2t) = \begin{pmatrix} 2\cos(-t) \\ 2\sin(-t) \\ -(-2t) \end{pmatrix} = \begin{pmatrix} 2\cos t \\ -2\sin t \\ 2t \end{pmatrix} = M \boldsymbol{r}(t)$$
+
+这表明曲线 $\tilde{\boldsymbol{r}}$ 与曲线 $\boldsymbol{r}$ 在空间中的轨迹仅相差一个 $SO(3)$ 旋转变换 $M$ 以及参数反向重整，因此两曲线合同。
+
+---
+
+#### 方法二：空间曲线基本定理（不变量对比）
+
+**1. 计算曲线 $\boldsymbol{r}(t)$ 的曲率与挠率**
+
+
+$$\begin{aligned} \boldsymbol{r}'(t) &= (1 + \sqrt{3}\cos t, \, -2\sin t, \, \sqrt{3} - \cos t) \\ \Vert{}\boldsymbol{r}'(t)\Vert{}^2 &= (1 + \sqrt{3}\cos t)^2 + 4\sin^2 t + (\sqrt{3} - \cos t)^2 \\ &= 1 + 2\sqrt{3}\cos t + 3\cos^2 t + 4\sin^2 t + 3 - 2\sqrt{3}\cos t + \cos^2 t \\ &= 8 \implies \Vert{}\boldsymbol{r}'(t)\Vert{} = 2\sqrt{2} \end{aligned}$$
+
+
+二阶导数与三阶导数：
+
+
+$$\boldsymbol{r}''(t) = (-\sqrt{3}\sin t, \, -2\cos t, \, \sin t), \quad \boldsymbol{r}'''(t) = (-\sqrt{3}\cos t, \, 2\sin t, \, \cos t)$$
+
+
+计算叉积：
+
+
+$$\boldsymbol{r}'(t) \times \boldsymbol{r}''(t) = (-2 + 2\sqrt{3}\cos t, \, -4\sin t, \, -2\cos t - 2\sqrt{3})$$
+
+
+模长平方：
+
+
+$$\Vert{}\boldsymbol{r}' \times \boldsymbol{r}''\Vert{}^2 = (-2 + 2\sqrt{3}\cos t)^2 + 16\sin^2 t + (-2\cos t - 2\sqrt{3})^2 = 32 \implies \Vert{}\boldsymbol{r}' \times \boldsymbol{r}''\Vert{} = 4\sqrt{2}$$
+
+
+曲率：
+
+
+$$\kappa = \frac{\Vert{}\boldsymbol{r}' \times \boldsymbol{r}''\Vert{}}{\Vert{}\boldsymbol{r}'\Vert{}^3} = \frac{4\sqrt{2}}{(2\sqrt{2})^3} = \frac{1}{4}$$
+
+
+混合积：
+
+
+$$(\boldsymbol{r}' \times \boldsymbol{r}'') \cdot \boldsymbol{r}''' = (-2 + 2\sqrt{3}\cos t)(-\sqrt{3}\cos t) - 8\sin^2 t + (-2\cos t - 2\sqrt{3})(\cos t) = -8$$
+
+
+挠率：
+
+
+$$\tau = \frac{(\boldsymbol{r}', \boldsymbol{r}'', \boldsymbol{r}''')}{\Vert{}\boldsymbol{r}' \times \boldsymbol{r}''\Vert{}^2} = \frac{-8}{32} = -\frac{1}{4}$$
+
+**2. 计算曲线 $\tilde{\boldsymbol{r}}(t)$ 的曲率与挠率**
+
+
+$$\begin{aligned} \tilde{\boldsymbol{r}}'(t) &= \left(-\sin\frac{t}{2}, \, \cos\frac{t}{2}, \, -1\right) \implies \Vert{}\tilde{\boldsymbol{r}}'(t)\Vert{} = \sqrt{2} \\ \tilde{\boldsymbol{r}}''(t) &= \left(-\frac{1}{2}\cos\frac{t}{2}, \, -\frac{1}{2}\sin\frac{t}{2}, \, 0\right) \\ \tilde{\boldsymbol{r}}'''(t) &= \left(\frac{1}{4}\sin\frac{t}{2}, \, -\frac{1}{4}\cos\frac{t}{2}, \, 0\right) \end{aligned}$$
+
+
+叉积与混合积：
+
+
+$$\tilde{\boldsymbol{r}}' \times \tilde{\boldsymbol{r}}'' = \left(-\frac{1}{2}\sin\frac{t}{2}, \, \frac{1}{2}\cos\frac{t}{2}, \, \frac{1}{2}\right) \implies \Vert{}\tilde{\boldsymbol{r}}' \times \tilde{\boldsymbol{r}}''\Vert{} = \sqrt{\frac{1}{4} + \frac{1}{4}} = \frac{\sqrt{2}}{2}$$
+
+$$(\tilde{\boldsymbol{r}}', \tilde{\boldsymbol{r}}'', \tilde{\boldsymbol{r}}''') = (\tilde{\boldsymbol{r}}' \times \tilde{\boldsymbol{r}}'') \cdot \tilde{\boldsymbol{r}}''' = -\frac{1}{8}\sin^2\frac{t}{2} - \frac{1}{8}\cos^2\frac{t}{2} = -\frac{1}{8}$$
+
+
+曲率与挠率：
+
+
+$$\tilde{\kappa} = \frac{\frac{\sqrt{2}}{2}}{(\sqrt{2})^3} = \frac{1}{4}, \quad \tilde{\tau} = \frac{-\frac{1}{8}}{\frac{1}{2}} = -\frac{1}{4}$$
+
+两曲线的曲率和挠率恒为常数且对应相等：
+
+
+$$\kappa = \tilde{\kappa} = \frac{1}{4}, \quad \tau = \tilde{\tau} = -\frac{1}{4}$$
+
+
+根据空间曲线论基本定理，由曲率和挠率在相差刚体运动下唯一确定空间曲线，故两曲线合同。
+
+---
+
+### 结构与几何参数验证清单
+
+* **几何类型判定**：两曲线均为底圆半径 $R = \dfrac{\kappa}{\kappa^2 + \tau^2} = \dfrac{1/4}{(1/16) + (1/16)} = 2$，螺距绝对值 $h = \dfrac{2\pi \vert{}\tau\vert{}}{\kappa^2 + \tau^2} = 4\pi$ 的标准**圆柱螺线**。
+* **刚体变换矩阵验证**：旋转矩阵 $M$ 严格满足 $M^T M = I$ 且 $\det M = 1$。
+* **点集等价映射**：参数映射 $u = -2t$ 为光滑双射，恒等式 $\tilde{\boldsymbol{r}}(-2t) = M \boldsymbol{r}(t)$ 对任意 $t \in \mathbb{R}$ 恒成立。
+
+## 7
+**题目：**
+
+2. 回忆Fáry-Milnor 定理：设 $\gamma: [0, L] \to \mathbb{R}^3$ 是一条光滑弧长参数简单闭曲线。如果 $\gamma$ 是一个非平凡纽结，则其全曲率积分满足
+
+
+$$\int_\gamma \kappa(s)\, ds > 4\pi.$$
+
+
+
+
+思考：是否存在 $\varepsilon > 0$，对任何非平凡纽结 $\gamma$，满足
+
+
+$$\int_\gamma \kappa(s)\, ds \ge 4\pi + \varepsilon.$$
+
+
+
+
+若存在，请证明；若不存在，请说明理由。
+
+
+
+---
+
+### 解答
+
+**结论：不存在这样的 $\varepsilon > 0$。**
+
+其原因在于：所有非平凡纽结的全曲率积分在全体非平凡纽结上的**下确界恰好等于 $4\pi$**，即
+
+
+$$\inf_{\gamma \text{ 为非平凡纽结}} \int_\gamma \kappa(s)\, ds = 4\pi.$$
+
+
+因此，对任意给定的 $\varepsilon > 0$，总能构造出一个非平凡纽结 $\gamma_\varepsilon$，使其全曲率积分严格落在 $(4\pi, 4\pi + \varepsilon)$ 之内。
+
+---
+
+### 理由与理论证明
+
+该结论由 J. W. Milnor 于 1950 年关于纽结全曲率的经典论文中给出。以下给出基于纽结桥数与几何构造的推导说明：
+
+#### 1. 桥数与 Milnor 全曲率下确界定理
+
+设 $K$ 为某一纽结类型，定义 $K$ 的**桥数**（Bridge Index）$b(K)$ 为该纽结在所有正则投影中上穿弧（bridges）的最小数目，或等价地，沿某一方向投影时高度函数的最小局部极大值数目。
+
+* 任何非平凡纽结均满足 $b(K) \ge 2$。
+* 存在大量 2-桥纽结（2-bridge knots），最简单的例子即为**三叶结**（Trefoil Knot $3_1$），其桥数 $b(3_1) = 2$。
+
+Milnor 证明了以下基本定理：
+对于任意纽结类型 $K$，其实现场所能达到的全曲率下确界精确由桥数确定：
+
+
+$$\inf_{\gamma \in K} \int_\gamma \kappa(s)\, ds = 2\pi \cdot b(K)$$
+
+因此，将纽结类型取为三叶结 $K = 3_1$ 时，有：
+
+
+$$\inf_{\gamma \in [3_1]} \int_\gamma \kappa(s)\, ds = 2\pi \cdot 2 = 4\pi$$
+
+
+这直接说明非平凡纽结的全曲率可以任意逼近 $4\pi$。
+
+---
+
+#### 2. 几何逼近构造过程
+
+为了直观展示全曲率如何逼近 $4\pi$，可对三叶结建立如下几何变形（缩放与平滑）序列：
+
+1. **2-桥空间构型分解**：
+取三叶结的一个 2-桥空间多边形表示，选取竖直方向 $\boldsymbol{z}$ 作为基准方向。在此表示下，纽结恰好包含 2 个局部最高点（极大值）和 2 个局部最低点（极小值），并在极值点之间由 4 条单调上升或下降的互不相交的“主干段”（strands）连接。
+2. **横向压缩变形（Linear Thin-Tube Compression）**：
+保持竖直方向的尺度不变，对水平截面进行线性压缩缩放：
+
+$$(x, y, z) \mapsto (\delta x, \, \delta y, \, z), \quad 0 < \delta \ll 1$$
+
+
+
+当 $\delta \to 0$ 时：
+* 4 条竖直单调主干段上的切向量几乎恒与 $\pm \boldsymbol{e}_z$ 平行，其曲率贡献积分满足：
+
+$$\int_{\text{主干段}} \kappa(s)\, ds \to 0$$
+
+
+* 在 2 个极大值和 2 个极小值（共 4 处“发夹弯”处），切向量方向必须完成从向上到向下的 $180^\circ$ 转向。每个掉头区域在极限下逼近一段平面半圆弧，其切向角改变量的下限为 $\pi$。
+
+
+3. **曲率积分计算与极限定理**：
+4 处半圆掉头的曲率贡献之和为：
+
+$$4 \times \pi = 4\pi$$
+
+
+
+通过保持微小但不为零的横向距离 $\delta > 0$ 避免自交，并在拐角处作光滑微调，可以构造出一条处处光滑且无自交的三叶结 $\gamma_\delta$，其全曲率积分满足：
+
+$$\int_{\gamma_\delta} \kappa(s)\, ds = 4\pi + \mathcal{O}(\delta)$$
+
+
+
+令 $\delta \to 0$，该全曲率连续单调递减并收敛至 $4\pi$。
+
+综上，对任意正数 $\varepsilon > 0$，只需选取充分小的 $\delta > 0$，即可使得非平凡纽结 $\gamma_\delta$ 满足：
+
+
+$$4\pi < \int_{\gamma_\delta} \kappa(s)\, ds < 4\pi + \varepsilon$$
+
+
+故不存在常数 $\varepsilon > 0$ 满足题设统一整齐的严格下界要求。
+
+---
+
+### 结构与验证清单
+
+* **极值不可达性验证**：Fáry-Milnor 定理保证了对任意光滑非平凡纽结 $\int_\gamma \kappa ds > 4\pi$ 严格成立（全曲率等号仅在平面凸曲线上取到，对应 $2\pi$；不可内嵌为平面曲线的纽结无法取得下确界 $4\pi$）。
+* **下确界确切性验证**：由 Milnor 关系式 $\inf_{\gamma \in K} \mathrm{TC}(\gamma) = 2\pi b(K)$，当代入最小非平凡纽结桥数 $b(K)=2$ 时，下确界严格为 $4\pi$。
+* **拓扑不变量约束**：若限定纽结类型为高桥数纽结（如双桥数以上的纽结，$b(K) \ge 3$），则存在类内下界 $\ge 6\pi$；但在“**全体非平凡纽结**”的全称量词下，下界由 2-桥纽结（$3_1, 4_1, 5_1$ 等）完全主导并逼近 $4\pi$。
+
+
+# Week 3
+## 1
+**题目：**
+
+1. 求下列曲面的参数表达式：
+(1) $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1 \quad (\text{椭球面});$
+(2) $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = 1 \quad (\text{单叶双曲面});$
+(4) $z = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} \quad (\text{椭圆抛物面}).$
+
+
+
+---
+
+### 解答
+
+#### (1) 椭球面 $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$
+
+利用广义球坐标（经纬度坐标变换），设 $u$ 为纬度角（或与 $xy$ 平面的夹角），$v$ 为经度角（方位角）：
+
+$$\begin{cases} x = a \cos u \cos v \\ y = b \cos u \sin v \\ z = c \sin u \end{cases}$$
+
+* **参数取值范围**：
+
+$$u \in \left[-\frac{\pi}{2}, \, \frac{\pi}{2}\right], \quad v \in [0, \, 2\pi)$$
+
+
+
+*(若采用余纬角 $\theta \in [0, \pi]$，则相应形式为 $x = a\sin\theta\cos\phi, \, y = b\sin\theta\sin\phi, \, z = c\cos\theta$)*
+* **方程验算**：
+
+$$\frac{x^2}{a^2} + \frac{y^2}{b^2} + \frac{z^2}{c^2} = \cos^2 u \cos^2 v + \cos^2 u \sin^2 v + \sin^2 u = \cos^2 u + \sin^2 u = 1$$
+
+
+
+---
+
+#### (2) 单叶双曲面 $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} - \dfrac{z^2}{c^2} = 1$
+
+**常用形式一：双曲柱面坐标参数化**
+
+利用双曲三角恒等式 $\cosh^2 u - \sinh^2 u = 1$ 及 $\cos^2 v + \sin^2 v = 1$：
+
+$$\begin{cases} x = a \cosh u \cos v \\ y = b \cosh u \sin v \\ z = c \sinh u \end{cases}$$
+
+* **参数取值范围**：
+
+$$u \in (-\infty, \, +\infty), \quad v \in [0, \, 2\pi)$$
+
+
+* **方程验算**：
+
+$$\frac{x^2}{a^2} + \frac{y^2}{b^2} - \frac{z^2}{c^2} = \cosh^2 u (\cos^2 v + \sin^2 v) - \sinh^2 u = \cosh^2 u - \sinh^2 u = 1$$
+
+
+
+**备选形式二：直纹面参数化（双曲面的两族直母线表示）**
+
+单叶双曲面为二次直纹面，也可采用直线族参数化（$v$ 控制截面旋转，$u$ 为沿直母线的方向位移）：
+
+
+$$\begin{cases} x = a (\cos v \mp u \sin v) \\ y = b (\sin v \pm u \cos v) \\ z = \pm c u \end{cases} \quad (u \in \mathbb{R}, \, v \in [0, \, 2\pi))$$
+
+---
+
+#### (4) 椭圆抛物面 $z = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2}$
+
+**形式一：广义极坐标参数化（适用于旋转/截面几何分析）**
+
+令水平截面上的椭圆尺度参数为 $u$，幅角为 $v$：
+
+$$\begin{cases} x = a u \cos v \\ y = b u \sin v \\ z = u^2 \end{cases}$$
+
+* **参数取值范围**：
+
+$$u \in [0, \, +\infty), \quad v \in [0, \, 2\pi)$$
+
+
+* **方程验算**：
+
+$$\frac{x^2}{a^2} + \frac{y^2}{b^2} = u^2\cos^2 v + u^2\sin^2 v = u^2 = z$$
+
+
+
+**形式二：Monge 形式（笛卡尔直接投影参数化）**
+
+将曲面直接视为主坐标平面的显式函数图像：
+
+$$\begin{cases} x = u \\ y = v \\ z = \dfrac{u^2}{a^2} + \dfrac{v^2}{b^2} \end{cases} \quad (u \in \mathbb{R}, \, v \in \mathbb{R})$$
+
+---
+
+### 正规曲面条件与参数验证清单
+
+* **正规点（正则性）判定**：计算法向量 $\boldsymbol{r}_u \times \boldsymbol{r}_v$：
+* (1) 椭球面在 $u \neq \pm \frac{\pi}{2}$ 处均有 $\Vert{}\boldsymbol{r}_u \times \boldsymbol{r}_v\Vert{} = a b c \cos u \sqrt{\frac{\cos^2 u}{c^2} + \frac{\sin^2 u\cos^2 v}{a^2} + \frac{\sin^2 u\sin^2 v}{b^2}} \neq 0$；两极点可通过变换坐标轴补齐光滑坐标卡。
+* (2) 单叶双曲面双曲形式中，由于 $\cosh u \ge 1$，在全体定义域 $(u, v) \in \mathbb{R} \times [0, 2\pi)$ 上严格处处非零（雅可比矩阵满秩）。
+* (4) 椭圆抛物面 Monge 形式下 $\boldsymbol{r}_u \times \boldsymbol{r}_v = \left(-\frac{2u}{a^2}, \, -\frac{2v}{b^2}, \, 1\right) \neq \boldsymbol{0}$，处处正则。
+
+
+* **参数完备覆盖性**：
+* 椭球面参数在 $u \in [-\pi/2, \pi/2], v \in [0, 2\pi)$ 上一一映射（除去经度边界闭合缝合线及两极奇点）。
+* 单叶双曲面双曲形式完备覆盖整张连通单叶曲面。
+* 椭圆抛物面在 $u \in [0, +\infty), v \in [0, 2\pi)$ 上完整覆盖上半空间抛物曲面。
+
+## 7
+**题目：**
+
+7. 求椭球面的第一基本形式。
+
+
+
+---
+
+### 解答
+
+椭球面的标准方程为 $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$。根据所选参数化方式的不同，以下给出两种最常用的参数表示及其对应的第一基本形式：
+
+---
+
+#### 形式一：采用经纬度参数化（与第 1(1) 题一致）
+
+设椭球面的参数方程为：
+
+
+$$\boldsymbol{r}(u, v) = (a \cos u \cos v, \, b \cos u \sin v, \, c \sin u), \quad u \in \left[-\frac{\pi}{2}, \, \frac{\pi}{2}\right], \; v \in [0, \, 2\pi)$$
+
+**1. 计算一阶偏导向量**
+
+
+$$\begin{aligned} \boldsymbol{r}_u &= (-a \sin u \cos v, \, -b \sin u \sin v, \, c \cos u) \\ \boldsymbol{r}_v &= (-a \cos u \sin v, \, b \cos u \cos v, \, 0) \end{aligned}$$
+
+**2. 计算第一基本量 $E, F, G$**
+
+
+$$\begin{aligned} E &= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = a^2 \sin^2 u \cos^2 v + b^2 \sin^2 u \sin^2 v + c^2 \cos^2 u \\ &= \sin^2 u (a^2 \cos^2 v + b^2 \sin^2 v) + c^2 \cos^2 u \\ F &= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = a^2 \sin u \cos u \sin v \cos v - b^2 \sin u \cos u \sin v \cos v \\ &= (a^2 - b^2) \sin u \cos u \sin v \cos v \\ G &= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = a^2 \cos^2 u \sin^2 v + b^2 \cos^2 u \cos^2 v \\ &= \cos^2 u (a^2 \sin^2 v + b^2 \cos^2 v) \end{aligned}$$
+
+**3. 第一基本形式**
+
+
+$$\begin{aligned} \mathrm{I} &= E\,du^2 + 2F\,du\,dv + G\,dv^2 \\ &= \left[\sin^2 u (a^2 \cos^2 v + b^2 \sin^2 v) + c^2 \cos^2 u\right] du^2 \\ &\quad + 2(a^2 - b^2) \sin u \cos u \sin v \cos v \, du\,dv \\ &\quad + \cos^2 u (a^2 \sin^2 v + b^2 \cos^2 v) \, dv^2 \end{aligned}$$
+
+---
+
+#### 形式二：采用广义球坐标（余纬角）参数化
+
+若教材取参数方程为：
+
+
+$$\boldsymbol{r}(u, v) = (a \sin u \cos v, \, b \sin u \sin v, \, c \cos u), \quad u \in [0, \, \pi], \; v \in [0, \, 2\pi)$$
+
+**1. 计算一阶偏导向量**
+
+
+$$\begin{aligned} \boldsymbol{r}_u &= (a \cos u \cos v, \, b \cos u \sin v, \, -c \sin u) \\ \boldsymbol{r}_v &= (-a \sin u \sin v, \, b \sin u \cos v, \, 0) \end{aligned}$$
+
+**2. 计算第一基本量 $E, F, G$**
+
+
+$$\begin{aligned} E &= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = \cos^2 u (a^2 \cos^2 v + b^2 \sin^2 v) + c^2 \sin^2 u \\ F &= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = (b^2 - a^2) \sin u \cos u \sin v \cos v \\ G &= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = \sin^2 u (a^2 \sin^2 v + b^2 \cos^2 v) \end{aligned}$$
+
+**3. 第一基本形式**
+
+
+$$\begin{aligned} \mathrm{I} &= \left[\cos^2 u (a^2 \cos^2 v + b^2 \sin^2 v) + c^2 \sin^2 u\right] du^2 \\ &\quad + 2(b^2 - a^2) \sin u \cos u \sin v \cos v \, du\,dv \\ &\quad + \sin^2 u (a^2 \sin^2 v + b^2 \cos^2 v) \, dv^2 \end{aligned}$$
+
+---
+
+### 特例退化检验
+
+* **旋转椭球面（$a = b$）**：交错项系数 $F = 0$，坐标网 $(u, v)$ 正交。
+* **球面（$a = b = c = R$）**：
+* 形式一退化为 $\mathrm{I} = R^2(du^2 + \cos^2 u \, dv^2)$；
+* 形式二退化为 $\mathrm{I} = R^2(du^2 + \sin^2 u \, dv^2)$，与球面标准第一基本形式完全一致。
+
+## 8，9
+**問題（题目）：**
+
+8. 次の曲面の第一基本形式を求めよ（求下列曲面的第一基本形式）：
+(1) $\boldsymbol{r}(u, v) = (u\cos v, \, u\sin v, \, bv)$；
+(2) $\boldsymbol{r}(u, v) = (a(u+v), \, b(u-v), \, u^2+v^2)$.
+
+
+9. 曲面 $z = f(x, y)$ の第一基本形式を求めよ（求曲面 $z = f(x, y)$ 的第一基本形式）.
+
+
+
+---
+
+### 8. の解答（第 8 题解答）
+
+曲面の第一基本形式（曲面的第一基本形式）は次のように定義される：
+
+
+$$\mathrm{I} = d\boldsymbol{r}^2 = E\,du^2 + 2F\,du\,dv + G\,dv^2$$
+
+
+ここで、第一基本量（其中第一基本量）は $E = \boldsymbol{r}_u \cdot \boldsymbol{r}_u, \; F = \boldsymbol{r}_u \cdot \boldsymbol{r}_v, \; G = \boldsymbol{r}_v \cdot \boldsymbol{r}_v$ である。
+
+---
+
+#### (1) $\boldsymbol{r}(u, v) = (u\cos v, \, u\sin v, \, bv)$
+
+1. **偏導関数の計算（计算一阶偏导向量）：**
+
+$$\begin{aligned} \boldsymbol{r}_u &= (\cos v, \, \sin v, \, 0) \\ \boldsymbol{r}_v &= (-u\sin v, \, u\cos v, \, b) \end{aligned}$$
+
+
+2. **第一基本量の計算（计算第一基本量 $E, F, G$）：**
+
+$$\begin{aligned} E &= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = \cos^2 v + \sin^2 v + 0 = 1 \\ F &= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = -u\sin v\cos v + u\sin v\cos v + 0 = 0 \\ G &= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = u^2\sin^2 v + u^2\cos^2 v + b^2 = u^2 + b^2 \end{aligned}$$
+
+
+3. **第一基本形式（第一基本形式）：**
+
+$$\mathrm{I} = du^2 + (u^2 + b^2)\,dv^2$$
+
+
+
+---
+
+#### (2) $\boldsymbol{r}(u, v) = (a(u+v), \, b(u-v), \, u^2+v^2)$
+
+1. **偏導関数の計算（计算一阶偏导向量）：**
+
+$$\begin{aligned} \boldsymbol{r}_u &= (a, \, b, \, 2u) \\ \boldsymbol{r}_v &= (a, \, -b, \, 2v) \end{aligned}$$
+
+
+2. **第一基本量の計算（计算第一基本量 $E, F, G$）：**
+
+$$\begin{aligned} E &= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = a^2 + b^2 + 4u^2 \\ F &= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = a^2 - b^2 + 4uv \\ G &= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = a^2 + b^2 + 4v^2 \end{aligned}$$
+
+
+3. **第一基本形式（第一基本形式）：**
+
+$$\mathrm{I} = (a^2 + b^2 + 4u^2)\,du^2 + 2(a^2 - b^2 + 4uv)\,du\,dv + (a^2 + b^2 + 4v^2)\,dv^2$$
+
+
+
+---
+
+### 9. の解答（第 9 题解答）
+
+曲面 $z = f(x, y)$ のパラメータ表示（参数表达式）を $\boldsymbol{r}(x, y) = (x, \, y, \, f(x, y))$ とおき、偏導関数を $p = f_x = \dfrac{\partial f}{\partial x}, \; q = f_y = \dfrac{\partial f}{\partial y}$ と記す。
+
+1. **偏導関数の計算（计算一阶偏导向量）：**
+
+$$\begin{aligned} \boldsymbol{r}_x &= (1, \, 0, \, f_x) = (1, \, 0, \, p) \\ \boldsymbol{r}_y &= (0, \, 1, \, f_y) = (0, \, 1, \, q) \end{aligned}$$
+
+
+2. **第一基本量の計算（计算第一基本量 $E, F, G$）：**
+
+$$\begin{aligned} E &= \boldsymbol{r}_x \cdot \boldsymbol{r}_x = 1 + f_x^2 = 1 + p^2 \\ F &= \boldsymbol{r}_x \cdot \boldsymbol{r}_y = f_x f_y = pq \\ G &= \boldsymbol{r}_y \cdot \boldsymbol{r}_y = 1 + f_y^2 = 1 + q^2 \end{aligned}$$
+
+
+3. **第一基本形式（第一基本形式）：**
+
+$$\begin{aligned} \mathrm{I} &= (1 + f_x^2)\,dx^2 + 2f_x f_y\,dx\,dy + (1 + f_y^2)\,dy^2 \\ &= (1 + p^2)\,dx^2 + 2pq\,dx\,dy + (1 + q^2)\,dy^2 \end{aligned}$$
+
+
+
+（別解：全微分 $dz = f_x\,dx + f_y\,dy$ を $\mathrm{I} = dx^2 + dy^2 + dz^2$ に直接代入しても同じ結果が得られる。／ 另解：直接将全微分 $dz = f_x\,dx + f_y\,dy$ 代入 $\mathrm{I} = dx^2 + dy^2 + dz^2$ 展开亦可得同式。）
+
+## 11
+**题目：**
+
+11. 设 $(x, y)$ 是曲面 $\boldsymbol{r}(u, v)$ 的另一组参数，问：$\boldsymbol{r}_u \wedge \boldsymbol{r}_v$ 与 $\boldsymbol{r}_x \wedge \boldsymbol{r}_y$ 的指向是否相同？
+
+
+
+---
+
+### 解答
+
+**结论：不一定相同。** 两者的指向取决于参数变换的雅可比行列式（Jacobian determinant）的正负号。
+
+---
+
+#### 1. 推导过程
+
+设两组参数之间的变换关系为 $u = u(x, y), \, v = v(x, y)$，且该变换为正则参数变换，即雅可比行列式满足：
+
+
+$$J = \frac{\partial(u, v)}{\partial(x, y)} = \begin{vmatrix} \dfrac{\partial u}{\partial x} & \dfrac{\partial u}{\partial y} \\ \dfrac{\partial v}{\partial x} & \dfrac{\partial v}{\partial y} \end{vmatrix} = u_x v_y - u_y v_x \neq 0$$
+
+根据复合函数求导的链式法则（Chain Rule），曲面关于新参数 $(x, y)$ 的一阶偏导向量为：
+
+
+$$\begin{cases} \boldsymbol{r}_x = \boldsymbol{r}_u u_x + \boldsymbol{r}_v v_x \\ \boldsymbol{r}_y = \boldsymbol{r}_u u_y + \boldsymbol{r}_v v_y \end{cases}$$
+
+计算外积 $\boldsymbol{r}_x \wedge \boldsymbol{r}_y$：
+
+
+$$\begin{aligned} \boldsymbol{r}_x \wedge \boldsymbol{r}_y &= (\boldsymbol{r}_u u_x + \boldsymbol{r}_v v_x) \wedge (\boldsymbol{r}_u u_y + \boldsymbol{r}_v v_y) \\ &= u_x u_y (\boldsymbol{r}_u \wedge \boldsymbol{r}_u) + u_x v_y (\boldsymbol{r}_u \wedge \boldsymbol{r}_v) + v_x u_y (\boldsymbol{r}_v \wedge \boldsymbol{r}_u) + v_x v_y (\boldsymbol{r}_v \wedge \boldsymbol{r}_v) \end{aligned}$$
+
+利用外积的反对称性 $\boldsymbol{r}_u \wedge \boldsymbol{r}_u = \boldsymbol{0}, \; \boldsymbol{r}_v \wedge \boldsymbol{r}_v = \boldsymbol{0}$ 以及 $\boldsymbol{r}_v \wedge \boldsymbol{r}_u = -\boldsymbol{r}_u \wedge \boldsymbol{r}_v$，化简得：
+
+
+$$\boldsymbol{r}_x \wedge \boldsymbol{r}_y = (u_x v_y - u_y v_x)(\boldsymbol{r}_u \wedge \boldsymbol{r}_v) = \frac{\partial(u, v)}{\partial(x, y)} (\boldsymbol{r}_u \wedge \boldsymbol{r}_v)$$
+
+---
+
+#### 2. 指向判定
+
+由于曲面的法向量 $\boldsymbol{r}_u \wedge \boldsymbol{r}_v \neq \boldsymbol{0}$，两向量共线，其指向关系由雅可比行列式的符号唯一决定：
+
+1. **当 $\dfrac{\partial(u, v)}{\partial(x, y)} > 0$ 时**（即保持定向的参数变换）：
+$\boldsymbol{r}_x \wedge \boldsymbol{r}_y$ 与 $\boldsymbol{r}_u \wedge \boldsymbol{r}_v$ 的**指向相同**。
+2. **当 $\dfrac{\partial(u, v)}{\partial(x, y)} < 0$ 时**（即反转定向的参数变换，例如简单交换参数次序令 $u = y, v = x$）：
+$\boldsymbol{r}_x \wedge \boldsymbol{r}_y$ 与 $\boldsymbol{r}_u \wedge \boldsymbol{r}_v$ 的**指向相反**。
+
+相应的单位法向量关系为：
+
+
+$$\boldsymbol{n}(x, y) = \frac{\boldsymbol{r}_x \wedge \boldsymbol{r}_y}{\Vert{}\boldsymbol{r}_x \wedge \boldsymbol{r}_y\Vert{}} = \operatorname{sgn}\left(\frac{\partial(u, v)}{\partial(x, y)}\right) \frac{\boldsymbol{r}_u \wedge \boldsymbol{r}_v}{\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{}} = \pm \boldsymbol{n}(u, v)$$
+
+## 2
+**题目：**
+
+对于曲面 $S^2(1) = \{(x, y, z) \mid x^2 + y^2 + z^2 = 1\}$，利用三种参数表示分别确定其切空间和法线，计算第一基本形式和第二基本形式。
+
+---
+
+### 预备几何性质
+
+对于单位球面 $S^2(1)$ 上的任意正则参数表示 $\boldsymbol{r}(u, v)$，恒有 $\boldsymbol{r} \cdot \boldsymbol{r} = 1$。两边对参数 $u, v$ 求偏导可得：
+
+
+$$\boldsymbol{r}_u \cdot \boldsymbol{r} = 0, \quad \boldsymbol{r}_v \cdot \boldsymbol{r} = 0$$
+
+
+这说明球面上任意点 $P$ 处的位置向量 $\boldsymbol{r}(u, v)$ 恒垂直于切空间 $T_P S^2(1) = \operatorname{span}\{\boldsymbol{r}_u, \boldsymbol{r}_v\}$。因此，按右手定向约定 $\boldsymbol{n} = \dfrac{\boldsymbol{r}_u \wedge \boldsymbol{r}_v}{\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{}}$ 确定的单位法向量必满足 $\boldsymbol{n} = \pm \boldsymbol{r}$，且过点 $P$ 的法线必经过球心（原点 $\boldsymbol{0}$）。
+
+以下分别选取**球面坐标（经纬度参数）**、**显函数图像（Monge 参数）**与**球极平面投影参数**三种常用参数表示进行具体计算。
+
+---
+
+### 参数表示一：球面坐标（经纬度参数表示）
+
+取参数方程为：
+
+
+$$\boldsymbol{r}(u, v) = (\cos u \cos v, \, \cos u \sin v, \, \sin u), \quad u \in \left(-\frac{\pi}{2}, \, \frac{\pi}{2}\right), \; v \in (0, \, 2\pi)$$
+
+#### 1. 切空间与法线
+
+* **切空间 $T_P S^2(1)$**：
+计算一阶偏导向量：
+
+$$\begin{aligned} \boldsymbol{r}_u &= (-\sin u \cos v, \, -\sin u \sin v, \, \cos u) \\ \boldsymbol{r}_v &= (-\cos u \sin v, \, \cos u \cos v, \, 0) \end{aligned}$$
+
+
+
+切空间由基底 $\{\boldsymbol{r}_u, \boldsymbol{r}_v\}$ 张成：
+
+$$T_P S^2(1) = \operatorname{span}\{\boldsymbol{r}_u, \, \boldsymbol{r}_v\} = \left\{ \xi \boldsymbol{r}_u + \eta \boldsymbol{r}_v \;\middle\vert{}\; \xi, \eta \in \mathbb{R} \right\}$$
+
+
+* **单位法向量与法线**：
+计算外积：
+
+$$\boldsymbol{r}_u \wedge \boldsymbol{r}_v = (-\cos^2 u \cos v, \, -\cos^2 u \sin v, \, -\sin u \cos u) = -\cos u \, \boldsymbol{r}(u, v)$$
+
+
+
+由于 $u \in \left(-\frac{\pi}{2}, \frac{\pi}{2}\right)$ 时 $\cos u > 0$，故 $\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{} = \cos u$。单位法向量（指向球心内侧）为：
+
+$$\boldsymbol{n}(u, v) = \frac{\boldsymbol{r}_u \wedge \boldsymbol{r}_v}{\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{}} = -(\cos u \cos v, \, \cos u \sin v, \, \sin u) = -\boldsymbol{r}(u, v)$$
+
+
+
+过点 $\boldsymbol{r}(u, v)$ 的法线参数方程为（$t \in \mathbb{R}$）：
+
+$$\boldsymbol{X}(t) = \boldsymbol{r}(u, v) + t\boldsymbol{n}(u, v) = (1 - t)(\cos u \cos v, \, \cos u \sin v, \, \sin u)$$
+
+
+
+#### 2. 第一基本形式
+
+计算第一基本量：
+
+
+$$\begin{aligned} E &= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = \sin^2 u (\cos^2 v + \sin^2 v) + \cos^2 u = 1 \\ F &= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = 0 \\ G &= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = \cos^2 u (\sin^2 v + \cos^2 v) = \cos^2 u \end{aligned}$$
+
+
+第一基本形式为：
+
+
+$$\mathrm{I} = du^2 + \cos^2 u \, dv^2$$
+
+#### 3. 第二基本形式
+
+计算二阶偏导向量：
+
+
+$$\begin{aligned} \boldsymbol{r}_{uu} &= (-\cos u \cos v, \, -\cos u \sin v, \, -\sin u) = -\boldsymbol{r}(u, v) \\ \boldsymbol{r}_{uv} &= (\sin u \sin v, \, -\sin u \cos v, \, 0) \\ \boldsymbol{r}_{vv} &= (-\cos u \cos v, \, -\cos u \sin v, \, 0) \end{aligned}$$
+
+
+结合 $\boldsymbol{n} = -\boldsymbol{r}(u, v)$ 计算第二基本量：
+
+
+$$\begin{aligned} L &= \boldsymbol{r}_{uu} \cdot \boldsymbol{n} = (-\boldsymbol{r}) \cdot (-\boldsymbol{r}) = 1 \\ M &= \boldsymbol{r}_{uv} \cdot \boldsymbol{n} = -\sin u \cos u \sin v \cos v + \sin u \cos u \sin v \cos v = 0 \\ N &= \boldsymbol{r}_{vv} \cdot \boldsymbol{n} = \cos^2 u \cos^2 v + \cos^2 u \sin^2 v = \cos^2 u \end{aligned}$$
+
+
+第二基本形式为：
+
+
+$$\mathrm{II} = du^2 + \cos^2 u \, dv^2$$
+
+---
+
+### 参数表示二：显函数图像表示（Monge 参数表示）
+
+以北半球面 $z > 0$ 为例（其余五个坐标半球面完全对称），取参数方程为：
+
+
+$$\boldsymbol{r}(u, v) = \left(u, \, v, \, \sqrt{1 - u^2 - v^2}\right), \quad u^2 + v^2 < 1$$
+
+
+记 $w = \sqrt{1 - u^2 - v^2} > 0$，则 $w_u = -\dfrac{u}{w}, \; w_v = -\dfrac{v}{w}$。
+
+#### 1. 切空间与法线
+
+* **切空间 $T_P S^2(1)$**：
+计算一阶偏导向量：
+
+$$\boldsymbol{r}_u = \left(1, \, 0, \, -\frac{u}{\sqrt{1 - u^2 - v^2}}\right), \quad \boldsymbol{r}_v = \left(0, \, 1, \, -\frac{v}{\sqrt{1 - u^2 - v^2}}\right)$$
+
+
+
+切空间为：
+
+$$T_P S^2(1) = \operatorname{span}\{\boldsymbol{r}_u, \, \boldsymbol{r}_v\}$$
+
+
+* **单位法向量与法线**：
+计算外积及其模长：
+
+$$\boldsymbol{r}_u \wedge \boldsymbol{r}_v = \left(\frac{u}{w}, \, \frac{v}{w}, \, 1\right) = \frac{1}{w}(u, \, v, \, w), \quad \Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{} = \frac{\sqrt{u^2 + v^2 + w^2}}{w} = \frac{1}{w}$$
+
+
+
+单位法向量（指向球外侧）为：
+
+$$\boldsymbol{n}(u, v) = \frac{\boldsymbol{r}_u \wedge \boldsymbol{r}_v}{\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{}} = \left(u, \, v, \, \sqrt{1 - u^2 - v^2}\right) = \boldsymbol{r}(u, v)$$
+
+
+
+过点 $\boldsymbol{r}(u, v)$ 的法线参数方程为（$t \in \mathbb{R}$）：
+
+$$\boldsymbol{X}(t) = \boldsymbol{r}(u, v) + t\boldsymbol{n}(u, v) = (1 + t)\left(u, \, v, \, \sqrt{1 - u^2 - v^2}\right)$$
+
+
+
+#### 2. 第一基本形式
+
+计算第一基本量：
+
+
+$$\begin{aligned} E &= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = 1 + \frac{u^2}{w^2} = \frac{1 - v^2}{1 - u^2 - v^2} \\ F &= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = \frac{uv}{w^2} = \frac{uv}{1 - u^2 - v^2} \\ G &= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = 1 + \frac{v^2}{w^2} = \frac{1 - u^2}{1 - u^2 - v^2} \end{aligned}$$
+
+
+第一基本形式为：
+
+
+$$\mathrm{I} = \frac{(1 - v^2)\,du^2 + 2uv\,du\,dv + (1 - u^2)\,dv^2}{1 - u^2 - v^2}$$
+
+#### 3. 第二基本形式
+
+计算二阶偏导向量：
+
+
+$$\boldsymbol{r}_{uu} = \left(0, \, 0, \, -\frac{1 - v^2}{w^3}\right), \quad \boldsymbol{r}_{uv} = \left(0, \, 0, \, -\frac{uv}{w^3}\right), \quad \boldsymbol{r}_{vv} = \left(0, \, 0, \, -\frac{1 - u^2}{w^3}\right)$$
+
+
+与 $\boldsymbol{n} = (u, v, w)$ 作内积得第二基本量：
+
+
+$$L = \boldsymbol{r}_{uu} \cdot \boldsymbol{n} = -\frac{1 - v^2}{1 - u^2 - v^2}, \quad M = \boldsymbol{r}_{uv} \cdot \boldsymbol{n} = -\frac{uv}{1 - u^2 - v^2}, \quad N = \boldsymbol{r}_{vv} \cdot \boldsymbol{n} = -\frac{1 - u^2}{1 - u^2 - v^2}$$
+
+
+第二基本形式为：
+
+
+$$\mathrm{II} = -\frac{(1 - v^2)\,du^2 + 2uv\,du\,dv + (1 - u^2)\,dv^2}{1 - u^2 - v^2}$$
+
+---
+
+### 参数表示三：球极平面投影参数表示（Stereographic Projection）
+
+取以北极 $N(0, 0, 1)$ 为投影中心向赤道平面 $z = 0$ 作球极投影的参数表示（覆盖 $S^2(1) \setminus \{N\}$）：
+
+
+$$\boldsymbol{r}(u, v) = \left(\frac{2u}{u^2 + v^2 + 1}, \, \frac{2v}{u^2 + v^2 + 1}, \, \frac{u^2 + v^2 - 1}{u^2 + v^2 + 1}\right), \quad (u, v) \in \mathbb{R}^2$$
+
+
+为简化记号，令 $\Delta = u^2 + v^2 + 1$。
+
+#### 1. 切空间与法线
+
+* **切空间 $T_P S^2(1)$**：
+利用 $\Delta_u = 2u, \; \Delta_v = 2v$ 计算一阶偏导向量：
+
+$$\begin{aligned} \boldsymbol{r}_u &= \frac{2}{(u^2 + v^2 + 1)^2} \big(1 - u^2 + v^2, \; -2uv, \; 2u\big) \\ \boldsymbol{r}_v &= \frac{2}{(u^2 + v^2 + 1)^2} \big(-2uv, \; 1 + u^2 - v^2, \; 2v\big) \end{aligned}$$
+
+
+
+切空间为：
+
+$$T_P S^2(1) = \operatorname{span}\{\boldsymbol{r}_u, \, \boldsymbol{r}_v\}$$
+
+
+* **单位法向量与法线**：
+直接计算外积 $\boldsymbol{r}_u \wedge \boldsymbol{r}_v$：
+
+$$\begin{aligned} \boldsymbol{r}_u \wedge \boldsymbol{r}_v &= \frac{4}{\Delta^4} \begin{vmatrix} \boldsymbol{i} & \boldsymbol{j} & \boldsymbol{k} \\ 1 - u^2 + v^2 & -2uv & 2u \\ -2uv & 1 + u^2 - v^2 & 2v \end{vmatrix} \\ &= \frac{4}{\Delta^4} \big(-2u\Delta, \; -2v\Delta, \; (1 - u^2 - v^2)\Delta\big) \\ &= -\frac{4}{\Delta^2} \left(\frac{2u}{\Delta}, \, \frac{2v}{\Delta}, \, \frac{u^2 + v^2 - 1}{\Delta}\right) = -\frac{4}{(u^2 + v^2 + 1)^2} \boldsymbol{r}(u, v) \end{aligned}$$
+
+
+
+因为 $\Vert{}\boldsymbol{r}(u, v)\Vert{} = 1$，故 $\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{} = \dfrac{4}{(u^2 + v^2 + 1)^2}$。单位法向量（指向球心内侧）为：
+
+$$\boldsymbol{n}(u, v) = \frac{\boldsymbol{r}_u \wedge \boldsymbol{r}_v}{\Vert{}\boldsymbol{r}_u \wedge \boldsymbol{r}_v\Vert{}} = -\boldsymbol{r}(u, v) = \left(-\frac{2u}{u^2 + v^2 + 1}, \, -\frac{2v}{u^2 + v^2 + 1}, \, \frac{1 - u^2 - v^2}{u^2 + v^2 + 1}\right)$$
+
+
+
+过点 $\boldsymbol{r}(u, v)$ 的法线参数方程为（$t \in \mathbb{R}$）：
+
+$$\boldsymbol{X}(t) = \boldsymbol{r}(u, v) + t\boldsymbol{n}(u, v) = (1 - t)\boldsymbol{r}(u, v)$$
+
+
+
+#### 2. 第一基本形式
+
+利用恒等式 $(1 - u^2 + v^2)^2 + 4u^2v^2 + 4u^2 = (u^2 + v^2 + 1)^2 = \Delta^2$，计算第一基本量：
+
+
+$$\begin{aligned} E &= \boldsymbol{r}_u \cdot \boldsymbol{r}_u = \frac{4}{\Delta^4} \cdot \Delta^2 = \frac{4}{(u^2 + v^2 + 1)^2} \\ F &= \boldsymbol{r}_u \cdot \boldsymbol{r}_v = \frac{4}{\Delta^4} \big(-2uv(1 - u^2 + v^2 + 1 + u^2 - v^2) + 4uv\big) = 0 \\ G &= \boldsymbol{r}_v \cdot \boldsymbol{r}_v = \frac{4}{\Delta^4} \cdot \Delta^2 = \frac{4}{(u^2 + v^2 + 1)^2} \end{aligned}$$
+
+
+第一基本形式（呈等温/共形参数形式）为：
+
+
+$$\mathrm{I} = \frac{4(du^2 + dv^2)}{(u^2 + v^2 + 1)^2}$$
+
+#### 3. 第二基本形式
+
+由 $\boldsymbol{n} = -\boldsymbol{r}$，微分得 $d\boldsymbol{n} = -d\boldsymbol{r}$（即 $\boldsymbol{n}_u = -\boldsymbol{r}_u, \; \boldsymbol{n}_v = -\boldsymbol{r}_v$）。利用第二基本量与法向量偏导的关系 $L = -\boldsymbol{r}_u \cdot \boldsymbol{n}_u, \; M = -\boldsymbol{r}_u \cdot \boldsymbol{n}_v, \; N = -\boldsymbol{r}_v \cdot \boldsymbol{n}_v$：
+
+
+$$\begin{aligned} L &= -\boldsymbol{r}_u \cdot (-\boldsymbol{r}_u) = E = \frac{4}{(u^2 + v^2 + 1)^2} \\ M &= -\boldsymbol{r}_u \cdot (-\boldsymbol{r}_v) = F = 0 \\ N &= -\boldsymbol{r}_v \cdot (-\boldsymbol{r}_v) = G = \frac{4}{(u^2 + v^2 + 1)^2} \end{aligned}$$
+
+
+第二基本形式为：
+
+
+$$\mathrm{II} = \frac{4(du^2 + dv^2)}{(u^2 + v^2 + 1)^2}$$
+
+---
+
+### 三种参数表示对比汇总表
+
+| 参数表示类型 | 单位法向量 $\boldsymbol{n}$ 指向 | 第一基本形式 $\mathrm{I}$ | 第二基本形式 $\mathrm{II}$ | 坐标网几何特征 |
+| --- | --- | --- | --- | --- |
+| **1. 球面坐标** | $-\boldsymbol{r}$（向内） | $du^2 + \cos^2 u \, dv^2$ | $du^2 + \cos^2 u \, dv^2$ | 正交坐标网 ($F=0$) |
+| **2. 显函数表示** | $+\boldsymbol{r}$（向外） | $\dfrac{(1-v^2)du^2 + 2uv\,dudv + (1-u^2)dv^2}{1 - u^2 - v^2}$ | $-\mathrm{I}$ | 非正交投影网 ($F \neq 0$) |
+| **3. 球极投影** | $-\boldsymbol{r}$（向内） | $\dfrac{4(du^2 + dv^2)}{(u^2 + v^2 + 1)^2}$ | $+\mathrm{I}$ | 等温（保角）坐标网 ($E=G, F=0$) |
+
+*(注：无论采用何种参数表示，单位球面的第一、第二基本形式恒满足 $\mathrm{II} = \mp \mathrm{I}$，表明单位球面上每一点均为**脐点**，其高斯曲率恒为 $K = \dfrac{LN - M^2}{EG - F^2} \equiv 1$。)*

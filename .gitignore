@@ -1,0 +1,25 @@
+# Rendered output is published by GitHub Actions, not committed.
+_site/
+.quarto/
+**/*.html
+**/*_files/
+_freeze/
+
+# Credentials and local course data outside the notes.
+**/.env
+**/*.key
+**/*cookie*
+**/*.pem
+miwavremos/**
+!miwavremos/
+!miwavremos/*.qmd
+finmath/pre/
+
+__pycache__/
+*.pyc
+.Rhistory
+.RData
+.Rproj.user/
+
+/.quarto/
+**/*.quarto_ipynb
