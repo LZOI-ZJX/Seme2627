@@ -16,6 +16,7 @@ miwavremos/**
 finmath/pre/
 
 *.pdf
+!miwavremos/宿題一.pdf
 __pycache__/
 *.pyc
 .Rhistory

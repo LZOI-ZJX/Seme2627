@@ -3,8 +3,11 @@ title: "微波遥感"
 format:
   html:
     code-fold: false
+resources:
+  - 宿題一.pdf
 ---
 
+[宿題一（PDF）](宿題一.pdf)
 
 # Introduction to Remote Sensing
 

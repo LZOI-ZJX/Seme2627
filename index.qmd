@@ -16,7 +16,7 @@ title: "2026–2027 学期笔记"
 
 ### [微波遥感](miwavremos/Untitled-2.qmd)
 
-微波、毫米波与太赫兹遥感导论。
+微波、毫米波与太赫兹遥感导论。笔记中有[宿題一](miwavremos/宿題一.pdf)。
 
 ### [量子信息学](Quantinfo/Untitled-2.qmd)
 
