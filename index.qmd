@@ -2,7 +2,9 @@
 title: "2026–2027 学期笔记"
 ---
 
-本页是五门课程笔记的导航。仓库里只保存 `.qmd` 源文件，推送到 `main` 后由 GitHub Actions 渲染并发布到 GitHub Pages。
+*“谁有优秀的百合同人作品！”*
+
+——Fields Medalist 2026 邓煜
 
 ## 课程
 
