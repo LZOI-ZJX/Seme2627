@@ -202,3 +202,164 @@ $$S_X(\omega) = \begin{cases} \frac{N_0}{2}, & \vert{}\omega\vert{} \le \omega_B
 1. 数学定义离散序列 $W[n]$ 满足均值为常数（通常为 0），其自相关序列满足克罗内克 $\delta$ 函数：$$R_W[m] = \mathbb{E}[W[n]W[n+m]] = \sigma^2 \delta[m] = \begin{cases} \sigma^2, & m = 0 \\ 0, & m \ne 0 \end{cases}$$其中 $\sigma^2 = \mathrm{Var}(W[n])$ 为单点样本的方差。
 2. 功率谱密度（DTFT）根据离散时间维纳-辛钦定理，其离散时间傅里叶变换（DTFT）为：$$S_W(e^{j\omega}) = \sum_{m=-\infty}^{\infty} R_W[m] e^{-j\omega m} = \sigma^2, \quad \omega \in [-\pi, \pi]$$其谱密度在归一化频率主周期 $[-\pi, \pi]$ 内处处等于常数 $\sigma^2$。
 3. 总功率通过逆变换计算平均功率：$$P_{\text{avg}} = R_W[0] = \frac{1}{2\pi} \int_{-\pi}^{\pi} S_W(e^{j\omega}) d\omega = \sigma^2 < \infty$$离散白噪声在数学上完全良定，其总功率恒为有限值 $\sigma^2$，完全避免了连续时间理想白噪声的无穷大发散问题。
+
+## 最小方差无偏估计 C-R不等式
+
+*trivial*
+
+### 理论基础
+
+1. **正则条件（得分函数的期望为零）**
+
+$$\mathbb{E}\left[ \frac{\partial \ln p(x;\theta)}{\partial \theta} \right] = 0$$
+
+
+* **说明**：这是 CRLB 成立的核心正则条件（Regularity Condition）之一，要求概率密度函数 $p(x;\theta)$ 的支撑集（Support）不依赖于参数 $\theta$，从而允许积分与求导交换次序：
+
+$$\mathbb{E}\left[ \frac{\partial \ln p(x;\theta)}{\partial \theta} \right] = \int \frac{1}{p(x;\theta)} \frac{\partial p(x;\theta)}{\partial \theta} p(x;\theta) dx = \frac{\partial}{\partial \theta} \int p(x;\theta) dx = \frac{\partial}{\partial \theta}(1) = 0$$
+
+
+2. **参数 $\theta$ 的无偏估计方差下界（基础 CRLB）**
+
+$$\mathbb{E}[\hat{\theta}] = \theta \implies \text{Var}(\hat{\theta}) \geq \frac{1}{I(\theta)}$$
+
+
+* **说明**：其中 $I(\theta)$ 为费雪信息量（Fisher Information），定义为：
+
+$$I(\theta) = \mathbb{E}\left[ \left( \frac{\partial \ln p(x;\theta)}{\partial \theta} \right)^2 \right] = -\mathbb{E}\left[ \frac{\partial^2 \ln p(x;\theta)}{\partial \theta^2} \right]$$
+
+
+3. **CRLB 等号成立的充要条件（达到有效估计）**
+
+$$
+\frac{\partial \ln p(x;\theta)}{\partial \theta} = I(\theta)\left(g(x) - \theta\right)
+$$
+
+
+* **说明**：该式源于柯西-施瓦茨不等式（Cauchy-Schwarz Inequality）取等号的线性相关条件。若存在满足该式的函数 $g(x)$，则 $\hat{\theta} = g(x)$ 即为 $\theta$ 的**有效估计量（Efficient Estimator）**，同时也是最小方差无偏估计（MVUE）。注意这里的比例系数在满足正则条件与无偏性时恰好等于费雪信息量 $I(\theta)$。
+
+
+4. **参数函数 $\alpha = g(\theta)$ 的 CRLB 推广形式**
+
+$$\alpha = g(\theta), \quad \mathbb{E}[\hat{\alpha}] = g(\theta) \implies \text{Var}(\hat{\alpha}) \geq \frac{\left(g'(\theta)\right)^2}{I(\theta)}$$
+
+
+* **说明**：其中 $g'(\theta) = \frac{dg(\theta)}{d\theta}$。同理，该推广形式取等号（即 $\hat{\alpha}$ 达到 CRLB）的充要条件为：
+
+$$\frac{\partial \ln p(x;\theta)}{\partial \theta} = k(\theta)\left(\hat{\alpha}(x) - g(\theta)\right)$$
+
+
+
+其中比例系数为 $k(\theta) = \frac{I(\theta)}{g'(\theta)}$。
+
+---
+
+### 非线性变换与Delta方法
+
+**计算的对象**：
+
+估算 $A^2$ 的估计量方差假设已通过 $N$ 次独立同分布采样得到了对未知参数 $A$ 的无偏估计 $\hat{A}$，且满足正态分布：
+
+$$
+\hat{A} \sim \mathcal{N}\left(A, \frac{\sigma^2}{N}\right)
+$$
+
+此时若需要估计参数 $A$ 的平方值（如信号功率/能量 $P = A^2$），最直观的估计量是直接取 $\widehat{A^2} = \hat{A}^2$。使用 Delta 方法（Delta Method，即一阶泰勒展开） 近似计算非线性变换 $f(\hat{A}) = \hat{A}^2$ 的方差：对 $f(\hat{A})$ 在均值 $A$ 处做泰勒展开：
+
+$$
+f(\hat{A}) \approx f(A) + f'(A)(\hat{A} - A) = A^2 + 2A(\hat{A} - A)
+$$
+
+计算估计量 $\hat{A}^2$ 的近似方差：
+
+$$
+\text{Var}(\hat{A}^2) \approx \left[ f'(A) \right]^2 \cdot \text{Var}(\hat{A}) = (2A)^2 \cdot \frac{\sigma^2}{N} = \frac{4\sigma^2 A^2}{N}
+$$
+
+因此：
+
+$$
+\text{Var}(\hat{A}^2) \approx \frac{4\sigma^2 A^2}{N}\
+$$
+
+---
+
+### 实例分析
+
+#### 1. 概率密度与对数似然函数
+
+对于观测模型 $x[n] = A + Bn + w[n]$，其中 $w[n] \sim \mathcal{N}(0, \sigma^2)$ 且相互独立，单点概率密度函数与联合对数似然函数为：
+
+* **单点 PDF**：
+
+$$p(x[n]; \theta) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left( -\frac{(x[n] - A - Bn)^2}{2\sigma^2} \right)$$
+
+
+* **联合对数似然函数 $\ln p(\mathbf{x}; \boldsymbol{\theta})$**（$\boldsymbol{\theta} = [A, B]^T$）：
+
+$$\ln p(\mathbf{x}; \boldsymbol{\theta}) = -\frac{N}{2}\ln(2\pi\sigma^2) - \frac{1}{2\sigma^2} \sum_{n=0}^{N-1} (x[n] - A - Bn)^2$$
+
+
+#### 2. 一阶与二阶偏导数
+
+* **一阶偏导数（得分函数）**：
+
+$$\frac{\partial \ln p(\mathbf{x}; \boldsymbol{\theta})}{\partial A} = \frac{1}{\sigma^2} \sum_{n=0}^{N-1} (x[n] - A - Bn)$$
+
+
+$$\frac{\partial \ln p(\mathbf{x}; \boldsymbol{\theta})}{\partial B} = \frac{1}{\sigma^2} \sum_{n=0}^{N-1} n(x[n] - A - Bn)$$
+
+
+* **二阶偏导数（海森矩阵元素）**：
+
+$$\frac{\partial^2 \ln p(\mathbf{x}; \boldsymbol{\theta})}{\partial A^2} = -\frac{N}{\sigma^2}$$
+
+$$\frac{\partial^2 \ln p(\mathbf{x}; \boldsymbol{\theta})}{\partial A \partial B} = -\frac{1}{\sigma^2} \sum_{n=0}^{N-1} n = -\frac{N(N-1)}{2\sigma^2}$$
+
+
+$$\frac{\partial^2 \ln p(\mathbf{x}; \boldsymbol{\theta})}{\partial B^2} = -\frac{1}{\sigma^2} \sum_{n=0}^{N-1} n^2 = -\frac{N(N-1)(2N-1)}{6\sigma^2}$$
+
+
+#### 3. 费雪信息矩阵 $I(\theta)$ 及其逆矩阵
+
+根据定义 $I(\boldsymbol{\theta}) = -\mathbb{E}[\text{Hessian}]$（注意矩阵本身各项应为正值）：
+
+$$I(\theta) = \frac{1}{\sigma^2} \begin{bmatrix} N & \frac{N(N-1)}{2} \\  \frac{N(N-1)}{2} & \frac{N(N-1)(2N-1)}{6} \end{bmatrix}$$
+
+计算其行列式 $\det(I(\theta)) = \frac{N^2(N^2-1)}{12\sigma^4}$，求逆得到：
+
+$$I(\theta)^{-1} = \frac{\sigma^2}{N(N^2-1)} \begin{bmatrix} \frac{2(2N-1)}{3} & -2 \\  -2 & \frac{12}{N} \end{bmatrix}$$
+
+
+更直观的对角线元素展开形式为：
+
+
+$$I(\theta)^{-1} = \begin{bmatrix} \frac{2(2N-1)\sigma^2}{N(N+1)} & -\frac{6\sigma^2}{N(N+1)} \\  -\frac{6\sigma^2}{N(N+1)} & \frac{12\sigma^2}{N(N^2-1)} \end{bmatrix}$$
+
+#### 4. 克拉美-罗下界（CRLB）
+
+* **参数 $A$ 的方差下界**：
+
+$$\text{Var}(\hat{A}) \geq [I(\theta)^{-1}]_{11} = \frac{2(2N-1)\sigma^2}{N(N+1)}$$
+
+
+* **参数 $B$ 的方差下界**：
+
+$$\text{Var}(\hat{B}) \geq [I(\theta)^{-1}]_{22} = \frac{12\sigma^2}{N(N^2-1)}$$
+
+#### 5. 敏感度与分辨率分析
+
+1. **方差对噪声水平 $\sigma^2$ 的敏感度**：
+* $\text{Var}(\hat{A})$ 和 $\text{Var}(\hat{B})$ 均与噪声方差 $\sigma^2$ 成**正比**。噪声每增大一倍，参数估计的最小方差也随之成倍增加，说明抗噪声干扰能力直接受限于前端信噪比。
+
+
+2. **方差对采样长度 $N$ 的敏感度**：
+* **截距 $A$**：随着采样点数 $N$ 增加，$\text{Var}(\hat{A}) \propto \mathcal{O}(N^{-1})$。
+* **斜率 $B$**：随着采样点数 $N$ 增加，$\text{Var}(\hat{B}) \propto \mathcal{O}(N^{-3})$。斜率对 $N$ 的增长极其敏感，这意味着增加观测时长或采样点数能够极大幅度地压低斜率估计误差。
+
+
+3. **参数耦合与分辨率**：
+* 矩阵非对角线元素不为零（$I(\theta)_{12} \neq 0$），表明截距 $A$ 与线性趋势斜率 $B$ 的估计存在**耦合**。
+* 这种耦合导致单独估计 $A$ 时的方差下界（$\frac{2(2N-1)\sigma^2}{N(N+1)}$）高于已知 $B$ 时的理论下界（$\frac{\sigma^2}{N}$）。非对角项的大小决定了将 $A$ 与 $B$ 的变化趋势进行物理分离（分辨率）的极限能力——当 $N$ 越大时，耦合影响相对减弱，系统对两个参数的联合分辨能力显著提高。
+
+## 

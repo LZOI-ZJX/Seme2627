@@ -1360,3 +1360,812 @@ $$\mathrm{II} = \frac{4(du^2 + dv^2)}{(u^2 + v^2 + 1)^2}$$
 | **3. 球极投影** | $-\boldsymbol{r}$（向内） | $\dfrac{4(du^2 + dv^2)}{(u^2 + v^2 + 1)^2}$ | $+\mathrm{I}$ | 等温（保角）坐标网 ($E=G, F=0$) |
 
 *(注：无论采用何种参数表示，单位球面的第一、第二基本形式恒满足 $\mathrm{II} = \mp \mathrm{I}$，表明单位球面上每一点均为**脐点**，其高斯曲率恒为 $K = \dfrac{LN - M^2}{EG - F^2} \equiv 1$。)*
+
+
+# Week 4
+
+## 1
+
+**题目重述**
+
+1. 函数图的几何：设 $f : D \subset \mathbb{R}^2 \to \mathbb{R}$ 是光滑函数，而且正则曲面 $S := \{(x, y, f(x, y)) \mid (x, y) \in D\}$ 是 $f$ 的图。试确定 $S$ 的 $I$，$II$，平均曲率 $H$ 以及 Gauss 曲率 $K$。
+
+
+
+---
+
+**题目解答**
+
+设曲面参数化为 $\mathbf{r}(x, y) = (x, y, f(x, y))$，简记偏导数为 $f_x, f_y, f_{xx}, f_{xy}, f_{yy}$。
+
+**1. 切向量与单位法向量**
+
+
+$$\mathbf{r}_x = (1, 0, f_x), \quad \mathbf{r}_y = (0, 1, f_y)$$
+
+$$\mathbf{r}_x \times \mathbf{r}_y = (-f_x, -f_y, 1)$$
+
+
+单位法向量为：
+
+
+$$\mathbf{n} = \frac{\mathbf{r}_x \times \mathbf{r}_y}{\Vert{}\mathbf{r}_x \times \mathbf{r}_y\Vert{}} = \frac{(-f_x, -f_y, 1)}{\sqrt{1 + f_x^2 + f_y^2}}$$
+
+**2. 第一基本形式 $I$**
+由 $E = \mathbf{r}_x \cdot \mathbf{r}_x = 1 + f_x^2$，$F = \mathbf{r}_x \cdot \mathbf{r}_y = f_x f_y$，$G = \mathbf{r}_y \cdot \mathbf{r}_y = 1 + f_y^2$，得：
+
+
+$$I = (1 + f_x^2)dx^2 + 2f_x f_y dxdy + (1 + f_y^2)dy^2$$
+
+
+（其中 $EG - F^2 = 1 + f_x^2 + f_y^2$）
+
+**3. 第二基本形式 $II$**
+二阶偏导数为 $\mathbf{r}_{xx} = (0, 0, f_{xx})$，$\mathbf{r}_{xy} = (0, 0, f_{xy})$，$\mathbf{r}_{yy} = (0, 0, f_{yy})$。
+由 $L = \mathbf{r}_{xx} \cdot \mathbf{n}$，$M = \mathbf{r}_{xy} \cdot \mathbf{n}$，$N = \mathbf{r}_{yy} \cdot \mathbf{n}$，得：
+
+
+$$L = \frac{f_{xx}}{\sqrt{1 + f_x^2 + f_y^2}}, \quad M = \frac{f_{xy}}{\sqrt{1 + f_x^2 + f_y^2}}, \quad N = \frac{f_{yy}}{\sqrt{1 + f_x^2 + f_y^2}}$$
+
+$$II = \frac{f_{xx}dx^2 + 2f_{xy}dxdy + f_{yy}dy^2}{\sqrt{1 + f_x^2 + f_y^2}}$$
+
+**4. 平均曲率 $H$**
+
+
+$$H = \frac{LG - 2MF + NE}{2(EG - F^2)} = \frac{(1 + f_y^2)f_{xx} - 2f_x f_y f_{xy} + (1 + f_x^2)f_{yy}}{2(1 + f_x^2 + f_y^2)^{3/2}}$$
+
+**5. Gauss 曲率 $K$**
+
+
+$$K = \frac{LN - M^2}{EG - F^2} = \frac{f_{xx}f_{yy} - f_{xy}^2}{(1 + f_x^2 + f_y^2)^2}$$
+
+## 2(a)隐函数型曲面的几何
+
+**题目重述**
+18. 设曲面 $S$ 由方程 $x^2 + y^2 - f(z) = 0$ 给定，$f$ 满足 $f(0) = 0$，$f'(0) \neq 0$，证明：$S$ 在点 $(0,0,0)$ 的法曲率为常数。
+
+---
+
+**题目解答**
+
+**1. 局部参数化**
+因为 $f(0) = 0$ 且 $f'(0) \neq 0$，由反函数定理，在 $z = 0$ 邻域内 $f$ 存在光滑反函数 $g = f^{-1}$，满足 $g(0) = 0$ 且 $g'(0) = \frac{1}{f'(0)}$。
+在原点 $(0,0,0)$ 附近，曲面方程可写为 $z = g(u)$（其中 $u = x^2 + y^2$），即参数化为：
+
+
+$$\mathbf{r}(x, y) = \big(x, y, g(x^2 + y^2)\big)$$
+
+**2. 计算原点处的偏导数**
+求一阶与二阶偏导数：
+
+
+$$\mathbf{r}_x = (1, 0, 2x g'(u)), \quad \mathbf{r}_y = (0, 1, 2y g'(u))$$
+
+$$\mathbf{r}_{xx} = (0, 0, 2g'(u) + 4x^2 g''(u))$$
+
+$$\mathbf{r}_{xy} = (0, 0, 4xy g''(u))$$
+
+$$\mathbf{r}_{yy} = (0, 0, 2g'(u) + 4y^2 g''(u))$$
+
+在点 $(0,0,0)$ 处（即 $x = 0, y = 0, u = 0$）：
+
+
+$$\mathbf{r}_x(0,0) = (1, 0, 0), \quad \mathbf{r}_y(0,0) = (0, 1, 0), \quad \mathbf{n}(0,0) = (0, 0, 1)$$
+
+$$\mathbf{r}_{xx}(0,0) = \left(0, 0, \frac{2}{f'(0)}\right), \quad \mathbf{r}_{xy}(0,0) = (0, 0, 0), \quad \mathbf{r}_{yy}(0,0) = \left(0, 0, \frac{2}{f'(0)}\right)$$
+
+**3. 基本形式与法曲率**
+在点 $(0,0,0)$ 处，第一、第二基本形式系数分别为：
+
+
+$$E = 1, \quad F = 0, \quad G = 1 \implies I = dx^2 + dy^2$$
+
+$$L = \frac{2}{f'(0)}, \quad M = 0, \quad N = \frac{2}{f'(0)} \implies II = \frac{2}{f'(0)}(dx^2 + dy^2)$$
+
+因此，在点 $(0,0,0)$ 处沿任意切方向 $(dx : dy)$ 的法曲率 $\kappa_n$ 为：
+
+
+$$\kappa_n = \frac{II}{I} = \frac{\frac{2}{f'(0)}(dx^2 + dy^2)}{dx^2 + dy^2} = \frac{2}{f'(0)}$$
+
+
+该值与切方向无关，故 $S$ 在点 $(0,0,0)$ 的法曲率为常数（即该点为脐点）。证毕。
+
+## 2(b)
+
+**题目重述**
+b) 试确定隐函数型曲面 $S := \{(x, y, z) \mid F(x, y, z) = 0\}$ 的 $I$，$II$，平均曲率 $H$ 以及 Gauss 曲率 $K$。
+
+---
+
+**题目解答**
+
+设 $F(x, y, z) = 0$ 为正则曲面，即梯度 $\nabla F = (F_x, F_y, F_z) \neq \mathbf{0}$，记 $\Vert{}\nabla F\Vert{} = \sqrt{F_x^2 + F_y^2 + F_z^2}$，Hesse 矩阵为 $\mathrm{Hess}(F) = \begin{pmatrix} F_{xx} & F_{xy} & F_{xz} \\ F_{yx} & F_{yy} & F_{yz} \\ F_{zx} & F_{zy} & F_{zz} \end{pmatrix}$。
+
+不妨设 $F_z \neq 0$，由隐函数定理局部解出 $z = f(x, y)$，此时有：
+
+
+$$f_x = -\frac{F_x}{F_z}, \quad f_y = -\frac{F_y}{F_z}, \quad \sqrt{1 + f_x^2 + f_y^2} = \frac{\Vert{}\nabla F\Vert{}}{\vert{}F_z\vert{}}$$
+
+
+曲面单位法向量取为 $\mathbf{n} = -\frac{\nabla F}{\Vert{}\nabla F\Vert{}}$（若取 $+\frac{\nabla F}{\Vert{}\nabla F\Vert{}}$，则 $II$ 与 $H$ 差一个负号，$K$ 不变）。
+
+**1. 第一基本形式 $I$**
+限制在曲面切空间 $dF = F_x dx + F_y dy + F_z dz = 0$ 上，有：
+
+
+$$I = dx^2 + dy^2 + dz^2$$
+
+
+若以 $(x, y)$ 为局部参数，代入 $dz = f_x dx + f_y dy$ 得：
+
+
+$$I = \frac{(F_x^2 + F_z^2)dx^2 + 2F_x F_y dxdy + (F_y^2 + F_z^2)dy^2}{F_z^2}$$
+
+**2. 第二基本形式 $II$**
+对 $F_x dx + F_y dy + F_z dz = 0$ 再求微分，结合 $\mathbf{n} = -\frac{\nabla F}{\Vert{}\nabla F\Vert{}}$，在切空间 $dF = 0$ 上有：
+
+
+$$II = -d\mathbf{r} \cdot d\mathbf{n} = \frac{d^2 F}{\Vert{}\nabla F\Vert{}} = \frac{1}{\Vert{}\nabla F\Vert{}} (dx, dy, dz) \, \mathrm{Hess}(F) \begin{pmatrix} dx \\ dy \\ dz \end{pmatrix}$$
+
+
+若消去 $dz$（即直接将二阶偏导 $f_{xx} = -\frac{F_{xx}F_z^2 - 2F_{xz}F_x F_z + F_{zz}F_x^2}{F_z^3}$ 等代入第 1 题结果），可用 $(dx, dy)$ 表示。
+
+**3. 平均曲率 $H$**
+由 $H = -\frac{1}{2}\mathrm{div}(\mathbf{n}) = \frac{1}{2}\mathrm{div}\left(\frac{\nabla F}{\Vert{}\nabla F\Vert{}}\right)$，展开可得对称形式：
+
+
+$$H = \frac{\Delta F \Vert{}\nabla F\Vert{}^2 - \nabla F \, \mathrm{Hess}(F) \, (\nabla F)^T}{2\Vert{}\nabla F\Vert{}^3}$$
+
+
+即：
+
+
+$$H = \frac{(F_{xx}+F_{yy}+F_{zz})(F_x^2+F_y^2+F_z^2) - \big(F_x^2 F_{xx} + F_y^2 F_{yy} + F_z^2 F_{zz} + 2F_x F_y F_{xy} + 2F_y F_z F_{yz} + 2F_x F_z F_{xz}\big)}{2(F_x^2 + F_y^2 + F_z^2)^{3/2}}$$
+
+**4. Gauss 曲率 $K$**
+将隐函数二阶偏导代入 $K = \frac{f_{xx}f_{yy} - f_{xy}^2}{(1 + f_x^2 + f_y^2)^2}$ 化简，可得经典的加边行列式形式：
+
+
+$$K = -\frac{1}{\Vert{}\nabla F\Vert{}^4} \det \begin{pmatrix} F_{xx} & F_{xy} & F_{xz} & F_x \\ F_{yx} & F_{yy} & F_{yz} & F_y \\ F_{zx} & F_{zy} & F_{zz} & F_z \\ F_x & F_y & F_z & 0 \end{pmatrix} = \frac{\nabla F \, \mathrm{Hess}^*(F) \, (\nabla F)^T}{(F_x^2 + F_y^2 + F_z^2)^2}$$
+
+
+（其中 $\mathrm{Hess}^*(F)$ 为 $\mathrm{Hess}(F)$ 的伴随矩阵）。
+
+### 2(b)相关
+
+**题目重述**
+探讨第一基本形式 $I$ 与第二基本形式 $II$ 除了经典高斯系数 $(E, F, G)$ 与 $(L, M, N)$ 之外的其他表达形式，并推导隐函数曲面 $F(x, y, z) = 0$ 中如下两式的来源：
+
+
+$$I = dx^2 + dy^2 + dz^2 \quad (dF = 0)$$
+
+$$II = -d\mathbf{r} \cdot d\mathbf{n} = \frac{d^2 F}{\Vert{}\nabla F\Vert{}} = \frac{1}{\Vert{}\nabla F\Vert{}} (dx, dy, dz) \, \mathrm{Hess}(F) \begin{pmatrix} dx \\ dy \\ dz \end{pmatrix}$$
+
+---
+
+**一、 $I$ 与 $II$ 的其他表达形式**
+
+**1. 无坐标几何形式（内积与 Weingarten 映射）**
+设 $v, w \in T_p S$ 为曲面切向量，单位法向量场为 $\mathbf{n}$，Weingarten 映射（形状算子）为 $\mathcal{S} = -d\mathbf{n}$：
+
+* **第一基本形式**即环境空间的诱导内积：
+
+$$I(v, w) = \langle v, w \rangle$$
+
+
+* **第二基本形式**通过形状算子或二阶导向法向的投影给出：
+
+$$II(v, w) = \langle \mathcal{S}(v), w \rangle = -\langle d\mathbf{n}(v), w \rangle = \langle \nabla_v w, \mathbf{n} \rangle$$
+
+
+
+**2. 黎曼几何张量指标形式（爱因斯坦求和约定）**
+设局部坐标为 $(u^1, u^2)$：
+
+* $I = g_{ij} du^i du^j$，其中度量张量 $g_{ij} = \mathbf{r}_i \cdot \mathbf{r}_j$。
+* $II = b_{ij} du^i du^j$（或记为 $h_{ij}$），其中系数 $b_{ij} = \mathbf{r}_{ij} \cdot \mathbf{n} = -\mathbf{r}_i \cdot \mathbf{n}_j$。
+
+**3. 环境空间微分形式（外微分限制）**
+在 $\mathbb{R}^3$ 笛卡尔坐标系下，无需选取曲面内部的局部二维参数 $(u, v)$，直接将外围微分形式限制在切丛 $TS$ 上表示。
+
+---
+
+**二、 隐函数曲面中两式的推导**
+
+**1. $I = dx^2 + dy^2 + dz^2$ 的推导**
+曲面上点的位置向量为 $\mathbf{r} = (x, y, z)$。沿曲面切方向的微元位移为 $d\mathbf{r} = (dx, dy, dz) \in T_p S$。
+由于曲面满足 $F(x, y, z) = 0$，微分满足约束：
+
+
+$$dF = \nabla F \cdot d\mathbf{r} = F_x dx + F_y dy + F_z dz = 0$$
+
+
+第一基本形式定义为切微元长度的平方：
+
+
+$$I = \Vert{}d\mathbf{r}\Vert{}^2 = d\mathbf{r} \cdot d\mathbf{r} = dx^2 + dy^2 + dz^2$$
+
+**2. $II = -d\mathbf{r} \cdot d\mathbf{n} = \frac{d^2 F}{\Vert{}\nabla F\Vert{}}$ 的推导**
+取曲面单位法向量为 $\mathbf{n} = -\frac{\nabla F}{\Vert{}\nabla F\Vert{}}$。对 $\mathbf{n}$ 求全微分：
+
+
+$$d\mathbf{n} = -d\left(\frac{\nabla F}{\Vert{}\nabla F\Vert{}}\right) = -\frac{d(\nabla F)}{\Vert{}\nabla F\Vert{}} - \nabla F \, d\left(\frac{1}{\Vert{}\nabla F\Vert{}}\right)$$
+
+
+代入第二基本形式定义 $II = -d\mathbf{r} \cdot d\mathbf{n}$：
+
+
+$$II = -d\mathbf{r} \cdot \left[ -\frac{d(\nabla F)}{\Vert{}\nabla F\Vert{}} - \nabla F \, d\left(\frac{1}{\Vert{}\nabla F\Vert{}}\right) \right] = \frac{d\mathbf{r} \cdot d(\nabla F)}{\Vert{}\nabla F\Vert{}} + (d\mathbf{r} \cdot \nabla F)\, d\left(\frac{1}{\Vert{}\nabla F\Vert{}}\right)$$
+
+
+因为切向量 $d\mathbf{r}$ 与法向梯度 $\nabla F$ 正交，即 $d\mathbf{r} \cdot \nabla F = dF = 0$，上式第二项严格为 $0$：
+
+
+$$II = \frac{d\mathbf{r} \cdot d(\nabla F)}{\Vert{}\nabla F\Vert{}}$$
+
+
+又因梯度的全微分由 Hessian 矩阵给出：
+
+
+$$d(\nabla F) = \begin{pmatrix} dF_x \\ dF_y \\ dF_z \end{pmatrix} = \mathrm{Hess}(F) \begin{pmatrix} dx \\ dy \\ dz \end{pmatrix}$$
+
+
+故分子即为函数 $F$ 的二阶微分二次型：
+
+
+$$d\mathbf{r} \cdot d(\nabla F) = (dx, dy, dz) \, \mathrm{Hess}(F) \begin{pmatrix} dx \\ dy \\ dz \end{pmatrix} = d^2 F$$
+
+
+由此证得：
+
+
+$$II = \frac{d^2 F}{\Vert{}\nabla F\Vert{}} = \frac{1}{\Vert{}\nabla F\Vert{}} (dx, dy, dz) \, \mathrm{Hess}(F) \begin{pmatrix} dx \\ dy \\ dz \end{pmatrix}$$
+
+
+## 3
+**题目重述**
+27. 设曲面 $S : \mathbf{r} = \mathbf{r}(u, v)$ 上没有抛物点，$\mathbf{n}$ 是 $S$ 的法向量；曲面 $\widetilde{S} : \tilde{\mathbf{r}} = \tilde{\mathbf{r}}(u, v) = \mathbf{r}(u, v) + \lambda\mathbf{n}(u, v)$（常数 $\lambda$ 充分小）称为 $S$ 的平行曲面。
+(1) 证明：曲面 $S$ 和 $\widetilde{S}$ 在对应点的切平面平行；
+(2) 可以选取 $\widetilde{S}$ 的单位法向量 $\tilde{\mathbf{n}}$，使得 $\widetilde{S}$ 的 Gauss 曲率和平均曲率分别为
+
+
+$$\widetilde{K} = \frac{K}{1 - 2\lambda H + \lambda^2 K}, \qquad \widetilde{H} = \frac{H - \lambda K}{1 - 2\lambda H + \lambda^2 K}$$
+
+---
+
+**题目解答**
+
+**证明 (1)：**
+对 $\tilde{\mathbf{r}} = \mathbf{r} + \lambda\mathbf{n}$ 求一阶偏导数：
+
+
+$$\tilde{\mathbf{r}}_u = \mathbf{r}_u + \lambda\mathbf{n}_u, \qquad \tilde{\mathbf{r}}_v = \mathbf{r}_v + \lambda\mathbf{n}_v$$
+
+
+由 $\mathbf{n} \cdot \mathbf{n} = 1$ 知 $\mathbf{n}_u \cdot \mathbf{n} = 0$，$\mathbf{n}_v \cdot \mathbf{n} = 0$；同时 $\mathbf{r}_u \cdot \mathbf{n} = 0$，$\mathbf{r}_v \cdot \mathbf{n} = 0$。因此：
+
+
+$$\tilde{\mathbf{r}}_u \cdot \mathbf{n} = 0, \qquad \tilde{\mathbf{r}}_v \cdot \mathbf{n} = 0$$
+
+
+由 Weingarten 变换 $d\mathbf{n} = -\mathcal{S}(d\mathbf{r})$，且 $\det\mathcal{S} = K$，$\mathrm{tr}\mathcal{S} = 2H$，可得外积：
+
+$$\tilde{\mathbf{r}}_u \times \tilde{\mathbf{r}}_v = (1 - 2\lambda H + \lambda^2 K)(\mathbf{r}_u \times \mathbf{r}_v)$$
+
+
+当 $\lambda$ 充分小时，$1 - 2\lambda H + \lambda^2 K > 0$，故 $\tilde{\mathbf{r}}_u \times \tilde{\mathbf{r}}_v \neq \mathbf{0}$ 且与 $\mathbf{n}$ 共线。因此 $\widetilde{S}$ 与 $S$ 在对应点具有平行的法向量，即切平面平行。
+
+---
+
+**证明 (2)：**
+
+选取 $\widetilde{S}$ 的单位法向量为 $\tilde{\mathbf{n}} = \mathbf{n}$。
+
+**方法一：主方向法（最简）**
+
+设 $S$ 在该点的主曲率为 $\kappa_1, \kappa_2$，对应的单位主方向特征向量为 $\mathbf{e}_1, \mathbf{e}_2$。由 Rodrigues 公式，沿主方向有：
+
+
+$$d\mathbf{n}(\mathbf{e}_i) = -\kappa_i \mathbf{e}_i \quad (i = 1, 2)$$
+
+
+于是平行曲面 $\widetilde{S}$ 沿同一方向的微分为：
+
+
+$$d\tilde{\mathbf{r}}(\mathbf{e}_i) = d\mathbf{r}(\mathbf{e}_i) + \lambda d\mathbf{n}(\mathbf{e}_i) = (1 - \lambda\kappa_i)\mathbf{e}_i$$
+
+
+由于 $\tilde{\mathbf{n}} = \mathbf{n}$，有 $d\tilde{\mathbf{n}}(\mathbf{e}_i) = d\mathbf{n}(\mathbf{e}_i) = -\kappa_i \mathbf{e}_i = -\frac{\kappa_i}{1 - \lambda\kappa_i} d\tilde{\mathbf{r}}(\mathbf{e}_i)$。
+由此可知 $\widetilde{S}$ 的两个主曲率分别为：
+
+
+$$\tilde{\kappa}_1 = \frac{\kappa_1}{1 - \lambda\kappa_1}, \qquad \tilde{\kappa}_2 = \frac{\kappa_2}{1 - \lambda\kappa_2}$$
+
+
+利用 $K = \kappa_1\kappa_2$ 与 $2H = \kappa_1 + \kappa_2$，直接计算得：
+
+
+$$\widetilde{K} = \tilde{\kappa}_1 \tilde{\kappa}_2 = \frac{\kappa_1 \kappa_2}{(1 - \lambda\kappa_1)(1 - \lambda\kappa_2)} = \frac{K}{1 - 2\lambda H + \lambda^2 K}$$
+
+$$\widetilde{H} = \frac{1}{2}(\tilde{\kappa}_1 + \tilde{\kappa}_2) = \frac{\kappa_1(1 - \lambda\kappa_2) + \kappa_2(1 - \lambda\kappa_1)}{2(1 - \lambda\kappa_1)(1 - \lambda\kappa_2)} = \frac{H - \lambda K}{1 - 2\lambda H + \lambda^2 K}$$
+
+**方法二：基本形式法**
+
+记 $S$ 的三基本形式为 $I = d\mathbf{r}^2$，$II = -d\mathbf{r}\cdot d\mathbf{n}$，$III = d\mathbf{n}^2$，满足恒等式 $III - 2H\,II + K\,I = 0$。
+因 $\tilde{\mathbf{n}} = \mathbf{n}$，$\widetilde{S}$ 的第一、第二基本形式为：
+
+
+$$\widetilde{I} = d\tilde{\mathbf{r}} \cdot d\tilde{\mathbf{r}} = (d\mathbf{r} + \lambda d\mathbf{n})^2 = I - 2\lambda II + \lambda^2 III = (1 - \lambda^2 K)I - 2\lambda(1 - \lambda H)II$$
+
+$$\widetilde{II} = -d\tilde{\mathbf{r}} \cdot d\tilde{\mathbf{n}} = -(d\mathbf{r} + \lambda d\mathbf{n})\cdot d\mathbf{n} = II - \lambda III = \lambda K\,I + (1 - 2\lambda H)II$$
+
+
+将上述矩阵关系用 Weingarten 矩阵 $\mathcal{S} = I^{-1}II$ 表示，有 $\widetilde{\mathcal{S}} = (I_2 - \lambda\mathcal{S})^{-1}\mathcal{S}$，取行列式与迹同样即得所证公式。
+
+## 4.1
+**题目重述**
+35. 若曲面 $z = f(x) + g(y)$ 是极小曲面，证明：除相差一个常数外，它可以写成
+
+
+$$z = \frac{1}{a}\ln\frac{\cos ay}{\cos ax}$$
+
+
+这个曲面称为 Scherk（谢尔克）曲面。
+
+---
+
+**题目解答**
+
+**1. 建立极小曲面方程**
+对于曲面 $z = f(x) + g(y)$，计算其一阶与二阶偏导数：
+
+
+$$z_x = f'(x), \quad z_y = g'(y), \quad z_{xx} = f''(x), \quad z_{xy} = 0, \quad z_{yy} = g''(y)$$
+
+
+因为曲面是极小曲面，平均曲率 $H \equiv 0$，代入函数图的平均曲率公式分子部分，得：
+
+
+$$(1 + z_y^2)z_{xx} - 2z_x z_y z_{xy} + (1 + z_x^2)z_{yy} = 0$$
+
+
+将各偏导数代入，化简为：
+
+
+$$\big(1 + [g'(y)]^2\big)f''(x) + \big(1 + [f'(x)]^2\big)g''(y) = 0$$
+
+**2. 分离变量求解**
+将上式整理为分离变量形式：
+
+
+$$\frac{f''(x)}{1 + [f'(x)]^2} = -\frac{g''(y)}{1 + [g'(y)]^2}$$
+
+
+因为等式左边仅依赖于 $x$，右边仅依赖于 $y$，故两边必等于同一常数 $a$：
+
+* 若 $a = 0$，则 $f''(x) = 0, g''(y) = 0$，此时曲面退化为平面。
+* 若 $a \neq 0$，得到两个常微分方程：
+
+$$\frac{f''(x)}{1 + [f'(x)]^2} = a, \qquad \frac{g''(y)}{1 + [g'(y)]^2} = -a$$
+
+
+
+**3. 积分求解 $f(x)$ 与 $g(y)$**
+对第一个方程关于 $x$ 积分一次：
+
+
+$$\arctan\big(f'(x)\big) = a(x - x_0) \implies f'(x) = \tan\big(a(x - x_0)\big)$$
+
+
+再关于 $x$ 积分一次：
+
+
+$$f(x) = -\frac{1}{a}\ln\big\vert{}\cos a(x - x_0)\big\vert{} + C_1$$
+
+
+同理，对第二个方程积分两次，可得：
+
+
+$$g'(y) = -\tan\big(a(y - y_0)\big) \implies g(y) = \frac{1}{a}\ln\big\vert{}\cos a(y - y_0)\big\vert{} + C_2$$
+
+**4. 得出结论**
+作坐标平移（相差常数 $x_0, y_0$）并合并常数项 $C = C_1 + C_2$，在使得余弦值为正的定义域内，曲面方程可写为：
+
+
+$$z = f(x) + g(y) = \frac{1}{a}\ln\frac{\cos ay}{\cos ax} + C$$
+
+
+即除相差常数外，该极小曲面可写成 $z = \frac{1}{a}\ln\frac{\cos ay}{\cos ax}$。证毕。
+
+## 4.2
+
+**题目重述**
+36. 证明：正螺面 $\mathbf{r}(u, v) = (u\cos v, u\sin v, bv)$ 是极小曲面；并证明：直纹极小曲面是平面或正螺面。
+
+---
+
+**题目解答**
+
+**第一部分：证明正螺面是极小曲面**
+求正螺面的一阶、二阶偏导数：
+
+
+$$\mathbf{r}_u = (\cos v, \sin v, 0), \qquad \mathbf{r}_v = (-u\sin v, u\cos v, b)$$
+
+$$\mathbf{r}_{uu} = (0, 0, 0), \qquad \mathbf{r}_{uv} = (-\sin v, \cos v, 0), \qquad \mathbf{r}_{vv} = (-u\cos v, -u\sin v, 0)$$
+
+
+计算第一基本量：
+
+
+$$E = \mathbf{r}_u^2 = 1, \qquad F = \mathbf{r}_u \cdot \mathbf{r}_v = 0, \qquad G = \mathbf{r}_v^2 = u^2 + b^2$$
+
+
+由于 $\mathbf{r}_{uu} = \mathbf{0}$ 且 $\mathbf{r}_{vv} = -u\mathbf{r}_u$ 與切向量共线，故第二基本量满足：
+
+
+$$L = \mathbf{r}_{uu} \cdot \mathbf{n} = 0, \qquad N = \mathbf{r}_{vv} \cdot \mathbf{n} = 0$$
+
+
+代入平均曲率公式得：
+
+
+$$H = \frac{LG - 2MF + NE}{2(EG - F^2)} = 0$$
+
+
+因此正螺面是极小曲面。
+
+---
+
+**第二部分：证明直纹极小曲面是平面或正螺面（Catalan 定理）**
+设直纹面为 $\mathbf{r}(u, v) = \mathbf{a}(u) + v\mathbf{e}(u)$，其中 $\Vert{}\mathbf{e}(u)\Vert{} = 1$。
+
+* 若 $\mathbf{e}'(u) \equiv \mathbf{0}$，直母线平行，曲面为柱面；因柱面的主曲率之一为 $0$，若 $H \equiv 0$ 则另一主曲率也为 $0$，此时曲面为**平面**。
+* 若 $\mathbf{e}'(u) \neq \mathbf{0}$，不妨取 $u$ 为球面像 $\mathbf{e}(u)$ 的弧长参数（即 $\Vert{}\mathbf{e}'\Vert{} = 1$），并取准线 $\mathbf{a}(u)$ 为曲面的腰曲线（即满足 $\mathbf{a}' \cdot \mathbf{e}' = 0$）。同时，可通过平移 $v$ 使切向量满足正交条件 $\mathbf{a}' \cdot \mathbf{e} = 0$（由极小性推出，见下）。
+
+求一阶与二阶偏导数：
+
+
+$$\mathbf{r}_u = \mathbf{a}' + v\mathbf{e}', \qquad \mathbf{r}_v = \mathbf{e}$$
+
+$$\mathbf{r}_{uu} = \mathbf{a}'' + v\mathbf{e}'', \qquad \mathbf{r}_{uv} = \mathbf{e}', \qquad \mathbf{r}_{vv} = \mathbf{0}$$
+
+
+此时 $G = \mathbf{e}^2 = 1$，$N = 0$。极小曲面条件 $LG - 2MF + NE = 0$ 化简为：
+
+
+$$L - 2MF = 0 \iff (\mathbf{r}_{uu}, \mathbf{r}_u, \mathbf{r}_v) - 2(\mathbf{r}_u \cdot \mathbf{r}_v)(\mathbf{r}_{uv}, \mathbf{r}_u, \mathbf{r}_v) = 0$$
+
+
+将 $\mathbf{r}_u, \mathbf{r}_v$ 等代入，注意到 $\mathbf{e}, \mathbf{e}'$ 构成的右手正交标架为 $\{\mathbf{e}, \mathbf{e}', \mathbf{e} \times \mathbf{e}'\}$，且由 $\mathbf{a}' \cdot \mathbf{e}' = 0$ 可设 $\mathbf{a}' = p\mathbf{e} + q(\mathbf{e} \times \mathbf{e}')$。
+将上述条件代入 $L - 2MF = 0$ 并整理关于 $v$ 的多项式（系数必须恒为 $0$）：
+
+1. **$v^2$ 项系数为 $0$：**
+
+$$(\mathbf{e}'', \mathbf{e}', \mathbf{e}) = 0$$
+
+
+
+这表明球面曲线 $\mathbf{e}(u)$ 的测地曲率为 $0$，故 $\mathbf{e}(u)$ 是单位球面上的大圆，即存在常单位向量 $\mathbf{k}$ 使得 $\mathbf{e}(u) = (\cos u, \sin u, 0)$，且 $\mathbf{e} \times \mathbf{e}' = (0, 0, 1) = \mathbf{k}$（常向量），$\mathbf{e}'' = -\mathbf{e}$。
+2. **$v^1$ 项与 $v^0$ 项系数为 $0$：**
+利用 $\mathbf{e}'' = -\mathbf{e}$，可得 $F = \mathbf{a}' \cdot \mathbf{e} = p = 0$（即 $\mathbf{a}' = q\mathbf{k}$），且 $\mathbf{a}'' = q'\mathbf{k}$。代入 $L = (\mathbf{a}'' - v\mathbf{e}, q\mathbf{k} + v\mathbf{e}', \mathbf{e}) = 0$，得：
+
+$$v q'(u) (\mathbf{k}, \mathbf{e}', \mathbf{e}) = -v q'(u) = 0 \implies q'(u) = 0$$
+
+
+
+因此 $q(u) = b$（常数），从而 $\mathbf{a}'(u) = (0, 0, b)$，积分得 $\mathbf{a}(u) = (0, 0, bu)$（差一常向量平移）。
+
+综上，曲面方程为 $\mathbf{r}(u, v) = (v\cos u, v\sin u, bu)$：当 $b = 0$ 时为**平面**，当 $b \neq 0$ 时为**正螺面**。证毕。
+
+## 5
+
+**题目重述**
+5. Gauss 曲率的几何解释：
+设 $S$ 是参数曲面片 $\mathbf{r} : D \to \mathbb{R}^3, (u, v) \to \mathbf{r}(u, v)$。
+a) 定义参数曲面片 $S$ 的面积为 $\text{Area}(S) := \int_D \vert{}\mathbf{r}_u \times \mathbf{r}_v\vert{}dudv = \int_D \sqrt{EG - F^2}dudv$。试证明面积的定义与参数选取无关。
+b) 设 $p_0 = \mathbf{r}(u_0, v_0)$ 是参数曲面片上的一点，且 Gauss 曲率 $K(p_0) > 0$。考虑参数区域 $D$ 中 $(u_0, v_0)$ 的球形开邻域 $B_\delta(u_0, v_0) := \{(u, v) \mid \sqrt{(u - u_0)^2 + (v - v_0)^2} < \delta\}$。试证明当 $r$（即 $\delta$）充分小时，$\tilde{\mathbf{r}} = g \circ \mathbf{r} : B_r(u_0, v_0) \to \mathbb{R}^3, (u, v) \mapsto \mathbf{n}(u, v)$ 是参数曲面片，即单位球面 $\mathbb{S}^2(1)$ 在点 $\mathbf{n}(u_0, v_0)$ 附近的参数化，其中 $g$ 和 $\mathbf{n}$ 分别是参数曲面片 $S$ 的 Gauss 映射和单位法向量。进一步证明，
+
+
+$$K(p_0) = \lim_{\delta \to 0} \frac{\text{Area}(\tilde{\mathbf{r}}(B_\delta(u_0, v_0)))}{\text{Area}(\mathbf{r}(B_\delta(u_0, v_0)))}$$
+
+---
+
+**题目解答**
+
+**a) 证明面积定义与参数选取无关**
+设 $(\tilde{u}, \tilde{v}) \in \tilde{D} \mapsto (u(\tilde{u}, \tilde{v}), v(\tilde{u}, \tilde{v})) \in D$ 是光滑参数变换，其 Jacobi 行列式 $\frac{\partial(u, v)}{\partial(\tilde{u}, \tilde{v})} \neq 0$。
+由复合函数求导法则：
+
+
+$$\mathbf{r}_{\tilde{u}} = \mathbf{r}_u u_{\tilde{u}} + \mathbf{r}_v v_{\tilde{u}}, \qquad \mathbf{r}_{\tilde{v}} = \mathbf{r}_u u_{\tilde{v}} + \mathbf{r}_v v_{\tilde{v}}$$
+
+
+两边作外积得：
+
+
+$$\mathbf{r}_{\tilde{u}} \times \mathbf{r}_{\tilde{v}} = (u_{\tilde{u}}v_{\tilde{v}} - v_{\tilde{u}}u_{\tilde{v}})(\mathbf{r}_u \times \mathbf{r}_v) = \frac{\partial(u, v)}{\partial(\tilde{u}, \tilde{v})}(\mathbf{r}_u \times \mathbf{r}_v)$$
+
+
+由重积分的变量代换公式：
+
+
+$$\int_{\tilde{D}} \vert{}\mathbf{r}_{\tilde{u}} \times \mathbf{r}_{\tilde{v}}\vert{} d\tilde{u}d\tilde{v} = \int_{\tilde{D}} \vert{}\mathbf{r}_u \times \mathbf{r}_v\vert{} \left\vert{}\frac{\partial(u, v)}{\partial(\tilde{u}, \tilde{v})}\right\vert{} d\tilde{u}d\tilde{v} = \int_D \vert{}\mathbf{r}_u \times \mathbf{r}_v\vert{} dudv$$
+
+
+故曲面面积与参数选取无关。
+
+---
+
+**b) 证明 $\tilde{\mathbf{r}}$ 的正则性及 Gauss 曲率的面积比极限**
+**1. 证明 $\tilde{\mathbf{r}}$ 是正则参数曲面片：**
+由 Weingarten 变换 $d\mathbf{n} = -\mathcal{S}(d\mathbf{r})$ 及 $\det\mathcal{S} = K$，有：
+
+
+$$\tilde{\mathbf{r}}_u \times \tilde{\mathbf{r}}_v = \mathbf{n}_u \times \mathbf{n}_v = (\det\mathcal{S})(\mathbf{r}_u \times \mathbf{r}_v) = K(\mathbf{r}_u \times \mathbf{r}_v)$$
+
+
+因为 $K(p_0) > 0$ 且 $K$ 连续，故当邻域半径 $\delta$（题目中记为 $r$）充分小时，在 $B_\delta(u_0, v_0)$ 上恒有 $K(u, v) > 0$。
+又因 $S$ 正则（$\vert{}\mathbf{r}_u \times \mathbf{r}_v\vert{} > 0$），可得：
+
+
+$$\vert{}\tilde{\mathbf{r}}_u \times \tilde{\mathbf{r}}_v\vert{} = K \vert{}\mathbf{r}_u \times \mathbf{r}_v\vert{} > 0$$
+
+
+由反函数定理，当 $\delta$ 充分小时，$\tilde{\mathbf{r}} = \mathbf{n}(u, v)$ 是单射且切向量线性无关，故为单位球面 $\mathbb{S}^2(1)$ 在 $\mathbf{n}(u_0, v_0)$ 附近的正则参数曲面片。
+
+**2. 证明极限公式：**
+在 $B_\delta(u_0, v_0)$ 上，$K(u, v) > 0$，故球面像面积为：
+
+
+$$\text{Area}(\tilde{\mathbf{r}}(B_\delta(u_0, v_0))) = \int_{B_\delta(u_0, v_0)} \vert{}\mathbf{n}_u \times \mathbf{n}_v\vert{} dudv = \int_{B_\delta(u_0, v_0)} K(u, v)\vert{}\mathbf{r}_u \times \mathbf{r}_v\vert{} dudv$$
+
+
+因为 $\vert{}\mathbf{r}_u \times \mathbf{r}_v\vert{} > 0$ 保持同号，由推广的积分第一中值定理，存在点 $(u_\xi, v_\xi) \in B_\delta(u_0, v_0)$ 使得：
+
+
+$$\int_{B_\delta(u_0, v_0)} K(u, v)\vert{}\mathbf{r}_u \times \mathbf{r}_v\vert{} dudv = K(\mathbf{r}(u_\xi, v_\xi)) \int_{B_\delta(u_0, v_0)} \vert{}\mathbf{r}_u \times \mathbf{r}_v\vert{} dudv = K(\mathbf{r}(u_\xi, v_\xi)) \cdot \text{Area}(\mathbf{r}(B_\delta(u_0, v_0)))$$
+
+
+两边相除并令 $\delta \to 0$，此时 $(u_\xi, v_\xi) \to (u_0, v_0)$，由 $K$ 的连续性即得：
+
+
+$$\lim_{\delta \to 0} \frac{\text{Area}(\tilde{\mathbf{r}}(B_\delta(u_0, v_0)))}{\text{Area}(\mathbf{r}(B_\delta(u_0, v_0)))} = \lim_{\delta \to 0} K(\mathbf{r}(u_\xi, v_\xi)) = K(p_0)$$
+
+
+证毕。
+
+# Week 5
+
+## 1
+
+**题目重述**
+
+1. 证明：
+(1) $g^{\alpha\beta}g_{\alpha\beta} = 2$；
+(2) $\frac{\partial \ln \sqrt{g}}{\partial u^\alpha} = \Gamma_{1\alpha}^1 + \Gamma_{2\alpha}^2$。
+
+
+
+---
+
+**题目解答**
+
+**证明 (1)：**
+由于 $(g^{\alpha\beta})$ 是第一基本量矩阵 $(g_{\alpha\beta})_{2\times 2}$ 的逆矩阵，满足：
+
+
+$$g^{\alpha\gamma}g_{\gamma\beta} = \delta^\alpha_\beta$$
+
+
+对指标取缩并（令 $\beta = \alpha$ 并对 $\alpha, \beta \in \{1, 2\}$ 求和），得：
+
+
+$$g^{\alpha\beta}g_{\alpha\beta} = \delta^\alpha_\alpha = \delta^1_1 + \delta^2_2 = 1 + 1 = 2$$
+
+---
+
+**证明 (2)：**
+记 $g = \det(g_{\mu\nu})$。由第二类 Christoffel 符号的定义及 $g_{\mu\nu}$ 的对称性：
+
+
+$$\Gamma_{\beta\alpha}^\beta = \frac{1}{2}g^{\beta\gamma}\left(\frac{\partial g_{\alpha\gamma}}{\partial u^\beta} + \frac{\partial g_{\beta\gamma}}{\partial u^\alpha} - \frac{\partial g_{\beta\alpha}}{\partial u^\gamma}\right)$$
+
+
+因 $g^{\beta\gamma} = g^{\gamma\beta}$ 对称，括号内第一项与第三项交换哑指标 $\beta \leftrightarrow \gamma$ 后相互抵消，故：
+
+
+$$\Gamma_{1\alpha}^1 + \Gamma_{2\alpha}^2 = \Gamma_{\beta\alpha}^\beta = \frac{1}{2}g^{\beta\gamma}\frac{\partial g_{\beta\gamma}}{\partial u^\alpha}$$
+
+
+另一方面，由行列式求导法则（$\frac{\partial g}{\partial g_{\beta\gamma}} = A^{\beta\gamma} = g \cdot g^{\beta\gamma}$，其中 $A^{\beta\gamma}$ 为代数余子式）：
+
+
+$$\frac{\partial g}{\partial u^\alpha} = \frac{\partial g}{\partial g_{\beta\gamma}}\frac{\partial g_{\beta\gamma}}{\partial u^\alpha} = g \cdot g^{\beta\gamma}\frac{\partial g_{\beta\gamma}}{\partial u^\alpha}$$
+
+
+因此：
+
+
+$$\frac{\partial \ln \sqrt{g}}{\partial u^\alpha} = \frac{1}{2g}\frac{\partial g}{\partial u^\alpha} = \frac{1}{2}g^{\beta\gamma}\frac{\partial g_{\beta\gamma}}{\partial u^\alpha} = \Gamma_{1\alpha}^1 + \Gamma_{2\alpha}^2$$
+
+
+证毕。
+
+## 2
+
+**题目重述**
+2. 设曲面 $S : \mathbf{r}(u^1, u^2)$ 有参数变换 $u^\alpha = u^\alpha(\tilde{u}^1, \tilde{u}^2)$，$\alpha = 1, 2$。记 $a_i^\alpha = \frac{\partial u^\alpha}{\partial \tilde{u}^i}$，$\tilde{a}_\alpha^i = \frac{\partial \tilde{u}^i}{\partial u^\alpha}$ ($1 \leqslant \alpha, i \leqslant 2$)，$S$ 在参数 $(\tilde{u}^1, \tilde{u}^2)$ 下的第一、第二基本形式为 $\{\tilde{g}_{ij}\}, \{\tilde{b}_{ij}\}$，证明：
+(1) $\tilde{g}_{ij} = g_{\alpha\beta}a_i^\alpha a_j^\beta$，$\tilde{b}_{ij} = b_{\alpha\beta}a_i^\alpha a_j^\beta$，$g^{\alpha\beta} = \tilde{g}^{ij}a_i^\alpha a_j^\beta$；
+(2) $\tilde{\Gamma}_{ij}^k = \Gamma_{\alpha\beta}^\gamma a_i^\alpha a_j^\beta \tilde{a}_\gamma^k + \frac{\partial a_i^\alpha}{\partial \tilde{u}^j}\tilde{a}_\alpha^k$。
+
+---
+
+**题目解答**
+
+记 $\mathbf{r}_\alpha = \frac{\partial \mathbf{r}}{\partial u^\alpha}$，$\tilde{\mathbf{r}}_i = \frac{\partial \mathbf{r}}{\partial \tilde{u}^i}$。由复合函数求导法则，有 $\tilde{\mathbf{r}}_i = a_i^\alpha \mathbf{r}_\alpha$（反之 $\mathbf{r}_\gamma = \tilde{a}_\gamma^k \tilde{\mathbf{r}}_k$），且矩阵 $(a_i^\alpha)$ 与 $(\tilde{a}_\alpha^i)$ 互逆，即 $a_i^\alpha \tilde{a}_\beta^i = \delta_\beta^\alpha$，$\tilde{a}_\alpha^i a_j^\alpha = \delta_j^i$。
+
+**证明 (1)：**
+
+* **第一基本量：**
+
+$$\tilde{g}_{ij} = \tilde{\mathbf{r}}_i \cdot \tilde{\mathbf{r}}_j = (a_i^\alpha \mathbf{r}_\alpha) \cdot (a_j^\beta \mathbf{r}_\beta) = g_{\alpha\beta}a_i^\alpha a_j^\beta$$
+
+
+* **第二基本量：**（保持法向量 $\mathbf{n}$ 取向不变，利用 $\mathbf{r}_\alpha \cdot \mathbf{n} = 0$）
+
+$$\tilde{\mathbf{r}}_{ij} = \frac{\partial}{\partial \tilde{u}^j}(a_i^\alpha \mathbf{r}_\alpha) = a_i^\alpha a_j^\beta \mathbf{r}_{\alpha\beta} + \frac{\partial a_i^\alpha}{\partial \tilde{u}^j}\mathbf{r}_\alpha$$
+
+
+$$\tilde{b}_{ij} = \tilde{\mathbf{r}}_{ij} \cdot \mathbf{n} = a_i^\alpha a_j^\beta (\mathbf{r}_{\alpha\beta} \cdot \mathbf{n}) + 0 = b_{\alpha\beta}a_i^\alpha a_j^\beta$$
+
+
+* **逆度量张量：**
+将 $\tilde{g}_{ij} = g_{\mu\nu}a_i^\mu a_j^\nu$ 代入下式并计算其与 $g_{\beta\gamma}$ 的缩并：
+
+$$(\tilde{g}^{ij}a_i^\alpha a_j^\beta)g_{\beta\gamma} = \tilde{g}^{ij}a_i^\alpha (g_{\beta\gamma}a_j^\beta \tilde{a}_\gamma^k a_k^\eta \delta_\eta^\gamma) \implies \text{直接利用 } g_{\beta\gamma}a_j^\beta = \tilde{g}_{jk}\tilde{a}_\gamma^k$$
+
+
+
+得 $(\tilde{g}^{ij}a_i^\alpha a_j^\beta)g_{\beta\gamma} = \tilde{g}^{ij}\tilde{g}_{jk}a_i^\alpha \tilde{a}_\gamma^k = \delta_k^i a_i^\alpha \tilde{a}_\gamma^k = a_k^\alpha \tilde{a}_\gamma^k = \delta_\gamma^\alpha$。由逆矩阵唯一性知 $g^{\alpha\beta} = \tilde{g}^{ij}a_i^\alpha a_j^\beta$。
+
+---
+
+**证明 (2)：**
+利用 Gauss 公式 $\mathbf{r}_{\alpha\beta} = \Gamma_{\alpha\beta}^\gamma \mathbf{r}_\gamma + b_{\alpha\beta}\mathbf{n}$ 以及 $\mathbf{r}_\gamma = \tilde{a}_\gamma^k \tilde{\mathbf{r}}_k$，代入二阶偏导表达式：
+
+
+$$\tilde{\mathbf{r}}_{ij} = a_i^\alpha a_j^\beta (\Gamma_{\alpha\beta}^\gamma \mathbf{r}_\gamma + b_{\alpha\beta}\mathbf{n}) + \frac{\partial a_i^\alpha}{\partial \tilde{u}^j}\mathbf{r}_\alpha = \left(\Gamma_{\alpha\beta}^\gamma a_i^\alpha a_j^\beta \tilde{a}_\gamma^k + \frac{\partial a_i^\alpha}{\partial \tilde{u}^j}\tilde{a}_\alpha^k\right)\tilde{\mathbf{r}}_k + \tilde{b}_{ij}\mathbf{n}$$
+
+
+对比新参数下的 Gauss 公式 $\tilde{\mathbf{r}}_{ij} = \tilde{\Gamma}_{ij}^k \tilde{\mathbf{r}}_k + \tilde{b}_{ij}\mathbf{n}$，由切空间基底 $\{\tilde{\mathbf{r}}_1, \tilde{\mathbf{r}}_2\}$ 的线性无关性，直接比较 $\tilde{\mathbf{r}}_k$ 的系数即得：
+
+
+$$\tilde{\Gamma}_{ij}^k = \Gamma_{\alpha\beta}^\gamma a_i^\alpha a_j^\beta \tilde{a}_\gamma^k + \frac{\partial a_i^\alpha}{\partial \tilde{u}^j}\tilde{a}_\alpha^k$$
+
+
+证毕。
+
+## 3 & 4 & 5
+
+**题目重述**
+3. 证明：平均曲率 $H = \frac{1}{2}b_{\alpha\beta}g^{\beta\alpha}$。
+4. 已知曲面的第一基本形式 $I = drdr + r^2dsds$，求它的 Christoffel 符号。
+5. 求曲面 $z = f(x, y)$ 的 Christoffel 符号。
+
+---
+
+**题目解答**
+
+**第 3 题：证明 $H = \frac{1}{2}b_{\alpha\beta}g^{\beta\alpha}$**
+记第一、第二基本量矩阵及逆度量矩阵分别为：
+
+
+$$(g_{\alpha\beta}) = \begin{pmatrix} E & F \\ F & G \end{pmatrix}, \quad (b_{\alpha\beta}) = \begin{pmatrix} L & M \\ M & N \end{pmatrix}, \quad (g^{\beta\alpha}) = \frac{1}{EG - F^2}\begin{pmatrix} G & -F \\ -F & E \end{pmatrix}$$
+
+
+直接按指标展开求和（或由 Weingarten 变换矩阵 $b_\alpha^\gamma = b_{\alpha\beta}g^{\beta\gamma}$ 的迹 $\mathrm{tr}(\mathcal{S}) = 2H$）：
+
+
+$$\frac{1}{2}b_{\alpha\beta}g^{\beta\alpha} = \frac{1}{2}(b_{11}g^{11} + b_{12}g^{21} + b_{21}g^{12} + b_{22}g^{22}) = \frac{LG - 2MF + NE}{2(EG - F^2)} = H$$
+
+---
+
+**第 4 题：求 $I = dr^2 + r^2ds^2$ 的 Christoffel 符号**
+记参数 $(u^1, u^2) = (r, s)$，则度量张量与逆度量张量为：
+
+
+$$g_{11} = 1, \quad g_{12} = g_{21} = 0, \quad g_{22} = r^2; \qquad g^{11} = 1, \quad g^{12} = g^{21} = 0, \quad g^{22} = \frac{1}{r^2}$$
+
+
+唯一非零的偏导数为 $\frac{\partial g_{22}}{\partial r} = 2r$。代入定义式 $\Gamma_{ij, k} = \frac{1}{2}\left(\frac{\partial g_{ik}}{\partial u^j} + \frac{\partial g_{jk}}{\partial u^i} - \frac{\partial g_{ij}}{\partial u^k}\right)$ 及 $\Gamma_{ij}^l = g^{lk}\Gamma_{ij, k}$：
+
+* **第一类 Christoffel 符号：**
+
+$$\Gamma_{22, 1} = -r, \qquad \Gamma_{12, 2} = \Gamma_{21, 2} = r, \qquad \text{其余 } \Gamma_{ij, k} = 0$$
+
+
+* **第二类 Christoffel 符号：**
+
+$$\Gamma_{22}^1 = -r, \qquad \Gamma_{12}^2 = \Gamma_{21}^2 = \frac{1}{r}, \qquad \text{其余 } \Gamma_{ij}^k = 0$$
+
+
+
+---
+
+**第 5 题：求曲面 $z = f(x, y)$ 的 Christoffel 符号**
+设曲面参数化为 $\mathbf{r}(x, y) = (x, y, f(x, y))$，记 $(u^1, u^2) = (x, y)$。
+一阶与二阶偏导数为：
+
+
+$$\mathbf{r}_1 = (1, 0, f_x), \quad \mathbf{r}_2 = (0, 1, f_y), \quad \mathbf{r}_{ij} = (0, 0, f_{ij}) \quad (i, j \in \{1, 2\} \text{ 对应 } x, y)$$
+
+
+单位法向量为 $\mathbf{n} = \frac{(-f_x, -f_y, 1)}{\sqrt{1 + f_x^2 + f_y^2}}$，第二基本量为 $b_{ij} = \mathbf{r}_{ij} \cdot \mathbf{n} = \frac{f_{ij}}{\sqrt{1 + f_x^2 + f_y^2}}$。
+
+* **第一类 Christoffel 符号**（由 $\Gamma_{ij, k} = \mathbf{r}_{ij} \cdot \mathbf{r}_k$ 直接点乘）：
+
+$$\Gamma_{ij, 1} = f_x f_{ij}, \qquad \Gamma_{ij, 2} = f_y f_{ij}$$
+
+
+* **第二类 Christoffel 符号**（由 Gauss 公式 $\mathbf{r}_{ij} = \Gamma_{ij}^1 \mathbf{r}_1 + \Gamma_{ij}^2 \mathbf{r}_2 + b_{ij}\mathbf{n}$ 比较前两个坐标分量）：
+
+$$\begin{cases} 0 = \Gamma_{ij}^1 - \frac{f_x f_{ij}}{1 + f_x^2 + f_y^2} \\ 0 = \Gamma_{ij}^2 - \frac{f_y f_{ij}}{1 + f_x^2 + f_y^2} \end{cases} \implies \Gamma_{ij}^1 = \frac{f_x f_{ij}}{1 + f_x^2 + f_y^2}, \qquad \Gamma_{ij}^2 = \frac{f_y f_{ij}}{1 + f_x^2 + f_y^2}$$
+
+
+
+（其中 $f_{11} = f_{xx},\, f_{12} = f_{21} = f_{xy},\, f_{22} = f_{yy}$）。
+
+## II
+
+**题目重述**
+2. 证明：
+
+
+$$\forall \alpha, \beta, \gamma, \quad \frac{\partial b_{\alpha\beta}}{\partial u^\gamma} - \frac{\partial b_{\alpha\gamma}}{\partial u^\beta} + \Gamma_{\alpha\beta}^\xi b_{\xi\gamma} - \Gamma_{\alpha\gamma}^\xi b_{\xi\beta} = 0$$
+
+
+等价于
+
+
+$$\forall \alpha, \beta, \xi, \quad \frac{\partial b_\alpha^\xi}{\partial u^\beta} - \frac{\partial b_\beta^\xi}{\partial u^\alpha} + b_\alpha^\gamma \Gamma_{\gamma\beta}^\xi - b_\beta^\gamma \Gamma_{\gamma\alpha}^\xi = 0.$$
+
+
+
+---
+
+**题目解答**
+
+**1. 基本预备关系**
+由 Weingarten 变换系数与第二基本量的指标升降关系，有 $b_{\mu\nu} = b_\mu^\eta g_{\eta\nu}$（且 $b_{\mu\nu} = b_{\nu\mu}$）。
+利用 Gauss 公式求度量张量的偏导数（Ricci 引理）：
+
+
+$$\frac{\partial g_{\eta\nu}}{\partial u^\gamma} = \Gamma_{\eta\gamma, \nu} + \Gamma_{\nu\gamma, \eta} = \Gamma_{\eta\gamma}^\sigma g_{\sigma\nu} + \Gamma_{\nu\gamma}^\sigma g_{\sigma\eta}$$
+
+**2. 展开第一式左端**
+利用对称性 $b_{\alpha\beta} = b_{\beta\alpha} = b_\beta^\eta g_{\eta\alpha}$ 及 $b_{\alpha\gamma} = b_{\gamma\alpha} = b_\gamma^\eta g_{\eta\alpha}$，对第一式前两项求导：
+
+
+$$\frac{\partial b_{\alpha\beta}}{\partial u^\gamma} = \frac{\partial(b_\beta^\eta g_{\eta\alpha})}{\partial u^\gamma} = \frac{\partial b_\beta^\eta}{\partial u^\gamma}g_{\eta\alpha} + b_\beta^\eta(\Gamma_{\eta\gamma}^\sigma g_{\sigma\alpha} + \Gamma_{\alpha\gamma}^\sigma g_{\sigma\eta})$$
+
+$$\frac{\partial b_{\alpha\gamma}}{\partial u^\beta} = \frac{\partial(b_\gamma^\eta g_{\eta\alpha})}{\partial u^\beta} = \frac{\partial b_\gamma^\eta}{\partial u^\beta}g_{\eta\alpha} + b_\gamma^\eta(\Gamma_{\eta\beta}^\sigma g_{\sigma\alpha} + \Gamma_{\alpha\beta}^\sigma g_{\sigma\eta})$$
+
+同时，将第一式后两项写为：
+
+
+$$\Gamma_{\alpha\beta}^\xi b_{\xi\gamma} = \Gamma_{\alpha\beta}^\sigma b_\gamma^\eta g_{\sigma\eta}, \qquad \Gamma_{\alpha\gamma}^\xi b_{\xi\beta} = \Gamma_{\alpha\gamma}^\sigma b_\beta^\eta g_{\sigma\eta}$$
+
+**3. 化简与等价性证明**
+将上述四式代入第一式左端，含 $\Gamma_{\alpha\gamma}^\sigma g_{\sigma\eta}$ 与 $\Gamma_{\alpha\beta}^\sigma g_{\sigma\eta}$ 的项恰好相互抵消，统一哑指标后得：
+
+
+$$\frac{\partial b_{\alpha\beta}}{\partial u^\gamma} - \frac{\partial b_{\alpha\gamma}}{\partial u^\beta} + \Gamma_{\alpha\beta}^\xi b_{\xi\gamma} - \Gamma_{\alpha\gamma}^\xi b_{\xi\beta} = \left(\frac{\partial b_\beta^\eta}{\partial u^\gamma} - \frac{\partial b_\gamma^\eta}{\partial u^\beta} + b_\beta^\sigma \Gamma_{\sigma\gamma}^\eta - b_\gamma^\sigma \Gamma_{\sigma\beta}^\eta\right)g_{\eta\alpha}$$
+
+由于第一基本量矩阵 $(g_{\eta\alpha})$ 是非退化（可逆）的，上式对任意 $\alpha, \beta, \gamma$ 恒为 $0$（必要时两边同乘逆矩阵 $g^{\alpha\xi}$ 缩并），当且仅当括号内的因子恒为 $0$。最后将自由指标重新命名为 $(\beta, \gamma, \eta) \to (\alpha, \beta, \xi)$、哑指标记为 $\gamma$，即等价于：
+
+
+$$\forall \alpha, \beta, \xi, \quad \frac{\partial b_\alpha^\xi}{\partial u^\beta} - \frac{\partial b_\beta^\xi}{\partial u^\alpha} + b_\alpha^\gamma \Gamma_{\gamma\beta}^\xi - b_\beta^\gamma \Gamma_{\gamma\alpha}^\xi = 0$$
+
+
+证毕（此即曲面 Codazzi 方程的两种等价形式）。

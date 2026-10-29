@@ -6,4 +6,1149 @@ format:
 ---
 
 
+# 0
+
+计算基：
+
+$$
+\vert{}0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \vert{}1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+$$
+
+
+**贝尔态（Bell States）**，又称 **EPR 对**，是两比特复合量子系统（$\mathcal{H}_A \otimes \mathcal{H}_B = \mathbb{C}^2 \otimes \mathbb{C}^2$）中最具代表性的**最大纠缠纯态（Maximally Entangled States）**。
+
+**不可分离性（纠缠性）**：
+无法写成任何单比特态的直积形式 $\vert{}\psi\rangle \ne \vert{}a\rangle_A \otimes \vert{}b\rangle_B$。
+
+在量子计算中，**量子逻辑门（Quantum Gate）**在数学上对应二维复希尔伯特空间 $\mathbb{C}^2$ 上的**幺正算符（Unitary Operator）**，满足 $U^\dagger U = U U^\dagger = I$。幺正性保证了量子态在演化过程中的范数守恒（总概率为 1）以及操作的可逆性。
+
+在 Bloch 球几何图像中，任何单比特量子门都等价于将状态矢量绕 Bloch 球的某一特定轴旋转特定角度。
+
+---
+
+#### 1. Pauli-X 门（比特翻转门，Bit-Flip Gate）
+
+$X$ 门是经典逻辑“非门（NOT Gate）”在量子计算中的直接对应物。
+
+* **矩阵表示**：
+
+$$X = \sigma_x = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$$
+
+
+* **对计算基的作用**：
+
+$$X\vert{}0\rangle = \vert{}1\rangle, \quad X\vert{}1\rangle = \vert{}0\rangle$$
+
+
+对任意叠加态 $\vert{}\psi\rangle = \alpha\vert{}0\rangle + \beta\vert{}1\rangle$：
+
+$$X\vert{}\psi\rangle = \beta\vert{}0\rangle + \alpha\vert{}1\rangle$$
+
+
+#### 2. Pauli-Z 门（相位翻转门，Phase-Flip Gate）
+
+$Z$ 门不改变计算基的布居数（概率分布），仅改变两基矢之间的相对量子相位。
+
+* **矩阵表示**：
+
+$$Z = \sigma_z = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$$
+
+
+* **对计算基的作用**：
+
+$$Z\vert{}0\rangle = \vert{}0\rangle, \quad Z\vert{}1\rangle = -\vert{}1\rangle$$
+
+
+
+对任意叠加态 $\vert{}\psi\rangle = \alpha\vert{}0\rangle + \beta\vert{}1\rangle$：
+
+$$Z\vert{}\psi\rangle = \alpha\vert{}0\rangle - \beta\vert{}1\rangle$$
+
+
+* **代数性质**：
+* 厄米且幺正：$Z^\dagger = Z = Z^{-1}$，因此 $Z^2 = I$。
+* 计算基 $\vert{}0\rangle, \vert{}1\rangle$ 本身即为 $Z$ 的本征基，对应本征值分别为 $+1, -1$。
+* 对 $X$ 的本征态施加 $Z$，实现本征态的互相翻转：
+
+$$Z\vert{}+\rangle = \vert{}-\rangle, \quad Z\vert{}-\rangle = \vert{}+\rangle$$
+
+
+
+
+* **Bloch 球几何意义**：
+等价于将态矢量绕 Bloch 球的 **$z$ 轴旋转 $\pi$ 弧度（$180^\circ$）**（$R_z(\pi) = -iZ$）。
+
+---
+
+#### 3. Hadamard 门（H 门，创建叠加门 / 基底转换门）
+
+$H$ 门是量子算法中最基础的核心门，负责在确定基与等幅叠加基之间建立映射。
+
+* **矩阵表示**：
+
+$$H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix} = \frac{X + Z}{\sqrt{2}}$$
+
+
+* **对计算基的作用**：
+
+$$H\vert{}0\rangle = \frac{\vert{}0\rangle + \vert{}1\rangle}{\sqrt{2}} = \vert{}+\rangle$$
+
+
+$$H\vert{}1\rangle = \frac{\vert{}0\rangle - \vert{}1\rangle}{\sqrt{2}} = \vert{}-\rangle$$
+
+
+
+若将 $H$ 作用在 $\vert{}+\rangle$ 或 $\vert{}-\rangle$ 上，则由于其自反性反向映射回计算基：
+
+$$H\vert{}+\rangle = \vert{}0\rangle, \quad H\vert{}-\rangle = \vert{}1\rangle$$
+
+
+* **代数性质**：
+* 厄米且幺正：$H^\dagger = H = H^{-1}$，满足 $H^2 = I$。
+* $H$ 充当了 $X$ 算符与 $Z$ 算符之间的**基变换酉共轭矩阵**：
+
+$$H X H = Z, \quad H Z H = X$$
+
+
+
+（即 $H$ 将 $Z$ 轴旋转到 $x$ 轴，同时将 $x$ 轴旋转到 $z$ 轴）。
+
+
+* **Bloch 球几何意义**：
+等价于将态矢量绕位于 $xz$ 平面上与 $x$ 轴和 $z$ 轴各成 $45^\circ$ 的对角轴 $\vec{n} = \frac{1}{\sqrt{2}}(\hat{x} + \hat{z})$ **旋转 $\pi$ 弧度（$180^\circ$）**。
+
+#### 4. Pauli-Y 门（比特与相位联合翻转门）
+
+$Y$ 门同时结合了比特翻转（$X$）与相位翻转（$Z$）的效果，并带有虚数单位 $i$。
+
+* **矩阵表示**：
+
+$$Y = \sigma_y = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}$$
+
+
+* **对计算基的作用**：
+
+$$Y\vert{}0\rangle = i\vert{}1\rangle, \quad Y\vert{}1\rangle = -i\vert{}0\rangle$$
+
+
+* **代数性质**：
+* 厄米且幺正：$Y^\dagger = Y = Y^{-1}$，故 $Y^2 = I$。
+* 与其他泡利矩阵的关系：$Y = iXZ = -iZX$。
+* 本征值为 $\pm 1$，对应本征态位于 Bloch 球的 $y$ 轴两极：
+
+$$\vert{}+i\rangle = \frac{\vert{}0\rangle + i\vert{}1\rangle}{\sqrt{2}} \quad (\text{本征值 } +1), \quad \vert{}-i\rangle = \frac{\vert{}0\rangle - i\vert{}1\rangle}{\sqrt{2}} \quad (\text{本征值 } -1)$$
+
+
+
+
+* **Bloch 球几何意义**：
+将态矢量绕 Bloch 球的 **$y$ 轴旋转 $\pi$ 弧度（$180^\circ$）**（$R_y(\pi) = -iY$）。
+
 # 1
+
+### 一、 量子比特（Qubit）：状态与测量
+
+1. **叠加态**：
+* 经典比特只能是 $0$ 或 $1$；量子比特可处于两者的线性叠加：$\vert{}\psi\rangle = \alpha\vert{}0\rangle + \beta\vert{}1\rangle$（$\alpha, \beta$ 为复数）。
+
+* $\vert{}0\rangle$ 和 $\vert{}1\rangle$ 构成二维复向量空间的正交归一计算基态。
+
+2. **测量与塌缩**：
+* 无法直接读取连续的 $\alpha$ 和 $\beta$。
+
+* **测量规则**：测得 $0$ 的概率为 $\vert{}\alpha\vert{}^2$（态塌缩为 $\vert{}0\rangle$），测得 $1$ 的概率为 $\vert{}\beta\vert{}^2$（态塌缩为 $\vert{}1\rangle$），满足归一化条件 $\vert{}\alpha\vert{}^2 + \vert{}\beta\vert{}^2 = 1$。
+
+* **信息悖论**：未测量时，量子态在演化中隐含无穷多连续参数（隐藏信息）；但单次测量最多只能提取 **1 bit** 的离散信息，且会彻底改变原状态。
+
+3. **Bloch 球（几何表示）**：
+* 忽略无观测效应的全局相位后，单比特态可表示为：$\vert{}\psi\rangle = \cos\frac{\theta}{2}\vert{}0\rangle + e^{i\varphi}\sin\frac{\theta}{2}\vert{}1\rangle$。
+
+* 实数 $\theta, \varphi$ 对应单位球面上的点（北极 $\vert{}0\rangle$，南极 $\vert{}1\rangle$）。
+
+* 注：Bloch 球仅适用于单比特，无法简单推广到多比特系统。
+
+---
+
+### 二、 多量子比特与纠缠
+
+1. **指数级增长的希尔伯特空间**：
+* 双比特有 4 个计算基态：$\vert{}00\rangle, \vert{}01\rangle, \vert{}10\rangle, \vert{}11\rangle$。若只测量其中一个比特，剩余部分需按概率**重新归一化**。
+
+* **$n$ 个量子比特**的状态由 **$2^n$ 个复振幅**描述。当 $n=500$ 时，振幅数量超过宇宙原子总数，经典计算机无法存储，但这正是量子并行算力的来源。
+
+2. **Bell 态（EPR 对）**：
+* 典型状态：$\vert{}\beta_{00}\rangle = \frac{\vert{}00\rangle + \vert{}11\rangle}{\sqrt{2}}$。
+
+* **超越经典的纠缠关联**：测量第一个比特（以 1/2 概率得 0 或 1），第二个比特的状态立刻被决定且结果永远与第一个相同。这是量子隐形传态等技术的核心资源。
+
+---
+
+### 三、 量子门与量子线路
+
+1. **核心性质**：
+* **线性性与酉性（Unitarity）**：量子门操作必须是线性的。为保证总概率守恒，量子门矩阵 $U$ 必须满足**酉性条件 $U^\dagger U = I$**。
+
+* **可逆性**：酉矩阵必定可逆。因此，会导致信息丢失的不可逆经典门（如 AND、OR）不能直接作为量子门。
+
+2. **常用基本量子门**：
+* **X 门（量子 NOT 门）**：将 $\vert{}0\rangle$ 和 $\vert{}1\rangle$ 互换，矩阵为 $\begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}$。
+
+* **Z 门（相位翻转门）**：$\vert{}0\rangle$ 不变，$\vert{}1\rangle$ 变为 $-\vert{}1\rangle$，矩阵为 $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$。
+
+* **H 门（Hadamard 门）**：产生叠加态，将 $\vert{}0\rangle \to \frac{\vert{}0\rangle+\vert{}1\rangle}{\sqrt{2}}$（即 $\vert{}+\rangle$），$\vert{}1\rangle \to \frac{\vert{}0\rangle-\vert{}1\rangle}{\sqrt{2}}$（即 $\vert{}-\rangle$），矩阵为 $\frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$，满足 $H^2 = I$。
+
+* (单比特门在 Bloch 球上对应球面的旋转与反射。)
+
+* **CNOT 门（受控非门）**：双比特门原型，实现 $\vert{}A, B\rangle \to \vert{}A, B \oplus A\rangle$（控制位 $A$ 为 1 时，翻转目标位 $B$）。
+
+
+3. **通用性定理**：
+* 任意多比特逻辑门都可以由 **CNOT 门 + 单比特门** 组合而成。
+
+4. **量子线路规则**：
+* 从左往右读；默认输入全为 $\vert{}0\rangle$；**严禁回路（反馈）、严禁合并与复制**；单线代表量子比特，双线代表测量后的经典比特。
+
+* **换基测量**：可在任意正交归一基（如 $\vert{}+\rangle, \vert{}-\rangle$ 基）下进行测量。
+
+---
+
+### 四、 三个核心应用案例
+
+1. **不可克隆定理（No-cloning Theorem）**：
+* **结论**：未知的量子态无法被精确复制。
+
+* **原因**：CNOT 门只能复制经典基态，若输入叠加态 $a\vert{}0\rangle + b\vert{}1\rangle$，输出的是纠缠态 $a\vert{}00\rangle + b\vert{}11\rangle$，而非独立副本 $(a\vert{}0\rangle + b\vert{}1\rangle)(a\vert{}0\rangle + b\vert{}1\rangle)$（除非 $ab=0$）。
+
+2. **Bell 态制备**：
+* 先对控制位作用 **H 门**产生叠加，再通过 **CNOT 门**，可将 4 个计算基态 $\vert{}xy\rangle$ 一一映射为 4 个纠缠的 Bell 态 $\vert{}\beta_{xy}\rangle = \frac{\vert{}0, y\rangle + (-1)^x\vert{}1, \bar{y}\rangle}{\sqrt{2}}$。
+
+3. **量子隐形传态（Quantum Teleportation）**：
+* **目标**：Alice 将未知态 $\vert{}\psi\rangle$ 传给 Bob（无量子通道，仅靠 **1对共享 EPR 对 + 2 bit 经典通信**）。
+
+* **四步流程**：
+
+1. **纠缠**：Alice 将待传态 $\vert{}\psi\rangle$ 与自己手中的半个 EPR 对过 CNOT 门。
+
+2. **旋转**：对第一个比特作用 H 门。
+
+3. **测量并报告**：Alice 测量自己的两个比特，得到两位经典结果 $M_1 M_2$（00/01/10/11），通过经典通道发给 Bob。
+
+4. **修正**：Bob 根据收到的结果，对手中的另半个 EPR 比特施加修正门 **$Z^{M_1}X^{M_2}$**（00不操作，01作用X，10作用Z，11先X后Z），完美恢复 $\vert{}\psi\rangle$。
+
+* **两个悬念解答**：不超光速（必须等经典通信到达才能完成修正）；不违背不可克隆定理（Alice 测量后原量子态已塌缩销毁）。
+
+---
+
+### 一句话总结
+
+量子态是向量，测量是投影；量子门是酉矩阵，线路是可逆计算；纠缠是可以消耗的资源。
+
+# 1.1
+
+* **可逆计算与 Toffoli 门**：量子门必须是酉矩阵（可逆），而经典门（如 AND、NAND）大多不可逆。通过引入三比特的 **Toffoli 门**（受控-受控非门，映射为 $(a,b,c) \to (a,b,c \oplus ab)$）配合辅助比特，可以在量子计算机上无损模拟任意经典组合电路与概率经典计算。
+
+* **量子并行性（Quantum Parallelism）**：利用 Hadamard 门（$H^{\otimes n}$）制造均匀叠加态，只需调用 1 次黑箱 $U_f$（$\vert{}x\rangle\vert{}y\rangle \to \vert{}x\rangle\vert{}y \oplus f(x)\rangle$），即可同时计算出全部 $2^n$ 个函数值 $f(x)$。但**仅靠并行性无法直接带来加速**，因为直接测量只会使态塌缩并随机读出其中 1 个值。
+
+* **相位回踢与量子干涉（Phase Kickback & Interference）**：量子加速的真正源泉。将目标比特置于 $(\vert{}0\rangle-\vert{}1\rangle)/\sqrt{2}$，黑箱 $U_f$ 会把函数值转化为相位 $(-1)^{f(x)}$（相位回踢），随后再次通过 Hadamard 门让不同分支的相位发生相长或相消**干涉**，从而将全局性质浓缩到单次确定性的测量结果中。
+
+* **Deutsch 与 Deutsch-Jozsa 算法**：首个展示量子优势的黑箱算法模板。利用“并行+干涉”判断 $n$ 比特函数是“常数函数”还是“平衡函数”：经典确定性算法最坏需调用 $2^{n-1}+1$ 次，而量子算法仅需 **1 次**（测得全 0 为常数，否则为平衡）。其核心价值在于确立了“函数值编码为相位 $\to$ 相干变换干涉读出”的算法范式。
+
+* **已知量子算法的三大类别**：
+
+1. **Fourier 类**（如 Deutsch-Jozsa、Shor 质因数分解）：基于**量子傅里叶变换（QFT）**提取周期等全局不变量（解决隐藏子群问题），可实现**指数级加速**。
+
+2. **搜索类**（如 Grover 算法）：基于振幅放大技术，在无结构空间中实现**平方根级加速**（$O(\sqrt{N})$）。
+
+3. **模拟类**（Feynman 设想）：直接用量子硬件模拟多体物理、量子化学演化，规避经典计算机存储的指数爆炸。
+
+* **BQP（有界错误量子多项式时间）**：量子计算机能够高效求解的复杂度类。已知 $\text{P} \subseteq \text{BQP} \subseteq \text{PSPACE}$，包含质因数分解等部分 NP 难题，但 BQP 能否覆盖整个 NP 仍是悬而未决的问题（学界普遍认为不能）。
+
+# 2
+
+
+### 一、 向量空间、基与 Dirac 记号
+
+
+
+1. **Dirac 记号系统（量子力学的母语）**：
+
+
+* **Ket（右矢，$\vert{}\psi\rangle$）**：表示复向量空间 $\mathbb{C}^n$ 中的列向量（代表量子态）。特例：零向量直接写 $0$，不加 ket 符号。
+
+
+* **Bra（左矢，$\langle\varphi\vert{}$）**：与 ket 对偶的行向量，是 ket 的**共轭转置**，即 $\langle\varphi\vert{} = (\vert{}\varphi\rangle)^\dagger$。
+
+
+* **内积（$\langle\varphi\vert{}\psi\rangle$）**：左矢乘右矢（行乘列），结果是一个**复数**（括号一合，数就出来）。
+
+
+* **外积（$\vert{}w\rangle\langle v\vert{}$）**：右矢乘左矢（列乘行），结果是一个**线性算子（矩阵）**。
+
+
+* **矩阵元（$\langle\varphi\vert{}A\vert{}\psi\rangle$）**：算子 $A$ 夹在 bra 和 ket 之间，包含算子的全部信息。
+
+
+
+
+2. **基与维数**：
+
+
+* **张成（Span）**：能通过线性组合表示空间中任意向量的一组向量。
+
+
+* **线性无关**：仅当所有系数 $a_i = 0$ 时，才有 $\sum a_i \vert{}v_i\rangle = 0$（无多余向量）。
+
+
+* **基（Basis）**：既张成空间又线性无关的向量集合，其向量个数即为空间的**维数**。
+
+
+
+
+
+---
+
+### 二、 线性算子与 Pauli 矩阵
+
+
+
+1. **算子与矩阵完全等价**：
+
+
+* **线性算子**：满足 $A(\sum_i a_i \vert{}v_i\rangle) = \sum_i a_i A\vert{}v_i\rangle$ 的映射；算子乘法 $BA$ 代表映射的复合（先作用 $A$ 再作用 $B$）。
+
+
+* 选定一组标准正交基后，算子 $A$ 与矩阵 $A_{ij}$ 一一对应：$A\vert{}v_j\rangle = \sum_i A_{ij}\vert{}w_i\rangle$。
+
+
+
+
+2. **四个 Pauli 矩阵（三大性质：都厄米、都酉、两两反对易）**：
+
+
+* $\sigma_0 \equiv I = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$（全等算子）
+
+
+* $\sigma_1 \equiv \sigma_x \equiv X = \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}$（比特翻转 / 量子非门）
+
+
+* $\sigma_2 \equiv \sigma_y \equiv Y = \begin{bmatrix} 0 & -i \\ i & 0 \end{bmatrix}$（同时翻转比特与相位）
+
+
+* $\sigma_3 \equiv \sigma_z \equiv Z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}$（相位翻转门）
+
+
+
+
+
+---
+
+### 三、 内积、外积与完备性关系
+
+
+
+1. **内积三大公理**：
+
+
+* 对第二个变量（ket）**线性**，对第一个变量（bra）**共轭线性**；具有**共轭对称性** $\langle v\vert{}w\rangle = \langle w\vert{}v\rangle^*$ 及**正定性** $\langle v\vert{}v\rangle \ge 0$。
+
+
+<span style="background-color: #fffb8f;"> * 在标准正交基下：$\langle v\vert{}w\rangle = \sum_i v_i^* w_i$。</span>
+
+
+
+
+2. **正交与归一化**：
+
+
+* **范数（长度）**：$\Vert{}\vert{}v\rangle\Vert{} = \sqrt{\langle v\vert{}v\rangle}$。长度为 1 称为单位向量；两向量内积为 $0$ 称为**正交**。
+
+
+* **Gram-Schmidt 正交化**：可将任意一组基转化为**标准正交基**（逐个减去在已有正交基上的投影再归一化）。
+
+
+* **Cauchy-Schwarz 不等式**：$\vert{}\langle v\vert{}w\rangle\vert{}^2 \le \langle v\vert{}v\rangle\langle w\vert{}w\rangle$（当且仅当两向量线性相关时取等号）。
+
+
+
+
+3. **完备性关系（极其重要）**：
+
+
+* 在任意标准正交基 $\{\vert{}i\rangle\}$ 下，全部基态的外积之和等于单位算子：
+
+
+
+$$\sum_i \vert{}i\rangle\langle i\vert{} = I$$
+
+
+* **算子的外积展开**：在算子 $A$ 左右两侧插入完备性关系，可得 $A = \sum_{ij} \langle w_j\vert{}A\vert{}v_i\rangle \vert{}w_j\rangle\langle v_i\vert{}$，系数 $\langle w_j\vert{}A\vert{}v_i\rangle$ 即为矩阵元。
+
+
+
+
+
+---
+
+### 四、 特征值、伴随与核心算子分类
+
+
+
+1. **特征值与对角表示**：
+
+
+* $A\vert{}v\rangle = v\vert{}v\rangle$，通过特征方程 $\det(A - \lambda I) = 0$ 求解。若某一特征值对应的特征子空间维数 $>1$，称为**简并（Degenerate）**。
+
+
+
+
+2. **伴随算子（厄米共轭，$A^\dagger$）**：
+
+
+* 定义：满足 $(\vert{}v\rangle, A\vert{}w\rangle) = (A^\dagger\vert{}v\rangle, \vert{}w\rangle)$；矩阵表示为**先转置再复共轭** $A^\dagger = (A^T)^*$。
+
+
+* 性质：$(AB)^\dagger = B^\dagger A^\dagger$，$(A\vert{}v\rangle)^\dagger = \langle v\vert{}A^\dagger$，$(\vert{}w\rangle\langle v\vert{})^\dagger = \vert{}v\rangle\langle w\vert{}$。
+
+
+
+
+3. **五类核心算子对比与谱分解定理**：
+
+
+
+| 算子类型 | 定义/核心条件 | 关键性质与物理意义 |
+| --- | --- | --- |
+| **正规算子 (Normal)** | $AA^\dagger = A^\dagger A$| **谱分解定理**：算子可对角化 $\iff$ 它是正规算子（可写成 $M = \sum_i \lambda_i \vert{}i\rangle\langle i\vert{}$）。|
+| **厄米算子 (Hermitian)** | $A^\dagger = A$ | 正规算子的子类；**特征值必为实数**，不同特征值的特征向量必正交；对应量子**可观测量**。|
+| **投影算子 (Projector)** | $P = \sum_{i=1}^k \vert{}i\rangle\langle i\vert{}$ | 满足厄米性 $P^\dagger = P$ 和幂等性 $P^2 = P$；特征值只能是 **$0$ 或 $1$**；正交补为 $Q = I - P$。 |
+| **正算子 (Positive)** | $\langle v\vert{}A\vert{}v\rangle \ge 0$ | 自动满足厄米性，**特征值全部非负**；任意算子构造的 $A^\dagger A$ 必为正算子。|
+| **酉算子 (Unitary)** | $U^\dagger U = I$ (即 $U^{-1}=U^\dagger$) | 正规算子的子类；**保持内积（及长度）不变** $\langle v\vert{}U^\dagger U\vert{}w\rangle = \langle v\vert{}w\rangle$；特征值模长全为 $1$；对应**量子门/时间演化**。 |
+
+# 2.1
+
+
+### 一、 张量积（Tensor Product）：复合系统的数学舞台
+
+
+
+1. **空间与基的拼合**：
+* 若空间 $V$ 为 $m$ 维，$W$ 为 $n$ 维，则张量积空间 $V \otimes W$ 的维数为 **$m \times n$**。若 $\{\vert{}i\rangle\}$ 和 $\{\vert{}j\rangle\}$ 分别是 $V$ 和 $W$ 的标准正交基，则 $\{\vert{}i\rangle \otimes \vert{}j\rangle\}$ 构成 $V \otimes W$ 的标准正交基（ explains 为什么 $n$ 个量子比特构成 $2^n$ 维空间）。
+
+
+* **双线性性质**：张量积对左右两个变量分别满足线性分配律，且标量可在因子间自由穿行：$z(\vert{}v\rangle \otimes \vert{}w\rangle) = (z\vert{}v\rangle) \otimes \vert{}w\rangle = \vert{}v\rangle \otimes (z\vert{}w\rangle)$。
+
+
+
+
+2. **算子与内积的张量积**：
+* **算子作用**：$(A \otimes B)(\vert{}v\rangle \otimes \vert{}w\rangle) \equiv A\vert{}v\rangle \otimes B\vert{}w\rangle$（注意：张量积一般**不可交换**，$A \otimes B \neq B \otimes A$）。
+
+
+* **内积计算**：先按各因子分别取内积，再将结果相乘：$\langle v \otimes w \vert{} v' \otimes w' \rangle = \langle v \vert{} v' \rangle \langle w \vert{} w' \rangle$。
+
+
+* **结构继承**：转置 $(*)^T$、复共轭 $*$、伴随 $\dagger$ 均可直接分配到每个因子上；两个酉/厄米/正/投影算子的张量积依然保持原性质。
+
+
+* **$n$ 比特 Hadamard 变换紧凑公式**：$H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x,y} (-1)^{x \cdot y} \vert{}x\rangle\langle y\vert{}$。
+
+
+
+
+3. **Kronecker 积（张量积的矩阵表示）**：
+
+
+* 若 $A$ 是 $m \times n$ 矩阵，$B$ 是 $p \times q$ 矩阵，则 $A \otimes B$ 是 $mp \times nq$ 的分块大矩阵（把 $A$ 的每个元素 $A_{ij}$ 替换为块矩阵 $A_{ij}B$）：
+
+
+
+$$A \otimes B \equiv \begin{bmatrix} A_{11}B & \cdots & A_{1n}B \\ \vdots & \ddots & \vdots \\ A_{m1}B & \cdots & A_{mn}B \end{bmatrix}$$
+
+
+
+
+
+---
+
+### 二、 算子函数与迹（Operator Functions & Trace）
+
+
+
+1. **算子函数 $f(A)$**：
+* 对任意**正规算子**（可谱分解为 $A = \sum_a a\vert{}a\rangle\langle a\vert{}$），函数直接作用在特征值上：
+
+
+
+$$f(A) \equiv \sum_a f(a)\vert{}a\rangle\langle a\vert{}$$
+
+
+* 常见特例：$\exp(\theta Z) = \begin{bmatrix} e^\theta & 0 \\ 0 & e^{-\theta} \end{bmatrix}$；Pauli 旋转公式 $\exp(i\theta \vec{v}\cdot\vec{\sigma}) = \cos(\theta)I + i\sin(\theta)\vec{v}\cdot\vec{\sigma}$。
+
+
+
+
+2. **迹（Trace）的核心性质**：
+
+
+* **定义**：主对角线元素之和 $\mathrm{tr}(A) \equiv \sum_i A_{ii}$（除单位阵 $I$ 外，三个 Pauli 矩阵 $X, Y, Z$ 的迹均为 $0$）。
+
+
+* **三大基本性质**：
+1. **线性性**：$\mathrm{tr}(A+B) = \mathrm{tr}(A)+\mathrm{tr}(B)$，$\mathrm{tr}(zA) = z\,\mathrm{tr}(A)$。
+
+
+2. **循环性**：$\mathrm{tr}(AB) = \mathrm{tr}(BA)$。
+
+
+3. **酉相似不变性**：$\mathrm{tr}(UAU^\dagger) = \mathrm{tr}(A)$（说明迹不依赖基的选取，是算子自身的内禀属性）。
+
+
+
+
+* **两个重要推论**：
+* **投影求迹技巧**：对任意单位向量 $\vert{}\psi\rangle$，有 $\mathrm{tr}(A\vert{}\psi\rangle\langle\psi\vert{}) = \langle\psi\vert{}A\vert{}\psi\rangle$。
+
+
+* **Hilbert-Schmidt 内积**：定义算子间的内积为 $(A, B) \equiv \mathrm{tr}(A^\dagger B)$，使全体线性算子构成一个 $d^2$ 维的 Hilbert 空间。
+
+
+
+
+
+
+
+---
+
+### 三、 对易式与反对易式（Commutator & Anti-commutator）
+
+
+
+1. **定义与同时对角化定理**：
+* **对易式**：$[A, B] \equiv AB - BA$（若为 $0$ 则称 $A, B$ 对易）。
+
+
+* **反对易式**：$\{A, B\} \equiv AB + BA$（若为 $0$ 则称 $A, B$ 反对易）。
+
+
+* **定理 2.2（同时对角化定理）**：两个厄米算子 $A, B$ 能够被同一组标准正交基**同时对角化** $\iff [A, B] = 0$。
+
+
+
+
+2. **Pauli 矩阵的乘法表（核心公式）**：
+
+
+* **对易关系**：$[\sigma_j, \sigma_k] = 2i \sum_{l=1}^3 \epsilon_{jkl}\sigma_l$（即 $[X,Y]=2iZ$、$[Y,Z]=2iX$、$[Z,X]=2iY$，$\epsilon_{jkl}$ 为三阶反对称张量）。
+
+$$
+\epsilon_{ijk} = \begin{cases} +1, & (i, j, k) \in \{(1, 2, 3), (2, 3, 1), (3, 1, 2)\} \quad (\text{正向循环/偶排列}) \\  -1, & (i, j, k) \in \{(1, 3, 2), (2, 1, 3), (3, 2, 1)\} \quad (\text{逆向循环/奇排列}) \\  0, & \text{其它情况（即存在任意两个或三个指标相同，如 } i=j, j=k \text{ 或 } i=k) \end{cases}
+$$
+
+* **反对易与平方**：$\{\sigma_i, \sigma_j\} = 0\ (i \neq j)$，且 $\sigma_i^2 = I\ (i=0,1,2,3)$。 
+
+
+
+* **大一统乘积公式**（结合 $AB = \frac{[A,B]+\{A,B\}}{2}$）：
+
+
+
+$$\sigma_j \sigma_k = \delta_{jk}I + i\sum_{l=1}^3 \epsilon_{jkl}\sigma_l$$
+
+
+
+
+
+---
+
+### 四、 极分解与奇异值分解（Polar & Singular Value Decomposition）
+
+
+
+1. **极分解（算子的“极坐标”形式）**：
+
+
+* 对任意线性算子 $A$，存在酉算子 $U$ 以及唯一的正算子 $J \equiv \sqrt{A^\dagger A}$、$K \equiv \sqrt{AA^\dagger}$，使得：
+
+
+
+$$A = UJ = KU$$
+
+
+
+（其中 $A=UJ$ 称为**左极分解**，$A=KU$ 称为**右极分解**；若 $A$ 可逆，则 $U$ 也唯一）。
+
+
+
+
+2. **奇异值分解（SVD）**：
+
+
+* 对极分解中的正算子 $J$ 进一步做谱分解（$J = TDT^\dagger$），可得任意方阵 $A$ 均可拆为“**酉 $\times$ 非负对角 $\times$ 酉**”：
+
+
+
+$$A = UDV^\dagger$$
+
+
+
+其中对角矩阵 $D$ 的非负对角元称为 $A$ 的**奇异值**。
+
+# 3
+
+量子力学本身并不直接规定某个具体系统的物理定律，而是提供了一套**将物理世界映射到线性代数形式体系的公理框架**。本讲围绕“系统是什么”（假设一）、“系统怎么变”（假设二）和“怎么向系统提问”（假设三）这三个核心逻辑层层展开。
+
+---
+
+### 一、 假设一：状态空间（系统“是什么”）
+
+
+
+线性代数中的向量空间在这里正式成为物理系统的舞台：
+
+* **公设内容**：任何孤立物理系统都对应一个带内积的复向量空间（即 **Hilbert 空间**），称为系统的**态空间**。系统的物理状态由该空间中的一个**单位态矢量** $\vert{}\psi\rangle$（满足归一化条件 $\langle\psi\vert{}\psi\rangle = 1$）完全描述。
+
+
+* **叠加态与振幅**：若系统可处于一组状态 $\{\vert{}\psi_i\rangle\}$，则也能处于它们的线性组合 $\sum_i \alpha_i \vert{}\psi_i\rangle$，称为**叠加态**，复系数 $\alpha_i$ 称为对应态的**振幅（amplitude）**。
+
+
+* **物理分界**：最简单的二维系统是**量子比特**，$\vert{}\psi\rangle = a\vert{}0\rangle + b\vert{}1\rangle$（$\vert{}a\vert{}^2+\vert{}b\vert{}^2=1$）。经典比特只能“非0即1”，而量子叠加态处于一种“既非纯0也非纯1”的相干叠加状态。
+
+
+
+---
+
+### 二、 假设二：时间演化（系统“怎么变”）
+
+
+
+当系统保持封闭（与外界无交互）时，态矢量的演化有两种完全等价的数学图像：
+
+1. **离散时间图像（酉算子表述）**：
+
+
+* 系统从时刻 $t_1$ 到 $t_2$ 的状态变化由一个酉变换（Unitary transformation）描述：$\vert{}\psi'\rangle = U\vert{}\psi\rangle$（因为酉算子保持内积不变，从而保证态矢量的模长恒为 $1$）。
+
+
+* 这是量子信息最常用的语言，所有的量子门（如 $X$、$Z$、$H$ 门）本质上都是特定时间段内的酉演化算子。
+
+
+
+
+2. **连续时间图像（Hamiltonian 表述）**：
+
+
+* 态矢量的连续时间演化服从 **Schrödinger 方程**：
+
+
+
+$$i\hbar \frac{d\vert{}\psi\rangle}{dt} = H\vert{}\psi\rangle$$
+
+
+* 其中 $H$ 是描述系统总能量的固定**厄米算子**，称为 **Hamiltonian（哈密顿量）**。
+
+
+* **能量本征态（定态）**：对 $H$ 做谱分解 $H = \sum_E E\vert{}E\rangle\langle E\vert{}$，本征矢 $\vert{}E\rangle$ 随时间演化仅增加一个全局相位因子 $\vert{}E\rangle \to e^{-iEt/\hbar}\vert{}E\rangle$，其可观测物理性质不随时间改变，故称**定态**（能量最低的态称为**基态**）。
+
+
+
+
+3. **两种图像的统一**：
+
+
+* 求解薛定谔方程即可建立两者的精确桥接：
+
+
+
+$$U(t_1, t_2) = \exp\left(-\frac{iH(t_2-t_1)}{\hbar}\right)$$
+
+
+* **核心数学对应**：$H$ 的**厄米性**（$H^\dagger = H$）严格等价于时间演化算子 $U$ 的**酉性**（$U^\dagger U = I$）。
+
+
+
+
+
+---
+
+### 三、 假设三：一般测量与量子态的可区分性（怎么“问”系统）
+
+
+
+一旦外部观测仪器与系统发生交互，系统便不再封闭，演化不再是酉变换，而是发生不可逆的塌缩。
+
+1. **一般测量公设（General Measurement）**：
+
+
+* 测量由一组**测量算子 $\{M_m\}$** 描述（索引 $m$ 代表测量可能输出的经典结果）：
+
+
+* **出现结果 $m$ 的概率**：$p(m) = \langle\psi\vert{}M_m^\dagger M_m\vert{}\psi\rangle$
+
+
+* **测量后的塌缩态**：$\vert{}\psi_m\rangle = \frac{M_m\vert{}\psi\rangle}{\sqrt{p(m)}}$
+
+
+* **完备性方程**：所有结果的概率之和必须为 $1$，这要求测量算子满足 $\sum_m M_m^\dagger M_m = I$。
+
+
+
+
+* **级联测量**：连续进行两次测量 $\{L_l\}$ 和 $\{M_m\}$，在物理上完全等价于执行一次合并算子为 $N_{lm} = M_m L_l$ 的单次测量。
+
+
+
+
+2. **深刻推论：正交态与非正交态的可区分性**：
+
+
+* **正交态可以 100% 可靠区分**：若待测态集合 $\{\vert{}\psi_i\rangle\}$ 两两正交，只需取投影算子 $M_i = \vert{}\psi_i\rangle\langle\psi_i\vert{}$（外加补余算子 $M_0$ 凑齐完备性），当输入 $\vert{}\psi_i\rangle$ 时必有 $p(i)=1$，绝不出错。
+
+
+* **非正交态永远无法可靠区分**：若 $\vert{}\psi_1\rangle$ 与 $\vert{}\psi_2\rangle$ 不正交，则 $\vert{}\psi_2\rangle$ 必然包含平行于 $\vert{}\psi_1\rangle$ 的分量（即 $\vert{}\psi_2\rangle = \alpha\vert{}\psi_1\rangle + \beta\vert{}\varphi\rangle$）。任何能以 100% 概率识别出 $\vert{}\psi_1\rangle$ 的测量算子，在遇到 $\vert{}\psi_2\rangle$ 的平行分量时都会有一定概率被“误触发”，导致误判。
+
+
+* **物理与信息论意义**：
+1. **捍卫相对论因果律**：对于共享纠缠态 $\vert{}\Phi^+\rangle = \frac{\vert{}00\rangle+\vert{}11\rangle}{\sqrt{2}} = \frac{\vert{}++\rangle+\vert{}--\rangle}{\sqrt{2}}$，Alice 选择在 $Z$ 基或 $X$ 基测量，会让远方 Bob 的粒子塌缩到 $\{\vert{}0\rangle, \vert{}1\rangle\}$ 或 $\{\vert{}+\rangle, \vert{}-\rangle\}$。正因为这两组基彼此**非正交不可区分**，Bob 无法分辨 Alice 的测量选择，从而杜绝了超光速通信。
+
+
+2. **量子密码学的基石**：把“缺陷”转化为安全资源。例如 **Wiesner 量子货币**与 **BB84 量子密钥分发**，随机用非正交的 $Z$ 基（$\vert{}0\rangle, \vert{}1\rangle$）和 $X$ 基（$\vert{}+\rangle, \vert{}-\rangle$）编码信息；伪造者或窃听者因无法可靠区分非正交态，一旦盲目测量就会不可避免地破坏原量子态并暴露自身。
+
+
+
+
+
+
+
+---
+
+### 四、 投影测量与海森堡不确定性原理
+
+
+
+在实际物理问题中，最常用的是假设三的一个特例——**投影测量（von Neumann 测量）**。
+
+1. **从一般测量到投影测量**：
+
+
+* 当一般测量中的算子 $\{M_m\}$ 进一步受限于必须是**正交投影算子 $\{P_m\}$**（即满足厄米性 $P_m^\dagger = P_m$ 且正交幂等 $P_m P_{m'} = \delta_{mm'}P_m$，完备性为 $\sum_m P_m = I$）时，就称为投影测量。
+
+
+* 它等价于测量一个**可观测量（Observable）**——即一个厄米算子 $M$，其谱分解为：
+
+
+
+$$M = \sum_m m P_m$$
+
+
+* 由于 $P_m^\dagger P_m = P_m^2 = P_m$，概率公式简化为 $p(m) = \langle\psi\vert{}P_m\vert{}\psi\rangle$，测后态为 $\frac{P_m\vert{}\psi\rangle}{\sqrt{p(m)}}$。（例如“沿 $\vec{v}$ 轴测量单比特自旋”，就是对可观测量 $\vec{v}\cdot\vec{\sigma}$ 做投影测量，其特征值为 $\pm 1$，投影子为 $P_\pm = \frac{I \pm \vec{v}\cdot\vec{\sigma}}{2}$。）
+
+
+
+
+2. **期望值（平均值）与方差的极简计算**：
+
+
+* 利用谱分解，测量结果 $m$ 的数学期望无需逐项求和，直接化简为一个矩阵元：
+
+
+
+$$E(M) = \sum_m m p(m) = \sum_m m \langle\psi\vert{}P_m\vert{}\psi\rangle = \langle\psi\vert{}M\vert{}\psi\rangle \equiv \langle M\rangle$$
+
+
+* 测量结果的标准差（涨落散布）由方差公式给出：$[\Delta(M)]^2 = \langle M^2\rangle - \langle M\rangle^2$。
+
+
+
+
+3. **海森堡不确定性原理（Heisenberg Uncertainty Principle）**：
+
+
+* 借助 Cauchy-Schwarz 不等式，可严格推导出任意两个可观测量 $C$ 和 $D$ 在同一状态 $\vert{}\psi\rangle$ 下的标准差乘积下界：
+
+
+
+$$\Delta(C)\Delta(D) \ge \frac{\vert{}\langle\psi\vert{}[C, D]\vert{}\psi\rangle\vert{}}{2}$$
+
+
+
+(注：课件第19页式子右侧分子印作了平方 $\vert{}\langle\psi\vert{}[C,D]\vert{}\psi\rangle\vert{}^2/4$，对应的是方差之积 $[\Delta(C)]^2[\Delta(D)]^2$，开方后的标准差之积即为 $\vert{}\langle\psi\vert{}[C,D]\vert{}\psi\rangle\vert{}/2$，以课件代入 $X,Y$ 得到 $\Delta(X)\Delta(Y)\ge 1$ 为准。)
+
+
+* **核心物理图景**：如果两个可观测量**不对易**（$[C, D] \neq 0$，例如 $[X, Y] = 2iZ$），它们就无法同时具有确定的测量值。
+
+
+* **概念澄清**：不确定性原理**不是**指“连续测量中先测 $C$ 的仪器干扰了后测的 $D$”；它的真正含义是：准备一大批完全相同的量子态 $\vert{}\psi\rangle$，一半拿去测 $C$，另一半拿去测 $D$，这两组独立测量结果的固有统计散布（标准差）无法同时压低到零。
+
+# 3.1
+本讲是《量子计算与量子信息》第2章基本假设的收官部分（§2.2.6-§2.3）。内容先补齐了不确定性原理的证明以及测量的两个重要延伸（POVM 与相位），接着引入第四大假设（复合系统），最后通过“超密编码”展示四大假设如何协同工作。核心知识点逻辑梳理如下：
+
+---
+
+### 一、 承前启后：不确定性原理的严格证明
+
+
+
+上一讲给出了海森堡不确定性原理的结论，本讲开篇给出了四步推导逻辑：
+
+1. **拆分实部与虚部**：对两个厄米算符 $A, B$，将乘积期望分解为 $\langle\psi\vert{}AB\vert{}\psi\rangle = x + iy$（$x, y$ 为实数）。利用反对易子求得实部 $\langle\psi\vert{}\{A,B\}\vert{}\psi\rangle = 2x$，利用对易子（交换子）求得虚部 $\langle\psi\vert{}[A,B]\vert{}\psi\rangle = 2iy$。
+
+
+2. **模方与不等式放缩**：两式模方之和满足 $\vert{}\langle\psi\vert{}[A,B]\vert{}\psi\rangle\vert{}^2 + \vert{}\langle\psi\vert{}\{A,B\}\vert{}\psi\rangle\vert{}^2 = 4\vert{}\langle\psi\vert{}AB\vert{}\psi\rangle\vert{}^2$。由 Cauchy-Schwarz 不等式可知 $\vert{}\langle\psi\vert{}AB\vert{}\psi\rangle\vert{}^2 \le \langle\psi\vert{}A^2\vert{}\psi\rangle\langle\psi\vert{}B^2\vert{}\psi\rangle$。
+
+
+3. **代换中心化算符**：舍去非负的反对易子项，将中心化算符 $A = C - \langle C\rangle$、$B = D - \langle D\rangle$ 代入并两边开方，即得标准差下界：
+
+
+
+$$\Delta(C)\Delta(D) \ge \frac{\vert{}\langle\psi\vert{}[C, D]\vert{}\psi\rangle\vert{}}{2}$$
+
+
+4. **适用边界**：该原理限制的是**同一自由度上两个不对易的可观测量**（如单比特的 $X$ 与 $Y$ 分量无法同时取确定值），但绝不妨碍我们一次性完美区分两两正交的态（例如四个正交的贝尔态）。
+
+
+
+---
+
+### 二、 测量的延伸：POVM 与量子相位
+
+
+
+#### 1. POVM（正算子值测度）：只关心概率的极简语言
+
+
+
+* **引入动机**：在很多实验收尾或信息论分析中，系统只被测量一次，我们**只关心各测量结果出现的统计概率，而不关心测量后态塌缩成什么样**。
+
+
+* **数学定义**：由一般测量的概率公式 $p(m) = \langle\psi\vert{}M_m^\dagger M_m\vert{}\psi\rangle$，直接定义 **POVM 元素**为：
+
+
+
+$$E_m \equiv M_m^\dagger M_m$$
+
+
+
+显然 $E_m$ 是**正算子**，且满足完备性条件 $\sum_m E_m = I$，测量概率仅由 $p(m) = \langle\psi\vert{}E_m\vert{}\psi\rangle$ 决定。反过来，任意一组满足 $\sum_m E_m = I$ 的正算子 $\{E_m\}$，都能通过取算术平方根 $M_m = \sqrt{E_m}$ 还原出一个合法的物理测量（投影测量只是 $E_m = P_m$ 的特例）。
+
+
+* **典型应用：无误区分非正交态（Unambiguous State Discrimination）**：
+
+
+* 虽然非正交态无法 100% 被区分，但借助 POVM 可以做到“只要给出判断就绝对不会错，代价是有一定概率回答‘不知道’”。
+
+
+* 例如区分 $\vert{}\psi_1\rangle = \vert{}0\rangle$ 与 $\vert{}\psi_2\rangle = \frac{\vert{}0\rangle+\vert{}1\rangle}{\sqrt{2}}$，可构造三元素 POVM：$E_1$ 正比于与 $\vert{}\psi_1\rangle$ 正交的 $\vert{}1\rangle\langle 1\vert{}$，$E_2$ 正比于与 $\vert{}\psi_2\rangle$ 正交的 $\vert{}-\rangle\langle -\vert{}$，再用 $E_3 = I - E_1 - E_2$ 补齐完备性。
+
+
+* **结果解读**：若测得 $E_1$，因 $\vert{}\psi_1\rangle$ 在其上概率为 $0$，故必为 $\vert{}\psi_2\rangle$；若测得 $E_2$，同理必为 $\vert{}\psi_1\rangle$；若测得 $E_3$，则无法判断，但**永远不会发生误判**。
+
+
+
+
+
+#### 2. 全局相位 vs. 相对相位
+
+
+
+* **全局相位（不可观测）**：态 $e^{i\theta}\vert{}\psi\rangle$ 与 $\vert{}\psi\rangle$ 在任何测量下给出的概率 $\langle\psi\vert{}e^{-i\theta}E_m e^{i\theta}\vert{}\psi\rangle = \langle\psi\vert{}E_m\vert{}\psi\rangle$ 完全相同。全局相位对所有振幅一视同仁，在物理观测上完全等价，可直接忽略。
+
+
+* **相对相位（真实可测）**：在同一叠加态中，不同基矢的振幅之间相差的相位因子（如 $\frac{\vert{}0\rangle+\vert{}1\rangle}{\sqrt{2}}$ 与 $\frac{\vert{}0\rangle-\vert{}1\rangle}{\sqrt{2}}$ 中 $\vert{}1\rangle$ 的振幅相差负号）。相对相位依赖基的选择，会直接改变特定基下的测量统计结果，是携带量子信息的关键自由度。
+
+
+
+---
+
+### 三、 假设四：复合系统、测量酉实现与纠缠
+
+
+
+#### 1. 假设四（复合系统公设）
+
+
+
+* **公设内容**：复合物理系统的态空间是各分系统态空间的**张量积（Tensor Product）**。若各分系统分别处于 $\vert{}\psi_1\rangle, \vert{}\psi_2\rangle, \dots, \vert{}\psi_n\rangle$，则联合系统的状态为 $\vert{}\psi_1\rangle \otimes \vert{}\psi_2\rangle \otimes \cdots \otimes \vert{}\psi_n\rangle$。
+
+
+
+#### 2. 核心理论推论：一般测量的酉实现
+
+
+
+利用假设四，可以将看似宽泛的“一般测量（包括 POVM）”彻底归约为更基础的“酉演化 + 投影测量”：
+
+1. **引入辅助系统（ancilla）**：取一个具有正交基 $\{\vert{}m\rangle\}$（与测量结果 $m$ 一一对应）的辅助系统，初态置为 $\vert{}0\rangle$。
+
+
+2. **联合酉演化**：定义联合算子作用 $U\vert{}\psi\rangle\vert{}0\rangle = \sum_m M_m\vert{}\psi\rangle\vert{}m\rangle$。由于测量算子满足完备性方程 $\sum_m M_m^\dagger M_m = I$，该映射严格保持内积不变，故可延拓为复合空间上的一个合法**酉算子 $U$**。
+
+
+3. **局部投影测量**：在复合系统上仅对辅助系统做 $\vert{}m\rangle\langle m\vert{}$ 的**投影测量**，得到的概率分布与主系统的测后塌缩态，与假设三直接作用 $M_m$ 的结果完全一致。
+
+
+
+> **核心公式**：**任意一般测量 $=$ 酉动力学演化 $+$ 投影测量 $+$ 辅助系统（ancilla）**。
+> 
+> 
+
+#### 3. 量子纠缠（Entanglement）
+
+
+
+* 在张量积空间中，绝大多数态**无法**写成各个分系统独立状态的张量积（即 $\vert{}\psi\rangle \neq \vert{}a\rangle \otimes \vert{}b\rangle$），这类状态称为**纠缠态**（典型代表即贝尔态 $\vert{}\psi\rangle = \frac{\vert{}00\rangle+\vert{}11\rangle}{\sqrt{2}}$）。
+
+
+* **四大假设全景回顾**：假设一搭舞台（Hilbert 态空间），假设二定演化（酉变换），假设三提信息（测量算子），假设四拼系统（张量积）。虽然态矢量本身不可直接观测且测量具有侵入性，但正是这个“隐秘的矢量世界”与纠缠赋予了超越经典的信息处理能力。
+
+
+
+---
+
+### 四、 四大假设首次合体应用：超密编码（Superdense Coding）
+
+
+
+超密编码是量子隐形传态的“逆向姊妹篇”：Alice 仅向 Bob **发送 1 个量子比特**，却能成功传递 **2 个经典比特**的信息。
+
+#### 1. 核心物理基础：正交的贝尔基
+
+
+
+双量子比特的 4 维空间中，四个贝尔态（EPR 对）构成一组**正交归一基**：
+
+
+$$\frac{\vert{}00\rangle+\vert{}11\rangle}{\sqrt{2}}, \quad \frac{\vert{}00\rangle-\vert{}11\rangle}{\sqrt{2}}, \quad \frac{\vert{}10\rangle+\vert{}01\rangle}{\sqrt{2}}, \quad \frac{\vert{}01\rangle-\vert{}10\rangle}{\sqrt{2}}$$
+
+
+因为它们**两两正交**，根据假设三，存在一个联合测量（**贝尔基测量**）能够以 100% 的把握将这 4 个态一一区分开，从而一次读出 2 bit 信息（00/01/10/11）。
+
+#### 2. 协议三步流程
+
+
+
+1. **预共享纠缠**：通信开始前，Alice 和 Bob 预先共享一对处于 $\vert{}\psi\rangle = \frac{\vert{}00\rangle+\vert{}11\rangle}{\sqrt{2}}$ 的纠缠粒子（Alice 持第 1 个，Bob 持第 2 个）。
+
+
+2. **局部编码并发送**：Alice 根据想要发送的两位经典比特，**仅对自己手中的那 1 个量子比特**施加局部酉门操作，将全局纠缠态精准切换到对应的贝尔态：
+
+
+
+| 待发送经典比特 | Alice 对自己比特的操作 | 全局双比特变成的贝尔态 |
+| --- | --- | --- |
+| `00` | $I$（什么都不做）| $\frac{\Vert{}00\rangle+\Vert{}11\rangle}{\sqrt{2}}$ |
+| `01` | $Z$（相位翻转）| $\frac{\Vert{}00\rangle-\Vert{}11\rangle}{\sqrt{2}}$ |
+| `10` | $X$（比特翻转）| $\frac{\Vert{}10\rangle+\Vert{}01\rangle}{\sqrt{2}}$ |
+| `11` | $iY$（同时翻转比特与相位）| $\frac{\Vert{}01\rangle-\Vert{}10\rangle}{\sqrt{2}}$ |
+
+编码完成后，Alice 将自己手中的这 **1 个量子比特**通过量子通道寄给 Bob。
+3. **联合解码**：Bob 收到后手握全部两个量子比特，执行一次**贝尔基测量**，完美识别出当前处于哪一个贝尔态，恢复出 2 个经典比特。
+
+#### 3. 绝对安全性：为什么窃听者一无所获？
+
+
+
+* 如果窃听者 Eve 在半路截获了 Alice 发出的那个量子比特，无论她对该单比特做什么测量（对应算子 $E \otimes I$），在四个贝尔态下的测量统计期望值 $\langle\psi\vert{}E \otimes I\vert{}\psi\rangle$ **完全相同**。
+
+
+* **物理本质**：超密编码的 2 bit 信息并不是装在单个粒子里，而是编码在**两个量子比特之间的非局域纠缠关联**中；拆开看任何一个单粒子，其局部统计都是完全随机的“白噪声”，因此 Eve 连 1 个比特的信息都窃取不到。
+
+# 4
+
+本讲（§2.4 密度算子）为量子力学引入了一套与“态矢量”数学等价、但在处理“状态不完全已知（经典统计不确定性）”**与**“复合系统的子系统（量子纠缠局部特性）”时威力无比的全新母语——**密度算子（密度矩阵）**。核心知识点按逻辑脉络梳理如下：
+
+---
+
+### 一、 从纯态到系综：把“不确定性”写进公式
+
+
+
+之前学习的态矢量 $\vert{}\psi\rangle$ 默认我们对系统状态有着 100% 确定的认知（称为**纯态**）。但在现实中，系统往往处于某种概率混合之中：
+
+1. **系综与密度算子的定义**：
+
+
+* 若系统以概率 $p_i$ 处于纯态 $\vert{}\psi_i\rangle$，则称 $\{p_i, \vert{}\psi_i\rangle\}$ 为一个纯态**系综（Ensemble）**。
+
+
+* 将各纯态的投影算子按概率加权求和，即定义为系统的**密度算子（或密度矩阵）**：
+
+
+
+$$\rho \equiv \sum_i p_i \vert{}\psi_i\rangle\langle\psi_i\vert{}$$
+
+
+* **纯态与混合态的代数判据**：
+
+
+* **纯态**：系统状态完全确定（$\rho = \vert{}\psi\rangle\langle\psi\vert{}$），满足 **$\mathrm{tr}(\rho^2) = 1$**。
+
+
+* **混合态**：不同纯态的概率混合（如等概率处于 $\vert{}0\rangle$ 或 $\vert{}1\rangle$ 时，$\rho = \frac{1}{2}\vert{}0\rangle\langle 0\vert{} + \frac{1}{2}\vert{}1\rangle\langle 1\vert{} = \frac{I}{2}$），满足 **$\mathrm{tr}(\rho^2) < 1$**。
+
+
+* **混合的混合**：若系统以概率 $p_i$ 处于各自的密度算子 $\rho_i$，则整体状态依然是线性加权和 $\rho = \sum_i p_i \rho_i$。
+
+
+
+
+
+
+2. **用密度算子重写演化与测量**：
+
+
+* **酉演化（假设二）**：系综里每个纯态各自经过酉变换 $U\vert{}\psi_i\rangle$，整体密度算子演化为：
+
+
+
+$$\rho \xrightarrow{U} \sum_i p_i U\vert{}\psi_i\rangle\langle\psi_i\vert{}U^\dagger = U\rho U^\dagger$$
+
+
+* **测量概率（假设三）**：结合条件概率 $p(m\vert{}i) = \mathrm{tr}(M_m^\dagger M_m \vert{}\psi_i\rangle\langle\psi_i\vert{})$ 与全概率公式，测得结果 $m$ 的总概率仅取决于 $\rho$：
+
+
+
+$$p(m) = \mathrm{tr}(M_m^\dagger M_m \rho)$$
+
+
+* **测后塌缩态**：观测到结果 $m$ 后，系统的密度算子重归一化为：
+
+
+
+$$\rho_m = \frac{M_m \rho M_m^\dagger}{\mathrm{tr}(M_m^\dagger M_m \rho)}$$
+
+
+* **丢弃测量记录（量子噪声的起点）**：若执行了测量但**忘记或丢弃了测量结果 $m$**，系统将处于各测后态 $\rho_m$ 按概率 $p(m)$ 的混合，化简为极紧凑的形式：
+
+
+
+$$\rho' = \sum_m p(m)\rho_m = \sum_m M_m \rho M_m^\dagger$$
+
+
+
+
+
+---
+
+### 二、 密度算子的独立身份证与系综自由度
+
+
+
+1. **定理 2.5（密度算子的内禀刻画）**：
+无需借助背后的系综，一个算子 $\rho$ 是合法密度算子的**充要条件**只有两条：
+
+
+1. **迹条件**：$\mathrm{tr}(\rho) = 1$（保证总概率归一）。
+
+
+2. **正性条件**：$\rho \ge 0$（即 $\rho$ 是正算子，保证本征值非负）。
+
+
+
+
+* *逻辑闭环*：有了这两条判据，量子力学四大假设便可完全脱离态矢量，直接以“正且迹一的算子 $\rho$”作为第一性公理出发（复合系统即为 $\rho_1 \otimes \cdots \otimes \rho_n$）。
+
+
+
+
+2. **定理 2.6（系综的酉自由度：同一 $\rho$ 对应无穷多种系综）**：
+
+
+* **核心避坑**：看到 $\rho = \frac{3}{4}\vert{}0\rangle\langle 0\vert{} + \frac{1}{4}\vert{}1\rangle\langle 1\vert{}$，千万不能断言系统一定是“以 $3/4$ 概率处于 $\vert{}0\rangle$、$1/4$ 概率处于 $\vert{}1\rangle$”！因为用两个叠加态 $\vert{}a\rangle, \vert{}b\rangle$ 各以 $1/2$ 概率混合，交叉项相消后也会得到**完全相同**的 $\rho$。
+
+
+* **物理本质**：测量统计只取决于 $\rho$ 本身；**本征分解并没有物理特权**，不同的物理制备过程（不同系综）只要给出同一个 $\rho$，在观测上就完全不可区分。
+
+
+* **数学充要条件（定理 2.6）**：两组系综 $\{p_i, \vert{}\psi_i\rangle\}$ 与 $\{q_j, \vert{}\varphi_j\rangle\}$ 生成同一个密度算子 $\rho$，当且仅当它们带概率权重的矢量之间相差一个**酉矩阵变换 $u_{ij}$**（个数不等时可补零矢量对齐）：
+
+
+
+$$\sqrt{p_i}\vert{}\psi_i\rangle = \sum_j u_{ij}\sqrt{q_j}\vert{}\varphi_j\rangle$$
+
+
+
+
+3. **几何直观：混合态的 Bloch 球体**：
+
+
+* 任意单量子比特的密度矩阵均可唯一写为：
+
+
+
+$$\rho = \frac{I + \vec{r}\cdot\vec{\sigma}}{2}$$
+
+
+
+其中实三维向量 $\vec{r}$ 称为 **Bloch 矢量**，满足模长 $\Vert{}\vec{r}\Vert{} \le 1$。
+
+
+* **几何对应**：态矢量语言只能描述**球面**（$\Vert{}\vec{r}\Vert{} = 1$，对应纯态）；而密度算子把整個**球体内部**都纳入了版图（$\Vert{}\vec{r}\Vert{} < 1$ 对应混合态，离球心越近混合程度越高，球心 $\vec{r}=0$ 即为完全混合态 $I/2$）。
+
+
+
+
+
+---
+
+### 三、 约化密度算子与偏迹：揭示纠缠的代数指纹
+
+
+
+当复合系统 $AB$ 处于纠缠态时，子系统 $A$ 自己根本没有独立的态矢量，此时必须依靠**约化密度算子**来描述子系统。
+
+1. **偏迹（Partial Trace）的定义与唯一性**：
+
+
+* 子系统 $A$ 的物理状态由对子系统 $B$ 求**偏迹**得到的**约化密度算子** $\rho^A$ 描述：
+
+
+
+$$\rho^A \equiv \mathrm{tr}_B(\rho^{AB})$$
+
+
+* **运算规则**（“吃掉 $B$ 的算符，保留 $A$ 的算符”）：在算子张量积上定义为 $\mathrm{tr}_B(\vert{}a_1\rangle\langle a_2\vert{} \otimes \vert{}b_1\rangle\langle b_2\vert{}) \equiv \vert{}a_1\rangle\langle a_2\vert{} \mathrm{tr}(\vert{}b_1\rangle\langle b_2\vert{}) = \langle b_2\vert{}b_1\rangle \vert{}a_1\rangle\langle a_2\vert{}$，再线性延拓到全体算子。
+
+
+* **为什么偏偏是偏迹？（Box 2.6 唯一性证明）**：为了保证仅在子系统 $A$ 上做任何测量 $M$ 时，用局部态 $\rho^A$ 算出的期望值与用全局态 $\rho^{AB}$ 算出的期望值完全一致——即满足 $\mathrm{tr}(M\rho^A) = \mathrm{tr}((M \otimes I_B)\rho^{AB})$，数学上可严格证明：**偏迹是唯一满足该统计自洽要求的映射**。
+
+
+
+
+2. **乘积态 vs. 贝尔纠缠态（整体纯、局部混）**：
+
+
+* **乘积态**：若 $\rho^{AB} = \rho \otimes \sigma$，则 $\mathrm{tr}_B(\rho \otimes \sigma) = \rho\mathrm{tr}(\sigma) = \rho$，子系统状态就是它自身（纯态的乘积态约化后仍是纯态）。
+
+
+* **贝尔态**：取纯态 $\vert{}\psi\rangle = \frac{\vert{}00\rangle+\vert{}11\rangle}{\sqrt{2}}$，全局密度算子 $\rho = \vert{}\psi\rangle\langle\psi\vert{}$ 是**纯态**（$\mathrm{tr}(\rho^2) = 1$）。但对第 2 个比特求偏迹后，交叉项因正交性全部消掉，第 1 个比特的约化密度算子为：
+
+
+
+$$\rho_1 = \mathrm{tr}_2(\rho) = \frac{\vert{}0\rangle\langle 0\vert{} + \vert{}1\rangle\langle 1\vert{}}{2} = \frac{I}{2}$$
+
+
+* **深刻物理图景**：因 $\mathrm{tr}(\rho_1^2) = \frac{1}{2} < 1$，说明**复合系统整体处于完全确定的纯态，但单独看其中任何一个子系统，却处于完全随机的最大混合态 $I/2$**。这种“整体纯、局部混”的现象，正是量子纠缠最核心的代数指纹（信息存储在关联之中，而非局部粒子上）。
+
+
+
+
+
+---
+
+### 四、 核心物理应用：严格证明隐形传态不超光速
+
+
+
+在第1章的量子隐形传态中，一旦 Alice 在本地完成贝尔基测量，远方 Bob 手中的粒子状态似乎瞬间就变成了含待传态参数 $\alpha, \beta$ 的四个纯态之一。这是否意味着超光速通信？用偏迹即可给出滴水不漏的否定证明：
+
+1. **测量后、通信前的全局混合态**：当 Alice 测完但经典电话还没打通到 Bob 那里时，在 Bob 看来，Alice 的测量结果 `00`、`01`、`10`、`11` 各以 $1/4$ 的概率出现，因此联合系统处于这四个分支的等权混合态 $\rho$。
+
+
+2. **对 Alice 系统求偏迹**：为了看此刻 Bob 手中粒子的真实可观测状态，对 Alice 的前两个比特求偏迹 $\rho^B = \mathrm{tr}_A(\rho)$。把四个分支各自贡献的纯态投影算子加起来后，所有含 $\alpha, \beta$ 的交叉项正负完美抵消，化简结果为：
+
+
+
+$$\rho^B = \mathrm{tr}_A(\rho) = \frac{\vert{}0\rangle\langle 0\vert{} + \vert{}1\rangle\langle 1\vert{}}{2} = \frac{I}{2}$$
+
+
+3. **结论**：在收到 Alice 的 2 bit 经典通信之前，无论待传态 $\vert{}\psi\rangle = \alpha\vert{}0\rangle + \beta\vert{}1\rangle$ 是什么，Bob 手里的约化密度矩阵**恒为 $\frac{I}{2}$（完全白噪声）**，不含 $\alpha, \beta$ 的任何蛛丝马迹。Bob 此时做任何测量都只能得到 50% 对 50% 的纯随机结果，信息必须等待不超光速的经典通道送达后才能恢复，相对论因果律固若金汤。

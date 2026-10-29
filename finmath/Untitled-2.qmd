@@ -563,3 +563,591 @@ $$C_0 = (1 + r)^{-5} (1 - p)^2 p^3 \times 25 = (1.1)^{-5} \left(\frac{1}{3}\righ
 * 到期日的期望收益为：
 
 $$E[\text{Payoff}] = 25 \times \left(\frac{1}{2}\right)^5 = \frac{25}{32} = 0.78125$$
+
+
+# 8
+
+## 7.2/3
+
+### 题目重述
+
+**练习 7.2**
+
+某种证券的价格服从参数 $\mu = 0.12$ 和 $\sigma = 0.24$ 的几何布朗运动。如果该证券的当前价格是 $40$，那么对于一个还有四个月才到期、执行价是 $K = 42$ 的看涨期权，它会被执行的概率有多大？（如果标的证券的价格在看涨期权到期日高于期权的执行价，那么就称该证券以实值结束。）
+
+**练习 7.3**
+
+如果利率是 $8\%$，那么练习 7.2 中的看涨期权的风险中性价值是多少？
+
+---
+
+### 练习 7.2 解答
+
+#### 1. 已知参数与条件
+
+* 当前价格：$S(0) = 40$
+
+
+* 执行价格：$K = 42$
+
+
+* 到期时间：$t = \frac{4}{12} = \frac{1}{3}\text{ 年}$
+
+
+* 漂移参数：$\mu = 0.12$
+
+
+* 波动率参数：$\sigma = 0.24$
+
+
+
+期权在到期日被执行的条件为该期权以实值结束，即 $S(t) > K$。
+
+#### 2. 计算过程
+证券价格表示为：
+
+
+$$S(t) = S(0) e^{X(t)}$$
+
+
+其中 $X(t) \sim \mathcal{N}(\mu t, \sigma^2 t)$。
+
+期权被执行的概率为：
+
+
+$$P(S(t) > K) = P\left(S(0) e^{X(t)} > K\right) = P\left(X(t) > \ln\frac{K}{S(0)}\right)$$
+
+计算相关统计量：
+
+* 门槛值：$\ln\left(\frac{42}{40}\right) = \ln(1.05) \approx 0.04879$
+* 均值：$E[X(t)] = \mu t = 0.12 \times \frac{1}{3} = 0.04$
+* 方差：$\mathrm{Var}(X(t)) = \sigma^2 t = 0.24^2 \times \frac{1}{3} = 0.0192$
+* 标准差：$\sigma \sqrt{t} = \sqrt{0.0192} \approx 0.13856$
+
+将其标准化为标准正态变量 $Z \sim \mathcal{N}(0, 1)$：
+
+
+$$P(S(t) > K) = P\left(Z > \frac{\ln(K / S(0)) - \mu t}{\sigma \sqrt{t}}\right)$$
+
+$$z = \frac{0.04879 - 0.04}{0.13856} = \frac{0.00879}{0.13856} \approx 0.0634$$
+
+查标准正态分布表：
+
+
+$$P(Z > 0.0634) = 1 - \Phi(0.0634) \approx 1 - 0.5253 = 0.4747$$
+
+**练习 7.2 答案**：期权被执行的概率约为 **$0.4747$**（即 **$47.47\%$**）。
+
+---
+
+### 练习 7.3 解答
+
+在无套利假定下，该欧式看涨期权的风险中性价值由 Black-Scholes 公式给出：
+
+
+$$C = S(0)\Phi(d_1) - K e^{-rt}\Phi(d_2)$$
+
+#### 1. 参数代入
+
+* $S(0) = 40$
+
+
+* $K = 42$
+
+
+* $r = 0.08$
+
+
+* $\sigma = 0.24$
+
+
+* $t = \frac{1}{3}$
+
+
+
+#### 2. 计算 $d_1$ 和 $d_2$
+
+$$d_1 = \frac{\ln(S(0)/K) + \left(r + \frac{\sigma^2}{2}\right)t}{\sigma \sqrt{t}}$$
+
+$$d_2 = d_1 - \sigma \sqrt{t}$$
+
+逐步计算分子分母：
+
+* $\ln\left(\frac{S(0)}{K}\right) = \ln\left(\frac{40}{42}\right) = -\ln(1.05) \approx -0.04879$
+* $\frac{\sigma^2}{2} = \frac{0.24^2}{2} = 0.0288$
+* $r + \frac{\sigma^2}{2} = 0.08 + 0.0288 = 0.1088$
+* $\left(r + \frac{\sigma^2}{2}\right)t = 0.1088 \times \frac{1}{3} \approx 0.03627$
+* 分子：$-0.04879 + 0.03627 = -0.01252$
+* 分母：$\sigma \sqrt{t} \approx 0.13856$
+
+求得：
+
+
+$$d_1 = \frac{-0.01252}{0.13856} \approx -0.0904$$
+
+$$d_2 = -0.0904 - 0.13856 = -0.2290$$
+
+#### 3. 查表计算累积分布函数值
+
+* $\Phi(d_1) = \Phi(-0.0904) = 1 - \Phi(0.0904) \approx 1 - 0.5360 = 0.4640$
+* $\Phi(d_2) = \Phi(-0.2290) = 1 - \Phi(0.2290) \approx 1 - 0.5906 = 0.4094$
+
+#### 4. 计算贴现因子与期权价格
+
+* 贴现因子：$e^{-rt} = e^{-0.08 / 3} = e^{-0.02667} \approx 0.97369$
+* 代入公式：
+
+$$C = 40 \times 0.4640 - 42 \times 0.97369 \times 0.4094$$
+
+
+$$C \approx 18.560 - 40.895 \times 0.4094$$
+
+
+$$C \approx 18.560 - 16.742 = 1.818$$
+
+
+
+**练习 7.3 答案**：该看涨期权的风险中性价值约为 **$1.82$**。
+
+## 7.6
+### 题目重述
+
+**练习 7.6**
+
+某种证券的价格服从漂移参数 $\mu = 0.05$、波动参数 $\sigma = 0.3$ 的几何布朗运动。证券的当前价格是 $95$。
+
+* **a)** 如果利率是 $4\%$，求一个三个月到期、执行价是 $100$ 的看涨期权的无套利价格。
+
+
+* **b)** a) 中的看涨期权到期日价值为 $0$ 的概率是多少？
+
+
+* **c)** 假设关于这种证券的一种新型投资正在交易。如果购买这种投资后的六个月内证券的价格至少为 $105$，并且购买一年后的价格至少和六个月时的价格一样多，那么这种投资在一年后的收益为 $50$。求这种投资的无套利价格。
+
+
+
+---
+
+### 详细解答
+
+#### a) 求看涨期权的无套利价格
+
+根据 Black-Scholes 欧式看涨期权定价公式，无套利价格为：
+
+
+$$C = S(0)\Phi(d_1) - K e^{-rt}\Phi(d_2)$$
+
+**1. 参数整理**
+
+* 当前价格：$S(0) = 95$
+
+
+* 执行价格：$K = 100$
+
+
+* 无风险利率：$r = 0.04$
+
+
+* 波动率参数：$\sigma = 0.3$
+
+
+* 到期时间：$t = \frac{3}{12} = 0.25\text{ 年}$
+
+
+
+**2. 计算 $d_1$ 与 $d_2$**
+
+* $\ln\left(\frac{S(0)}{K}\right) = \ln\left(\frac{95}{100}\right) = \ln(0.95) \approx -0.05129$
+* $r + \frac{\sigma^2}{2} = 0.04 + \frac{0.3^2}{2} = 0.04 + 0.045 = 0.085$
+* $\left(r + \frac{\sigma^2}{2}\right)t = 0.085 \times 0.25 = 0.02125$
+* 波动标准差项：$\sigma\sqrt{t} = 0.3 \times \sqrt{0.25} = 0.3 \times 0.5 = 0.15$
+
+代入计算：
+
+
+$$d_1 = \frac{-0.05129 + 0.02125}{0.15} = \frac{-0.03004}{0.15} \approx -0.2003$$
+
+$$d_2 = d_1 - \sigma\sqrt{t} = -0.2003 - 0.15 = -0.3503$$
+
+**3. 查标准正态分布累积函数表**
+
+* $\Phi(d_1) = \Phi(-0.2003) = 1 - \Phi(0.2003) \approx 1 - 0.5794 = 0.4206$
+* $\Phi(d_2) = \Phi(-0.3503) = 1 - \Phi(0.3503) \approx 1 - 0.6369 = 0.3631$
+* 贴现因子：$e^{-rt} = e^{-0.04 \times 0.25} = e^{-0.01} \approx 0.99005$
+
+**4. 计算期权价值**
+
+
+$$C = 95 \times 0.4206 - 100 \times 0.99005 \times 0.3631$$
+
+$$C \approx 39.957 - 35.949 \approx 4.01$$
+
+> **小结 a**：该看涨期权的无套利价格约为 **$4.01$**。
+
+---
+
+#### b) 求期权到期日价值为 0 的概率
+
+看涨期权在到期日 $t = 0.25$ 时的收益为 $\max(S(t) - K, 0)$。期权价值为 $0$ 等价于期权未被执行，即：
+
+
+$$S(t) \le K \quad (S(0.25) \le 100)$$
+
+在真实世界测度下，证券价格服从参数为 $\mu = 0.05$ 与 $\sigma = 0.3$ 的几何布朗运动：
+
+
+$$S(t) = S(0)e^{X(t)}, \quad X(t) \sim \mathcal{N}(\mu t, \sigma^2 t)$$
+
+**1. 计算标准化变量**
+
+
+$$P(S(t) \le K) = P\left(X(t) \le \ln\frac{K}{S(0)}\right)$$
+
+* 门槛值：$\ln\left(\frac{100}{95}\right) \approx 0.05129$
+* 均值：$E[X(t)] = \mu t = 0.05 \times 0.25 = 0.0125$
+* 标准差：$\sigma\sqrt{t} = 0.3 \times 0.5 = 0.15$
+
+标准化：
+
+
+$$Z = \frac{\ln(K / S(0)) - \mu t}{\sigma\sqrt{t}} = \frac{0.05129 - 0.0125}{0.15} = \frac{0.03879}{0.15} \approx 0.2586$$
+
+**2. 查表求概率**
+
+
+$$P(S(0.25) \le 100) = \Phi(0.2586) \approx 0.6021 \quad (60.21\%)$$
+
+> **补充说明（关于不同定义与测度）**：
+> * 若采用随机微分方程形式 $dS = \mu S dt + \sigma S dW$，则对数收益率漂移项为 $(\mu - \frac{1}{2}\sigma^2) = 0.005$，计算可得标准化值 $Z \approx 0.3336$，对应概率约为 **$0.6307$**（$63.07\%$）。
+> * 若问题指的是**风险中性测度**下的概率，则为 $1 - \Phi(d_2) = \Phi(-d_2) = \Phi(0.3503) \approx 0.6369$（$63.69\%$）。教材标准物理概率解答采用 **$60.21\%$**。
+> 
+> 
+
+---
+
+#### c) 求新型投资的无套利价格
+
+**1. 题意厘清**
+
+* 英文原版教材表述为：*“if the price six months after purchasing the investment is at least 105 and the price one year after purchase is at least as much as the price was after six months”*，且后半句对应中文“六个月时的价格”。
+
+
+* 因此，“六个月内证券的价格至少为 105” 指的是**在购买后 6 个月（$t_1 = 0.5$ 年）时的价格**满足 $S(0.5) \ge 105$。
+
+
+* 购买一年后（$T = 1.0$ 年）价格不低于六个月时的价格即 $S(1) \ge S(0.5)$。
+
+
+* 一年后获得固定收益 $50$，收益函数为：
+
+
+
+$$Y = 50 \cdot \mathbf{1}_{\{S(0.5) \ge 105 \text{ 且 } S(1) \ge S(0.5)\}}$$
+
+
+
+**2. 无套利定价原理（风险中性定价）**
+无套利现值等于收益在风险中性测度 $\mathbb{Q}$ 下的折现期望：
+
+
+$$V_0 = e^{-r T} \cdot 50 \cdot \mathbb{Q}(S(0.5) \ge 105, \, S(1) \ge S(0.5))$$
+
+
+其中 $T = 1$，无风险利率 $r = 0.04$。
+
+在几何布朗运动中，区间 $[0, 0.5]$ 的价格 $S(0.5)$ 与区间 $[0.5, 1.0]$ 的相对比值 $\frac{S(1)}{S(0.5)}$ 具有**独立增量性**。因此两个事件在测度 $\mathbb{Q}$ 下相互独立：
+
+
+$$\mathbb{Q}(S(0.5) \ge 105, \, S(1) \ge S(0.5)) = \mathbb{Q}(S(0.5) \ge 105) \times \mathbb{Q}\left(\frac{S(1)}{S(0.5)} \ge 1\right)$$
+
+**3. 计算风险中性概率**
+在测度 $\mathbb{Q}$ 下，对数漂移率为：
+
+
+$$\mu^* = r - \frac{\sigma^2}{2} = 0.04 - \frac{0.3^2}{2} = 0.04 - 0.045 = -0.005$$
+
+* **事件一：$\mathbb{Q}(S(0.5) \ge 105)$**
+时间间隔 $\Delta t_1 = 0.5$ 年：
+* 对数收益均值：$\mu^* \Delta t_1 = -0.005 \times 0.5 = -0.0025$
+* 标准差：$\sigma\sqrt{\Delta t_1} = 0.3 \times \sqrt{0.5} \approx 0.21213$
+* 门槛值：$\ln\left(\frac{105}{95}\right) = \ln\left(\frac{21}{19}\right) \approx 0.10008$
+* 标准化：
+
+$$z_1 = \frac{0.10008 - (-0.0025)}{0.21213} = \frac{0.10258}{0.21213} \approx 0.4836$$
+
+
+* 概率：
+
+$$\mathbb{Q}(S(0.5) \ge 105) = 1 - \Phi(0.4836) \approx 1 - 0.6857 = 0.3143$$
+
+
+
+
+* **事件二：$\mathbb{Q}\left(\frac{S(1)}{S(0.5)} \ge 1\right)$**
+时间间隔 $\Delta t_2 = 1.0 - 0.5 = 0.5$ 年：
+* 对数收益均值：$\mu^* \Delta t_2 = -0.0025$
+* 标准差：$\sigma\sqrt{\Delta t_2} \approx 0.21213$
+* 门槛值：$\ln(1) = 0$
+* 标准化：
+
+$$z_2 = \frac{0 - (-0.0025)}{0.21213} = \frac{0.0025}{0.21213} \approx 0.0118$$
+
+
+* 概率：
+
+$$\mathbb{Q}(S(1) \ge S(0.5)) = 1 - \Phi(0.0118) \approx 1 - 0.5047 = 0.4953$$
+
+
+
+
+* **联合概率**：
+
+$$\mathbb{Q} = 0.3143 \times 0.4953 \approx 0.1557$$
+
+
+
+**4. 计算现值**
+
+
+$$V_0 = 50 \times e^{-0.04 \times 1} \times 0.1557 \approx 50 \times 0.96079 \times 0.1557 \approx 7.48$$
+
+# 9
+## 7.13
+### 题目重述
+
+欧式资产或无价值期权为：如果在到期日 $t$ 满足 $S(t) > K$，则支付给合约持有人资产值 $S(t)$，否则支付给合约持有人 $0$。求该期权的含参数 $s, t, K, \sigma, r$ 的无套利成本公式。
+
+---
+
+### 解题思路与公式推导
+
+该期权为典型的**欧式资产或无价值期权（Asset-or-Nothing Call Option）**。在到期日 $t$，合约给持有人的支付函数为：
+
+
+$$\text{Payoff} = \begin{cases} S(t), & S(t) > K \\ 0, & S(t) \le K \end{cases} = S(t) \cdot \mathbf{1}_{\{S(t) > K\}}$$
+
+我们可以通过以下两种经典方法求解其无套利成本（现值定价）。
+
+---
+
+#### 方法一：期权收益分解法（最直观）
+
+标准欧式看涨期权（European Call Option）在到期日 $t$ 的收益为：
+
+
+$$C(t) = \max(S(t) - K, 0) = (S(t) - K) \cdot \mathbf{1}_{\{S(t) > K\}} = S(t)\mathbf{1}_{\{S(t) > K\}} - K\mathbf{1}_{\{S(t) > K\}}$$
+
+将资产或无价值期权的收益项单独移到等式左边：
+
+
+$$S(t)\mathbf{1}_{\{S(t) > K\}} = C(t) + K \cdot \mathbf{1}_{\{S(t) > K\}}$$
+
+由此可见，该期权在到期日的现金流等价于两个投资组合的收益之和：
+
+1. **一个标的为 $S$、执行价为 $K$、到期日为 $t$ 的标准欧式看涨期权**；
+2. **$K$ 份现金或无价值期权（Cash-or-Nothing Call Option）**，每份在 $S(t) > K$ 时支付 $1$。
+
+根据 Black-Scholes 衍生品定价理论：
+
+* 标准欧式看涨期权的当前无套利价格为：
+
+$$C = s\Phi(d_1) - Ke^{-rt}\Phi(d_2)$$
+
+
+* 支付固定现金 $K$ 的数字期权（现金或无价值期权）的当前无套利价格为：
+
+$$V_{\text{cash}} = K e^{-rt}\Phi(d_2)$$
+
+
+
+由无套利线性定价法则，该资产或无价值期权的现值 $V$ 为：
+
+
+$$V = C + V_{\text{cash}} = \left[ s\Phi(d_1) - Ke^{-rt}\Phi(d_2) \right] + Ke^{-rt}\Phi(d_2) = s\Phi(d_1)$$
+
+---
+
+#### 方法二：风险中性期望定价法（第一性原理）
+
+根据风险中性定价理论，无套利价格等于到期支付在风险中性测度 $\mathbb{Q}$ 下的折现期望值：
+
+
+$$V = e^{-rt} \mathbb{E}^{\mathbb{Q}}\left[ S(t)\mathbf{1}_{\{S(t) > K\}} \right]$$
+
+在测度 $\mathbb{Q}$ 下，资产价格满足几何布朗运动：
+
+
+$$S(t) = s \exp\left( \left(r - \frac{1}{2}\sigma^2\right)t + \sigma\sqrt{t} Z \right), \quad Z \sim \mathcal{N}(0, 1)$$
+
+事件 $S(t) > K$ 等价于：
+
+
+$$\left(r - \frac{1}{2}\sigma^2\right)t + \sigma\sqrt{t} Z > \ln\left(\frac{K}{s}\right) \implies Z > -\frac{\ln(s/K) + \left(r - \frac{\sigma^2}{2}\right)t}{\sigma\sqrt{t}} = -d_2$$
+
+将 $S(t)$ 与积分表达式代入期望计算：
+
+
+$$\mathbb{E}^{\mathbb{Q}}\left[ S(t)\mathbf{1}_{\{S(t) > K\}} \right] = \int_{-d_2}^{\infty} s e^{\left(r - \frac{1}{2}\sigma^2\right)t + \sigma\sqrt{t} z} \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}} dz$$
+
+$$= s e^{rt} \int_{-d_2}^{\infty} \frac{1}{\sqrt{2\pi}} \exp\left( -\frac{(z - \sigma\sqrt{t})^2}{2} \right) dz$$
+
+做变量替换，令 $u = z - \sigma\sqrt{t}$，当 $z = -d_2$ 时：
+
+
+$$u = -d_2 - \sigma\sqrt{t} = -\left(d_2 + \sigma\sqrt{t}\right) = -d_1$$
+
+积分变为标准正态变量在 $[-d_1, \infty)$ 上的积分：
+
+
+$$\int_{-d_1}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{u^2}{2}} du = \mathbb{P}(U \ge -d_1) = \Phi(d_1)$$
+
+因此：
+
+
+$$V = e^{-rt} \cdot \left[ s e^{rt} \Phi(d_1) \right] = s\Phi(d_1)$$
+
+---
+
+### 结论
+
+该欧式资产或无价值期权的无套利成本公式为：
+
+
+$$V = s\Phi(d_1)$$
+
+其中：
+
+* $\Phi(\cdot)$ 为标准正态分布累积分布函数（CDF）；
+* $d_1$ 的表达式为：
+
+$$d_1 = \frac{\ln\left(\frac{s}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)t}{\sigma\sqrt{t}}$$
+
+## 7.15
+
+题目重述
+
+当一个看涨期权的到期日越来越长时，它的价格会如何变化？解释你的理由（或者用数学证明）。
+
+---
+
+核心结论
+
+在不支付红利（无分红）且无风险利率 $r \ge 0$ 的假设下：
+
+1. **单调性**：随着到期时间 $t$ 的延长，看涨期权的价格**严格单调递增**。
+
+
+2. **极限值**：当到期时间趋于无穷大（$t \to \infty$）时，看涨期权的价格将**收敛于标的证券的当前价格 $s$**（即 $\lim_{t \to \infty} C(t) = s$）。
+
+
+
+以下分别从**无套利金融直觉**、**Black-Scholes 偏导数证明**和**极限分析**三个角度给出完整解答。
+
+---
+
+证明与解释
+
+#### 方法一：金融直觉与无套利论证（不依赖具体分布模型）
+
+**1. 为什么价格随到期日延长而单调递增？**
+
+* **对美式看涨期权**：设两个期权的到期时间分别为 $t_1 < t_2$。到期日为 $t_2$ 的期权持有人拥有到期日为 $t_1$ 的期权的所有行权权利（在 $[0, t_1]$ 内任意时刻行权），同时还额外拥有在 $(t_1, t_2]$ 期间行权的选择权。根据无套利原理，权利更多，价值必然不低于短期期权，即 $C_{\text{美}}(t_2) \ge C_{\text{美}}(t_1)$。
+* **对欧式看涨期权**：对于不付红利的标的资产，美式看涨期权永远不应该提前行权，因此美式看涨期权与欧式看涨期权价值相等（$C_{\text{欧}}(t) = C_{\text{美}}(t)$）。由此直接推导出欧式看涨期权的价格也随到期时间 $t$ 增加而递增。
+* **直观原因**：更长的到期时间一方面赋予了标的资产价格向上波动的更多时间（波动率价值增加），另一方面推迟了执行价格 $K$ 的支付时间，使得行权成本的现值 $K e^{-rt}$ 变小。
+
+---
+
+#### 方法二：Black-Scholes 公式的数学证明（偏导数法）
+
+在 Black-Scholes 模型下，欧式看涨期权定价公式为：
+
+
+$$C(t) = s\Phi(d_1) - Ke^{-rt}\Phi(d_2)$$
+
+
+其中：
+
+
+$$d_1 = \frac{\ln(s/K) + \left(r + \frac{\sigma^2}{2}\right)t}{\sigma\sqrt{t}}, \quad d_2 = d_1 - \sigma\sqrt{t}$$
+
+我们对到期时间 $t$ 求偏导数（即期权的 $-\Theta$）：
+
+
+$$\frac{\partial C}{\partial t} = s\phi(d_1)\frac{\partial d_1}{\partial t} - K e^{-rt}\phi(d_2)\frac{\partial d_2}{\partial t} + rKe^{-rt}\Phi(d_2)$$
+
+
+其中 $\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$ 是标准正态分布的概率密度函数。
+
+**关键恒等式简化**：
+
+先验证 $s\phi(d_1) = Ke^{-rt}\phi(d_2)$：
+
+
+$$\frac{\phi(d_1)}{\phi(d_2)} = \exp\left(-\frac{d_1^2 - d_2^2}{2}\right) = \exp\left(-\frac{(d_1 - d_2)(d_1 + d_2)}{2}\right)$$
+
+
+因为 $d_1 - d_2 = \sigma\sqrt{t}$，且 $d_1 + d_2 = \frac{2\ln(s/K) + 2rt}{\sigma\sqrt{t}}$，代入上式得：
+
+
+$$\frac{\phi(d_1)}{\phi(d_2)} = \exp\left(-\ln\left(\frac{s}{K}\right) - rt\right) = \frac{K}{s}e^{-rt} \implies s\phi(d_1) = Ke^{-rt}\phi(d_2)$$
+
+将该恒等式代回偏导数方程：
+
+
+$$\frac{\partial C}{\partial t} = s\phi(d_1)\left(\frac{\partial d_1}{\partial t} - \frac{\partial d_2}{\partial t}\right) + rKe^{-rt}\Phi(d_2)$$
+
+又因为 $d_1 - d_2 = \sigma\sqrt{t}$，所以：
+
+
+$$\frac{\partial d_1}{\partial t} - \frac{\partial d_2}{\partial t} = \frac{\partial (\sigma\sqrt{t})}{\partial t} = \frac{\sigma}{2\sqrt{t}}$$
+
+最终得到：
+
+
+$$\frac{\partial C}{\partial t} = \frac{s\sigma}{2\sqrt{t}}\phi(d_1) + rKe^{-rt}\Phi(d_2)$$
+
+由于 $s > 0, \sigma > 0, \phi(d_1) > 0, \Phi(d_2) > 0$ 且 $r \ge 0$，因此恒有：
+
+
+$$\frac{\partial C}{\partial t} > 0$$
+
+
+这在数学上严格证明了：**看涨期权的价格随到期时间 $t$ 的增加而严格单调递增**。
+
+---
+
+#### 方法三：当 $t \to \infty$ 时的极限行为证明
+
+考察当到期时间无限延长（$t \to \infty$）时，$d_1$ 和 $d_2$ 的变化趋势：
+
+
+$$d_1 = \frac{\ln(s/K)}{\sigma\sqrt{t}} + \frac{r + \frac{1}{2}\sigma^2}{\sigma}\sqrt{t}$$
+
+$$d_2 = \frac{\ln(s/K)}{\sigma\sqrt{t}} + \frac{r - \frac{1}{2}\sigma^2}{\sigma}\sqrt{t}$$
+
+1. **第一项 $s\Phi(d_1)$ 的极限**：
+由于 $r \ge 0, \sigma > 0$，系数 $\frac{r + \frac{1}{2}\sigma^2}{\sigma} > 0$。当 $t \to \infty$ 时：
+
+$$\lim_{t \to \infty} d_1 = +\infty \implies \lim_{t \to \infty} \Phi(d_1) = 1$$
+
+
+
+因此：
+
+$$\lim_{t \to \infty} s\Phi(d_1) = s \times 1 = s$$
+
+
+2. **第二项 $Ke^{-rt}\Phi(d_2)$ 的极限**：
+* 若 $r > 0$：由于 $0 < \Phi(d_2) < 1$ 有界，且贴现因子 $\lim_{t \to \infty} e^{-rt} = 0$，由夹逼定理可知：
+
+$$\lim_{t \to \infty} Ke^{-rt}\Phi(d_2) = 0$$
+
+
+* 若 $r = 0$：此时 $d_2 = \frac{\ln(s/K)}{\sigma\sqrt{t}} - \frac{1}{2}\sigma\sqrt{t} \to -\infty$（当 $t \to \infty$），故 $\lim_{t \to \infty} \Phi(d_2) = 0$，第二项极限同样为 $0$。
+
+
+
+综合上述两项，当 $t \to \infty$ 时，看涨期权的价格极限为：
+
+
+$$\lim_{t \to \infty} C(t) = s - 0 = s$$
