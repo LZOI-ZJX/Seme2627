@@ -80,7 +80,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f2788e636de456f6409e966386820849.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-66a38d7287321bc50e069add96f8c30e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -248,6 +248,30 @@ window.Quarto = {
   <li><a href="#section-20" id="toc-section-20" class="nav-link" data-scroll-target="#section-20">6.5</a></li>
   <li><a href="#section-21" id="toc-section-21" class="nav-link" data-scroll-target="#section-21">6.6</a></li>
   <li><a href="#section-22" id="toc-section-22" class="nav-link" data-scroll-target="#section-22">6.11</a></li>
+  </ul></li>
+  <li><a href="#section-23" id="toc-section-23" class="nav-link" data-scroll-target="#section-23">8</a>
+  <ul class="collapse">
+  <li><a href="#section-24" id="toc-section-24" class="nav-link" data-scroll-target="#section-24">7.2/3</a>
+  <ul class="collapse">
+  <li><a href="#题目重述" id="toc-题目重述" class="nav-link" data-scroll-target="#题目重述">题目重述</a></li>
+  <li><a href="#练习-7.2-解答" id="toc-练习-7.2-解答" class="nav-link" data-scroll-target="#练习-7.2-解答">练习 7.2 解答</a></li>
+  <li><a href="#练习-7.3-解答" id="toc-练习-7.3-解答" class="nav-link" data-scroll-target="#练习-7.3-解答">练习 7.3 解答</a></li>
+  </ul></li>
+  <li><a href="#section-25" id="toc-section-25" class="nav-link" data-scroll-target="#section-25">7.6</a>
+  <ul class="collapse">
+  <li><a href="#题目重述-1" id="toc-题目重述-1" class="nav-link" data-scroll-target="#题目重述-1">题目重述</a></li>
+  <li><a href="#详细解答" id="toc-详细解答" class="nav-link" data-scroll-target="#详细解答">详细解答</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#section-26" id="toc-section-26" class="nav-link" data-scroll-target="#section-26">9</a>
+  <ul class="collapse">
+  <li><a href="#section-27" id="toc-section-27" class="nav-link" data-scroll-target="#section-27">7.13</a>
+  <ul class="collapse">
+  <li><a href="#题目重述-2" id="toc-题目重述-2" class="nav-link" data-scroll-target="#题目重述-2">题目重述</a></li>
+  <li><a href="#解题思路与公式推导" id="toc-解题思路与公式推导" class="nav-link" data-scroll-target="#解题思路与公式推导">解题思路与公式推导</a></li>
+  <li><a href="#结论" id="toc-结论" class="nav-link" data-scroll-target="#结论">结论</a></li>
+  </ul></li>
+  <li><a href="#section-28" id="toc-section-28" class="nav-link" data-scroll-target="#section-28">7.15</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -757,8 +781,377 @@ z_cc: -3.196458627357823 prob: 0.999304371114543
 <li>到期日的期望收益为：</li>
 </ul>
 <p><span class="math display">\[E[\text{Payoff}] = 25 \times \left(\frac{1}{2}\right)^5 = \frac{25}{32} = 0.78125\]</span></p>
+</section>
+</section>
+<section id="section-23" class="level1">
+<h1>8</h1>
+<section id="section-24" class="level2">
+<h2 class="anchored" data-anchor-id="section-24">7.2/3</h2>
+<section id="题目重述" class="level3">
+<h3 class="anchored" data-anchor-id="题目重述">题目重述</h3>
+<p><strong>练习 7.2</strong></p>
+<p>某种证券的价格服从参数 <span class="math inline">\(\mu = 0.12\)</span> 和 <span class="math inline">\(\sigma = 0.24\)</span> 的几何布朗运动。如果该证券的当前价格是 <span class="math inline">\(40\)</span>，那么对于一个还有四个月才到期、执行价是 <span class="math inline">\(K = 42\)</span> 的看涨期权，它会被执行的概率有多大？（如果标的证券的价格在看涨期权到期日高于期权的执行价，那么就称该证券以实值结束。）</p>
+<p><strong>练习 7.3</strong></p>
+<p>如果利率是 <span class="math inline">\(8\%\)</span>，那么练习 7.2 中的看涨期权的风险中性价值是多少？</p>
+<hr>
+</section>
+<section id="练习-7.2-解答" class="level3">
+<h3 class="anchored" data-anchor-id="练习-7.2-解答">练习 7.2 解答</h3>
+<section id="已知参数与条件" class="level4">
+<h4 class="anchored" data-anchor-id="已知参数与条件">1. 已知参数与条件</h4>
+<ul>
+<li><p>当前价格：<span class="math inline">\(S(0) = 40\)</span></p></li>
+<li><p>执行价格：<span class="math inline">\(K = 42\)</span></p></li>
+<li><p>到期时间：<span class="math inline">\(t = \frac{4}{12} = \frac{1}{3}\text{ 年}\)</span></p></li>
+<li><p>漂移参数：<span class="math inline">\(\mu = 0.12\)</span></p></li>
+<li><p>波动率参数：<span class="math inline">\(\sigma = 0.24\)</span></p></li>
+</ul>
+<p>期权在到期日被执行的条件为该期权以实值结束，即 <span class="math inline">\(S(t) &gt; K\)</span>。</p>
+</section>
+<section id="计算过程" class="level4">
+<h4 class="anchored" data-anchor-id="计算过程">2. 计算过程</h4>
+<p>证券价格表示为：</p>
+<p><span class="math display">\[S(t) = S(0) e^{X(t)}\]</span></p>
+<p>其中 <span class="math inline">\(X(t) \sim \mathcal{N}(\mu t, \sigma^2 t)\)</span>。</p>
+<p>期权被执行的概率为：</p>
+<p><span class="math display">\[P(S(t) &gt; K) = P\left(S(0) e^{X(t)} &gt; K\right) = P\left(X(t) &gt; \ln\frac{K}{S(0)}\right)\]</span></p>
+<p>计算相关统计量：</p>
+<ul>
+<li>门槛值：<span class="math inline">\(\ln\left(\frac{42}{40}\right) = \ln(1.05) \approx 0.04879\)</span></li>
+<li>均值：<span class="math inline">\(E[X(t)] = \mu t = 0.12 \times \frac{1}{3} = 0.04\)</span></li>
+<li>方差：<span class="math inline">\(\mathrm{Var}(X(t)) = \sigma^2 t = 0.24^2 \times \frac{1}{3} = 0.0192\)</span></li>
+<li>标准差：<span class="math inline">\(\sigma \sqrt{t} = \sqrt{0.0192} \approx 0.13856\)</span></li>
+</ul>
+<p>将其标准化为标准正态变量 <span class="math inline">\(Z \sim \mathcal{N}(0, 1)\)</span>：</p>
+<p><span class="math display">\[P(S(t) &gt; K) = P\left(Z &gt; \frac{\ln(K / S(0)) - \mu t}{\sigma \sqrt{t}}\right)\]</span></p>
+<p><span class="math display">\[z = \frac{0.04879 - 0.04}{0.13856} = \frac{0.00879}{0.13856} \approx 0.0634\]</span></p>
+<p>查标准正态分布表：</p>
+<p><span class="math display">\[P(Z &gt; 0.0634) = 1 - \Phi(0.0634) \approx 1 - 0.5253 = 0.4747\]</span></p>
+<p><strong>练习 7.2 答案</strong>：期权被执行的概率约为 <strong><span class="math inline">\(0.4747\)</span></strong>（即 <strong><span class="math inline">\(47.47\%\)</span></strong>）。</p>
+<hr>
+</section>
+</section>
+<section id="练习-7.3-解答" class="level3">
+<h3 class="anchored" data-anchor-id="练习-7.3-解答">练习 7.3 解答</h3>
+<p>在无套利假定下，该欧式看涨期权的风险中性价值由 Black-Scholes 公式给出：</p>
+<p><span class="math display">\[C = S(0)\Phi(d_1) - K e^{-rt}\Phi(d_2)\]</span></p>
+<section id="参数代入" class="level4">
+<h4 class="anchored" data-anchor-id="参数代入">1. 参数代入</h4>
+<ul>
+<li><p><span class="math inline">\(S(0) = 40\)</span></p></li>
+<li><p><span class="math inline">\(K = 42\)</span></p></li>
+<li><p><span class="math inline">\(r = 0.08\)</span></p></li>
+<li><p><span class="math inline">\(\sigma = 0.24\)</span></p></li>
+<li><p><span class="math inline">\(t = \frac{1}{3}\)</span></p></li>
+</ul>
+</section>
+<section id="计算-d_1-和-d_2" class="level4">
+<h4 class="anchored" data-anchor-id="计算-d_1-和-d_2">2. 计算 <span class="math inline">\(d_1\)</span> 和 <span class="math inline">\(d_2\)</span></h4>
+<p><span class="math display">\[d_1 = \frac{\ln(S(0)/K) + \left(r + \frac{\sigma^2}{2}\right)t}{\sigma \sqrt{t}}\]</span></p>
+<p><span class="math display">\[d_2 = d_1 - \sigma \sqrt{t}\]</span></p>
+<p>逐步计算分子分母：</p>
+<ul>
+<li><span class="math inline">\(\ln\left(\frac{S(0)}{K}\right) = \ln\left(\frac{40}{42}\right) = -\ln(1.05) \approx -0.04879\)</span></li>
+<li><span class="math inline">\(\frac{\sigma^2}{2} = \frac{0.24^2}{2} = 0.0288\)</span></li>
+<li><span class="math inline">\(r + \frac{\sigma^2}{2} = 0.08 + 0.0288 = 0.1088\)</span></li>
+<li><span class="math inline">\(\left(r + \frac{\sigma^2}{2}\right)t = 0.1088 \times \frac{1}{3} \approx 0.03627\)</span></li>
+<li>分子：<span class="math inline">\(-0.04879 + 0.03627 = -0.01252\)</span></li>
+<li>分母：<span class="math inline">\(\sigma \sqrt{t} \approx 0.13856\)</span></li>
+</ul>
+<p>求得：</p>
+<p><span class="math display">\[d_1 = \frac{-0.01252}{0.13856} \approx -0.0904\]</span></p>
+<p><span class="math display">\[d_2 = -0.0904 - 0.13856 = -0.2290\]</span></p>
+</section>
+<section id="查表计算累积分布函数值" class="level4">
+<h4 class="anchored" data-anchor-id="查表计算累积分布函数值">3. 查表计算累积分布函数值</h4>
+<ul>
+<li><span class="math inline">\(\Phi(d_1) = \Phi(-0.0904) = 1 - \Phi(0.0904) \approx 1 - 0.5360 = 0.4640\)</span></li>
+<li><span class="math inline">\(\Phi(d_2) = \Phi(-0.2290) = 1 - \Phi(0.2290) \approx 1 - 0.5906 = 0.4094\)</span></li>
+</ul>
+</section>
+<section id="计算贴现因子与期权价格" class="level4">
+<h4 class="anchored" data-anchor-id="计算贴现因子与期权价格">4. 计算贴现因子与期权价格</h4>
+<ul>
+<li>贴现因子：<span class="math inline">\(e^{-rt} = e^{-0.08 / 3} = e^{-0.02667} \approx 0.97369\)</span></li>
+<li>代入公式：</li>
+</ul>
+<p><span class="math display">\[C = 40 \times 0.4640 - 42 \times 0.97369 \times 0.4094\]</span></p>
+<p><span class="math display">\[C \approx 18.560 - 40.895 \times 0.4094\]</span></p>
+<p><span class="math display">\[C \approx 18.560 - 16.742 = 1.818\]</span></p>
+<p><strong>练习 7.3 答案</strong>：该看涨期权的风险中性价值约为 <strong><span class="math inline">\(1.82\)</span></strong>。</p>
+</section>
+</section>
+</section>
+<section id="section-25" class="level2">
+<h2 class="anchored" data-anchor-id="section-25">7.6</h2>
+<section id="题目重述-1" class="level3">
+<h3 class="anchored" data-anchor-id="题目重述-1">题目重述</h3>
+<p><strong>练习 7.6</strong></p>
+<p>某种证券的价格服从漂移参数 <span class="math inline">\(\mu = 0.05\)</span>、波动参数 <span class="math inline">\(\sigma = 0.3\)</span> 的几何布朗运动。证券的当前价格是 <span class="math inline">\(95\)</span>。</p>
+<ul>
+<li><p><strong>a)</strong> 如果利率是 <span class="math inline">\(4\%\)</span>，求一个三个月到期、执行价是 <span class="math inline">\(100\)</span> 的看涨期权的无套利价格。</p></li>
+<li><p><strong>b)</strong> a) 中的看涨期权到期日价值为 <span class="math inline">\(0\)</span> 的概率是多少？</p></li>
+<li><p><strong>c)</strong> 假设关于这种证券的一种新型投资正在交易。如果购买这种投资后的六个月内证券的价格至少为 <span class="math inline">\(105\)</span>，并且购买一年后的价格至少和六个月时的价格一样多，那么这种投资在一年后的收益为 <span class="math inline">\(50\)</span>。求这种投资的无套利价格。</p></li>
+</ul>
+<hr>
+</section>
+<section id="详细解答" class="level3">
+<h3 class="anchored" data-anchor-id="详细解答">详细解答</h3>
+<section id="a-求看涨期权的无套利价格" class="level4">
+<h4 class="anchored" data-anchor-id="a-求看涨期权的无套利价格">a) 求看涨期权的无套利价格</h4>
+<p>根据 Black-Scholes 欧式看涨期权定价公式，无套利价格为：</p>
+<p><span class="math display">\[C = S(0)\Phi(d_1) - K e^{-rt}\Phi(d_2)\]</span></p>
+<p><strong>1. 参数整理</strong></p>
+<ul>
+<li><p>当前价格：<span class="math inline">\(S(0) = 95\)</span></p></li>
+<li><p>执行价格：<span class="math inline">\(K = 100\)</span></p></li>
+<li><p>无风险利率：<span class="math inline">\(r = 0.04\)</span></p></li>
+<li><p>波动率参数：<span class="math inline">\(\sigma = 0.3\)</span></p></li>
+<li><p>到期时间：<span class="math inline">\(t = \frac{3}{12} = 0.25\text{ 年}\)</span></p></li>
+</ul>
+<p><strong>2. 计算 <span class="math inline">\(d_1\)</span> 与 <span class="math inline">\(d_2\)</span></strong></p>
+<ul>
+<li><span class="math inline">\(\ln\left(\frac{S(0)}{K}\right) = \ln\left(\frac{95}{100}\right) = \ln(0.95) \approx -0.05129\)</span></li>
+<li><span class="math inline">\(r + \frac{\sigma^2}{2} = 0.04 + \frac{0.3^2}{2} = 0.04 + 0.045 = 0.085\)</span></li>
+<li><span class="math inline">\(\left(r + \frac{\sigma^2}{2}\right)t = 0.085 \times 0.25 = 0.02125\)</span></li>
+<li>波动标准差项：<span class="math inline">\(\sigma\sqrt{t} = 0.3 \times \sqrt{0.25} = 0.3 \times 0.5 = 0.15\)</span></li>
+</ul>
+<p>代入计算：</p>
+<p><span class="math display">\[d_1 = \frac{-0.05129 + 0.02125}{0.15} = \frac{-0.03004}{0.15} \approx -0.2003\]</span></p>
+<p><span class="math display">\[d_2 = d_1 - \sigma\sqrt{t} = -0.2003 - 0.15 = -0.3503\]</span></p>
+<p><strong>3. 查标准正态分布累积函数表</strong></p>
+<ul>
+<li><span class="math inline">\(\Phi(d_1) = \Phi(-0.2003) = 1 - \Phi(0.2003) \approx 1 - 0.5794 = 0.4206\)</span></li>
+<li><span class="math inline">\(\Phi(d_2) = \Phi(-0.3503) = 1 - \Phi(0.3503) \approx 1 - 0.6369 = 0.3631\)</span></li>
+<li>贴现因子：<span class="math inline">\(e^{-rt} = e^{-0.04 \times 0.25} = e^{-0.01} \approx 0.99005\)</span></li>
+</ul>
+<p><strong>4. 计算期权价值</strong></p>
+<p><span class="math display">\[C = 95 \times 0.4206 - 100 \times 0.99005 \times 0.3631\]</span></p>
+<p><span class="math display">\[C \approx 39.957 - 35.949 \approx 4.01\]</span></p>
+<blockquote class="blockquote">
+<p><strong>小结 a</strong>：该看涨期权的无套利价格约为 <strong><span class="math inline">\(4.01\)</span></strong>。</p>
+</blockquote>
+<hr>
+</section>
+<section id="b-求期权到期日价值为-0-的概率" class="level4">
+<h4 class="anchored" data-anchor-id="b-求期权到期日价值为-0-的概率">b) 求期权到期日价值为 0 的概率</h4>
+<p>看涨期权在到期日 <span class="math inline">\(t = 0.25\)</span> 时的收益为 <span class="math inline">\(\max(S(t) - K, 0)\)</span>。期权价值为 <span class="math inline">\(0\)</span> 等价于期权未被执行，即：</p>
+<p><span class="math display">\[S(t) \le K \quad (S(0.25) \le 100)\]</span></p>
+<p>在真实世界测度下，证券价格服从参数为 <span class="math inline">\(\mu = 0.05\)</span> 与 <span class="math inline">\(\sigma = 0.3\)</span> 的几何布朗运动：</p>
+<p><span class="math display">\[S(t) = S(0)e^{X(t)}, \quad X(t) \sim \mathcal{N}(\mu t, \sigma^2 t)\]</span></p>
+<p><strong>1. 计算标准化变量</strong></p>
+<p><span class="math display">\[P(S(t) \le K) = P\left(X(t) \le \ln\frac{K}{S(0)}\right)\]</span></p>
+<ul>
+<li>门槛值：<span class="math inline">\(\ln\left(\frac{100}{95}\right) \approx 0.05129\)</span></li>
+<li>均值：<span class="math inline">\(E[X(t)] = \mu t = 0.05 \times 0.25 = 0.0125\)</span></li>
+<li>标准差：<span class="math inline">\(\sigma\sqrt{t} = 0.3 \times 0.5 = 0.15\)</span></li>
+</ul>
+<p>标准化：</p>
+<p><span class="math display">\[Z = \frac{\ln(K / S(0)) - \mu t}{\sigma\sqrt{t}} = \frac{0.05129 - 0.0125}{0.15} = \frac{0.03879}{0.15} \approx 0.2586\]</span></p>
+<p><strong>2. 查表求概率</strong></p>
+<p><span class="math display">\[P(S(0.25) \le 100) = \Phi(0.2586) \approx 0.6021 \quad (60.21\%)\]</span></p>
+<blockquote class="blockquote">
+<p><strong>补充说明（关于不同定义与测度）</strong>： * 若采用随机微分方程形式 <span class="math inline">\(dS = \mu S dt + \sigma S dW\)</span>，则对数收益率漂移项为 <span class="math inline">\((\mu - \frac{1}{2}\sigma^2) = 0.005\)</span>，计算可得标准化值 <span class="math inline">\(Z \approx 0.3336\)</span>，对应概率约为 <strong><span class="math inline">\(0.6307\)</span></strong>（<span class="math inline">\(63.07\%\)</span>）。 * 若问题指的是<strong>风险中性测度</strong>下的概率，则为 <span class="math inline">\(1 - \Phi(d_2) = \Phi(-d_2) = \Phi(0.3503) \approx 0.6369\)</span>（<span class="math inline">\(63.69\%\)</span>）。教材标准物理概率解答采用 <strong><span class="math inline">\(60.21\%\)</span></strong>。</p>
+</blockquote>
+<hr>
+</section>
+<section id="c-求新型投资的无套利价格" class="level4">
+<h4 class="anchored" data-anchor-id="c-求新型投资的无套利价格">c) 求新型投资的无套利价格</h4>
+<p><strong>1. 题意厘清</strong></p>
+<ul>
+<li><p>英文原版教材表述为：<em>“if the price six months after purchasing the investment is at least 105 and the price one year after purchase is at least as much as the price was after six months”</em>，且后半句对应中文“六个月时的价格”。</p></li>
+<li><p>因此，“六个月内证券的价格至少为 105” 指的是<strong>在购买后 6 个月（<span class="math inline">\(t_1 = 0.5\)</span> 年）时的价格</strong>满足 <span class="math inline">\(S(0.5) \ge 105\)</span>。</p></li>
+<li><p>购买一年后（<span class="math inline">\(T = 1.0\)</span> 年）价格不低于六个月时的价格即 <span class="math inline">\(S(1) \ge S(0.5)\)</span>。</p></li>
+<li><p>一年后获得固定收益 <span class="math inline">\(50\)</span>，收益函数为：</p></li>
+</ul>
+<p><span class="math display">\[Y = 50 \cdot \mathbf{1}_{\{S(0.5) \ge 105 \text{ 且 } S(1) \ge S(0.5)\}}\]</span></p>
+<p><strong>2. 无套利定价原理（风险中性定价）</strong> 无套利现值等于收益在风险中性测度 <span class="math inline">\(\mathbb{Q}\)</span> 下的折现期望：</p>
+<p><span class="math display">\[V_0 = e^{-r T} \cdot 50 \cdot \mathbb{Q}(S(0.5) \ge 105, \, S(1) \ge S(0.5))\]</span></p>
+<p>其中 <span class="math inline">\(T = 1\)</span>，无风险利率 <span class="math inline">\(r = 0.04\)</span>。</p>
+<p>在几何布朗运动中，区间 <span class="math inline">\([0, 0.5]\)</span> 的价格 <span class="math inline">\(S(0.5)\)</span> 与区间 <span class="math inline">\([0.5, 1.0]\)</span> 的相对比值 <span class="math inline">\(\frac{S(1)}{S(0.5)}\)</span> 具有<strong>独立增量性</strong>。因此两个事件在测度 <span class="math inline">\(\mathbb{Q}\)</span> 下相互独立：</p>
+<p><span class="math display">\[\mathbb{Q}(S(0.5) \ge 105, \, S(1) \ge S(0.5)) = \mathbb{Q}(S(0.5) \ge 105) \times \mathbb{Q}\left(\frac{S(1)}{S(0.5)} \ge 1\right)\]</span></p>
+<p><strong>3. 计算风险中性概率</strong> 在测度 <span class="math inline">\(\mathbb{Q}\)</span> 下，对数漂移率为：</p>
+<p><span class="math display">\[\mu^* = r - \frac{\sigma^2}{2} = 0.04 - \frac{0.3^2}{2} = 0.04 - 0.045 = -0.005\]</span></p>
+<ul>
+<li><strong>事件一：<span class="math inline">\(\mathbb{Q}(S(0.5) \ge 105)\)</span></strong> 时间间隔 <span class="math inline">\(\Delta t_1 = 0.5\)</span> 年：</li>
+<li>对数收益均值：<span class="math inline">\(\mu^* \Delta t_1 = -0.005 \times 0.5 = -0.0025\)</span></li>
+<li>标准差：<span class="math inline">\(\sigma\sqrt{\Delta t_1} = 0.3 \times \sqrt{0.5} \approx 0.21213\)</span></li>
+<li>门槛值：<span class="math inline">\(\ln\left(\frac{105}{95}\right) = \ln\left(\frac{21}{19}\right) \approx 0.10008\)</span></li>
+<li>标准化：</li>
+</ul>
+<p><span class="math display">\[z_1 = \frac{0.10008 - (-0.0025)}{0.21213} = \frac{0.10258}{0.21213} \approx 0.4836\]</span></p>
+<ul>
+<li>概率：</li>
+</ul>
+<p><span class="math display">\[\mathbb{Q}(S(0.5) \ge 105) = 1 - \Phi(0.4836) \approx 1 - 0.6857 = 0.3143\]</span></p>
+<ul>
+<li><strong>事件二：<span class="math inline">\(\mathbb{Q}\left(\frac{S(1)}{S(0.5)} \ge 1\right)\)</span></strong> 时间间隔 <span class="math inline">\(\Delta t_2 = 1.0 - 0.5 = 0.5\)</span> 年：</li>
+<li>对数收益均值：<span class="math inline">\(\mu^* \Delta t_2 = -0.0025\)</span></li>
+<li>标准差：<span class="math inline">\(\sigma\sqrt{\Delta t_2} \approx 0.21213\)</span></li>
+<li>门槛值：<span class="math inline">\(\ln(1) = 0\)</span></li>
+<li>标准化：</li>
+</ul>
+<p><span class="math display">\[z_2 = \frac{0 - (-0.0025)}{0.21213} = \frac{0.0025}{0.21213} \approx 0.0118\]</span></p>
+<ul>
+<li>概率：</li>
+</ul>
+<p><span class="math display">\[\mathbb{Q}(S(1) \ge S(0.5)) = 1 - \Phi(0.0118) \approx 1 - 0.5047 = 0.4953\]</span></p>
+<ul>
+<li><strong>联合概率</strong>：</li>
+</ul>
+<p><span class="math display">\[\mathbb{Q} = 0.3143 \times 0.4953 \approx 0.1557\]</span></p>
+<p><strong>4. 计算现值</strong></p>
+<p><span class="math display">\[V_0 = 50 \times e^{-0.04 \times 1} \times 0.1557 \approx 50 \times 0.96079 \times 0.1557 \approx 7.48\]</span></p>
+</section>
+</section>
+</section>
+</section>
+<section id="section-26" class="level1">
+<h1>9</h1>
+<section id="section-27" class="level2">
+<h2 class="anchored" data-anchor-id="section-27">7.13</h2>
+<section id="题目重述-2" class="level3">
+<h3 class="anchored" data-anchor-id="题目重述-2">题目重述</h3>
+<p>欧式资产或无价值期权为：如果在到期日 <span class="math inline">\(t\)</span> 满足 <span class="math inline">\(S(t) &gt; K\)</span>，则支付给合约持有人资产值 <span class="math inline">\(S(t)\)</span>，否则支付给合约持有人 <span class="math inline">\(0\)</span>。求该期权的含参数 <span class="math inline">\(s, t, K, \sigma, r\)</span> 的无套利成本公式。</p>
+<hr>
+</section>
+<section id="解题思路与公式推导" class="level3">
+<h3 class="anchored" data-anchor-id="解题思路与公式推导">解题思路与公式推导</h3>
+<p>该期权为典型的<strong>欧式资产或无价值期权（Asset-or-Nothing Call Option）</strong>。在到期日 <span class="math inline">\(t\)</span>，合约给持有人的支付函数为：</p>
+<p><span class="math display">\[\text{Payoff} = \begin{cases} S(t), &amp; S(t) &gt; K \\ 0, &amp; S(t) \le K \end{cases} = S(t) \cdot \mathbf{1}_{\{S(t) &gt; K\}}\]</span></p>
+<p>我们可以通过以下两种经典方法求解其无套利成本（现值定价）。</p>
+<hr>
+<section id="方法一期权收益分解法最直观" class="level4">
+<h4 class="anchored" data-anchor-id="方法一期权收益分解法最直观">方法一：期权收益分解法（最直观）</h4>
+<p>标准欧式看涨期权（European Call Option）在到期日 <span class="math inline">\(t\)</span> 的收益为：</p>
+<p><span class="math display">\[C(t) = \max(S(t) - K, 0) = (S(t) - K) \cdot \mathbf{1}_{\{S(t) &gt; K\}} = S(t)\mathbf{1}_{\{S(t) &gt; K\}} - K\mathbf{1}_{\{S(t) &gt; K\}}\]</span></p>
+<p>将资产或无价值期权的收益项单独移到等式左边：</p>
+<p><span class="math display">\[S(t)\mathbf{1}_{\{S(t) &gt; K\}} = C(t) + K \cdot \mathbf{1}_{\{S(t) &gt; K\}}\]</span></p>
+<p>由此可见，该期权在到期日的现金流等价于两个投资组合的收益之和：</p>
+<ol type="1">
+<li><strong>一个标的为 <span class="math inline">\(S\)</span>、执行价为 <span class="math inline">\(K\)</span>、到期日为 <span class="math inline">\(t\)</span> 的标准欧式看涨期权</strong>；</li>
+<li><strong><span class="math inline">\(K\)</span> 份现金或无价值期权（Cash-or-Nothing Call Option）</strong>，每份在 <span class="math inline">\(S(t) &gt; K\)</span> 时支付 <span class="math inline">\(1\)</span>。</li>
+</ol>
+<p>根据 Black-Scholes 衍生品定价理论：</p>
+<ul>
+<li>标准欧式看涨期权的当前无套利价格为：</li>
+</ul>
+<p><span class="math display">\[C = s\Phi(d_1) - Ke^{-rt}\Phi(d_2)\]</span></p>
+<ul>
+<li>支付固定现金 <span class="math inline">\(K\)</span> 的数字期权（现金或无价值期权）的当前无套利价格为：</li>
+</ul>
+<p><span class="math display">\[V_{\text{cash}} = K e^{-rt}\Phi(d_2)\]</span></p>
+<p>由无套利线性定价法则，该资产或无价值期权的现值 <span class="math inline">\(V\)</span> 为：</p>
+<p><span class="math display">\[V = C + V_{\text{cash}} = \left[ s\Phi(d_1) - Ke^{-rt}\Phi(d_2) \right] + Ke^{-rt}\Phi(d_2) = s\Phi(d_1)\]</span></p>
+<hr>
+</section>
+<section id="方法二风险中性期望定价法第一性原理" class="level4">
+<h4 class="anchored" data-anchor-id="方法二风险中性期望定价法第一性原理">方法二：风险中性期望定价法（第一性原理）</h4>
+<p>根据风险中性定价理论，无套利价格等于到期支付在风险中性测度 <span class="math inline">\(\mathbb{Q}\)</span> 下的折现期望值：</p>
+<p><span class="math display">\[V = e^{-rt} \mathbb{E}^{\mathbb{Q}}\left[ S(t)\mathbf{1}_{\{S(t) &gt; K\}} \right]\]</span></p>
+<p>在测度 <span class="math inline">\(\mathbb{Q}\)</span> 下，资产价格满足几何布朗运动：</p>
+<p><span class="math display">\[S(t) = s \exp\left( \left(r - \frac{1}{2}\sigma^2\right)t + \sigma\sqrt{t} Z \right), \quad Z \sim \mathcal{N}(0, 1)\]</span></p>
+<p>事件 <span class="math inline">\(S(t) &gt; K\)</span> 等价于：</p>
+<p><span class="math display">\[\left(r - \frac{1}{2}\sigma^2\right)t + \sigma\sqrt{t} Z &gt; \ln\left(\frac{K}{s}\right) \implies Z &gt; -\frac{\ln(s/K) + \left(r - \frac{\sigma^2}{2}\right)t}{\sigma\sqrt{t}} = -d_2\]</span></p>
+<p>将 <span class="math inline">\(S(t)\)</span> 与积分表达式代入期望计算：</p>
+<p><span class="math display">\[\mathbb{E}^{\mathbb{Q}}\left[ S(t)\mathbf{1}_{\{S(t) &gt; K\}} \right] = \int_{-d_2}^{\infty} s e^{\left(r - \frac{1}{2}\sigma^2\right)t + \sigma\sqrt{t} z} \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{2}} dz\]</span></p>
+<p><span class="math display">\[= s e^{rt} \int_{-d_2}^{\infty} \frac{1}{\sqrt{2\pi}} \exp\left( -\frac{(z - \sigma\sqrt{t})^2}{2} \right) dz\]</span></p>
+<p>做变量替换，令 <span class="math inline">\(u = z - \sigma\sqrt{t}\)</span>，当 <span class="math inline">\(z = -d_2\)</span> 时：</p>
+<p><span class="math display">\[u = -d_2 - \sigma\sqrt{t} = -\left(d_2 + \sigma\sqrt{t}\right) = -d_1\]</span></p>
+<p>积分变为标准正态变量在 <span class="math inline">\([-d_1, \infty)\)</span> 上的积分：</p>
+<p><span class="math display">\[\int_{-d_1}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{u^2}{2}} du = \mathbb{P}(U \ge -d_1) = \Phi(d_1)\]</span></p>
+<p>因此：</p>
+<p><span class="math display">\[V = e^{-rt} \cdot \left[ s e^{rt} \Phi(d_1) \right] = s\Phi(d_1)\]</span></p>
+<hr>
+</section>
+</section>
+<section id="结论" class="level3">
+<h3 class="anchored" data-anchor-id="结论">结论</h3>
+<p>该欧式资产或无价值期权的无套利成本公式为：</p>
+<p><span class="math display">\[V = s\Phi(d_1)\]</span></p>
+<p>其中：</p>
+<ul>
+<li><span class="math inline">\(\Phi(\cdot)\)</span> 为标准正态分布累积分布函数（CDF）；</li>
+<li><span class="math inline">\(d_1\)</span> 的表达式为：</li>
+</ul>
+<p><span class="math display">\[d_1 = \frac{\ln\left(\frac{s}{K}\right) + \left(r + \frac{\sigma^2}{2}\right)t}{\sigma\sqrt{t}}\]</span></p>
+</section>
+</section>
+<section id="section-28" class="level2">
+<h2 class="anchored" data-anchor-id="section-28">7.15</h2>
+<p>题目重述</p>
+<p>当一个看涨期权的到期日越来越长时，它的价格会如何变化？解释你的理由（或者用数学证明）。</p>
+<hr>
+<p>核心结论</p>
+<p>在不支付红利（无分红）且无风险利率 <span class="math inline">\(r \ge 0\)</span> 的假设下：</p>
+<ol type="1">
+<li><p><strong>单调性</strong>：随着到期时间 <span class="math inline">\(t\)</span> 的延长，看涨期权的价格<strong>严格单调递增</strong>。</p></li>
+<li><p><strong>极限值</strong>：当到期时间趋于无穷大（<span class="math inline">\(t \to \infty\)</span>）时，看涨期权的价格将<strong>收敛于标的证券的当前价格 <span class="math inline">\(s\)</span></strong>（即 <span class="math inline">\(\lim_{t \to \infty} C(t) = s\)</span>）。</p></li>
+</ol>
+<p>以下分别从<strong>无套利金融直觉</strong>、<strong>Black-Scholes 偏导数证明</strong>和<strong>极限分析</strong>三个角度给出完整解答。</p>
+<hr>
+<p>证明与解释</p>
+<section id="方法一金融直觉与无套利论证不依赖具体分布模型" class="level4">
+<h4 class="anchored" data-anchor-id="方法一金融直觉与无套利论证不依赖具体分布模型">方法一：金融直觉与无套利论证（不依赖具体分布模型）</h4>
+<p><strong>1. 为什么价格随到期日延长而单调递增？</strong></p>
+<ul>
+<li><strong>对美式看涨期权</strong>：设两个期权的到期时间分别为 <span class="math inline">\(t_1 &lt; t_2\)</span>。到期日为 <span class="math inline">\(t_2\)</span> 的期权持有人拥有到期日为 <span class="math inline">\(t_1\)</span> 的期权的所有行权权利（在 <span class="math inline">\([0, t_1]\)</span> 内任意时刻行权），同时还额外拥有在 <span class="math inline">\((t_1, t_2]\)</span> 期间行权的选择权。根据无套利原理，权利更多，价值必然不低于短期期权，即 <span class="math inline">\(C_{\text{美}}(t_2) \ge C_{\text{美}}(t_1)\)</span>。</li>
+<li><strong>对欧式看涨期权</strong>：对于不付红利的标的资产，美式看涨期权永远不应该提前行权，因此美式看涨期权与欧式看涨期权价值相等（<span class="math inline">\(C_{\text{欧}}(t) = C_{\text{美}}(t)\)</span>）。由此直接推导出欧式看涨期权的价格也随到期时间 <span class="math inline">\(t\)</span> 增加而递增。</li>
+<li><strong>直观原因</strong>：更长的到期时间一方面赋予了标的资产价格向上波动的更多时间（波动率价值增加），另一方面推迟了执行价格 <span class="math inline">\(K\)</span> 的支付时间，使得行权成本的现值 <span class="math inline">\(K e^{-rt}\)</span> 变小。</li>
+</ul>
+<hr>
+</section>
+<section id="方法二black-scholes-公式的数学证明偏导数法" class="level4">
+<h4 class="anchored" data-anchor-id="方法二black-scholes-公式的数学证明偏导数法">方法二：Black-Scholes 公式的数学证明（偏导数法）</h4>
+<p>在 Black-Scholes 模型下，欧式看涨期权定价公式为：</p>
+<p><span class="math display">\[C(t) = s\Phi(d_1) - Ke^{-rt}\Phi(d_2)\]</span></p>
+<p>其中：</p>
+<p><span class="math display">\[d_1 = \frac{\ln(s/K) + \left(r + \frac{\sigma^2}{2}\right)t}{\sigma\sqrt{t}}, \quad d_2 = d_1 - \sigma\sqrt{t}\]</span></p>
+<p>我们对到期时间 <span class="math inline">\(t\)</span> 求偏导数（即期权的 <span class="math inline">\(-\Theta\)</span>）：</p>
+<p><span class="math display">\[\frac{\partial C}{\partial t} = s\phi(d_1)\frac{\partial d_1}{\partial t} - K e^{-rt}\phi(d_2)\frac{\partial d_2}{\partial t} + rKe^{-rt}\Phi(d_2)\]</span></p>
+<p>其中 <span class="math inline">\(\phi(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}\)</span> 是标准正态分布的概率密度函数。</p>
+<p><strong>关键恒等式简化</strong>：</p>
+<p>先验证 <span class="math inline">\(s\phi(d_1) = Ke^{-rt}\phi(d_2)\)</span>：</p>
+<p><span class="math display">\[\frac{\phi(d_1)}{\phi(d_2)} = \exp\left(-\frac{d_1^2 - d_2^2}{2}\right) = \exp\left(-\frac{(d_1 - d_2)(d_1 + d_2)}{2}\right)\]</span></p>
+<p>因为 <span class="math inline">\(d_1 - d_2 = \sigma\sqrt{t}\)</span>，且 <span class="math inline">\(d_1 + d_2 = \frac{2\ln(s/K) + 2rt}{\sigma\sqrt{t}}\)</span>，代入上式得：</p>
+<p><span class="math display">\[\frac{\phi(d_1)}{\phi(d_2)} = \exp\left(-\ln\left(\frac{s}{K}\right) - rt\right) = \frac{K}{s}e^{-rt} \implies s\phi(d_1) = Ke^{-rt}\phi(d_2)\]</span></p>
+<p>将该恒等式代回偏导数方程：</p>
+<p><span class="math display">\[\frac{\partial C}{\partial t} = s\phi(d_1)\left(\frac{\partial d_1}{\partial t} - \frac{\partial d_2}{\partial t}\right) + rKe^{-rt}\Phi(d_2)\]</span></p>
+<p>又因为 <span class="math inline">\(d_1 - d_2 = \sigma\sqrt{t}\)</span>，所以：</p>
+<p><span class="math display">\[\frac{\partial d_1}{\partial t} - \frac{\partial d_2}{\partial t} = \frac{\partial (\sigma\sqrt{t})}{\partial t} = \frac{\sigma}{2\sqrt{t}}\]</span></p>
+<p>最终得到：</p>
+<p><span class="math display">\[\frac{\partial C}{\partial t} = \frac{s\sigma}{2\sqrt{t}}\phi(d_1) + rKe^{-rt}\Phi(d_2)\]</span></p>
+<p>由于 <span class="math inline">\(s &gt; 0, \sigma &gt; 0, \phi(d_1) &gt; 0, \Phi(d_2) &gt; 0\)</span> 且 <span class="math inline">\(r \ge 0\)</span>，因此恒有：</p>
+<p><span class="math display">\[\frac{\partial C}{\partial t} &gt; 0\]</span></p>
+<p>这在数学上严格证明了：<strong>看涨期权的价格随到期时间 <span class="math inline">\(t\)</span> 的增加而严格单调递增</strong>。</p>
+<hr>
+</section>
+<section id="方法三当-t-to-infty-时的极限行为证明" class="level4">
+<h4 class="anchored" data-anchor-id="方法三当-t-to-infty-时的极限行为证明">方法三：当 <span class="math inline">\(t \to \infty\)</span> 时的极限行为证明</h4>
+<p>考察当到期时间无限延长（<span class="math inline">\(t \to \infty\)</span>）时，<span class="math inline">\(d_1\)</span> 和 <span class="math inline">\(d_2\)</span> 的变化趋势：</p>
+<p><span class="math display">\[d_1 = \frac{\ln(s/K)}{\sigma\sqrt{t}} + \frac{r + \frac{1}{2}\sigma^2}{\sigma}\sqrt{t}\]</span></p>
+<p><span class="math display">\[d_2 = \frac{\ln(s/K)}{\sigma\sqrt{t}} + \frac{r - \frac{1}{2}\sigma^2}{\sigma}\sqrt{t}\]</span></p>
+<ol type="1">
+<li><strong>第一项 <span class="math inline">\(s\Phi(d_1)\)</span> 的极限</strong>： 由于 <span class="math inline">\(r \ge 0, \sigma &gt; 0\)</span>，系数 <span class="math inline">\(\frac{r + \frac{1}{2}\sigma^2}{\sigma} &gt; 0\)</span>。当 <span class="math inline">\(t \to \infty\)</span> 时：</li>
+</ol>
+<p><span class="math display">\[\lim_{t \to \infty} d_1 = +\infty \implies \lim_{t \to \infty} \Phi(d_1) = 1\]</span></p>
+<p>因此：</p>
+<p><span class="math display">\[\lim_{t \to \infty} s\Phi(d_1) = s \times 1 = s\]</span></p>
+<ol start="2" type="1">
+<li><strong>第二项 <span class="math inline">\(Ke^{-rt}\Phi(d_2)\)</span> 的极限</strong>：</li>
+</ol>
+<ul>
+<li>若 <span class="math inline">\(r &gt; 0\)</span>：由于 <span class="math inline">\(0 &lt; \Phi(d_2) &lt; 1\)</span> 有界，且贴现因子 <span class="math inline">\(\lim_{t \to \infty} e^{-rt} = 0\)</span>，由夹逼定理可知：</li>
+</ul>
+<p><span class="math display">\[\lim_{t \to \infty} Ke^{-rt}\Phi(d_2) = 0\]</span></p>
+<ul>
+<li>若 <span class="math inline">\(r = 0\)</span>：此时 <span class="math inline">\(d_2 = \frac{\ln(s/K)}{\sigma\sqrt{t}} - \frac{1}{2}\sigma\sqrt{t} \to -\infty\)</span>（当 <span class="math inline">\(t \to \infty\)</span>），故 <span class="math inline">\(\lim_{t \to \infty} \Phi(d_2) = 0\)</span>，第二项极限同样为 <span class="math inline">\(0\)</span>。</li>
+</ul>
+<p>综合上述两项，当 <span class="math inline">\(t \to \infty\)</span> 时，看涨期权的价格极限为：</p>
+<p><span class="math display">\[\lim_{t \to \infty} C(t) = s - 0 = s\]</span></p>
 
 
+</section>
 </section>
 </section>
 

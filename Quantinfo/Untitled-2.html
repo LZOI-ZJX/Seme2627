@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f2788e636de456f6409e966386820849.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-66a38d7287321bc50e069add96f8c30e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -74,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -145,7 +174,51 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">该页面内容</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">1</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">0</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">1</a>
+  <ul class="collapse">
+  <li><a href="#一-量子比特qubit状态与测量" id="toc-一-量子比特qubit状态与测量" class="nav-link" data-scroll-target="#一-量子比特qubit状态与测量">一、 量子比特（Qubit）：状态与测量</a></li>
+  <li><a href="#二-多量子比特与纠缠" id="toc-二-多量子比特与纠缠" class="nav-link" data-scroll-target="#二-多量子比特与纠缠">二、 多量子比特与纠缠</a></li>
+  <li><a href="#三-量子门与量子线路" id="toc-三-量子门与量子线路" class="nav-link" data-scroll-target="#三-量子门与量子线路">三、 量子门与量子线路</a></li>
+  <li><a href="#四-三个核心应用案例" id="toc-四-三个核心应用案例" class="nav-link" data-scroll-target="#四-三个核心应用案例">四、 三个核心应用案例</a></li>
+  <li><a href="#一句话总结" id="toc-一句话总结" class="nav-link" data-scroll-target="#一句话总结">一句话总结</a></li>
+  </ul></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2">1.1</a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3">2</a>
+  <ul class="collapse">
+  <li><a href="#一-向量空间基与-dirac-记号" id="toc-一-向量空间基与-dirac-记号" class="nav-link" data-scroll-target="#一-向量空间基与-dirac-记号">一、 向量空间、基与 Dirac 记号</a></li>
+  <li><a href="#二-线性算子与-pauli-矩阵" id="toc-二-线性算子与-pauli-矩阵" class="nav-link" data-scroll-target="#二-线性算子与-pauli-矩阵">二、 线性算子与 Pauli 矩阵</a></li>
+  <li><a href="#三-内积外积与完备性关系" id="toc-三-内积外积与完备性关系" class="nav-link" data-scroll-target="#三-内积外积与完备性关系">三、 内积、外积与完备性关系</a></li>
+  <li><a href="#四-特征值伴随与核心算子分类" id="toc-四-特征值伴随与核心算子分类" class="nav-link" data-scroll-target="#四-特征值伴随与核心算子分类">四、 特征值、伴随与核心算子分类</a></li>
+  </ul></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4">2.1</a>
+  <ul class="collapse">
+  <li><a href="#一-张量积tensor-product复合系统的数学舞台" id="toc-一-张量积tensor-product复合系统的数学舞台" class="nav-link" data-scroll-target="#一-张量积tensor-product复合系统的数学舞台">一、 张量积（Tensor Product）：复合系统的数学舞台</a></li>
+  <li><a href="#二-算子函数与迹operator-functions-trace" id="toc-二-算子函数与迹operator-functions-trace" class="nav-link" data-scroll-target="#二-算子函数与迹operator-functions-trace">二、 算子函数与迹（Operator Functions &amp; Trace）</a></li>
+  <li><a href="#三-对易式与反对易式commutator-anti-commutator" id="toc-三-对易式与反对易式commutator-anti-commutator" class="nav-link" data-scroll-target="#三-对易式与反对易式commutator-anti-commutator">三、 对易式与反对易式（Commutator &amp; Anti-commutator）</a></li>
+  <li><a href="#四-极分解与奇异值分解polar-singular-value-decomposition" id="toc-四-极分解与奇异值分解polar-singular-value-decomposition" class="nav-link" data-scroll-target="#四-极分解与奇异值分解polar-singular-value-decomposition">四、 极分解与奇异值分解（Polar &amp; Singular Value Decomposition）</a></li>
+  </ul></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5">3</a>
+  <ul class="collapse">
+  <li><a href="#一-假设一状态空间系统是什么" id="toc-一-假设一状态空间系统是什么" class="nav-link" data-scroll-target="#一-假设一状态空间系统是什么">一、 假设一：状态空间（系统“是什么”）</a></li>
+  <li><a href="#二-假设二时间演化系统怎么变" id="toc-二-假设二时间演化系统怎么变" class="nav-link" data-scroll-target="#二-假设二时间演化系统怎么变">二、 假设二：时间演化（系统“怎么变”）</a></li>
+  <li><a href="#三-假设三一般测量与量子态的可区分性怎么问系统" id="toc-三-假设三一般测量与量子态的可区分性怎么问系统" class="nav-link" data-scroll-target="#三-假设三一般测量与量子态的可区分性怎么问系统">三、 假设三：一般测量与量子态的可区分性（怎么“问”系统）</a></li>
+  <li><a href="#四-投影测量与海森堡不确定性原理" id="toc-四-投影测量与海森堡不确定性原理" class="nav-link" data-scroll-target="#四-投影测量与海森堡不确定性原理">四、 投影测量与海森堡不确定性原理</a></li>
+  </ul></li>
+  <li><a href="#section-6" id="toc-section-6" class="nav-link" data-scroll-target="#section-6">3.1</a>
+  <ul class="collapse">
+  <li><a href="#一-承前启后不确定性原理的严格证明" id="toc-一-承前启后不确定性原理的严格证明" class="nav-link" data-scroll-target="#一-承前启后不确定性原理的严格证明">一、 承前启后：不确定性原理的严格证明</a></li>
+  <li><a href="#二-测量的延伸povm-与量子相位" id="toc-二-测量的延伸povm-与量子相位" class="nav-link" data-scroll-target="#二-测量的延伸povm-与量子相位">二、 测量的延伸：POVM 与量子相位</a></li>
+  <li><a href="#三-假设四复合系统测量酉实现与纠缠" id="toc-三-假设四复合系统测量酉实现与纠缠" class="nav-link" data-scroll-target="#三-假设四复合系统测量酉实现与纠缠">三、 假设四：复合系统、测量酉实现与纠缠</a></li>
+  <li><a href="#四-四大假设首次合体应用超密编码superdense-coding" id="toc-四-四大假设首次合体应用超密编码superdense-coding" class="nav-link" data-scroll-target="#四-四大假设首次合体应用超密编码superdense-coding">四、 四大假设首次合体应用：超密编码（Superdense Coding）</a></li>
+  </ul></li>
+  <li><a href="#section-7" id="toc-section-7" class="nav-link" data-scroll-target="#section-7">4</a>
+  <ul class="collapse">
+  <li><a href="#一-从纯态到系综把不确定性写进公式" id="toc-一-从纯态到系综把不确定性写进公式" class="nav-link" data-scroll-target="#一-从纯态到系综把不确定性写进公式">一、 从纯态到系综：把“不确定性”写进公式</a></li>
+  <li><a href="#二-密度算子的独立身份证与系综自由度" id="toc-二-密度算子的独立身份证与系综自由度" class="nav-link" data-scroll-target="#二-密度算子的独立身份证与系综自由度">二、 密度算子的独立身份证与系综自由度</a></li>
+  <li><a href="#三-约化密度算子与偏迹揭示纠缠的代数指纹" id="toc-三-约化密度算子与偏迹揭示纠缠的代数指纹" class="nav-link" data-scroll-target="#三-约化密度算子与偏迹揭示纠缠的代数指纹">三、 约化密度算子与偏迹：揭示纠缠的代数指纹</a></li>
+  <li><a href="#四-核心物理应用严格证明隐形传态不超光速" id="toc-四-核心物理应用严格证明隐形传态不超光速" class="nav-link" data-scroll-target="#四-核心物理应用严格证明隐形传态不超光速">四、 核心物理应用：严格证明隐形传态不超光速</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -172,9 +245,842 @@ ul.task-list li input[type="checkbox"] {
 
 
 <section id="section" class="level1">
+<h1>0</h1>
+<p>计算基：</p>
+<p><span class="math display">\[
+\vert{}0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad \vert{}1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+\]</span></p>
+<p><strong>贝尔态（Bell States）</strong>，又称 <strong>EPR 对</strong>，是两比特复合量子系统（<span class="math inline">\(\mathcal{H}_A \otimes \mathcal{H}_B = \mathbb{C}^2 \otimes \mathbb{C}^2\)</span>）中最具代表性的<strong>最大纠缠纯态（Maximally Entangled States）</strong>。</p>
+<p><strong>不可分离性（纠缠性）</strong>： 无法写成任何单比特态的直积形式 <span class="math inline">\(\vert{}\psi\rangle \ne \vert{}a\rangle_A \otimes \vert{}b\rangle_B\)</span>。</p>
+<p>在量子计算中，<strong>量子逻辑门（Quantum Gate）</strong>在数学上对应二维复希尔伯特空间 <span class="math inline">\(\mathbb{C}^2\)</span> 上的<strong>幺正算符（Unitary Operator）</strong>，满足 <span class="math inline">\(U^\dagger U = U U^\dagger = I\)</span>。幺正性保证了量子态在演化过程中的范数守恒（总概率为 1）以及操作的可逆性。</p>
+<p>在 Bloch 球几何图像中，任何单比特量子门都等价于将状态矢量绕 Bloch 球的某一特定轴旋转特定角度。</p>
+<hr>
+<section id="pauli-x-门比特翻转门bit-flip-gate" class="level4">
+<h4 class="anchored" data-anchor-id="pauli-x-门比特翻转门bit-flip-gate">1. Pauli-X 门（比特翻转门，Bit-Flip Gate）</h4>
+<p><span class="math inline">\(X\)</span> 门是经典逻辑“非门（NOT Gate）”在量子计算中的直接对应物。</p>
+<ul>
+<li><strong>矩阵表示</strong>：</li>
+</ul>
+<p><span class="math display">\[X = \sigma_x = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\]</span></p>
+<ul>
+<li><strong>对计算基的作用</strong>：</li>
+</ul>
+<p><span class="math display">\[X\vert{}0\rangle = \vert{}1\rangle, \quad X\vert{}1\rangle = \vert{}0\rangle\]</span></p>
+<p>对任意叠加态 <span class="math inline">\(\vert{}\psi\rangle = \alpha\vert{}0\rangle + \beta\vert{}1\rangle\)</span>：</p>
+<p><span class="math display">\[X\vert{}\psi\rangle = \beta\vert{}0\rangle + \alpha\vert{}1\rangle\]</span></p>
+</section>
+<section id="pauli-z-门相位翻转门phase-flip-gate" class="level4">
+<h4 class="anchored" data-anchor-id="pauli-z-门相位翻转门phase-flip-gate">2. Pauli-Z 门（相位翻转门，Phase-Flip Gate）</h4>
+<p><span class="math inline">\(Z\)</span> 门不改变计算基的布居数（概率分布），仅改变两基矢之间的相对量子相位。</p>
+<ul>
+<li><strong>矩阵表示</strong>：</li>
+</ul>
+<p><span class="math display">\[Z = \sigma_z = \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}\]</span></p>
+<ul>
+<li><strong>对计算基的作用</strong>：</li>
+</ul>
+<p><span class="math display">\[Z\vert{}0\rangle = \vert{}0\rangle, \quad Z\vert{}1\rangle = -\vert{}1\rangle\]</span></p>
+<p>对任意叠加态 <span class="math inline">\(\vert{}\psi\rangle = \alpha\vert{}0\rangle + \beta\vert{}1\rangle\)</span>：</p>
+<p><span class="math display">\[Z\vert{}\psi\rangle = \alpha\vert{}0\rangle - \beta\vert{}1\rangle\]</span></p>
+<ul>
+<li><strong>代数性质</strong>：</li>
+<li>厄米且幺正：<span class="math inline">\(Z^\dagger = Z = Z^{-1}\)</span>，因此 <span class="math inline">\(Z^2 = I\)</span>。</li>
+<li>计算基 <span class="math inline">\(\vert{}0\rangle, \vert{}1\rangle\)</span> 本身即为 <span class="math inline">\(Z\)</span> 的本征基，对应本征值分别为 <span class="math inline">\(+1, -1\)</span>。</li>
+<li>对 <span class="math inline">\(X\)</span> 的本征态施加 <span class="math inline">\(Z\)</span>，实现本征态的互相翻转：</li>
+</ul>
+<p><span class="math display">\[Z\vert{}+\rangle = \vert{}-\rangle, \quad Z\vert{}-\rangle = \vert{}+\rangle\]</span></p>
+<ul>
+<li><strong>Bloch 球几何意义</strong>： 等价于将态矢量绕 Bloch 球的 <strong><span class="math inline">\(z\)</span> 轴旋转 <span class="math inline">\(\pi\)</span> 弧度（<span class="math inline">\(180^\circ\)</span>）</strong>（<span class="math inline">\(R_z(\pi) = -iZ\)</span>）。</li>
+</ul>
+<hr>
+</section>
+<section id="hadamard-门h-门创建叠加门-基底转换门" class="level4">
+<h4 class="anchored" data-anchor-id="hadamard-门h-门创建叠加门-基底转换门">3. Hadamard 门（H 门，创建叠加门 / 基底转换门）</h4>
+<p><span class="math inline">\(H\)</span> 门是量子算法中最基础的核心门，负责在确定基与等幅叠加基之间建立映射。</p>
+<ul>
+<li><strong>矩阵表示</strong>：</li>
+</ul>
+<p><span class="math display">\[H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix} = \frac{X + Z}{\sqrt{2}}\]</span></p>
+<ul>
+<li><strong>对计算基的作用</strong>：</li>
+</ul>
+<p><span class="math display">\[H\vert{}0\rangle = \frac{\vert{}0\rangle + \vert{}1\rangle}{\sqrt{2}} = \vert{}+\rangle\]</span></p>
+<p><span class="math display">\[H\vert{}1\rangle = \frac{\vert{}0\rangle - \vert{}1\rangle}{\sqrt{2}} = \vert{}-\rangle\]</span></p>
+<p>若将 <span class="math inline">\(H\)</span> 作用在 <span class="math inline">\(\vert{}+\rangle\)</span> 或 <span class="math inline">\(\vert{}-\rangle\)</span> 上，则由于其自反性反向映射回计算基：</p>
+<p><span class="math display">\[H\vert{}+\rangle = \vert{}0\rangle, \quad H\vert{}-\rangle = \vert{}1\rangle\]</span></p>
+<ul>
+<li><strong>代数性质</strong>：</li>
+<li>厄米且幺正：<span class="math inline">\(H^\dagger = H = H^{-1}\)</span>，满足 <span class="math inline">\(H^2 = I\)</span>。</li>
+<li><span class="math inline">\(H\)</span> 充当了 <span class="math inline">\(X\)</span> 算符与 <span class="math inline">\(Z\)</span> 算符之间的<strong>基变换酉共轭矩阵</strong>：</li>
+</ul>
+<p><span class="math display">\[H X H = Z, \quad H Z H = X\]</span></p>
+<p>（即 <span class="math inline">\(H\)</span> 将 <span class="math inline">\(Z\)</span> 轴旋转到 <span class="math inline">\(x\)</span> 轴，同时将 <span class="math inline">\(x\)</span> 轴旋转到 <span class="math inline">\(z\)</span> 轴）。</p>
+<ul>
+<li><strong>Bloch 球几何意义</strong>： 等价于将态矢量绕位于 <span class="math inline">\(xz\)</span> 平面上与 <span class="math inline">\(x\)</span> 轴和 <span class="math inline">\(z\)</span> 轴各成 <span class="math inline">\(45^\circ\)</span> 的对角轴 <span class="math inline">\(\vec{n} = \frac{1}{\sqrt{2}}(\hat{x} + \hat{z})\)</span> <strong>旋转 <span class="math inline">\(\pi\)</span> 弧度（<span class="math inline">\(180^\circ\)</span>）</strong>。</li>
+</ul>
+</section>
+<section id="pauli-y-门比特与相位联合翻转门" class="level4">
+<h4 class="anchored" data-anchor-id="pauli-y-门比特与相位联合翻转门">4. Pauli-Y 门（比特与相位联合翻转门）</h4>
+<p><span class="math inline">\(Y\)</span> 门同时结合了比特翻转（<span class="math inline">\(X\)</span>）与相位翻转（<span class="math inline">\(Z\)</span>）的效果，并带有虚数单位 <span class="math inline">\(i\)</span>。</p>
+<ul>
+<li><strong>矩阵表示</strong>：</li>
+</ul>
+<p><span class="math display">\[Y = \sigma_y = \begin{pmatrix} 0 &amp; -i \\ i &amp; 0 \end{pmatrix}\]</span></p>
+<ul>
+<li><strong>对计算基的作用</strong>：</li>
+</ul>
+<p><span class="math display">\[Y\vert{}0\rangle = i\vert{}1\rangle, \quad Y\vert{}1\rangle = -i\vert{}0\rangle\]</span></p>
+<ul>
+<li><strong>代数性质</strong>：</li>
+<li>厄米且幺正：<span class="math inline">\(Y^\dagger = Y = Y^{-1}\)</span>，故 <span class="math inline">\(Y^2 = I\)</span>。</li>
+<li>与其他泡利矩阵的关系：<span class="math inline">\(Y = iXZ = -iZX\)</span>。</li>
+<li>本征值为 <span class="math inline">\(\pm 1\)</span>，对应本征态位于 Bloch 球的 <span class="math inline">\(y\)</span> 轴两极：</li>
+</ul>
+<p><span class="math display">\[\vert{}+i\rangle = \frac{\vert{}0\rangle + i\vert{}1\rangle}{\sqrt{2}} \quad (\text{本征值 } +1), \quad \vert{}-i\rangle = \frac{\vert{}0\rangle - i\vert{}1\rangle}{\sqrt{2}} \quad (\text{本征值 } -1)\]</span></p>
+<ul>
+<li><strong>Bloch 球几何意义</strong>： 将态矢量绕 Bloch 球的 <strong><span class="math inline">\(y\)</span> 轴旋转 <span class="math inline">\(\pi\)</span> 弧度（<span class="math inline">\(180^\circ\)</span>）</strong>（<span class="math inline">\(R_y(\pi) = -iY\)</span>）。</li>
+</ul>
+</section>
+</section>
+<section id="section-1" class="level1">
 <h1>1</h1>
+<section id="一-量子比特qubit状态与测量" class="level3">
+<h3 class="anchored" data-anchor-id="一-量子比特qubit状态与测量">一、 量子比特（Qubit）：状态与测量</h3>
+<ol type="1">
+<li><strong>叠加态</strong>：</li>
+</ol>
+<ul>
+<li><p>经典比特只能是 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(1\)</span>；量子比特可处于两者的线性叠加：<span class="math inline">\(\vert{}\psi\rangle = \alpha\vert{}0\rangle + \beta\vert{}1\rangle\)</span>（<span class="math inline">\(\alpha, \beta\)</span> 为复数）。</p></li>
+<li><p><span class="math inline">\(\vert{}0\rangle\)</span> 和 <span class="math inline">\(\vert{}1\rangle\)</span> 构成二维复向量空间的正交归一计算基态。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>测量与塌缩</strong>：</li>
+</ol>
+<ul>
+<li><p>无法直接读取连续的 <span class="math inline">\(\alpha\)</span> 和 <span class="math inline">\(\beta\)</span>。</p></li>
+<li><p><strong>测量规则</strong>：测得 <span class="math inline">\(0\)</span> 的概率为 <span class="math inline">\(\vert{}\alpha\vert{}^2\)</span>（态塌缩为 <span class="math inline">\(\vert{}0\rangle\)</span>），测得 <span class="math inline">\(1\)</span> 的概率为 <span class="math inline">\(\vert{}\beta\vert{}^2\)</span>（态塌缩为 <span class="math inline">\(\vert{}1\rangle\)</span>），满足归一化条件 <span class="math inline">\(\vert{}\alpha\vert{}^2 + \vert{}\beta\vert{}^2 = 1\)</span>。</p></li>
+<li><p><strong>信息悖论</strong>：未测量时，量子态在演化中隐含无穷多连续参数（隐藏信息）；但单次测量最多只能提取 <strong>1 bit</strong> 的离散信息，且会彻底改变原状态。</p></li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Bloch 球（几何表示）</strong>：</li>
+</ol>
+<ul>
+<li><p>忽略无观测效应的全局相位后，单比特态可表示为：<span class="math inline">\(\vert{}\psi\rangle = \cos\frac{\theta}{2}\vert{}0\rangle + e^{i\varphi}\sin\frac{\theta}{2}\vert{}1\rangle\)</span>。</p></li>
+<li><p>实数 <span class="math inline">\(\theta, \varphi\)</span> 对应单位球面上的点（北极 <span class="math inline">\(\vert{}0\rangle\)</span>，南极 <span class="math inline">\(\vert{}1\rangle\)</span>）。</p></li>
+<li><p>注：Bloch 球仅适用于单比特，无法简单推广到多比特系统。</p></li>
+</ul>
+<hr>
+</section>
+<section id="二-多量子比特与纠缠" class="level3">
+<h3 class="anchored" data-anchor-id="二-多量子比特与纠缠">二、 多量子比特与纠缠</h3>
+<ol type="1">
+<li><strong>指数级增长的希尔伯特空间</strong>：</li>
+</ol>
+<ul>
+<li><p>双比特有 4 个计算基态：<span class="math inline">\(\vert{}00\rangle, \vert{}01\rangle, \vert{}10\rangle, \vert{}11\rangle\)</span>。若只测量其中一个比特，剩余部分需按概率<strong>重新归一化</strong>。</p></li>
+<li><p><strong><span class="math inline">\(n\)</span> 个量子比特</strong>的状态由 <strong><span class="math inline">\(2^n\)</span> 个复振幅</strong>描述。当 <span class="math inline">\(n=500\)</span> 时，振幅数量超过宇宙原子总数，经典计算机无法存储，但这正是量子并行算力的来源。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Bell 态（EPR 对）</strong>：</li>
+</ol>
+<ul>
+<li><p>典型状态：<span class="math inline">\(\vert{}\beta_{00}\rangle = \frac{\vert{}00\rangle + \vert{}11\rangle}{\sqrt{2}}\)</span>。</p></li>
+<li><p><strong>超越经典的纠缠关联</strong>：测量第一个比特（以 1/2 概率得 0 或 1），第二个比特的状态立刻被决定且结果永远与第一个相同。这是量子隐形传态等技术的核心资源。</p></li>
+</ul>
+<hr>
+</section>
+<section id="三-量子门与量子线路" class="level3">
+<h3 class="anchored" data-anchor-id="三-量子门与量子线路">三、 量子门与量子线路</h3>
+<ol type="1">
+<li><strong>核心性质</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>线性性与酉性（Unitarity）</strong>：量子门操作必须是线性的。为保证总概率守恒，量子门矩阵 <span class="math inline">\(U\)</span> 必须满足<strong>酉性条件 <span class="math inline">\(U^\dagger U = I\)</span></strong>。</p></li>
+<li><p><strong>可逆性</strong>：酉矩阵必定可逆。因此，会导致信息丢失的不可逆经典门（如 AND、OR）不能直接作为量子门。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>常用基本量子门</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>X 门（量子 NOT 门）</strong>：将 <span class="math inline">\(\vert{}0\rangle\)</span> 和 <span class="math inline">\(\vert{}1\rangle\)</span> 互换，矩阵为 <span class="math inline">\(\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}\)</span>。</p></li>
+<li><p><strong>Z 门（相位翻转门）</strong>：<span class="math inline">\(\vert{}0\rangle\)</span> 不变，<span class="math inline">\(\vert{}1\rangle\)</span> 变为 <span class="math inline">\(-\vert{}1\rangle\)</span>，矩阵为 <span class="math inline">\(\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}\)</span>。</p></li>
+<li><p><strong>H 门（Hadamard 门）</strong>：产生叠加态，将 <span class="math inline">\(\vert{}0\rangle \to \frac{\vert{}0\rangle+\vert{}1\rangle}{\sqrt{2}}\)</span>（即 <span class="math inline">\(\vert{}+\rangle\)</span>），<span class="math inline">\(\vert{}1\rangle \to \frac{\vert{}0\rangle-\vert{}1\rangle}{\sqrt{2}}\)</span>（即 <span class="math inline">\(\vert{}-\rangle\)</span>），矩阵为 <span class="math inline">\(\frac{1}{\sqrt{2}}\begin{pmatrix} 1 &amp; 1 \\ 1 &amp; -1 \end{pmatrix}\)</span>，满足 <span class="math inline">\(H^2 = I\)</span>。</p></li>
+<li><p>(单比特门在 Bloch 球上对应球面的旋转与反射。)</p></li>
+<li><p><strong>CNOT 门（受控非门）</strong>：双比特门原型，实现 <span class="math inline">\(\vert{}A, B\rangle \to \vert{}A, B \oplus A\rangle\)</span>（控制位 <span class="math inline">\(A\)</span> 为 1 时，翻转目标位 <span class="math inline">\(B\)</span>）。</p></li>
+</ul>
+<ol start="3" type="1">
+<li><strong>通用性定理</strong>：</li>
+</ol>
+<ul>
+<li>任意多比特逻辑门都可以由 <strong>CNOT 门 + 单比特门</strong> 组合而成。</li>
+</ul>
+<ol start="4" type="1">
+<li><strong>量子线路规则</strong>：</li>
+</ol>
+<ul>
+<li><p>从左往右读；默认输入全为 <span class="math inline">\(\vert{}0\rangle\)</span>；<strong>严禁回路（反馈）、严禁合并与复制</strong>；单线代表量子比特，双线代表测量后的经典比特。</p></li>
+<li><p><strong>换基测量</strong>：可在任意正交归一基（如 <span class="math inline">\(\vert{}+\rangle, \vert{}-\rangle\)</span> 基）下进行测量。</p></li>
+</ul>
+<hr>
+</section>
+<section id="四-三个核心应用案例" class="level3">
+<h3 class="anchored" data-anchor-id="四-三个核心应用案例">四、 三个核心应用案例</h3>
+<ol type="1">
+<li><strong>不可克隆定理（No-cloning Theorem）</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>结论</strong>：未知的量子态无法被精确复制。</p></li>
+<li><p><strong>原因</strong>：CNOT 门只能复制经典基态，若输入叠加态 <span class="math inline">\(a\vert{}0\rangle + b\vert{}1\rangle\)</span>，输出的是纠缠态 <span class="math inline">\(a\vert{}00\rangle + b\vert{}11\rangle\)</span>，而非独立副本 <span class="math inline">\((a\vert{}0\rangle + b\vert{}1\rangle)(a\vert{}0\rangle + b\vert{}1\rangle)\)</span>（除非 <span class="math inline">\(ab=0\)</span>）。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Bell 态制备</strong>：</li>
+</ol>
+<ul>
+<li>先对控制位作用 <strong>H 门</strong>产生叠加，再通过 <strong>CNOT 门</strong>，可将 4 个计算基态 <span class="math inline">\(\vert{}xy\rangle\)</span> 一一映射为 4 个纠缠的 Bell 态 <span class="math inline">\(\vert{}\beta_{xy}\rangle = \frac{\vert{}0, y\rangle + (-1)^x\vert{}1, \bar{y}\rangle}{\sqrt{2}}\)</span>。</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>量子隐形传态（Quantum Teleportation）</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>目标</strong>：Alice 将未知态 <span class="math inline">\(\vert{}\psi\rangle\)</span> 传给 Bob（无量子通道，仅靠 <strong>1对共享 EPR 对 + 2 bit 经典通信</strong>）。</p></li>
+<li><p><strong>四步流程</strong>：</p></li>
+</ul>
+<ol type="1">
+<li><p><strong>纠缠</strong>：Alice 将待传态 <span class="math inline">\(\vert{}\psi\rangle\)</span> 与自己手中的半个 EPR 对过 CNOT 门。</p></li>
+<li><p><strong>旋转</strong>：对第一个比特作用 H 门。</p></li>
+<li><p><strong>测量并报告</strong>：Alice 测量自己的两个比特，得到两位经典结果 <span class="math inline">\(M_1 M_2\)</span>（00/01/10/11），通过经典通道发给 Bob。</p></li>
+<li><p><strong>修正</strong>：Bob 根据收到的结果，对手中的另半个 EPR 比特施加修正门 <strong><span class="math inline">\(Z^{M_1}X^{M_2}\)</span></strong>（00不操作，01作用X，10作用Z，11先X后Z），完美恢复 <span class="math inline">\(\vert{}\psi\rangle\)</span>。</p></li>
+</ol>
+<ul>
+<li><strong>两个悬念解答</strong>：不超光速（必须等经典通信到达才能完成修正）；不违背不可克隆定理（Alice 测量后原量子态已塌缩销毁）。</li>
+</ul>
+<hr>
+</section>
+<section id="一句话总结" class="level3">
+<h3 class="anchored" data-anchor-id="一句话总结">一句话总结</h3>
+<p>量子态是向量，测量是投影；量子门是酉矩阵，线路是可逆计算；纠缠是可以消耗的资源。</p>
+</section>
+</section>
+<section id="section-2" class="level1">
+<h1>1.1</h1>
+<ul>
+<li><p><strong>可逆计算与 Toffoli 门</strong>：量子门必须是酉矩阵（可逆），而经典门（如 AND、NAND）大多不可逆。通过引入三比特的 <strong>Toffoli 门</strong>（受控-受控非门，映射为 <span class="math inline">\((a,b,c) \to (a,b,c \oplus ab)\)</span>）配合辅助比特，可以在量子计算机上无损模拟任意经典组合电路与概率经典计算。</p></li>
+<li><p><strong>量子并行性（Quantum Parallelism）</strong>：利用 Hadamard 门（<span class="math inline">\(H^{\otimes n}\)</span>）制造均匀叠加态，只需调用 1 次黑箱 <span class="math inline">\(U_f\)</span>（<span class="math inline">\(\vert{}x\rangle\vert{}y\rangle \to \vert{}x\rangle\vert{}y \oplus f(x)\rangle\)</span>），即可同时计算出全部 <span class="math inline">\(2^n\)</span> 个函数值 <span class="math inline">\(f(x)\)</span>。但<strong>仅靠并行性无法直接带来加速</strong>，因为直接测量只会使态塌缩并随机读出其中 1 个值。</p></li>
+<li><p><strong>相位回踢与量子干涉（Phase Kickback &amp; Interference）</strong>：量子加速的真正源泉。将目标比特置于 <span class="math inline">\((\vert{}0\rangle-\vert{}1\rangle)/\sqrt{2}\)</span>，黑箱 <span class="math inline">\(U_f\)</span> 会把函数值转化为相位 <span class="math inline">\((-1)^{f(x)}\)</span>（相位回踢），随后再次通过 Hadamard 门让不同分支的相位发生相长或相消<strong>干涉</strong>，从而将全局性质浓缩到单次确定性的测量结果中。</p></li>
+<li><p><strong>Deutsch 与 Deutsch-Jozsa 算法</strong>：首个展示量子优势的黑箱算法模板。利用“并行+干涉”判断 <span class="math inline">\(n\)</span> 比特函数是“常数函数”还是“平衡函数”：经典确定性算法最坏需调用 <span class="math inline">\(2^{n-1}+1\)</span> 次，而量子算法仅需 <strong>1 次</strong>（测得全 0 为常数，否则为平衡）。其核心价值在于确立了“函数值编码为相位 <span class="math inline">\(\to\)</span> 相干变换干涉读出”的算法范式。</p></li>
+<li><p><strong>已知量子算法的三大类别</strong>：</p></li>
+</ul>
+<ol type="1">
+<li><p><strong>Fourier 类</strong>（如 Deutsch-Jozsa、Shor 质因数分解）：基于<strong>量子傅里叶变换（QFT）</strong>提取周期等全局不变量（解决隐藏子群问题），可实现<strong>指数级加速</strong>。</p></li>
+<li><p><strong>搜索类</strong>（如 Grover 算法）：基于振幅放大技术，在无结构空间中实现<strong>平方根级加速</strong>（<span class="math inline">\(O(\sqrt{N})\)</span>）。</p></li>
+<li><p><strong>模拟类</strong>（Feynman 设想）：直接用量子硬件模拟多体物理、量子化学演化，规避经典计算机存储的指数爆炸。</p></li>
+</ol>
+<ul>
+<li><strong>BQP（有界错误量子多项式时间）</strong>：量子计算机能够高效求解的复杂度类。已知 <span class="math inline">\(\text{P} \subseteq \text{BQP} \subseteq \text{PSPACE}\)</span>，包含质因数分解等部分 NP 难题，但 BQP 能否覆盖整个 NP 仍是悬而未决的问题（学界普遍认为不能）。</li>
+</ul>
+</section>
+<section id="section-3" class="level1">
+<h1>2</h1>
+<section id="一-向量空间基与-dirac-记号" class="level3">
+<h3 class="anchored" data-anchor-id="一-向量空间基与-dirac-记号">一、 向量空间、基与 Dirac 记号</h3>
+<ol type="1">
+<li><strong>Dirac 记号系统（量子力学的母语）</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>Ket（右矢，<span class="math inline">\(\vert{}\psi\rangle\)</span>）</strong>：表示复向量空间 <span class="math inline">\(\mathbb{C}^n\)</span> 中的列向量（代表量子态）。特例：零向量直接写 <span class="math inline">\(0\)</span>，不加 ket 符号。</p></li>
+<li><p><strong>Bra（左矢，<span class="math inline">\(\langle\varphi\vert{}\)</span>）</strong>：与 ket 对偶的行向量，是 ket 的<strong>共轭转置</strong>，即 <span class="math inline">\(\langle\varphi\vert{} = (\vert{}\varphi\rangle)^\dagger\)</span>。</p></li>
+<li><p><strong>内积（<span class="math inline">\(\langle\varphi\vert{}\psi\rangle\)</span>）</strong>：左矢乘右矢（行乘列），结果是一个<strong>复数</strong>（括号一合，数就出来）。</p></li>
+<li><p><strong>外积（<span class="math inline">\(\vert{}w\rangle\langle v\vert{}\)</span>）</strong>：右矢乘左矢（列乘行），结果是一个<strong>线性算子（矩阵）</strong>。</p></li>
+<li><p><strong>矩阵元（<span class="math inline">\(\langle\varphi\vert{}A\vert{}\psi\rangle\)</span>）</strong>：算子 <span class="math inline">\(A\)</span> 夹在 bra 和 ket 之间，包含算子的全部信息。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>基与维数</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>张成（Span）</strong>：能通过线性组合表示空间中任意向量的一组向量。</p></li>
+<li><p><strong>线性无关</strong>：仅当所有系数 <span class="math inline">\(a_i = 0\)</span> 时，才有 <span class="math inline">\(\sum a_i \vert{}v_i\rangle = 0\)</span>（无多余向量）。</p></li>
+<li><p><strong>基（Basis）</strong>：既张成空间又线性无关的向量集合，其向量个数即为空间的<strong>维数</strong>。</p></li>
+</ul>
+<hr>
+</section>
+<section id="二-线性算子与-pauli-矩阵" class="level3">
+<h3 class="anchored" data-anchor-id="二-线性算子与-pauli-矩阵">二、 线性算子与 Pauli 矩阵</h3>
+<ol type="1">
+<li><strong>算子与矩阵完全等价</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>线性算子</strong>：满足 <span class="math inline">\(A(\sum_i a_i \vert{}v_i\rangle) = \sum_i a_i A\vert{}v_i\rangle\)</span> 的映射；算子乘法 <span class="math inline">\(BA\)</span> 代表映射的复合（先作用 <span class="math inline">\(A\)</span> 再作用 <span class="math inline">\(B\)</span>）。</p></li>
+<li><p>选定一组标准正交基后，算子 <span class="math inline">\(A\)</span> 与矩阵 <span class="math inline">\(A_{ij}\)</span> 一一对应：<span class="math inline">\(A\vert{}v_j\rangle = \sum_i A_{ij}\vert{}w_i\rangle\)</span>。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>四个 Pauli 矩阵（三大性质：都厄米、都酉、两两反对易）</strong>：</li>
+</ol>
+<ul>
+<li><p><span class="math inline">\(\sigma_0 \equiv I = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; 1 \end{bmatrix}\)</span>（全等算子）</p></li>
+<li><p><span class="math inline">\(\sigma_1 \equiv \sigma_x \equiv X = \begin{bmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{bmatrix}\)</span>（比特翻转 / 量子非门）</p></li>
+<li><p><span class="math inline">\(\sigma_2 \equiv \sigma_y \equiv Y = \begin{bmatrix} 0 &amp; -i \\ i &amp; 0 \end{bmatrix}\)</span>（同时翻转比特与相位）</p></li>
+<li><p><span class="math inline">\(\sigma_3 \equiv \sigma_z \equiv Z = \begin{bmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{bmatrix}\)</span>（相位翻转门）</p></li>
+</ul>
+<hr>
+</section>
+<section id="三-内积外积与完备性关系" class="level3">
+<h3 class="anchored" data-anchor-id="三-内积外积与完备性关系">三、 内积、外积与完备性关系</h3>
+<ol type="1">
+<li><strong>内积三大公理</strong>：</li>
+</ol>
+<ul>
+<li>对第二个变量（ket）<strong>线性</strong>，对第一个变量（bra）<strong>共轭线性</strong>；具有<strong>共轭对称性</strong> <span class="math inline">\(\langle v\vert{}w\rangle = \langle w\vert{}v\rangle^*\)</span> 及<strong>正定性</strong> <span class="math inline">\(\langle v\vert{}v\rangle \ge 0\)</span>。</li>
+</ul>
+<p><span style="background-color: #fffb8f;"> * 在标准正交基下：<span class="math inline">\(\langle v\vert{}w\rangle = \sum_i v_i^* w_i\)</span>。</span></p>
+<ol start="2" type="1">
+<li><strong>正交与归一化</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>范数（长度）</strong>：<span class="math inline">\(\Vert{}\vert{}v\rangle\Vert{} = \sqrt{\langle v\vert{}v\rangle}\)</span>。长度为 1 称为单位向量；两向量内积为 <span class="math inline">\(0\)</span> 称为<strong>正交</strong>。</p></li>
+<li><p><strong>Gram-Schmidt 正交化</strong>：可将任意一组基转化为<strong>标准正交基</strong>（逐个减去在已有正交基上的投影再归一化）。</p></li>
+<li><p><strong>Cauchy-Schwarz 不等式</strong>：<span class="math inline">\(\vert{}\langle v\vert{}w\rangle\vert{}^2 \le \langle v\vert{}v\rangle\langle w\vert{}w\rangle\)</span>（当且仅当两向量线性相关时取等号）。</p></li>
+</ul>
+<ol start="3" type="1">
+<li><strong>完备性关系（极其重要）</strong>：</li>
+</ol>
+<ul>
+<li>在任意标准正交基 <span class="math inline">\(\{\vert{}i\rangle\}\)</span> 下，全部基态的外积之和等于单位算子：</li>
+</ul>
+<p><span class="math display">\[\sum_i \vert{}i\rangle\langle i\vert{} = I\]</span></p>
+<ul>
+<li><strong>算子的外积展开</strong>：在算子 <span class="math inline">\(A\)</span> 左右两侧插入完备性关系，可得 <span class="math inline">\(A = \sum_{ij} \langle w_j\vert{}A\vert{}v_i\rangle \vert{}w_j\rangle\langle v_i\vert{}\)</span>，系数 <span class="math inline">\(\langle w_j\vert{}A\vert{}v_i\rangle\)</span> 即为矩阵元。</li>
+</ul>
+<hr>
+</section>
+<section id="四-特征值伴随与核心算子分类" class="level3">
+<h3 class="anchored" data-anchor-id="四-特征值伴随与核心算子分类">四、 特征值、伴随与核心算子分类</h3>
+<ol type="1">
+<li><strong>特征值与对角表示</strong>：</li>
+</ol>
+<ul>
+<li><span class="math inline">\(A\vert{}v\rangle = v\vert{}v\rangle\)</span>，通过特征方程 <span class="math inline">\(\det(A - \lambda I) = 0\)</span> 求解。若某一特征值对应的特征子空间维数 <span class="math inline">\(&gt;1\)</span>，称为<strong>简并（Degenerate）</strong>。</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>伴随算子（厄米共轭，<span class="math inline">\(A^\dagger\)</span>）</strong>：</li>
+</ol>
+<ul>
+<li><p>定义：满足 <span class="math inline">\((\vert{}v\rangle, A\vert{}w\rangle) = (A^\dagger\vert{}v\rangle, \vert{}w\rangle)\)</span>；矩阵表示为<strong>先转置再复共轭</strong> <span class="math inline">\(A^\dagger = (A^T)^*\)</span>。</p></li>
+<li><p>性质：<span class="math inline">\((AB)^\dagger = B^\dagger A^\dagger\)</span>，<span class="math inline">\((A\vert{}v\rangle)^\dagger = \langle v\vert{}A^\dagger\)</span>，<span class="math inline">\((\vert{}w\rangle\langle v\vert{})^\dagger = \vert{}v\rangle\langle w\vert{}\)</span>。</p></li>
+</ul>
+<ol start="3" type="1">
+<li><strong>五类核心算子对比与谱分解定理</strong>：</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>算子类型</th>
+<th>定义/核心条件</th>
+<th>关键性质与物理意义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>正规算子 (Normal)</strong></td>
+<td><span class="math inline">\(AA^\dagger = A^\dagger A\)</span></td>
+<td><strong>谱分解定理</strong>：算子可对角化 <span class="math inline">\(\iff\)</span> 它是正规算子（可写成 <span class="math inline">\(M = \sum_i \lambda_i \vert{}i\rangle\langle i\vert{}\)</span>）。</td>
+</tr>
+<tr class="even">
+<td><strong>厄米算子 (Hermitian)</strong></td>
+<td><span class="math inline">\(A^\dagger = A\)</span></td>
+<td>正规算子的子类；<strong>特征值必为实数</strong>，不同特征值的特征向量必正交；对应量子<strong>可观测量</strong>。</td>
+</tr>
+<tr class="odd">
+<td><strong>投影算子 (Projector)</strong></td>
+<td><span class="math inline">\(P = \sum_{i=1}^k \vert{}i\rangle\langle i\vert{}\)</span></td>
+<td>满足厄米性 <span class="math inline">\(P^\dagger = P\)</span> 和幂等性 <span class="math inline">\(P^2 = P\)</span>；特征值只能是 <strong><span class="math inline">\(0\)</span> 或 <span class="math inline">\(1\)</span></strong>；正交补为 <span class="math inline">\(Q = I - P\)</span>。</td>
+</tr>
+<tr class="even">
+<td><strong>正算子 (Positive)</strong></td>
+<td><span class="math inline">\(\langle v\vert{}A\vert{}v\rangle \ge 0\)</span></td>
+<td>自动满足厄米性，<strong>特征值全部非负</strong>；任意算子构造的 <span class="math inline">\(A^\dagger A\)</span> 必为正算子。</td>
+</tr>
+<tr class="odd">
+<td><strong>酉算子 (Unitary)</strong></td>
+<td><span class="math inline">\(U^\dagger U = I\)</span> (即 <span class="math inline">\(U^{-1}=U^\dagger\)</span>)</td>
+<td>正规算子的子类；<strong>保持内积（及长度）不变</strong> <span class="math inline">\(\langle v\vert{}U^\dagger U\vert{}w\rangle = \langle v\vert{}w\rangle\)</span>；特征值模长全为 <span class="math inline">\(1\)</span>；对应<strong>量子门/时间演化</strong>。</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="section-4" class="level1">
+<h1>2.1</h1>
+<section id="一-张量积tensor-product复合系统的数学舞台" class="level3">
+<h3 class="anchored" data-anchor-id="一-张量积tensor-product复合系统的数学舞台">一、 张量积（Tensor Product）：复合系统的数学舞台</h3>
+<ol type="1">
+<li><strong>空间与基的拼合</strong>：</li>
+</ol>
+<ul>
+<li><p>若空间 <span class="math inline">\(V\)</span> 为 <span class="math inline">\(m\)</span> 维，<span class="math inline">\(W\)</span> 为 <span class="math inline">\(n\)</span> 维，则张量积空间 <span class="math inline">\(V \otimes W\)</span> 的维数为 <strong><span class="math inline">\(m \times n\)</span></strong>。若 <span class="math inline">\(\{\vert{}i\rangle\}\)</span> 和 <span class="math inline">\(\{\vert{}j\rangle\}\)</span> 分别是 <span class="math inline">\(V\)</span> 和 <span class="math inline">\(W\)</span> 的标准正交基，则 <span class="math inline">\(\{\vert{}i\rangle \otimes \vert{}j\rangle\}\)</span> 构成 <span class="math inline">\(V \otimes W\)</span> 的标准正交基（ explains 为什么 <span class="math inline">\(n\)</span> 个量子比特构成 <span class="math inline">\(2^n\)</span> 维空间）。</p></li>
+<li><p><strong>双线性性质</strong>：张量积对左右两个变量分别满足线性分配律，且标量可在因子间自由穿行：<span class="math inline">\(z(\vert{}v\rangle \otimes \vert{}w\rangle) = (z\vert{}v\rangle) \otimes \vert{}w\rangle = \vert{}v\rangle \otimes (z\vert{}w\rangle)\)</span>。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>算子与内积的张量积</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>算子作用</strong>：<span class="math inline">\((A \otimes B)(\vert{}v\rangle \otimes \vert{}w\rangle) \equiv A\vert{}v\rangle \otimes B\vert{}w\rangle\)</span>（注意：张量积一般<strong>不可交换</strong>，<span class="math inline">\(A \otimes B \neq B \otimes A\)</span>）。</p></li>
+<li><p><strong>内积计算</strong>：先按各因子分别取内积，再将结果相乘：<span class="math inline">\(\langle v \otimes w \vert{} v' \otimes w' \rangle = \langle v \vert{} v' \rangle \langle w \vert{} w' \rangle\)</span>。</p></li>
+<li><p><strong>结构继承</strong>：转置 <span class="math inline">\((*)^T\)</span>、复共轭 <span class="math inline">\(*\)</span>、伴随 <span class="math inline">\(\dagger\)</span> 均可直接分配到每个因子上；两个酉/厄米/正/投影算子的张量积依然保持原性质。</p></li>
+<li><p><strong><span class="math inline">\(n\)</span> 比特 Hadamard 变换紧凑公式</strong>：<span class="math inline">\(H^{\otimes n} = \frac{1}{\sqrt{2^n}} \sum_{x,y} (-1)^{x \cdot y} \vert{}x\rangle\langle y\vert{}\)</span>。</p></li>
+</ul>
+<ol start="3" type="1">
+<li><strong>Kronecker 积（张量积的矩阵表示）</strong>：</li>
+</ol>
+<ul>
+<li>若 <span class="math inline">\(A\)</span> 是 <span class="math inline">\(m \times n\)</span> 矩阵，<span class="math inline">\(B\)</span> 是 <span class="math inline">\(p \times q\)</span> 矩阵，则 <span class="math inline">\(A \otimes B\)</span> 是 <span class="math inline">\(mp \times nq\)</span> 的分块大矩阵（把 <span class="math inline">\(A\)</span> 的每个元素 <span class="math inline">\(A_{ij}\)</span> 替换为块矩阵 <span class="math inline">\(A_{ij}B\)</span>）：</li>
+</ul>
+<p><span class="math display">\[A \otimes B \equiv \begin{bmatrix} A_{11}B &amp; \cdots &amp; A_{1n}B \\ \vdots &amp; \ddots &amp; \vdots \\ A_{m1}B &amp; \cdots &amp; A_{mn}B \end{bmatrix}\]</span></p>
+<hr>
+</section>
+<section id="二-算子函数与迹operator-functions-trace" class="level3">
+<h3 class="anchored" data-anchor-id="二-算子函数与迹operator-functions-trace">二、 算子函数与迹（Operator Functions &amp; Trace）</h3>
+<ol type="1">
+<li><strong>算子函数 <span class="math inline">\(f(A)\)</span></strong>：</li>
+</ol>
+<ul>
+<li>对任意<strong>正规算子</strong>（可谱分解为 <span class="math inline">\(A = \sum_a a\vert{}a\rangle\langle a\vert{}\)</span>），函数直接作用在特征值上：</li>
+</ul>
+<p><span class="math display">\[f(A) \equiv \sum_a f(a)\vert{}a\rangle\langle a\vert{}\]</span></p>
+<ul>
+<li>常见特例：<span class="math inline">\(\exp(\theta Z) = \begin{bmatrix} e^\theta &amp; 0 \\ 0 &amp; e^{-\theta} \end{bmatrix}\)</span>；Pauli 旋转公式 <span class="math inline">\(\exp(i\theta \vec{v}\cdot\vec{\sigma}) = \cos(\theta)I + i\sin(\theta)\vec{v}\cdot\vec{\sigma}\)</span>。</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>迹（Trace）的核心性质</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>定义</strong>：主对角线元素之和 <span class="math inline">\(\mathrm{tr}(A) \equiv \sum_i A_{ii}\)</span>（除单位阵 <span class="math inline">\(I\)</span> 外，三个 Pauli 矩阵 <span class="math inline">\(X, Y, Z\)</span> 的迹均为 <span class="math inline">\(0\)</span>）。</p></li>
+<li><p><strong>三大基本性质</strong>：</p></li>
+</ul>
+<ol type="1">
+<li><p><strong>线性性</strong>：<span class="math inline">\(\mathrm{tr}(A+B) = \mathrm{tr}(A)+\mathrm{tr}(B)\)</span>，<span class="math inline">\(\mathrm{tr}(zA) = z\,\mathrm{tr}(A)\)</span>。</p></li>
+<li><p><strong>循环性</strong>：<span class="math inline">\(\mathrm{tr}(AB) = \mathrm{tr}(BA)\)</span>。</p></li>
+<li><p><strong>酉相似不变性</strong>：<span class="math inline">\(\mathrm{tr}(UAU^\dagger) = \mathrm{tr}(A)\)</span>（说明迹不依赖基的选取，是算子自身的内禀属性）。</p></li>
+</ol>
+<ul>
+<li><p><strong>两个重要推论</strong>：</p></li>
+<li><p><strong>投影求迹技巧</strong>：对任意单位向量 <span class="math inline">\(\vert{}\psi\rangle\)</span>，有 <span class="math inline">\(\mathrm{tr}(A\vert{}\psi\rangle\langle\psi\vert{}) = \langle\psi\vert{}A\vert{}\psi\rangle\)</span>。</p></li>
+<li><p><strong>Hilbert-Schmidt 内积</strong>：定义算子间的内积为 <span class="math inline">\((A, B) \equiv \mathrm{tr}(A^\dagger B)\)</span>，使全体线性算子构成一个 <span class="math inline">\(d^2\)</span> 维的 Hilbert 空间。</p></li>
+</ul>
+<hr>
+</section>
+<section id="三-对易式与反对易式commutator-anti-commutator" class="level3">
+<h3 class="anchored" data-anchor-id="三-对易式与反对易式commutator-anti-commutator">三、 对易式与反对易式（Commutator &amp; Anti-commutator）</h3>
+<ol type="1">
+<li><strong>定义与同时对角化定理</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>对易式</strong>：<span class="math inline">\([A, B] \equiv AB - BA\)</span>（若为 <span class="math inline">\(0\)</span> 则称 <span class="math inline">\(A, B\)</span> 对易）。</p></li>
+<li><p><strong>反对易式</strong>：<span class="math inline">\(\{A, B\} \equiv AB + BA\)</span>（若为 <span class="math inline">\(0\)</span> 则称 <span class="math inline">\(A, B\)</span> 反对易）。</p></li>
+<li><p><strong>定理 2.2（同时对角化定理）</strong>：两个厄米算子 <span class="math inline">\(A, B\)</span> 能够被同一组标准正交基<strong>同时对角化</strong> <span class="math inline">\(\iff [A, B] = 0\)</span>。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>Pauli 矩阵的乘法表（核心公式）</strong>：</li>
+</ol>
+<ul>
+<li><strong>对易关系</strong>：<span class="math inline">\([\sigma_j, \sigma_k] = 2i \sum_{l=1}^3 \epsilon_{jkl}\sigma_l\)</span>（即 <span class="math inline">\([X,Y]=2iZ\)</span>、<span class="math inline">\([Y,Z]=2iX\)</span>、<span class="math inline">\([Z,X]=2iY\)</span>，<span class="math inline">\(\epsilon_{jkl}\)</span> 为三阶反对称张量）。</li>
+</ul>
+<p><span class="math display">\[
+\epsilon_{ijk} = \begin{cases} +1, &amp; (i, j, k) \in \{(1, 2, 3), (2, 3, 1), (3, 1, 2)\} \quad (\text{正向循环/偶排列}) \\  -1, &amp; (i, j, k) \in \{(1, 3, 2), (2, 1, 3), (3, 2, 1)\} \quad (\text{逆向循环/奇排列}) \\  0, &amp; \text{其它情况（即存在任意两个或三个指标相同，如 } i=j, j=k \text{ 或 } i=k) \end{cases}
+\]</span></p>
+<ul>
+<li><p><strong>反对易与平方</strong>：<span class="math inline">\(\{\sigma_i, \sigma_j\} = 0\ (i \neq j)\)</span>，且 <span class="math inline">\(\sigma_i^2 = I\ (i=0,1,2,3)\)</span>。</p></li>
+<li><p><strong>大一统乘积公式</strong>（结合 <span class="math inline">\(AB = \frac{[A,B]+\{A,B\}}{2}\)</span>）：</p></li>
+</ul>
+<p><span class="math display">\[\sigma_j \sigma_k = \delta_{jk}I + i\sum_{l=1}^3 \epsilon_{jkl}\sigma_l\]</span></p>
+<hr>
+</section>
+<section id="四-极分解与奇异值分解polar-singular-value-decomposition" class="level3">
+<h3 class="anchored" data-anchor-id="四-极分解与奇异值分解polar-singular-value-decomposition">四、 极分解与奇异值分解（Polar &amp; Singular Value Decomposition）</h3>
+<ol type="1">
+<li><strong>极分解（算子的“极坐标”形式）</strong>：</li>
+</ol>
+<ul>
+<li>对任意线性算子 <span class="math inline">\(A\)</span>，存在酉算子 <span class="math inline">\(U\)</span> 以及唯一的正算子 <span class="math inline">\(J \equiv \sqrt{A^\dagger A}\)</span>、<span class="math inline">\(K \equiv \sqrt{AA^\dagger}\)</span>，使得：</li>
+</ul>
+<p><span class="math display">\[A = UJ = KU\]</span></p>
+<p>（其中 <span class="math inline">\(A=UJ\)</span> 称为<strong>左极分解</strong>，<span class="math inline">\(A=KU\)</span> 称为<strong>右极分解</strong>；若 <span class="math inline">\(A\)</span> 可逆，则 <span class="math inline">\(U\)</span> 也唯一）。</p>
+<ol start="2" type="1">
+<li><strong>奇异值分解（SVD）</strong>：</li>
+</ol>
+<ul>
+<li>对极分解中的正算子 <span class="math inline">\(J\)</span> 进一步做谱分解（<span class="math inline">\(J = TDT^\dagger\)</span>），可得任意方阵 <span class="math inline">\(A\)</span> 均可拆为“<strong>酉 <span class="math inline">\(\times\)</span> 非负对角 <span class="math inline">\(\times\)</span> 酉</strong>”：</li>
+</ul>
+<p><span class="math display">\[A = UDV^\dagger\]</span></p>
+<p>其中对角矩阵 <span class="math inline">\(D\)</span> 的非负对角元称为 <span class="math inline">\(A\)</span> 的<strong>奇异值</strong>。</p>
+</section>
+</section>
+<section id="section-5" class="level1">
+<h1>3</h1>
+<p>量子力学本身并不直接规定某个具体系统的物理定律，而是提供了一套<strong>将物理世界映射到线性代数形式体系的公理框架</strong>。本讲围绕“系统是什么”（假设一）、“系统怎么变”（假设二）和“怎么向系统提问”（假设三）这三个核心逻辑层层展开。</p>
+<hr>
+<section id="一-假设一状态空间系统是什么" class="level3">
+<h3 class="anchored" data-anchor-id="一-假设一状态空间系统是什么">一、 假设一：状态空间（系统“是什么”）</h3>
+<p>线性代数中的向量空间在这里正式成为物理系统的舞台：</p>
+<ul>
+<li><p><strong>公设内容</strong>：任何孤立物理系统都对应一个带内积的复向量空间（即 <strong>Hilbert 空间</strong>），称为系统的<strong>态空间</strong>。系统的物理状态由该空间中的一个<strong>单位态矢量</strong> <span class="math inline">\(\vert{}\psi\rangle\)</span>（满足归一化条件 <span class="math inline">\(\langle\psi\vert{}\psi\rangle = 1\)</span>）完全描述。</p></li>
+<li><p><strong>叠加态与振幅</strong>：若系统可处于一组状态 <span class="math inline">\(\{\vert{}\psi_i\rangle\}\)</span>，则也能处于它们的线性组合 <span class="math inline">\(\sum_i \alpha_i \vert{}\psi_i\rangle\)</span>，称为<strong>叠加态</strong>，复系数 <span class="math inline">\(\alpha_i\)</span> 称为对应态的<strong>振幅（amplitude）</strong>。</p></li>
+<li><p><strong>物理分界</strong>：最简单的二维系统是<strong>量子比特</strong>，<span class="math inline">\(\vert{}\psi\rangle = a\vert{}0\rangle + b\vert{}1\rangle\)</span>（<span class="math inline">\(\vert{}a\vert{}^2+\vert{}b\vert{}^2=1\)</span>）。经典比特只能“非0即1”，而量子叠加态处于一种“既非纯0也非纯1”的相干叠加状态。</p></li>
+</ul>
+<hr>
+</section>
+<section id="二-假设二时间演化系统怎么变" class="level3">
+<h3 class="anchored" data-anchor-id="二-假设二时间演化系统怎么变">二、 假设二：时间演化（系统“怎么变”）</h3>
+<p>当系统保持封闭（与外界无交互）时，态矢量的演化有两种完全等价的数学图像：</p>
+<ol type="1">
+<li><strong>离散时间图像（酉算子表述）</strong>：</li>
+</ol>
+<ul>
+<li><p>系统从时刻 <span class="math inline">\(t_1\)</span> 到 <span class="math inline">\(t_2\)</span> 的状态变化由一个酉变换（Unitary transformation）描述：<span class="math inline">\(\vert{}\psi'\rangle = U\vert{}\psi\rangle\)</span>（因为酉算子保持内积不变，从而保证态矢量的模长恒为 <span class="math inline">\(1\)</span>）。</p></li>
+<li><p>这是量子信息最常用的语言，所有的量子门（如 <span class="math inline">\(X\)</span>、<span class="math inline">\(Z\)</span>、<span class="math inline">\(H\)</span> 门）本质上都是特定时间段内的酉演化算子。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>连续时间图像（Hamiltonian 表述）</strong>：</li>
+</ol>
+<ul>
+<li>态矢量的连续时间演化服从 <strong>Schrödinger 方程</strong>：</li>
+</ul>
+<p><span class="math display">\[i\hbar \frac{d\vert{}\psi\rangle}{dt} = H\vert{}\psi\rangle\]</span></p>
+<ul>
+<li><p>其中 <span class="math inline">\(H\)</span> 是描述系统总能量的固定<strong>厄米算子</strong>，称为 <strong>Hamiltonian（哈密顿量）</strong>。</p></li>
+<li><p><strong>能量本征态（定态）</strong>：对 <span class="math inline">\(H\)</span> 做谱分解 <span class="math inline">\(H = \sum_E E\vert{}E\rangle\langle E\vert{}\)</span>，本征矢 <span class="math inline">\(\vert{}E\rangle\)</span> 随时间演化仅增加一个全局相位因子 <span class="math inline">\(\vert{}E\rangle \to e^{-iEt/\hbar}\vert{}E\rangle\)</span>，其可观测物理性质不随时间改变，故称<strong>定态</strong>（能量最低的态称为<strong>基态</strong>）。</p></li>
+</ul>
+<ol start="3" type="1">
+<li><strong>两种图像的统一</strong>：</li>
+</ol>
+<ul>
+<li>求解薛定谔方程即可建立两者的精确桥接：</li>
+</ul>
+<p><span class="math display">\[U(t_1, t_2) = \exp\left(-\frac{iH(t_2-t_1)}{\hbar}\right)\]</span></p>
+<ul>
+<li><strong>核心数学对应</strong>：<span class="math inline">\(H\)</span> 的<strong>厄米性</strong>（<span class="math inline">\(H^\dagger = H\)</span>）严格等价于时间演化算子 <span class="math inline">\(U\)</span> 的<strong>酉性</strong>（<span class="math inline">\(U^\dagger U = I\)</span>）。</li>
+</ul>
+<hr>
+</section>
+<section id="三-假设三一般测量与量子态的可区分性怎么问系统" class="level3">
+<h3 class="anchored" data-anchor-id="三-假设三一般测量与量子态的可区分性怎么问系统">三、 假设三：一般测量与量子态的可区分性（怎么“问”系统）</h3>
+<p>一旦外部观测仪器与系统发生交互，系统便不再封闭，演化不再是酉变换，而是发生不可逆的塌缩。</p>
+<ol type="1">
+<li><strong>一般测量公设（General Measurement）</strong>：</li>
+</ol>
+<ul>
+<li><p>测量由一组<strong>测量算子 <span class="math inline">\(\{M_m\}\)</span></strong> 描述（索引 <span class="math inline">\(m\)</span> 代表测量可能输出的经典结果）：</p></li>
+<li><p><strong>出现结果 <span class="math inline">\(m\)</span> 的概率</strong>：<span class="math inline">\(p(m) = \langle\psi\vert{}M_m^\dagger M_m\vert{}\psi\rangle\)</span></p></li>
+<li><p><strong>测量后的塌缩态</strong>：<span class="math inline">\(\vert{}\psi_m\rangle = \frac{M_m\vert{}\psi\rangle}{\sqrt{p(m)}}\)</span></p></li>
+<li><p><strong>完备性方程</strong>：所有结果的概率之和必须为 <span class="math inline">\(1\)</span>，这要求测量算子满足 <span class="math inline">\(\sum_m M_m^\dagger M_m = I\)</span>。</p></li>
+<li><p><strong>级联测量</strong>：连续进行两次测量 <span class="math inline">\(\{L_l\}\)</span> 和 <span class="math inline">\(\{M_m\}\)</span>，在物理上完全等价于执行一次合并算子为 <span class="math inline">\(N_{lm} = M_m L_l\)</span> 的单次测量。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>深刻推论：正交态与非正交态的可区分性</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>正交态可以 100% 可靠区分</strong>：若待测态集合 <span class="math inline">\(\{\vert{}\psi_i\rangle\}\)</span> 两两正交，只需取投影算子 <span class="math inline">\(M_i = \vert{}\psi_i\rangle\langle\psi_i\vert{}\)</span>（外加补余算子 <span class="math inline">\(M_0\)</span> 凑齐完备性），当输入 <span class="math inline">\(\vert{}\psi_i\rangle\)</span> 时必有 <span class="math inline">\(p(i)=1\)</span>，绝不出错。</p></li>
+<li><p><strong>非正交态永远无法可靠区分</strong>：若 <span class="math inline">\(\vert{}\psi_1\rangle\)</span> 与 <span class="math inline">\(\vert{}\psi_2\rangle\)</span> 不正交，则 <span class="math inline">\(\vert{}\psi_2\rangle\)</span> 必然包含平行于 <span class="math inline">\(\vert{}\psi_1\rangle\)</span> 的分量（即 <span class="math inline">\(\vert{}\psi_2\rangle = \alpha\vert{}\psi_1\rangle + \beta\vert{}\varphi\rangle\)</span>）。任何能以 100% 概率识别出 <span class="math inline">\(\vert{}\psi_1\rangle\)</span> 的测量算子，在遇到 <span class="math inline">\(\vert{}\psi_2\rangle\)</span> 的平行分量时都会有一定概率被“误触发”，导致误判。</p></li>
+<li><p><strong>物理与信息论意义</strong>：</p></li>
+</ul>
+<ol type="1">
+<li><p><strong>捍卫相对论因果律</strong>：对于共享纠缠态 <span class="math inline">\(\vert{}\Phi^+\rangle = \frac{\vert{}00\rangle+\vert{}11\rangle}{\sqrt{2}} = \frac{\vert{}++\rangle+\vert{}--\rangle}{\sqrt{2}}\)</span>，Alice 选择在 <span class="math inline">\(Z\)</span> 基或 <span class="math inline">\(X\)</span> 基测量，会让远方 Bob 的粒子塌缩到 <span class="math inline">\(\{\vert{}0\rangle, \vert{}1\rangle\}\)</span> 或 <span class="math inline">\(\{\vert{}+\rangle, \vert{}-\rangle\}\)</span>。正因为这两组基彼此<strong>非正交不可区分</strong>，Bob 无法分辨 Alice 的测量选择，从而杜绝了超光速通信。</p></li>
+<li><p><strong>量子密码学的基石</strong>：把“缺陷”转化为安全资源。例如 <strong>Wiesner 量子货币</strong>与 <strong>BB84 量子密钥分发</strong>，随机用非正交的 <span class="math inline">\(Z\)</span> 基（<span class="math inline">\(\vert{}0\rangle, \vert{}1\rangle\)</span>）和 <span class="math inline">\(X\)</span> 基（<span class="math inline">\(\vert{}+\rangle, \vert{}-\rangle\)</span>）编码信息；伪造者或窃听者因无法可靠区分非正交态，一旦盲目测量就会不可避免地破坏原量子态并暴露自身。</p></li>
+</ol>
+<hr>
+</section>
+<section id="四-投影测量与海森堡不确定性原理" class="level3">
+<h3 class="anchored" data-anchor-id="四-投影测量与海森堡不确定性原理">四、 投影测量与海森堡不确定性原理</h3>
+<p>在实际物理问题中，最常用的是假设三的一个特例——<strong>投影测量（von Neumann 测量）</strong>。</p>
+<ol type="1">
+<li><strong>从一般测量到投影测量</strong>：</li>
+</ol>
+<ul>
+<li><p>当一般测量中的算子 <span class="math inline">\(\{M_m\}\)</span> 进一步受限于必须是<strong>正交投影算子 <span class="math inline">\(\{P_m\}\)</span></strong>（即满足厄米性 <span class="math inline">\(P_m^\dagger = P_m\)</span> 且正交幂等 <span class="math inline">\(P_m P_{m'} = \delta_{mm'}P_m\)</span>，完备性为 <span class="math inline">\(\sum_m P_m = I\)</span>）时，就称为投影测量。</p></li>
+<li><p>它等价于测量一个<strong>可观测量（Observable）</strong>——即一个厄米算子 <span class="math inline">\(M\)</span>，其谱分解为：</p></li>
+</ul>
+<p><span class="math display">\[M = \sum_m m P_m\]</span></p>
+<ul>
+<li>由于 <span class="math inline">\(P_m^\dagger P_m = P_m^2 = P_m\)</span>，概率公式简化为 <span class="math inline">\(p(m) = \langle\psi\vert{}P_m\vert{}\psi\rangle\)</span>，测后态为 <span class="math inline">\(\frac{P_m\vert{}\psi\rangle}{\sqrt{p(m)}}\)</span>。（例如“沿 <span class="math inline">\(\vec{v}\)</span> 轴测量单比特自旋”，就是对可观测量 <span class="math inline">\(\vec{v}\cdot\vec{\sigma}\)</span> 做投影测量，其特征值为 <span class="math inline">\(\pm 1\)</span>，投影子为 <span class="math inline">\(P_\pm = \frac{I \pm \vec{v}\cdot\vec{\sigma}}{2}\)</span>。）</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>期望值（平均值）与方差的极简计算</strong>：</li>
+</ol>
+<ul>
+<li>利用谱分解，测量结果 <span class="math inline">\(m\)</span> 的数学期望无需逐项求和，直接化简为一个矩阵元：</li>
+</ul>
+<p><span class="math display">\[E(M) = \sum_m m p(m) = \sum_m m \langle\psi\vert{}P_m\vert{}\psi\rangle = \langle\psi\vert{}M\vert{}\psi\rangle \equiv \langle M\rangle\]</span></p>
+<ul>
+<li>测量结果的标准差（涨落散布）由方差公式给出：<span class="math inline">\([\Delta(M)]^2 = \langle M^2\rangle - \langle M\rangle^2\)</span>。</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>海森堡不确定性原理（Heisenberg Uncertainty Principle）</strong>：</li>
+</ol>
+<ul>
+<li>借助 Cauchy-Schwarz 不等式，可严格推导出任意两个可观测量 <span class="math inline">\(C\)</span> 和 <span class="math inline">\(D\)</span> 在同一状态 <span class="math inline">\(\vert{}\psi\rangle\)</span> 下的标准差乘积下界：</li>
+</ul>
+<p><span class="math display">\[\Delta(C)\Delta(D) \ge \frac{\vert{}\langle\psi\vert{}[C, D]\vert{}\psi\rangle\vert{}}{2}\]</span></p>
+<p>(注：课件第19页式子右侧分子印作了平方 <span class="math inline">\(\vert{}\langle\psi\vert{}[C,D]\vert{}\psi\rangle\vert{}^2/4\)</span>，对应的是方差之积 <span class="math inline">\([\Delta(C)]^2[\Delta(D)]^2\)</span>，开方后的标准差之积即为 <span class="math inline">\(\vert{}\langle\psi\vert{}[C,D]\vert{}\psi\rangle\vert{}/2\)</span>，以课件代入 <span class="math inline">\(X,Y\)</span> 得到 <span class="math inline">\(\Delta(X)\Delta(Y)\ge 1\)</span> 为准。)</p>
+<ul>
+<li><p><strong>核心物理图景</strong>：如果两个可观测量<strong>不对易</strong>（<span class="math inline">\([C, D] \neq 0\)</span>，例如 <span class="math inline">\([X, Y] = 2iZ\)</span>），它们就无法同时具有确定的测量值。</p></li>
+<li><p><strong>概念澄清</strong>：不确定性原理<strong>不是</strong>指“连续测量中先测 <span class="math inline">\(C\)</span> 的仪器干扰了后测的 <span class="math inline">\(D\)</span>”；它的真正含义是：准备一大批完全相同的量子态 <span class="math inline">\(\vert{}\psi\rangle\)</span>，一半拿去测 <span class="math inline">\(C\)</span>，另一半拿去测 <span class="math inline">\(D\)</span>，这两组独立测量结果的固有统计散布（标准差）无法同时压低到零。</p></li>
+</ul>
+</section>
+</section>
+<section id="section-6" class="level1">
+<h1>3.1</h1>
+<p>本讲是《量子计算与量子信息》第2章基本假设的收官部分（§2.2.6-§2.3）。内容先补齐了不确定性原理的证明以及测量的两个重要延伸（POVM 与相位），接着引入第四大假设（复合系统），最后通过“超密编码”展示四大假设如何协同工作。核心知识点逻辑梳理如下：</p>
+<hr>
+<section id="一-承前启后不确定性原理的严格证明" class="level3">
+<h3 class="anchored" data-anchor-id="一-承前启后不确定性原理的严格证明">一、 承前启后：不确定性原理的严格证明</h3>
+<p>上一讲给出了海森堡不确定性原理的结论，本讲开篇给出了四步推导逻辑：</p>
+<ol type="1">
+<li><p><strong>拆分实部与虚部</strong>：对两个厄米算符 <span class="math inline">\(A, B\)</span>，将乘积期望分解为 <span class="math inline">\(\langle\psi\vert{}AB\vert{}\psi\rangle = x + iy\)</span>（<span class="math inline">\(x, y\)</span> 为实数）。利用反对易子求得实部 <span class="math inline">\(\langle\psi\vert{}\{A,B\}\vert{}\psi\rangle = 2x\)</span>，利用对易子（交换子）求得虚部 <span class="math inline">\(\langle\psi\vert{}[A,B]\vert{}\psi\rangle = 2iy\)</span>。</p></li>
+<li><p><strong>模方与不等式放缩</strong>：两式模方之和满足 <span class="math inline">\(\vert{}\langle\psi\vert{}[A,B]\vert{}\psi\rangle\vert{}^2 + \vert{}\langle\psi\vert{}\{A,B\}\vert{}\psi\rangle\vert{}^2 = 4\vert{}\langle\psi\vert{}AB\vert{}\psi\rangle\vert{}^2\)</span>。由 Cauchy-Schwarz 不等式可知 <span class="math inline">\(\vert{}\langle\psi\vert{}AB\vert{}\psi\rangle\vert{}^2 \le \langle\psi\vert{}A^2\vert{}\psi\rangle\langle\psi\vert{}B^2\vert{}\psi\rangle\)</span>。</p></li>
+<li><p><strong>代换中心化算符</strong>：舍去非负的反对易子项，将中心化算符 <span class="math inline">\(A = C - \langle C\rangle\)</span>、<span class="math inline">\(B = D - \langle D\rangle\)</span> 代入并两边开方，即得标准差下界：</p></li>
+</ol>
+<p><span class="math display">\[\Delta(C)\Delta(D) \ge \frac{\vert{}\langle\psi\vert{}[C, D]\vert{}\psi\rangle\vert{}}{2}\]</span></p>
+<ol start="4" type="1">
+<li><strong>适用边界</strong>：该原理限制的是<strong>同一自由度上两个不对易的可观测量</strong>（如单比特的 <span class="math inline">\(X\)</span> 与 <span class="math inline">\(Y\)</span> 分量无法同时取确定值），但绝不妨碍我们一次性完美区分两两正交的态（例如四个正交的贝尔态）。</li>
+</ol>
+<hr>
+</section>
+<section id="二-测量的延伸povm-与量子相位" class="level3">
+<h3 class="anchored" data-anchor-id="二-测量的延伸povm-与量子相位">二、 测量的延伸：POVM 与量子相位</h3>
+<section id="povm正算子值测度只关心概率的极简语言" class="level4">
+<h4 class="anchored" data-anchor-id="povm正算子值测度只关心概率的极简语言">1. POVM（正算子值测度）：只关心概率的极简语言</h4>
+<ul>
+<li><p><strong>引入动机</strong>：在很多实验收尾或信息论分析中，系统只被测量一次，我们<strong>只关心各测量结果出现的统计概率，而不关心测量后态塌缩成什么样</strong>。</p></li>
+<li><p><strong>数学定义</strong>：由一般测量的概率公式 <span class="math inline">\(p(m) = \langle\psi\vert{}M_m^\dagger M_m\vert{}\psi\rangle\)</span>，直接定义 <strong>POVM 元素</strong>为：</p></li>
+</ul>
+<p><span class="math display">\[E_m \equiv M_m^\dagger M_m\]</span></p>
+<p>显然 <span class="math inline">\(E_m\)</span> 是<strong>正算子</strong>，且满足完备性条件 <span class="math inline">\(\sum_m E_m = I\)</span>，测量概率仅由 <span class="math inline">\(p(m) = \langle\psi\vert{}E_m\vert{}\psi\rangle\)</span> 决定。反过来，任意一组满足 <span class="math inline">\(\sum_m E_m = I\)</span> 的正算子 <span class="math inline">\(\{E_m\}\)</span>，都能通过取算术平方根 <span class="math inline">\(M_m = \sqrt{E_m}\)</span> 还原出一个合法的物理测量（投影测量只是 <span class="math inline">\(E_m = P_m\)</span> 的特例）。</p>
+<ul>
+<li><p><strong>典型应用：无误区分非正交态（Unambiguous State Discrimination）</strong>：</p></li>
+<li><p>虽然非正交态无法 100% 被区分，但借助 POVM 可以做到“只要给出判断就绝对不会错，代价是有一定概率回答‘不知道’”。</p></li>
+<li><p>例如区分 <span class="math inline">\(\vert{}\psi_1\rangle = \vert{}0\rangle\)</span> 与 <span class="math inline">\(\vert{}\psi_2\rangle = \frac{\vert{}0\rangle+\vert{}1\rangle}{\sqrt{2}}\)</span>，可构造三元素 POVM：<span class="math inline">\(E_1\)</span> 正比于与 <span class="math inline">\(\vert{}\psi_1\rangle\)</span> 正交的 <span class="math inline">\(\vert{}1\rangle\langle 1\vert{}\)</span>，<span class="math inline">\(E_2\)</span> 正比于与 <span class="math inline">\(\vert{}\psi_2\rangle\)</span> 正交的 <span class="math inline">\(\vert{}-\rangle\langle -\vert{}\)</span>，再用 <span class="math inline">\(E_3 = I - E_1 - E_2\)</span> 补齐完备性。</p></li>
+<li><p><strong>结果解读</strong>：若测得 <span class="math inline">\(E_1\)</span>，因 <span class="math inline">\(\vert{}\psi_1\rangle\)</span> 在其上概率为 <span class="math inline">\(0\)</span>，故必为 <span class="math inline">\(\vert{}\psi_2\rangle\)</span>；若测得 <span class="math inline">\(E_2\)</span>，同理必为 <span class="math inline">\(\vert{}\psi_1\rangle\)</span>；若测得 <span class="math inline">\(E_3\)</span>，则无法判断，但<strong>永远不会发生误判</strong>。</p></li>
+</ul>
+</section>
+<section id="全局相位-vs.-相对相位" class="level4">
+<h4 class="anchored" data-anchor-id="全局相位-vs.-相对相位">2. 全局相位 vs.&nbsp;相对相位</h4>
+<ul>
+<li><p><strong>全局相位（不可观测）</strong>：态 <span class="math inline">\(e^{i\theta}\vert{}\psi\rangle\)</span> 与 <span class="math inline">\(\vert{}\psi\rangle\)</span> 在任何测量下给出的概率 <span class="math inline">\(\langle\psi\vert{}e^{-i\theta}E_m e^{i\theta}\vert{}\psi\rangle = \langle\psi\vert{}E_m\vert{}\psi\rangle\)</span> 完全相同。全局相位对所有振幅一视同仁，在物理观测上完全等价，可直接忽略。</p></li>
+<li><p><strong>相对相位（真实可测）</strong>：在同一叠加态中，不同基矢的振幅之间相差的相位因子（如 <span class="math inline">\(\frac{\vert{}0\rangle+\vert{}1\rangle}{\sqrt{2}}\)</span> 与 <span class="math inline">\(\frac{\vert{}0\rangle-\vert{}1\rangle}{\sqrt{2}}\)</span> 中 <span class="math inline">\(\vert{}1\rangle\)</span> 的振幅相差负号）。相对相位依赖基的选择，会直接改变特定基下的测量统计结果，是携带量子信息的关键自由度。</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="三-假设四复合系统测量酉实现与纠缠" class="level3">
+<h3 class="anchored" data-anchor-id="三-假设四复合系统测量酉实现与纠缠">三、 假设四：复合系统、测量酉实现与纠缠</h3>
+<section id="假设四复合系统公设" class="level4">
+<h4 class="anchored" data-anchor-id="假设四复合系统公设">1. 假设四（复合系统公设）</h4>
+<ul>
+<li><strong>公设内容</strong>：复合物理系统的态空间是各分系统态空间的<strong>张量积（Tensor Product）</strong>。若各分系统分别处于 <span class="math inline">\(\vert{}\psi_1\rangle, \vert{}\psi_2\rangle, \dots, \vert{}\psi_n\rangle\)</span>，则联合系统的状态为 <span class="math inline">\(\vert{}\psi_1\rangle \otimes \vert{}\psi_2\rangle \otimes \cdots \otimes \vert{}\psi_n\rangle\)</span>。</li>
+</ul>
+</section>
+<section id="核心理论推论一般测量的酉实现" class="level4">
+<h4 class="anchored" data-anchor-id="核心理论推论一般测量的酉实现">2. 核心理论推论：一般测量的酉实现</h4>
+<p>利用假设四，可以将看似宽泛的“一般测量（包括 POVM）”彻底归约为更基础的“酉演化 + 投影测量”：</p>
+<ol type="1">
+<li><p><strong>引入辅助系统（ancilla）</strong>：取一个具有正交基 <span class="math inline">\(\{\vert{}m\rangle\}\)</span>（与测量结果 <span class="math inline">\(m\)</span> 一一对应）的辅助系统，初态置为 <span class="math inline">\(\vert{}0\rangle\)</span>。</p></li>
+<li><p><strong>联合酉演化</strong>：定义联合算子作用 <span class="math inline">\(U\vert{}\psi\rangle\vert{}0\rangle = \sum_m M_m\vert{}\psi\rangle\vert{}m\rangle\)</span>。由于测量算子满足完备性方程 <span class="math inline">\(\sum_m M_m^\dagger M_m = I\)</span>，该映射严格保持内积不变，故可延拓为复合空间上的一个合法<strong>酉算子 <span class="math inline">\(U\)</span></strong>。</p></li>
+<li><p><strong>局部投影测量</strong>：在复合系统上仅对辅助系统做 <span class="math inline">\(\vert{}m\rangle\langle m\vert{}\)</span> 的<strong>投影测量</strong>，得到的概率分布与主系统的测后塌缩态，与假设三直接作用 <span class="math inline">\(M_m\)</span> 的结果完全一致。</p></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>核心公式</strong>：<strong>任意一般测量 <span class="math inline">\(=\)</span> 酉动力学演化 <span class="math inline">\(+\)</span> 投影测量 <span class="math inline">\(+\)</span> 辅助系统（ancilla）</strong>。</p>
+</blockquote>
+</section>
+<section id="量子纠缠entanglement" class="level4">
+<h4 class="anchored" data-anchor-id="量子纠缠entanglement">3. 量子纠缠（Entanglement）</h4>
+<ul>
+<li><p>在张量积空间中，绝大多数态<strong>无法</strong>写成各个分系统独立状态的张量积（即 <span class="math inline">\(\vert{}\psi\rangle \neq \vert{}a\rangle \otimes \vert{}b\rangle\)</span>），这类状态称为<strong>纠缠态</strong>（典型代表即贝尔态 <span class="math inline">\(\vert{}\psi\rangle = \frac{\vert{}00\rangle+\vert{}11\rangle}{\sqrt{2}}\)</span>）。</p></li>
+<li><p><strong>四大假设全景回顾</strong>：假设一搭舞台（Hilbert 态空间），假设二定演化（酉变换），假设三提信息（测量算子），假设四拼系统（张量积）。虽然态矢量本身不可直接观测且测量具有侵入性，但正是这个“隐秘的矢量世界”与纠缠赋予了超越经典的信息处理能力。</p></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="四-四大假设首次合体应用超密编码superdense-coding" class="level3">
+<h3 class="anchored" data-anchor-id="四-四大假设首次合体应用超密编码superdense-coding">四、 四大假设首次合体应用：超密编码（Superdense Coding）</h3>
+<p>超密编码是量子隐形传态的“逆向姊妹篇”：Alice 仅向 Bob <strong>发送 1 个量子比特</strong>，却能成功传递 <strong>2 个经典比特</strong>的信息。</p>
+<section id="核心物理基础正交的贝尔基" class="level4">
+<h4 class="anchored" data-anchor-id="核心物理基础正交的贝尔基">1. 核心物理基础：正交的贝尔基</h4>
+<p>双量子比特的 4 维空间中，四个贝尔态（EPR 对）构成一组<strong>正交归一基</strong>：</p>
+<p><span class="math display">\[\frac{\vert{}00\rangle+\vert{}11\rangle}{\sqrt{2}}, \quad \frac{\vert{}00\rangle-\vert{}11\rangle}{\sqrt{2}}, \quad \frac{\vert{}10\rangle+\vert{}01\rangle}{\sqrt{2}}, \quad \frac{\vert{}01\rangle-\vert{}10\rangle}{\sqrt{2}}\]</span></p>
+<p>因为它们<strong>两两正交</strong>，根据假设三，存在一个联合测量（<strong>贝尔基测量</strong>）能够以 100% 的把握将这 4 个态一一区分开，从而一次读出 2 bit 信息（00/01/10/11）。</p>
+</section>
+<section id="协议三步流程" class="level4">
+<h4 class="anchored" data-anchor-id="协议三步流程">2. 协议三步流程</h4>
+<ol type="1">
+<li><p><strong>预共享纠缠</strong>：通信开始前，Alice 和 Bob 预先共享一对处于 <span class="math inline">\(\vert{}\psi\rangle = \frac{\vert{}00\rangle+\vert{}11\rangle}{\sqrt{2}}\)</span> 的纠缠粒子（Alice 持第 1 个，Bob 持第 2 个）。</p></li>
+<li><p><strong>局部编码并发送</strong>：Alice 根据想要发送的两位经典比特，<strong>仅对自己手中的那 1 个量子比特</strong>施加局部酉门操作，将全局纠缠态精准切换到对应的贝尔态：</p></li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>待发送经典比特</th>
+<th>Alice 对自己比特的操作</th>
+<th>全局双比特变成的贝尔态</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>00</code></td>
+<td><span class="math inline">\(I\)</span>（什么都不做）</td>
+<td><span class="math inline">\(\frac{\Vert{}00\rangle+\Vert{}11\rangle}{\sqrt{2}}\)</span></td>
+</tr>
+<tr class="even">
+<td><code>01</code></td>
+<td><span class="math inline">\(Z\)</span>（相位翻转）</td>
+<td><span class="math inline">\(\frac{\Vert{}00\rangle-\Vert{}11\rangle}{\sqrt{2}}\)</span></td>
+</tr>
+<tr class="odd">
+<td><code>10</code></td>
+<td><span class="math inline">\(X\)</span>（比特翻转）</td>
+<td><span class="math inline">\(\frac{\Vert{}10\rangle+\Vert{}01\rangle}{\sqrt{2}}\)</span></td>
+</tr>
+<tr class="even">
+<td><code>11</code></td>
+<td><span class="math inline">\(iY\)</span>（同时翻转比特与相位）</td>
+<td><span class="math inline">\(\frac{\Vert{}01\rangle-\Vert{}10\rangle}{\sqrt{2}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>编码完成后，Alice 将自己手中的这 <strong>1 个量子比特</strong>通过量子通道寄给 Bob。 3. <strong>联合解码</strong>：Bob 收到后手握全部两个量子比特，执行一次<strong>贝尔基测量</strong>，完美识别出当前处于哪一个贝尔态，恢复出 2 个经典比特。</p>
+</section>
+<section id="绝对安全性为什么窃听者一无所获" class="level4">
+<h4 class="anchored" data-anchor-id="绝对安全性为什么窃听者一无所获">3. 绝对安全性：为什么窃听者一无所获？</h4>
+<ul>
+<li><p>如果窃听者 Eve 在半路截获了 Alice 发出的那个量子比特，无论她对该单比特做什么测量（对应算子 <span class="math inline">\(E \otimes I\)</span>），在四个贝尔态下的测量统计期望值 <span class="math inline">\(\langle\psi\vert{}E \otimes I\vert{}\psi\rangle\)</span> <strong>完全相同</strong>。</p></li>
+<li><p><strong>物理本质</strong>：超密编码的 2 bit 信息并不是装在单个粒子里，而是编码在<strong>两个量子比特之间的非局域纠缠关联</strong>中；拆开看任何一个单粒子，其局部统计都是完全随机的“白噪声”，因此 Eve 连 1 个比特的信息都窃取不到。</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="section-7" class="level1">
+<h1>4</h1>
+<p>本讲（§2.4 密度算子）为量子力学引入了一套与“态矢量”数学等价、但在处理“状态不完全已知（经典统计不确定性）”<strong>与</strong>“复合系统的子系统（量子纠缠局部特性）”时威力无比的全新母语——<strong>密度算子（密度矩阵）</strong>。核心知识点按逻辑脉络梳理如下：</p>
+<hr>
+<section id="一-从纯态到系综把不确定性写进公式" class="level3">
+<h3 class="anchored" data-anchor-id="一-从纯态到系综把不确定性写进公式">一、 从纯态到系综：把“不确定性”写进公式</h3>
+<p>之前学习的态矢量 <span class="math inline">\(\vert{}\psi\rangle\)</span> 默认我们对系统状态有着 100% 确定的认知（称为<strong>纯态</strong>）。但在现实中，系统往往处于某种概率混合之中：</p>
+<ol type="1">
+<li><strong>系综与密度算子的定义</strong>：</li>
+</ol>
+<ul>
+<li><p>若系统以概率 <span class="math inline">\(p_i\)</span> 处于纯态 <span class="math inline">\(\vert{}\psi_i\rangle\)</span>，则称 <span class="math inline">\(\{p_i, \vert{}\psi_i\rangle\}\)</span> 为一个纯态<strong>系综（Ensemble）</strong>。</p></li>
+<li><p>将各纯态的投影算子按概率加权求和，即定义为系统的<strong>密度算子（或密度矩阵）</strong>：</p></li>
+</ul>
+<p><span class="math display">\[\rho \equiv \sum_i p_i \vert{}\psi_i\rangle\langle\psi_i\vert{}\]</span></p>
+<ul>
+<li><p><strong>纯态与混合态的代数判据</strong>：</p></li>
+<li><p><strong>纯态</strong>：系统状态完全确定（<span class="math inline">\(\rho = \vert{}\psi\rangle\langle\psi\vert{}\)</span>），满足 <strong><span class="math inline">\(\mathrm{tr}(\rho^2) = 1\)</span></strong>。</p></li>
+<li><p><strong>混合态</strong>：不同纯态的概率混合（如等概率处于 <span class="math inline">\(\vert{}0\rangle\)</span> 或 <span class="math inline">\(\vert{}1\rangle\)</span> 时，<span class="math inline">\(\rho = \frac{1}{2}\vert{}0\rangle\langle 0\vert{} + \frac{1}{2}\vert{}1\rangle\langle 1\vert{} = \frac{I}{2}\)</span>），满足 <strong><span class="math inline">\(\mathrm{tr}(\rho^2) &lt; 1\)</span></strong>。</p></li>
+<li><p><strong>混合的混合</strong>：若系统以概率 <span class="math inline">\(p_i\)</span> 处于各自的密度算子 <span class="math inline">\(\rho_i\)</span>，则整体状态依然是线性加权和 <span class="math inline">\(\rho = \sum_i p_i \rho_i\)</span>。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>用密度算子重写演化与测量</strong>：</li>
+</ol>
+<ul>
+<li><strong>酉演化（假设二）</strong>：系综里每个纯态各自经过酉变换 <span class="math inline">\(U\vert{}\psi_i\rangle\)</span>，整体密度算子演化为：</li>
+</ul>
+<p><span class="math display">\[\rho \xrightarrow{U} \sum_i p_i U\vert{}\psi_i\rangle\langle\psi_i\vert{}U^\dagger = U\rho U^\dagger\]</span></p>
+<ul>
+<li><strong>测量概率（假设三）</strong>：结合条件概率 <span class="math inline">\(p(m\vert{}i) = \mathrm{tr}(M_m^\dagger M_m \vert{}\psi_i\rangle\langle\psi_i\vert{})\)</span> 与全概率公式，测得结果 <span class="math inline">\(m\)</span> 的总概率仅取决于 <span class="math inline">\(\rho\)</span>：</li>
+</ul>
+<p><span class="math display">\[p(m) = \mathrm{tr}(M_m^\dagger M_m \rho)\]</span></p>
+<ul>
+<li><strong>测后塌缩态</strong>：观测到结果 <span class="math inline">\(m\)</span> 后，系统的密度算子重归一化为：</li>
+</ul>
+<p><span class="math display">\[\rho_m = \frac{M_m \rho M_m^\dagger}{\mathrm{tr}(M_m^\dagger M_m \rho)}\]</span></p>
+<ul>
+<li><strong>丢弃测量记录（量子噪声的起点）</strong>：若执行了测量但<strong>忘记或丢弃了测量结果 <span class="math inline">\(m\)</span></strong>，系统将处于各测后态 <span class="math inline">\(\rho_m\)</span> 按概率 <span class="math inline">\(p(m)\)</span> 的混合，化简为极紧凑的形式：</li>
+</ul>
+<p><span class="math display">\[\rho' = \sum_m p(m)\rho_m = \sum_m M_m \rho M_m^\dagger\]</span></p>
+<hr>
+</section>
+<section id="二-密度算子的独立身份证与系综自由度" class="level3">
+<h3 class="anchored" data-anchor-id="二-密度算子的独立身份证与系综自由度">二、 密度算子的独立身份证与系综自由度</h3>
+<ol type="1">
+<li><p><strong>定理 2.5（密度算子的内禀刻画）</strong>： 无需借助背后的系综，一个算子 <span class="math inline">\(\rho\)</span> 是合法密度算子的<strong>充要条件</strong>只有两条：</p></li>
+<li><p><strong>迹条件</strong>：<span class="math inline">\(\mathrm{tr}(\rho) = 1\)</span>（保证总概率归一）。</p></li>
+<li><p><strong>正性条件</strong>：<span class="math inline">\(\rho \ge 0\)</span>（即 <span class="math inline">\(\rho\)</span> 是正算子，保证本征值非负）。</p></li>
+</ol>
+<ul>
+<li><em>逻辑闭环</em>：有了这两条判据，量子力学四大假设便可完全脱离态矢量，直接以“正且迹一的算子 <span class="math inline">\(\rho\)</span>”作为第一性公理出发（复合系统即为 <span class="math inline">\(\rho_1 \otimes \cdots \otimes \rho_n\)</span>）。</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>定理 2.6（系综的酉自由度：同一 <span class="math inline">\(\rho\)</span> 对应无穷多种系综）</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>核心避坑</strong>：看到 <span class="math inline">\(\rho = \frac{3}{4}\vert{}0\rangle\langle 0\vert{} + \frac{1}{4}\vert{}1\rangle\langle 1\vert{}\)</span>，千万不能断言系统一定是“以 <span class="math inline">\(3/4\)</span> 概率处于 <span class="math inline">\(\vert{}0\rangle\)</span>、<span class="math inline">\(1/4\)</span> 概率处于 <span class="math inline">\(\vert{}1\rangle\)</span>”！因为用两个叠加态 <span class="math inline">\(\vert{}a\rangle, \vert{}b\rangle\)</span> 各以 <span class="math inline">\(1/2\)</span> 概率混合，交叉项相消后也会得到<strong>完全相同</strong>的 <span class="math inline">\(\rho\)</span>。</p></li>
+<li><p><strong>物理本质</strong>：测量统计只取决于 <span class="math inline">\(\rho\)</span> 本身；<strong>本征分解并没有物理特权</strong>，不同的物理制备过程（不同系综）只要给出同一个 <span class="math inline">\(\rho\)</span>，在观测上就完全不可区分。</p></li>
+<li><p><strong>数学充要条件（定理 2.6）</strong>：两组系综 <span class="math inline">\(\{p_i, \vert{}\psi_i\rangle\}\)</span> 与 <span class="math inline">\(\{q_j, \vert{}\varphi_j\rangle\}\)</span> 生成同一个密度算子 <span class="math inline">\(\rho\)</span>，当且仅当它们带概率权重的矢量之间相差一个<strong>酉矩阵变换 <span class="math inline">\(u_{ij}\)</span></strong>（个数不等时可补零矢量对齐）：</p></li>
+</ul>
+<p><span class="math display">\[\sqrt{p_i}\vert{}\psi_i\rangle = \sum_j u_{ij}\sqrt{q_j}\vert{}\varphi_j\rangle\]</span></p>
+<ol start="3" type="1">
+<li><strong>几何直观：混合态的 Bloch 球体</strong>：</li>
+</ol>
+<ul>
+<li>任意单量子比特的密度矩阵均可唯一写为：</li>
+</ul>
+<p><span class="math display">\[\rho = \frac{I + \vec{r}\cdot\vec{\sigma}}{2}\]</span></p>
+<p>其中实三维向量 <span class="math inline">\(\vec{r}\)</span> 称为 <strong>Bloch 矢量</strong>，满足模长 <span class="math inline">\(\Vert{}\vec{r}\Vert{} \le 1\)</span>。</p>
+<ul>
+<li><strong>几何对应</strong>：态矢量语言只能描述<strong>球面</strong>（<span class="math inline">\(\Vert{}\vec{r}\Vert{} = 1\)</span>，对应纯态）；而密度算子把整個<strong>球体内部</strong>都纳入了版图（<span class="math inline">\(\Vert{}\vec{r}\Vert{} &lt; 1\)</span> 对应混合态，离球心越近混合程度越高，球心 <span class="math inline">\(\vec{r}=0\)</span> 即为完全混合态 <span class="math inline">\(I/2\)</span>）。</li>
+</ul>
+<hr>
+</section>
+<section id="三-约化密度算子与偏迹揭示纠缠的代数指纹" class="level3">
+<h3 class="anchored" data-anchor-id="三-约化密度算子与偏迹揭示纠缠的代数指纹">三、 约化密度算子与偏迹：揭示纠缠的代数指纹</h3>
+<p>当复合系统 <span class="math inline">\(AB\)</span> 处于纠缠态时，子系统 <span class="math inline">\(A\)</span> 自己根本没有独立的态矢量，此时必须依靠<strong>约化密度算子</strong>来描述子系统。</p>
+<ol type="1">
+<li><strong>偏迹（Partial Trace）的定义与唯一性</strong>：</li>
+</ol>
+<ul>
+<li>子系统 <span class="math inline">\(A\)</span> 的物理状态由对子系统 <span class="math inline">\(B\)</span> 求<strong>偏迹</strong>得到的<strong>约化密度算子</strong> <span class="math inline">\(\rho^A\)</span> 描述：</li>
+</ul>
+<p><span class="math display">\[\rho^A \equiv \mathrm{tr}_B(\rho^{AB})\]</span></p>
+<ul>
+<li><p><strong>运算规则</strong>（“吃掉 <span class="math inline">\(B\)</span> 的算符，保留 <span class="math inline">\(A\)</span> 的算符”）：在算子张量积上定义为 <span class="math inline">\(\mathrm{tr}_B(\vert{}a_1\rangle\langle a_2\vert{} \otimes \vert{}b_1\rangle\langle b_2\vert{}) \equiv \vert{}a_1\rangle\langle a_2\vert{} \mathrm{tr}(\vert{}b_1\rangle\langle b_2\vert{}) = \langle b_2\vert{}b_1\rangle \vert{}a_1\rangle\langle a_2\vert{}\)</span>，再线性延拓到全体算子。</p></li>
+<li><p><strong>为什么偏偏是偏迹？（Box 2.6 唯一性证明）</strong>：为了保证仅在子系统 <span class="math inline">\(A\)</span> 上做任何测量 <span class="math inline">\(M\)</span> 时，用局部态 <span class="math inline">\(\rho^A\)</span> 算出的期望值与用全局态 <span class="math inline">\(\rho^{AB}\)</span> 算出的期望值完全一致——即满足 <span class="math inline">\(\mathrm{tr}(M\rho^A) = \mathrm{tr}((M \otimes I_B)\rho^{AB})\)</span>，数学上可严格证明：<strong>偏迹是唯一满足该统计自洽要求的映射</strong>。</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>乘积态 vs.&nbsp;贝尔纠缠态（整体纯、局部混）</strong>：</li>
+</ol>
+<ul>
+<li><p><strong>乘积态</strong>：若 <span class="math inline">\(\rho^{AB} = \rho \otimes \sigma\)</span>，则 <span class="math inline">\(\mathrm{tr}_B(\rho \otimes \sigma) = \rho\mathrm{tr}(\sigma) = \rho\)</span>，子系统状态就是它自身（纯态的乘积态约化后仍是纯态）。</p></li>
+<li><p><strong>贝尔态</strong>：取纯态 <span class="math inline">\(\vert{}\psi\rangle = \frac{\vert{}00\rangle+\vert{}11\rangle}{\sqrt{2}}\)</span>，全局密度算子 <span class="math inline">\(\rho = \vert{}\psi\rangle\langle\psi\vert{}\)</span> 是<strong>纯态</strong>（<span class="math inline">\(\mathrm{tr}(\rho^2) = 1\)</span>）。但对第 2 个比特求偏迹后，交叉项因正交性全部消掉，第 1 个比特的约化密度算子为：</p></li>
+</ul>
+<p><span class="math display">\[\rho_1 = \mathrm{tr}_2(\rho) = \frac{\vert{}0\rangle\langle 0\vert{} + \vert{}1\rangle\langle 1\vert{}}{2} = \frac{I}{2}\]</span></p>
+<ul>
+<li><strong>深刻物理图景</strong>：因 <span class="math inline">\(\mathrm{tr}(\rho_1^2) = \frac{1}{2} &lt; 1\)</span>，说明<strong>复合系统整体处于完全确定的纯态，但单独看其中任何一个子系统，却处于完全随机的最大混合态 <span class="math inline">\(I/2\)</span></strong>。这种“整体纯、局部混”的现象，正是量子纠缠最核心的代数指纹（信息存储在关联之中，而非局部粒子上）。</li>
+</ul>
+<hr>
+</section>
+<section id="四-核心物理应用严格证明隐形传态不超光速" class="level3">
+<h3 class="anchored" data-anchor-id="四-核心物理应用严格证明隐形传态不超光速">四、 核心物理应用：严格证明隐形传态不超光速</h3>
+<p>在第1章的量子隐形传态中，一旦 Alice 在本地完成贝尔基测量，远方 Bob 手中的粒子状态似乎瞬间就变成了含待传态参数 <span class="math inline">\(\alpha, \beta\)</span> 的四个纯态之一。这是否意味着超光速通信？用偏迹即可给出滴水不漏的否定证明：</p>
+<ol type="1">
+<li><p><strong>测量后、通信前的全局混合态</strong>：当 Alice 测完但经典电话还没打通到 Bob 那里时，在 Bob 看来，Alice 的测量结果 <code>00</code>、<code>01</code>、<code>10</code>、<code>11</code> 各以 <span class="math inline">\(1/4\)</span> 的概率出现，因此联合系统处于这四个分支的等权混合态 <span class="math inline">\(\rho\)</span>。</p></li>
+<li><p><strong>对 Alice 系统求偏迹</strong>：为了看此刻 Bob 手中粒子的真实可观测状态，对 Alice 的前两个比特求偏迹 <span class="math inline">\(\rho^B = \mathrm{tr}_A(\rho)\)</span>。把四个分支各自贡献的纯态投影算子加起来后，所有含 <span class="math inline">\(\alpha, \beta\)</span> 的交叉项正负完美抵消，化简结果为：</p></li>
+</ol>
+<p><span class="math display">\[\rho^B = \mathrm{tr}_A(\rho) = \frac{\vert{}0\rangle\langle 0\vert{} + \vert{}1\rangle\langle 1\vert{}}{2} = \frac{I}{2}\]</span></p>
+<ol start="3" type="1">
+<li><strong>结论</strong>：在收到 Alice 的 2 bit 经典通信之前，无论待传态 <span class="math inline">\(\vert{}\psi\rangle = \alpha\vert{}0\rangle + \beta\vert{}1\rangle\)</span> 是什么，Bob 手里的约化密度矩阵<strong>恒为 <span class="math inline">\(\frac{I}{2}\)</span>（完全白噪声）</strong>，不含 <span class="math inline">\(\alpha, \beta\)</span> 的任何蛛丝马迹。Bob 此时做任何测量都只能得到 50% 对 50% 的纯随机结果，信息必须等待不超光速的经典通道送达后才能恢复，相对论因果律固若金汤。</li>
+</ol>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

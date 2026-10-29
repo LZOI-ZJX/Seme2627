@@ -45,7 +45,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f2788e636de456f6409e966386820849.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-66a38d7287321bc50e069add96f8c30e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -189,6 +189,13 @@ window.Quarto = {
   <li><a href="#维纳-辛钦定理wiener-khinchin-theorem相关函数变换法" id="toc-维纳-辛钦定理wiener-khinchin-theorem相关函数变换法" class="nav-link" data-scroll-target="#维纳-辛钦定理wiener-khinchin-theorem相关函数变换法">维纳-辛钦定理（Wiener-Khinchin Theorem，相关函数变换法）</a></li>
   </ul></li>
   <li><a href="#白噪声" id="toc-白噪声" class="nav-link" data-scroll-target="#白噪声">白噪声</a></li>
+  <li><a href="#最小方差无偏估计-c-r不等式" id="toc-最小方差无偏估计-c-r不等式" class="nav-link" data-scroll-target="#最小方差无偏估计-c-r不等式">最小方差无偏估计 C-R不等式</a>
+  <ul class="collapse">
+  <li><a href="#理论基础" id="toc-理论基础" class="nav-link" data-scroll-target="#理论基础">理论基础</a></li>
+  <li><a href="#非线性变换与delta方法" id="toc-非线性变换与delta方法" class="nav-link" data-scroll-target="#非线性变换与delta方法">非线性变换与Delta方法</a></li>
+  <li><a href="#实例分析" id="toc-实例分析" class="nav-link" data-scroll-target="#实例分析">实例分析</a></li>
+  </ul></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -360,6 +367,144 @@ window.Quarto = {
 <li>功率谱密度（DTFT）根据离散时间维纳-辛钦定理，其离散时间傅里叶变换（DTFT）为：<span class="math display">\[S_W(e^{j\omega}) = \sum_{m=-\infty}^{\infty} R_W[m] e^{-j\omega m} = \sigma^2, \quad \omega \in [-\pi, \pi]\]</span>其谱密度在归一化频率主周期 <span class="math inline">\([-\pi, \pi]\)</span> 内处处等于常数 <span class="math inline">\(\sigma^2\)</span>。</li>
 <li>总功率通过逆变换计算平均功率：<span class="math display">\[P_{\text{avg}} = R_W[0] = \frac{1}{2\pi} \int_{-\pi}^{\pi} S_W(e^{j\omega}) d\omega = \sigma^2 &lt; \infty\]</span>离散白噪声在数学上完全良定，其总功率恒为有限值 <span class="math inline">\(\sigma^2\)</span>，完全避免了连续时间理想白噪声的无穷大发散问题。</li>
 </ol>
+</section>
+<section id="最小方差无偏估计-c-r不等式" class="level2">
+<h2 class="anchored" data-anchor-id="最小方差无偏估计-c-r不等式">最小方差无偏估计 C-R不等式</h2>
+<p><em>trivial</em></p>
+<section id="理论基础" class="level3">
+<h3 class="anchored" data-anchor-id="理论基础">理论基础</h3>
+<ol type="1">
+<li><strong>正则条件（得分函数的期望为零）</strong></li>
+</ol>
+<p><span class="math display">\[\mathbb{E}\left[ \frac{\partial \ln p(x;\theta)}{\partial \theta} \right] = 0\]</span></p>
+<ul>
+<li><strong>说明</strong>：这是 CRLB 成立的核心正则条件（Regularity Condition）之一，要求概率密度函数 <span class="math inline">\(p(x;\theta)\)</span> 的支撑集（Support）不依赖于参数 <span class="math inline">\(\theta\)</span>，从而允许积分与求导交换次序：</li>
+</ul>
+<p><span class="math display">\[\mathbb{E}\left[ \frac{\partial \ln p(x;\theta)}{\partial \theta} \right] = \int \frac{1}{p(x;\theta)} \frac{\partial p(x;\theta)}{\partial \theta} p(x;\theta) dx = \frac{\partial}{\partial \theta} \int p(x;\theta) dx = \frac{\partial}{\partial \theta}(1) = 0\]</span></p>
+<ol start="2" type="1">
+<li><strong>参数 <span class="math inline">\(\theta\)</span> 的无偏估计方差下界（基础 CRLB）</strong></li>
+</ol>
+<p><span class="math display">\[\mathbb{E}[\hat{\theta}] = \theta \implies \text{Var}(\hat{\theta}) \geq \frac{1}{I(\theta)}\]</span></p>
+<ul>
+<li><strong>说明</strong>：其中 <span class="math inline">\(I(\theta)\)</span> 为费雪信息量（Fisher Information），定义为：</li>
+</ul>
+<p><span class="math display">\[I(\theta) = \mathbb{E}\left[ \left( \frac{\partial \ln p(x;\theta)}{\partial \theta} \right)^2 \right] = -\mathbb{E}\left[ \frac{\partial^2 \ln p(x;\theta)}{\partial \theta^2} \right]\]</span></p>
+<ol start="3" type="1">
+<li><strong>CRLB 等号成立的充要条件（达到有效估计）</strong></li>
+</ol>
+<p><span class="math display">\[
+\frac{\partial \ln p(x;\theta)}{\partial \theta} = I(\theta)\left(g(x) - \theta\right)
+\]</span></p>
+<ul>
+<li><strong>说明</strong>：该式源于柯西-施瓦茨不等式（Cauchy-Schwarz Inequality）取等号的线性相关条件。若存在满足该式的函数 <span class="math inline">\(g(x)\)</span>，则 <span class="math inline">\(\hat{\theta} = g(x)\)</span> 即为 <span class="math inline">\(\theta\)</span> 的<strong>有效估计量（Efficient Estimator）</strong>，同时也是最小方差无偏估计（MVUE）。注意这里的比例系数在满足正则条件与无偏性时恰好等于费雪信息量 <span class="math inline">\(I(\theta)\)</span>。</li>
+</ul>
+<ol start="4" type="1">
+<li><strong>参数函数 <span class="math inline">\(\alpha = g(\theta)\)</span> 的 CRLB 推广形式</strong></li>
+</ol>
+<p><span class="math display">\[\alpha = g(\theta), \quad \mathbb{E}[\hat{\alpha}] = g(\theta) \implies \text{Var}(\hat{\alpha}) \geq \frac{\left(g'(\theta)\right)^2}{I(\theta)}\]</span></p>
+<ul>
+<li><strong>说明</strong>：其中 <span class="math inline">\(g'(\theta) = \frac{dg(\theta)}{d\theta}\)</span>。同理，该推广形式取等号（即 <span class="math inline">\(\hat{\alpha}\)</span> 达到 CRLB）的充要条件为：</li>
+</ul>
+<p><span class="math display">\[\frac{\partial \ln p(x;\theta)}{\partial \theta} = k(\theta)\left(\hat{\alpha}(x) - g(\theta)\right)\]</span></p>
+<p>其中比例系数为 <span class="math inline">\(k(\theta) = \frac{I(\theta)}{g'(\theta)}\)</span>。</p>
+<hr>
+</section>
+<section id="非线性变换与delta方法" class="level3">
+<h3 class="anchored" data-anchor-id="非线性变换与delta方法">非线性变换与Delta方法</h3>
+<p><strong>计算的对象</strong>：</p>
+<p>估算 <span class="math inline">\(A^2\)</span> 的估计量方差假设已通过 <span class="math inline">\(N\)</span> 次独立同分布采样得到了对未知参数 <span class="math inline">\(A\)</span> 的无偏估计 <span class="math inline">\(\hat{A}\)</span>，且满足正态分布：</p>
+<p><span class="math display">\[
+\hat{A} \sim \mathcal{N}\left(A, \frac{\sigma^2}{N}\right)
+\]</span></p>
+<p>此时若需要估计参数 <span class="math inline">\(A\)</span> 的平方值（如信号功率/能量 <span class="math inline">\(P = A^2\)</span>），最直观的估计量是直接取 <span class="math inline">\(\widehat{A^2} = \hat{A}^2\)</span>。使用 Delta 方法（Delta Method，即一阶泰勒展开） 近似计算非线性变换 <span class="math inline">\(f(\hat{A}) = \hat{A}^2\)</span> 的方差：对 <span class="math inline">\(f(\hat{A})\)</span> 在均值 <span class="math inline">\(A\)</span> 处做泰勒展开：</p>
+<p><span class="math display">\[
+f(\hat{A}) \approx f(A) + f'(A)(\hat{A} - A) = A^2 + 2A(\hat{A} - A)
+\]</span></p>
+<p>计算估计量 <span class="math inline">\(\hat{A}^2\)</span> 的近似方差：</p>
+<p><span class="math display">\[
+\text{Var}(\hat{A}^2) \approx \left[ f'(A) \right]^2 \cdot \text{Var}(\hat{A}) = (2A)^2 \cdot \frac{\sigma^2}{N} = \frac{4\sigma^2 A^2}{N}
+\]</span></p>
+<p>因此：</p>
+<p><span class="math display">\[
+\text{Var}(\hat{A}^2) \approx \frac{4\sigma^2 A^2}{N}\
+\]</span></p>
+<hr>
+</section>
+<section id="实例分析" class="level3">
+<h3 class="anchored" data-anchor-id="实例分析">实例分析</h3>
+<section id="概率密度与对数似然函数" class="level4">
+<h4 class="anchored" data-anchor-id="概率密度与对数似然函数">1. 概率密度与对数似然函数</h4>
+<p>对于观测模型 <span class="math inline">\(x[n] = A + Bn + w[n]\)</span>，其中 <span class="math inline">\(w[n] \sim \mathcal{N}(0, \sigma^2)\)</span> 且相互独立，单点概率密度函数与联合对数似然函数为：</p>
+<ul>
+<li><strong>单点 PDF</strong>：</li>
+</ul>
+<p><span class="math display">\[p(x[n]; \theta) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left( -\frac{(x[n] - A - Bn)^2}{2\sigma^2} \right)\]</span></p>
+<ul>
+<li><strong>联合对数似然函数 <span class="math inline">\(\ln p(\mathbf{x}; \boldsymbol{\theta})\)</span></strong>（<span class="math inline">\(\boldsymbol{\theta} = [A, B]^T\)</span>）：</li>
+</ul>
+<p><span class="math display">\[\ln p(\mathbf{x}; \boldsymbol{\theta}) = -\frac{N}{2}\ln(2\pi\sigma^2) - \frac{1}{2\sigma^2} \sum_{n=0}^{N-1} (x[n] - A - Bn)^2\]</span></p>
+</section>
+<section id="一阶与二阶偏导数" class="level4">
+<h4 class="anchored" data-anchor-id="一阶与二阶偏导数">2. 一阶与二阶偏导数</h4>
+<ul>
+<li><strong>一阶偏导数（得分函数）</strong>：</li>
+</ul>
+<p><span class="math display">\[\frac{\partial \ln p(\mathbf{x}; \boldsymbol{\theta})}{\partial A} = \frac{1}{\sigma^2} \sum_{n=0}^{N-1} (x[n] - A - Bn)\]</span></p>
+<p><span class="math display">\[\frac{\partial \ln p(\mathbf{x}; \boldsymbol{\theta})}{\partial B} = \frac{1}{\sigma^2} \sum_{n=0}^{N-1} n(x[n] - A - Bn)\]</span></p>
+<ul>
+<li><strong>二阶偏导数（海森矩阵元素）</strong>：</li>
+</ul>
+<p><span class="math display">\[\frac{\partial^2 \ln p(\mathbf{x}; \boldsymbol{\theta})}{\partial A^2} = -\frac{N}{\sigma^2}\]</span></p>
+<p><span class="math display">\[\frac{\partial^2 \ln p(\mathbf{x}; \boldsymbol{\theta})}{\partial A \partial B} = -\frac{1}{\sigma^2} \sum_{n=0}^{N-1} n = -\frac{N(N-1)}{2\sigma^2}\]</span></p>
+<p><span class="math display">\[\frac{\partial^2 \ln p(\mathbf{x}; \boldsymbol{\theta})}{\partial B^2} = -\frac{1}{\sigma^2} \sum_{n=0}^{N-1} n^2 = -\frac{N(N-1)(2N-1)}{6\sigma^2}\]</span></p>
+</section>
+<section id="费雪信息矩阵-itheta-及其逆矩阵" class="level4">
+<h4 class="anchored" data-anchor-id="费雪信息矩阵-itheta-及其逆矩阵">3. 费雪信息矩阵 <span class="math inline">\(I(\theta)\)</span> 及其逆矩阵</h4>
+<p>根据定义 <span class="math inline">\(I(\boldsymbol{\theta}) = -\mathbb{E}[\text{Hessian}]\)</span>（注意矩阵本身各项应为正值）：</p>
+<p><span class="math display">\[I(\theta) = \frac{1}{\sigma^2} \begin{bmatrix} N &amp; \frac{N(N-1)}{2} \\  \frac{N(N-1)}{2} &amp; \frac{N(N-1)(2N-1)}{6} \end{bmatrix}\]</span></p>
+<p>计算其行列式 <span class="math inline">\(\det(I(\theta)) = \frac{N^2(N^2-1)}{12\sigma^4}\)</span>，求逆得到：</p>
+<p><span class="math display">\[I(\theta)^{-1} = \frac{\sigma^2}{N(N^2-1)} \begin{bmatrix} \frac{2(2N-1)}{3} &amp; -2 \\  -2 &amp; \frac{12}{N} \end{bmatrix}\]</span></p>
+<p>更直观的对角线元素展开形式为：</p>
+<p><span class="math display">\[I(\theta)^{-1} = \begin{bmatrix} \frac{2(2N-1)\sigma^2}{N(N+1)} &amp; -\frac{6\sigma^2}{N(N+1)} \\  -\frac{6\sigma^2}{N(N+1)} &amp; \frac{12\sigma^2}{N(N^2-1)} \end{bmatrix}\]</span></p>
+</section>
+<section id="克拉美-罗下界crlb" class="level4">
+<h4 class="anchored" data-anchor-id="克拉美-罗下界crlb">4. 克拉美-罗下界（CRLB）</h4>
+<ul>
+<li><strong>参数 <span class="math inline">\(A\)</span> 的方差下界</strong>：</li>
+</ul>
+<p><span class="math display">\[\text{Var}(\hat{A}) \geq [I(\theta)^{-1}]_{11} = \frac{2(2N-1)\sigma^2}{N(N+1)}\]</span></p>
+<ul>
+<li><strong>参数 <span class="math inline">\(B\)</span> 的方差下界</strong>：</li>
+</ul>
+<p><span class="math display">\[\text{Var}(\hat{B}) \geq [I(\theta)^{-1}]_{22} = \frac{12\sigma^2}{N(N^2-1)}\]</span></p>
+</section>
+<section id="敏感度与分辨率分析" class="level4">
+<h4 class="anchored" data-anchor-id="敏感度与分辨率分析">5. 敏感度与分辨率分析</h4>
+<ol type="1">
+<li><strong>方差对噪声水平 <span class="math inline">\(\sigma^2\)</span> 的敏感度</strong>：</li>
+</ol>
+<ul>
+<li><span class="math inline">\(\text{Var}(\hat{A})\)</span> 和 <span class="math inline">\(\text{Var}(\hat{B})\)</span> 均与噪声方差 <span class="math inline">\(\sigma^2\)</span> 成<strong>正比</strong>。噪声每增大一倍，参数估计的最小方差也随之成倍增加，说明抗噪声干扰能力直接受限于前端信噪比。</li>
+</ul>
+<ol start="2" type="1">
+<li><strong>方差对采样长度 <span class="math inline">\(N\)</span> 的敏感度</strong>：</li>
+</ol>
+<ul>
+<li><strong>截距 <span class="math inline">\(A\)</span></strong>：随着采样点数 <span class="math inline">\(N\)</span> 增加，<span class="math inline">\(\text{Var}(\hat{A}) \propto \mathcal{O}(N^{-1})\)</span>。</li>
+<li><strong>斜率 <span class="math inline">\(B\)</span></strong>：随着采样点数 <span class="math inline">\(N\)</span> 增加，<span class="math inline">\(\text{Var}(\hat{B}) \propto \mathcal{O}(N^{-3})\)</span>。斜率对 <span class="math inline">\(N\)</span> 的增长极其敏感，这意味着增加观测时长或采样点数能够极大幅度地压低斜率估计误差。</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>参数耦合与分辨率</strong>：</li>
+</ol>
+<ul>
+<li>矩阵非对角线元素不为零（<span class="math inline">\(I(\theta)_{12} \neq 0\)</span>），表明截距 <span class="math inline">\(A\)</span> 与线性趋势斜率 <span class="math inline">\(B\)</span> 的估计存在<strong>耦合</strong>。</li>
+<li>这种耦合导致单独估计 <span class="math inline">\(A\)</span> 时的方差下界（<span class="math inline">\(\frac{2(2N-1)\sigma^2}{N(N+1)}\)</span>）高于已知 <span class="math inline">\(B\)</span> 时的理论下界（<span class="math inline">\(\frac{\sigma^2}{N}\)</span>）。非对角项的大小决定了将 <span class="math inline">\(A\)</span> 与 <span class="math inline">\(B\)</span> 的变化趋势进行物理分离（分辨率）的极限能力——当 <span class="math inline">\(N\)</span> 越大时，耦合影响相对减弱，系统对两个参数的联合分辨能力显著提高。</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
 
 
 </section>
